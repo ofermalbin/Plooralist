@@ -1,0 +1,84 @@
+import React from 'react';
+
+import { ListItem } from 'react-native-elements';
+
+import compose from 'lodash.flowright';
+import gql from 'graphql-tag';
+
+import { graphqlMutation } from 'aws-appsync-react';
+
+import { listTasks } from '../../graphql/queries';
+import { updateTask } from '../../graphql/mutations';
+
+import { withCurrentUser } from '../../contexts';
+
+import { listStyles } from './config/stylesheets';
+import colors from '../../config/colors';
+
+import { TextNameUser } from '../users';
+
+class RowTask extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      completed: props.task.completed,
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    (nextProps.task.completed != this.props.task.completed) && this.setState({completed: nextProps.task.completed});
+  }
+
+  onPress() {
+    this.props.navigation.navigate('InfoTask', {taskId: this.props.task.id, isPanelOwner: this.props.isPanelOwner});
+  }
+
+  onCompletedPress() {
+    const { task, currentUser } = this.props;
+    const completed = !this.state.completed;
+    this.setState({completed});
+    const input = {
+      id: task.id,
+      expectedVersion: task.version,
+      completed,
+      updatedBy: currentUser.id,
+    };
+    const offline = Object.assign(task, {offline: true, completed, updatedAt: (new Date()).toISOString()});
+    this.props.updateTask({input, ...offline});
+  }
+
+  render() {
+    const { task } = this.props;
+
+    return (
+      <ListItem
+        containerStyle={listStyles.container}
+        titleStyle={[
+          listStyles.title,
+          { textDecorationLine: this.state.completed ? 'line-through' : 'none' },
+          { color: this.state.completed ? colors.checkedIcon : null }
+        ]}
+        chevron={true}
+        title={task.name}
+        subtitle={<TextNameUser style={listStyles.subtitle} user={task.user} />}
+        checkBox={{
+          size: listStyles.checkboxContainer.width,
+          checked: this.state.completed,
+          checkedColor: colors.checkedIcon,
+          uncheckedColor: colors.uncheckedIcon,
+          onPress: this.onCompletedPress.bind(this),
+          disabled: task.offline
+        }}
+        onPress={this.onPress.bind(this)}
+        disabled={task.offline}
+        disabledStyle={{backgroundColor:'red'}}
+      />
+    )
+  }
+};
+
+export default compose(
+  graphqlMutation(gql(updateTask), variables => ({ query: gql(listTasks), variables: {panelId: variables.panelId }}), 'Task')
+)(withCurrentUser(RowTask));

@@ -1,0 +1,14 @@
+{
+    "trigger": true,
+    "modules": [
+        "custom"
+    ],
+    "parentResource": "plooralistAuth",
+    "functionName": "plooralistAuthPostConfirmation",
+    "parentStack": "auth",
+    "triggerEnvs": "[]",
+    "triggerTemplate": "PostConfirmation.json.ejs",
+    "roleName": "plooralistAuthPostConfirmation",
+    "skipEdit": true,
+    "resourceName": "plooralistAuthPostConfirmation"
+}

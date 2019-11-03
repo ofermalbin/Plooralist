@@ -1,0 +1,17 @@
+{
+    "permissions": {
+        "api": {
+            "plooralistGraphQL": [
+                "create"
+            ]
+        },
+        "analytics": {
+            "plooralistPinpoint": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        }
+    }
+}

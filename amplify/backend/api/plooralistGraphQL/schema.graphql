@@ -1,0 +1,185 @@
+type User @model(subscriptions: null) @key(name: "phoneNumber-index", fields: ["phoneNumber"]) @auth(
+    rules: [
+      {allow: private, provider: iam, operations: [read]},
+      {allow: private, provider: userPools, operations: [read]}
+    ]) @versioned {
+  id: ID!
+  offline: Boolean
+  phoneNumber: String!
+	version: Int
+	createdAt: String
+	updatedAt: String
+	name: String!
+	email: String
+	locale: String!
+	imgKey: String
+}
+
+type Panel @model(subscriptions: null) @auth(
+    rules: [
+      {allow: private, provider: iam, operations: [read]},
+      {allow: private, provider: userPools, operations: [read]}
+    ]) @versioned {
+	id: ID!
+  offline: Boolean
+	version: Int
+	createdAt: String
+	updatedAt: String
+	type: Int!
+	name: String
+	imgKey: String
+  members: [Member] @connection(name: "PanelMembers")
+}
+
+type Member @model(subscriptions: null) @auth(
+    rules: [
+      {allow: private, provider: iam, operations: [read]},
+      {allow: private, provider: userPools, operations: [read]}
+    ]) @versioned {
+	id: ID!
+  offline: Boolean
+	version: Int
+  memberPanelId: ID!
+  memberUserId: ID!
+	createdAt: String
+	updatedAt: String
+	isOwner: Boolean
+	canAccess: Boolean
+	block: Boolean
+	mute: Boolean
+	pin: Boolean
+  panel: Panel @connection(name: "PanelMembers")
+  user: User @connection
+}
+
+type Task @model(subscriptions: null) @versioned {
+	id: ID!
+  offline: Boolean
+	version: Int
+	createdAt: String
+  updatedAt: String
+  updatedBy: String
+	membersAreMute: [String]
+	name: String!
+	description: String
+	completed: Boolean!
+  taskPanelId: ID!
+  taskUserId: ID!
+  user: User @connection
+}
+
+type Subtask @model(subscriptions: null) @versioned {
+	id: ID!
+  offline: Boolean
+	version: Int
+	createdAt: String
+	updatedAt: String
+	name: String!
+	description: String
+	completed: Boolean!
+  subtaskTaskId: ID!
+  subtaskUserId: ID!
+  user: User @connection
+}
+
+type TimeNotification @model(subscriptions: null) @versioned {
+	id: ID!
+  offline: Boolean
+	version: Int
+	createdAt: String
+	updatedAt: String
+	lastSend: String
+	nextSend: String
+	dtstart: String!
+	freq: Int!
+	interval: Int!
+	byweekday: [Int!]
+	bymonth: [Int!]
+	count: Int
+	until: String
+  timeNotificationTaskId: ID!
+}
+
+type PlaceNotification @model(subscriptions: null) @versioned {
+	id: ID!
+  offline: Boolean
+	version: Int
+	createdAt: String
+	updatedAt: String
+	placeID: String!
+	name: String!
+	latitude: Float!
+	longitude: Float!
+	when: Int!
+	radius: Float!
+  placeNotificationTaskId: ID!
+}
+
+type Message @model(subscriptions: null) @versioned {
+	id: ID!
+  offline: Boolean
+	version: Int
+	createdAt: String
+	updatedAt: String
+	text: String
+	imgKey: String
+	place: AWSJSON
+  messageUserId: ID!
+  user: User @connection
+  messagePanelId: ID
+  messageTaskId: ID
+  messageSubtaskId: ID
+}
+
+type Query {
+  listUsersAreContacts(contacts: [String]): [User]
+  getCurrentUser: User
+}
+
+type Mutation {
+  createPanelAndMembers(type: Int! name: String imgKey: String ownersIds: [ID!]! canAccessIds: [ID!] membersIds: [ID!]): Member
+  createStreamMember(input: StreamMemberInput!): Member @aws_iam @aws_cognito_user_pools
+  updateStreamMember(input: StreamMemberInput!): Member @aws_iam @aws_cognito_user_pools
+  deleteStreamMember(input: StreamMemberInput!): Member @aws_iam @aws_cognito_user_pools
+}
+
+type Subscription {
+  onCreateStreamMember(memberUserId: String!): Member @aws_subscribe(mutations: ["createStreamMember"]) @aws_cognito_user_pools
+  onUpdateStreamMember(memberUserId: String!): Member @aws_subscribe(mutations: ["updateStreamMember"]) @aws_cognito_user_pools
+  onDeleteStreamMember(memberUserId: String!): Member @aws_subscribe(mutations: ["deleteStreamMember"]) @aws_cognito_user_pools
+  onCreateMember(memberPanelId: String!): Member @aws_subscribe(mutations: ["createMember"])
+  onUpdateMember(memberPanelId: String!): Member @aws_subscribe(mutations: ["updateMember"])
+  onDeleteMember(memberPanelId: String!): Member @aws_subscribe(mutations: ["deleteMember"])
+  onUpdatePanel(id: String!): Panel @aws_subscribe(mutations: ["updatePanel"])
+  onDeletePanel(id: String!): Panel @aws_subscribe(mutations: ["deletePanel"])
+  onCreateTask(taskPanelId: String!): Task @aws_subscribe(mutations: ["createTask"])
+  onUpdateTask(taskPanelId: String!): Task @aws_subscribe(mutations: ["updateTask"])
+  onDeleteTask(taskPanelId: String!): Task @aws_subscribe(mutations: ["deleteTask"])
+  onCreateSubtask(subtaskTaskId: String!): Subtask @aws_subscribe(mutations: ["createSubtask"])
+  onUpdateSubtask(subtaskTaskId: String!): Subtask @aws_subscribe(mutations: ["updateSubtask"])
+  onDeleteSubtask(subtaskTaskId: String!): Subtask @aws_subscribe(mutations: ["deleteSubtask"])
+  onCreateTimeNotification(timeNotificationTaskId: String!): TimeNotification @aws_subscribe(mutations: ["createTimeNotification"])
+  onUpdateTimeNotification(timeNotificationTaskId: String!): TimeNotification @aws_subscribe(mutations: ["updateTimeNotification"])
+  onDeleteTimeNotification(timeNotificationTaskId: String!): TimeNotification @aws_subscribe(mutations: ["deleteTimeNotification"])
+  onCreatePlaceNotification(placeNotificationTaskId: String!): PlaceNotification @aws_subscribe(mutations: ["createPlaceNotification"])
+  onUpdatePlaceNotification(placeNotificationTaskId: String!): PlaceNotification @aws_subscribe(mutations: ["updatePlaceNotification"])
+  onDeletePlaceNotification(placeNotificationTaskId: String!): PlaceNotification @aws_subscribe(mutations: ["deletePlaceNotification"])
+  onCreateTaskMessage(messageTaskId: String!): Message @aws_subscribe(mutations: ["createMessage"])
+  onUpdateTaskMessage(messageTaskId: String!): Message @aws_subscribe(mutations: ["updateMessage"])
+  onDeleteTaskMessage(messageTaskId: String!): Message @aws_subscribe(mutations: ["deleteMessage"])
+}
+
+input StreamMemberInput {
+  id: ID!
+  offline: Boolean
+  version: Int
+  memberPanelId: ID
+  memberUserId: ID
+  createdAt: String
+  updatedAt: String
+  isOwner: Boolean
+  canAccess: Boolean
+  block: Boolean
+  mute: Boolean
+  pin: Boolean
+}
