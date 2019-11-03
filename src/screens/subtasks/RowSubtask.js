@@ -59,19 +59,11 @@ class RowSubtask extends React.Component {
         {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
         {text: 'OK', onPress: () => {
           const { subtask } = this.props;
-
           const input = {
             id: subtask.id,
-            expectedVersion: subtask.version
+            expectedVersion: subtask.version,
           };
-
-          const now = new Date();
-          const offline = {
-            ...Object.assign({}, omit(subtask, ['__typename']), omit(input, ['expectedVersion'])),
-            offline: true,
-            updatedAt: now.toISOString()
-          };
-
+          const offline = Object.assign(subtask, {offline: true});
           this.props.deleteSubtask({...offline, input});
           //this.props.navigation.goBack();
         }},

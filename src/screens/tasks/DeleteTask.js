@@ -21,20 +21,19 @@ class DeleteTask extends React.Component {
   }
 
   onDeletePress() {
-    const { task } = this.props;
-
-    const input = {
-      id: task.id,
-      expectedVersion: task.version,
-    };
-
     Alert.alert(
       'Delete Task',
       'Are you sure?',
       [
         {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
         {text: 'OK', onPress: () => {
-          this.props.deleteTask({input});
+          const { task } = this.props;
+          const input = {
+            id: task.id,
+            expectedVersion: task.version,
+          };
+          const offline = Object.assign(task, {offline: true});
+          this.props.deleteTask({...offline, input});
           this.props.navigation.goBack();
         }},
       ]

@@ -291,7 +291,8 @@
 											":apps/",
 											{
 												"Ref": "analyticsplooralistPinpointId"
-											}
+											},
+											"/*"
 										]
 									]
 								}

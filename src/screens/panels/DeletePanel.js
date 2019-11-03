@@ -21,18 +21,18 @@ class DeletePanel extends React.Component {
   }
 
   onDeletePress() {
-    const { member } = this.props;
     Alert.alert(
       'Delete',
       'Are you sure?',
       [
         {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
         {text: 'OK', onPress: () => {
+          const { member } = this.props;
           const input = {
             id: member.panel.id,
             expectedVersion: member.panel.version,
           };
-          const offline = Object.assign(member.panel, {offline: true, updatedAt: (new Date()).toISOString()});
+          const offline = Object.assign(member.panel, {offline: true});
           this.props.deletePanel({...offline, input});
           this.props.navigation.popToTop();
         }},

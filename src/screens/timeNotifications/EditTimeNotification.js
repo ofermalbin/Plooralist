@@ -88,19 +88,11 @@ class EditTimeNotification extends React.Component {
         {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
         {text: 'OK', onPress: () => {
           const { timeNotification } = this.props.navigation.state.params;
-
           const input = {
             id: timeNotification.id,
             expectedVersion: timeNotification.version
           };
-
-          const now = new Date();
-          const offline = {
-            ...Object.assign({}, omit(timeNotification, ['__typename']), omit(input, ['expectedVersion'])),
-            offline: true,
-            updatedAt: now.toISOString()
-          };
-
+          const offline = Object.assign(timeNotification, {offline: true});
           this.props.deleteTimeNotification({...offline, input});
           this.props.navigation.goBack();
         }},
