@@ -34,14 +34,7 @@ const whenTypes = ['entered', 'exited'];
 
 exports.handler = async (req, context) => {
     console.log('req', JSON.stringify(req));
-    /*const body = JSON.parse(req.body);
-    let events = body.events;
-    const body = JSON.parse(req.body);
-    let events = body.events;
-    console.log(events);*/
-    let events = req.events;
-    console.log('events', JSON.stringify(events));
-    events = _.filter(events, event => event.geofence && event.geofence.tag);
+    const events = _.filter(req.events, event => event.geofence && event.geofence.tag);
 
     const eventsChunks = _.chunk(events, 100);
 
