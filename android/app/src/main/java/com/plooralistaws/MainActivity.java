@@ -1,4 +1,4 @@
-package com.plooralist;
+package com.plooralistaws;
 
 import com.facebook.react.ReactActivity;
 

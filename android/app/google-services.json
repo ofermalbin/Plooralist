@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1021081164409",
+    "firebase_url": "https://plooralistaws-787d9.firebaseio.com",
+    "project_id": "plooralistaws-787d9",
+    "storage_bucket": "plooralistaws-787d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1021081164409:android:cb7e2393809cd2094112a8",
+        "android_client_info": {
+          "package_name": "com.plooralistaws"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1021081164409-qd661c9autu9p8ihfico2uulc3qbkhas.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAokVwgm8oA3xRA1ynOWzrr2c8UkN5YBnw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1021081164409-qd661c9autu9p8ihfico2uulc3qbkhas.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

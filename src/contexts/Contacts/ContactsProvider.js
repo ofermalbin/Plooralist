@@ -104,7 +104,7 @@ class ContactsProvider extends React.Component {
     }
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  async componentWillUpdate(nextProps, nextState) {
     if (
       (!this.state.isAfterRequestContactsPermission && nextState.isAfterRequestContactsPermission && this.props.currentAuth) ||
       (!this.props.currentAuth && nextProps.currentAuth && this.state.isAfterRequestContactsPermission)
@@ -112,12 +112,18 @@ class ContactsProvider extends React.Component {
       const currentAuth = this.props.currentAuth || nextProps.currentAuth;
       Radar.setUserId(currentAuth.attributes.phone_number);
       Radar.setDescription(currentAuth.attributes.name);
-      Radar.requestPermissions(true);
-      Radar.trackOnce().then((result) => {
-      }).catch((err) => {
-        console.log('trackOnce ', err);
+      Radar.getPermissionsStatus().then((status) => {
+        if (statue === 'GRANTED') {
+          Radar.trackOnce().then((result) => {
+          }).catch((err) => {
+            console.log('trackOnce ', err);
+          });
+          Radar.startTracking();
+        }
+        else {
+          Radar.requestPermissions(true);
+        }
       });
-      Radar.startTracking();
     }
   }
 
@@ -140,24 +146,3 @@ class ContactsProvider extends React.Component {
 }
 
 export default withCurrentAuth(ContactsProvider)
-
-/*
-import { PermissionsAndroid } from 'react-native';
-import Contacts from 'react-native-contacts';
-
-PermissionsAndroid.request(
-  PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
-  {
-    'title': 'Contacts',
-    'message': 'This app would like to view your contacts.'
-  }
-).then(() => {
-  Contacts.getAll((err, contacts) => {
-    if (err === 'denied'){
-      // error
-    } else {
-      // contacts returned in Array
-    }
-  })
-})
-*/

@@ -1,19 +1,28 @@
-package com.plooralist;
+package com.plooralistaws;
 
 import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.microsoft.codepush.react.CodePush;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import io.radar.sdk.Radar;
+import com.facebook.react.modules.i18nmanager.I18nUtil;
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
       new ReactNativeHost(this) {
+    @Override
+    protected String getJSBundleFile(){
+      return CodePush.getJSBundleFile();
+    }
+
         @Override
         public boolean getUseDeveloperSupport() {
           return BuildConfig.DEBUG;
@@ -44,6 +53,11 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this); // Remove this line if you don't want Flipper enabled
+
+    I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();
+    sharedI18nUtilInstance.forceRTL(this,false);
+    sharedI18nUtilInstance.allowRTL(this, false);
+    Radar.initialize("org_test_pk_2adbb72f75f0e8f24731bbd1b1fe3e112706303d");
   }
 
   /**

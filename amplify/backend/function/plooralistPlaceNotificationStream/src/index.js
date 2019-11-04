@@ -8,10 +8,7 @@ Amplify Params - DO NOT EDIT */
 const AWS = require("aws-sdk");
 const https = require('https');
 
-const
-    api_secret = "org_test_sk_c7270c934d79c56dde1483219bd40973ec5ee7a5",
-    test_secret = "org_test_sk_c7270c934d79c56dde1483219bd40973ec5ee7a5";
-
+const api_secret = "org_test_sk_c7270c934d79c56dde1483219bd40973ec5ee7a5";
 const host = 'www.onradar.com';
 
 const createGeofence = (place, tag) => {

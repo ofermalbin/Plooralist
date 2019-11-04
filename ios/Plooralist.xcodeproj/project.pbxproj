@@ -16,6 +16,7 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* PlooralistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PlooralistTests.m */; };
+		954C39C52370212B00CA236D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954C39C42370212B00CA236D /* CoreLocation.framework */; };
 		C9A280440F300F1129CBAB37 /* libPods-Plooralist-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D719BDFF02697B618116BC /* libPods-Plooralist-tvOS.a */; };
 		CB44089FC3BC85F648740704 /* libPods-PlooralistTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA658F8E20AD192E10495ABE /* libPods-PlooralistTests.a */; };
 		DA18AF15F13019AFA9E53A9F /* libPods-Plooralist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D766CB5B408407AB0E338A86 /* libPods-Plooralist.a */; };
@@ -59,6 +60,7 @@
 		5F8A97E226BD9331615BC002 /* Pods-Plooralist-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plooralist-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plooralist-tvOSTests/Pods-Plooralist-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6498DEFD68AE4A56BDDFEEFE /* Pods-PlooralistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlooralistTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlooralistTests/Pods-PlooralistTests.release.xcconfig"; sourceTree = "<group>"; };
 		740001D79F34F18A6B164BC2 /* Pods-Plooralist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plooralist.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plooralist/Pods-Plooralist.release.xcconfig"; sourceTree = "<group>"; };
+		954C39C42370212B00CA236D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		AA658F8E20AD192E10495ABE /* libPods-PlooralistTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PlooralistTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C44E1D03E3C7BBE8F38BF87A /* Pods-Plooralist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plooralist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plooralist/Pods-Plooralist.debug.xcconfig"; sourceTree = "<group>"; };
 		D766CB5B408407AB0E338A86 /* libPods-Plooralist.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Plooralist.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				954C39C52370212B00CA236D /* CoreLocation.framework in Frameworks */,
 				DA18AF15F13019AFA9E53A9F /* libPods-Plooralist.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,6 +142,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				954C39C42370212B00CA236D /* CoreLocation.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				D766CB5B408407AB0E338A86 /* libPods-Plooralist.a */,

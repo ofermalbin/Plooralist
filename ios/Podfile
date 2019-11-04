@@ -36,6 +36,10 @@ target 'Plooralist' do
 
   pod 'React-RCTPushNotification', :path => '../node_modules/react-native/Libraries/PushNotificationIOS'
 
+  pod 'CodePush', :path => '../node_modules/react-native-code-push'
+
+  pod 'RadarSDK', '~> 2.1.0'
+
   target 'PlooralistTests' do
     inherit! :search_paths
     # Pods for testing
