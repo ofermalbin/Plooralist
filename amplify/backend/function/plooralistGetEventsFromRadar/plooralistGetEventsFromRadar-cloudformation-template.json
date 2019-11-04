@@ -91,7 +91,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-plooralist-dev-132343-deployment",
-					"S3Key": "amplify-builds/plooralistGetEventsFromRadar-4d6e494554646d377552-build.zip"
+					"S3Key": "amplify-builds/plooralistGetEventsFromRadar-673945326c5156425535-build.zip"
 				}
 			}
 		},
