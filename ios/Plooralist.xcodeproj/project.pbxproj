@@ -61,6 +61,7 @@
 		6498DEFD68AE4A56BDDFEEFE /* Pods-PlooralistTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlooralistTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlooralistTests/Pods-PlooralistTests.release.xcconfig"; sourceTree = "<group>"; };
 		740001D79F34F18A6B164BC2 /* Pods-Plooralist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plooralist.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plooralist/Pods-Plooralist.release.xcconfig"; sourceTree = "<group>"; };
 		954C39C42370212B00CA236D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		954C39C623706B8A00CA236D /* Plooralist.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Plooralist.entitlements; path = Plooralist/Plooralist.entitlements; sourceTree = "<group>"; };
 		AA658F8E20AD192E10495ABE /* libPods-PlooralistTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PlooralistTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C44E1D03E3C7BBE8F38BF87A /* Pods-Plooralist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plooralist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plooralist/Pods-Plooralist.debug.xcconfig"; sourceTree = "<group>"; };
 		D766CB5B408407AB0E338A86 /* libPods-Plooralist.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Plooralist.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +129,7 @@
 		13B07FAE1A68108700A75B9A /* Plooralist */ = {
 			isa = PBXGroup;
 			children = (
+				954C39C623706B8A00CA236D /* Plooralist.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -299,6 +301,11 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = LCNLHU9567;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -664,6 +671,7 @@
 			baseConfigurationReference = C44E1D03E3C7BBE8F38BF87A /* Pods-Plooralist.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Plooralist/Plooralist.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = LCNLHU9567;
@@ -685,6 +693,7 @@
 			baseConfigurationReference = 740001D79F34F18A6B164BC2 /* Pods-Plooralist.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Plooralist/Plooralist.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LCNLHU9567;
 				INFOPLIST_FILE = Plooralist/Info.plist;

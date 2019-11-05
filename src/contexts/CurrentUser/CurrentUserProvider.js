@@ -35,7 +35,14 @@ class CurrentUserProvider extends React.Component {
           deviceToken = await AsyncStorage.getItem('@deviceToken');
         }
         else if (Platform.OS === 'android') {
-          deviceToken = await AsyncStorage.getItem('push_token' + awsmobile.aws_mobile_analytics_app_id);
+          deviceToken = await AsyncStorage.getItem('@deviceToken');
+          if (!deviceToken) {
+            deviceToken = await AsyncStorage.getItem('push_token' + awsmobile.aws_mobile_analytics_app_id);
+            Alert.alert('push_token', deviceToken || 'Nil');
+          }
+          else {
+            Alert.alert('Android Device @deviceToken', deviceToken);
+          }
         }
         if(deviceToken !== null) {
           const updateEndpoint = await Analytics.updateEndpoint({

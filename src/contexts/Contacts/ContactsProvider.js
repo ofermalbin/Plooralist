@@ -110,10 +110,10 @@ class ContactsProvider extends React.Component {
       (!this.props.currentAuth && nextProps.currentAuth && this.state.isAfterRequestContactsPermission)
     ) {
       const currentAuth = this.props.currentAuth || nextProps.currentAuth;
-      Radar.setUserId(currentAuth.attributes.phone_number);
+      Radar.setUserId(currentAuth.username);
       Radar.setDescription(currentAuth.attributes.name);
       Radar.getPermissionsStatus().then((status) => {
-        if (statue === 'GRANTED') {
+        if (status === 'GRANTED') {
           Radar.trackOnce().then((result) => {
           }).catch((err) => {
             console.log('trackOnce ', err);
