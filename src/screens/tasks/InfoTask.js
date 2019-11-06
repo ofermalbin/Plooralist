@@ -25,7 +25,7 @@ import { ListItem } from 'react-native-elements';
 import { withCurrentUser, withContacts } from '../../contexts';
 
 import colors from '../../config/colors';
-import { infoListStyles, createByAtStyles } from '../../config/stylesheets';
+import { infoTaskStyles, createByAtStyles } from './config/stylesheets';
 
 import { TextNameUser } from '../users';
 
@@ -113,18 +113,18 @@ class InfoTask extends React.Component {
       <ScrollView>
       <View>
         <ListItem
-          topDivider={true}
-          bottomDivider={true}
-          containerStyle={infoListStyles.container}
+          topDivider={false}
+          bottomDivider={false}
+          containerStyle={infoTaskStyles.container}
           titleStyle={[
-            infoListStyles.title,
+            infoTaskStyles.title,
             { textDecorationLine: this.state.completed ? 'line-through' : 'none' },
             { color: this.state.completed ? colors.checkedIcon : null }
           ]}
           chevron={isOwner}
           title={task.name}
           checkBox={{
-            size: infoListStyles.checkboxContainer.width,
+            size: infoTaskStyles.checkboxContainer.width,
             checked: this.state.completed,
             checkedColor: colors.checkedIcon,
             uncheckedColor: colors.uncheckedIcon,
@@ -138,8 +138,8 @@ class InfoTask extends React.Component {
         <ListItem
           topDivider={true}
           bottomDivider={true}
-          containerStyle={infoListStyles.container}
-          titleStyle={task.description ? infoListStyles.title : infoListStyles.lightTitle}
+          containerStyle={infoTaskStyles.container}
+          titleStyle={task.description ? infoTaskStyles.title : infoTaskStyles.lightTitle}
           chevron={isOwner}
           title={task.description ? task.description : 'Description'}
           onPress={isOwner ? this.onUpdateDescriptionPress.bind(this) : null}
@@ -147,29 +147,31 @@ class InfoTask extends React.Component {
           disabledStyle={{backgroundColor:'red'}}
         />
         {((subtasksCount || isOwner) || null) && <ListItem
+          topDivider={true}
           bottomDivider={true}
-          containerStyle={[infoListStyles.container, {marginTop:22}]}
-          titleStyle={infoListStyles.title}
-          subtitleStyle={infoListStyles.subtitle}
-          rightTitleStyle={infoListStyles.rightTitle}
+          containerStyle={[infoTaskStyles.container, {marginTop:22}]}
+          titleStyle={infoTaskStyles.title}
+          subtitleStyle={infoTaskStyles.subtitle}
+          rightTitleStyle={infoTaskStyles.rightTitle}
           chevron={true}
           title='Subtasks'
           subtitle={(subtasksCount || null) && `${subtasksCount}${' subtasks '}${subtasksCompletedCount}${' completed'}`}
           rightTitle={(!subtasksCount || null) && 'Add'}
-          leftIcon={{ name: 'playlist-add-check', iconStyle: infoListStyles.leftIcon }}
+          leftIcon={{ name: 'playlist-add-check', iconStyle: infoTaskStyles.leftIcon }}
           onPress={this.onSubtasksPress.bind(this)}
         />}
         <TimeNotifications {...this.props} isOwner={isOwner} />
         <PlaceNotifications {...this.props} isOwner={isOwner} />
         <ListItem
+          topDivider={true}
           bottomDivider={true}
-          containerStyle={[infoListStyles.container, {marginTop:22}]}
-          titleStyle={infoListStyles.title}
-          subtitleStyle={infoListStyles.subtitle}
-          rightTitleStyle={infoListStyles.rightTitle}
+          containerStyle={[infoTaskStyles.container, {marginTop:22}]}
+          titleStyle={infoTaskStyles.title}
+          subtitleStyle={infoTaskStyles.subtitle}
+          rightTitleStyle={infoTaskStyles.rightTitle}
           chevron={true}
           title='Chat'
-          leftIcon={{ type: 'material', name: 'attach-file', iconStyle: infoListStyles.leftIcon }}
+          leftIcon={{ type: 'material', name: 'attach-file', iconStyle: infoTaskStyles.leftIcon }}
           onPress={this.onMessagesPress.bind(this)}
         />
         <MuteTask {...this.props} />

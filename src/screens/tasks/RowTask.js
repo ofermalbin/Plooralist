@@ -12,7 +12,7 @@ import { updateTask } from '../../graphql/mutations';
 
 import { withCurrentUser } from '../../contexts';
 
-import { listStyles } from './config/stylesheets';
+import { rowTaskStyles } from './config/stylesheets';
 import colors from '../../config/colors';
 
 import { TextNameUser } from '../users';
@@ -54,17 +54,19 @@ class RowTask extends React.Component {
 
     return (
       <ListItem
-        containerStyle={listStyles.container}
+        containerStyle={rowTaskStyles.container}
+        topDivider={false}
+        bottomDivider={false}
         titleStyle={[
-          listStyles.title,
+          rowTaskStyles.title,
           { textDecorationLine: this.state.completed ? 'line-through' : 'none' },
           { color: this.state.completed ? colors.checkedIcon : null }
         ]}
-        chevron={true}
+        chevron={false}
         title={task.name}
-        subtitle={<TextNameUser style={listStyles.subtitle} user={task.user} />}
+        subtitle={<TextNameUser style={rowTaskStyles.subtitle} user={task.user} />}
         checkBox={{
-          size: listStyles.checkboxContainer.width,
+          size: rowTaskStyles.checkboxContainer.width,
           checked: this.state.completed,
           checkedColor: colors.checkedIcon,
           uncheckedColor: colors.uncheckedIcon,

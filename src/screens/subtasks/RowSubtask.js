@@ -17,7 +17,7 @@ import { withCurrentUser } from '../../contexts';
 
 import { omit } from 'lodash';
 
-import { listStyles } from './config/stylesheets';
+import { rowSubtaskStyles } from './config/stylesheets';
 import colors from '../../config/colors';
 
 class RowSubtask extends React.Component {
@@ -111,18 +111,18 @@ class RowSubtask extends React.Component {
         sensitivity={1}
       >
         <ListItem
-          containerStyle={listStyles.container}
+          containerStyle={rowSubtaskStyles.container}
           titleStyle={[
-            listStyles.title,
+            rowSubtaskStyles.title,
             { textDecorationLine: this.state.completed ? 'line-through' : 'none' },
             { color: this.state.completed ? colors.checkedIcon : null }
           ]}
-          subtitleStyle={listStyles.subtitle}
+          subtitleStyle={rowSubtaskStyles.subtitle}
           chevron={false}
           title={subtask.name}
           subtitle={subtask.description}
           checkBox={{
-            size: listStyles.checkboxContainer.width,
+            size: rowSubtaskStyles.checkboxContainer.width,
             checked: this.state.completed,
             checkedColor: colors.checkedIcon,
             uncheckedColor: colors.uncheckedIcon,

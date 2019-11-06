@@ -13,7 +13,8 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { Platform, SafeAreaView, View, Text, Alert, ScrollView } from 'react-native';
 
-import AsyncStorage from '@react-native-community/async-storage';
+import { AsyncStorage } from 'react-native';
+//import AsyncStorage from '@react-native-community/async-storage';
 
 import Amplify, { Analytics, Auth } from 'aws-amplify';
 import { AmplifyTheme } from 'aws-amplify-react-native';
