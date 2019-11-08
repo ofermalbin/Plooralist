@@ -43,11 +43,10 @@ import SplashScreen from 'react-native-splash-screen';
 
 import codePush from 'react-native-code-push';
 
-//import AmplifyAuthStorage from './AmplifyAuthStorage'
-//Auth.configure({storage: AmplifyAuthStorage});
+import { MemoryStorageNew } from './AmplifyAuthStorage';
 
 Amplify.configure(aws_exports);
-
+Auth.configure({storage: MemoryStorageNew});
 Analytics.configure(aws_exports);
 PushNotification.configure(aws_exports);
 
