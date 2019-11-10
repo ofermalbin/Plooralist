@@ -11,7 +11,7 @@ rm -rf node_modules/ && yarn cache clean && yarn install && cd ios && pod instal
 import 'react-native-gesture-handler';
 
 import React from 'react';
-import { Platform, SafeAreaView, View, Text, Alert, ScrollView } from 'react-native';
+import { Platform, SafeAreaView, View, Text, Alert } from 'react-native';
 
 import { AsyncStorage } from 'react-native';
 //import AsyncStorage from '@react-native-community/async-storage';
@@ -45,6 +45,8 @@ import codePush from 'react-native-code-push';
 
 import { MemoryStorageNew } from './AmplifyAuthStorage';
 
+import { onRegister } from './src/lib/pushNotification';
+
 Amplify.configure(aws_exports);
 Auth.configure({storage: MemoryStorageNew});
 Analytics.configure(aws_exports);
@@ -52,14 +54,6 @@ PushNotification.configure(aws_exports);
 
 let receivePushNotificationResult = null;
 let openedPushNotificationResult = null;
-
-const onRegister = async token => {
-  try {
-    await AsyncStorage.setItem('@deviceToken', token);
-  } catch (e) {
-    console.log(e);
-  }
-}
 
 const onReceive = receiveResult => {
   receivePushNotificationResult = receiveResult;

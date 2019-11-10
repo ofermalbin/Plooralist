@@ -8,7 +8,7 @@ export default class CustomSignIn extends SignIn {
   componentDidMount() {
     requestAnimationFrame(() => {
       SplashScreen.hide();
-      //this.changeState('signUp');
+      this.changeState('signUp');
     });
   }
 }
