@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Alert } from 'react-native';
 import { Button, Icon, Divider } from 'react-native-elements';
 
 import compose from 'lodash.flowright';
@@ -11,7 +11,7 @@ import { buildSubscription } from 'aws-appsync';
 
 import colors from '../../config/colors';
 
-import { listMembers } from '../../graphql/queries';
+import { listMembersForUser } from '../../graphql/queries';
 import { onCreateStreamMember, onUpdateStreamMember, onDeleteStreamMember } from '../../graphql/subscriptions';
 
 import { withCurrentUser } from '../../contexts';
@@ -34,19 +34,19 @@ class Panels extends React.Component {
       this.props.data.subscribeToMore(
         buildSubscription(
           {query: gql(onCreateStreamMember), variables: {memberUserId: currentUser.id}},
-          {query: gql(listMembers), variables: {filter: {memberUserId: {eq: currentUser.id}}}}
+          {query: gql(listMembersForUser), variables: {memberUserId: currentUser.id}}
         )
       );
       this.props.data.subscribeToMore(
         buildSubscription(
           {query: gql(onUpdateStreamMember), variables: {memberUserId: currentUser.id}},
-          {query: gql(listMembers), variables: {filter: {memberUserId: {eq: currentUser.id}}}}
+          {query: gql(listMembersForUser), variables: {memberUserId: currentUser.id}}
         )
       );
       this.props.data.subscribeToMore(
         buildSubscription(
           {query: gql(onDeleteStreamMember), variables: {memberUserId: currentUser.id}},
-          {query: gql(listMembers), variables: {filter: {memberUserId: {eq: currentUser.id}}}}
+          {query: gql(listMembersForUser), variables: {memberUserId: currentUser.id}}
         )
       );
     }
@@ -73,15 +73,16 @@ class Panels extends React.Component {
 }
 
 const enhance = withCurrentUser(compose(
-  graphql(gql(listMembers), {
+  graphql(gql(listMembersForUser), {
     options: props => ({
       fetchPolicy: 'cache-and-network',
       variables: {
-        filter: {memberUserId: {eq: props.currentUser ? props.currentUser.id : null}}
+        memberUserId: props.currentUser ? props.currentUser.id : null,
+        limit: 100
       }
     }),
     props: props => ({
-      members: props.data.listMembers ? props.data.listMembers.items : [],
+      members: props.data.listMembersForUser ? props.data.listMembersForUser.items : [],
       data: props.data
     }),
   }),

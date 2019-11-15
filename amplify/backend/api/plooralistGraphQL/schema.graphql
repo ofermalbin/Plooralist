@@ -31,7 +31,7 @@ type Panel @model(subscriptions: null) @auth(
   members: [Member] @connection(name: "PanelMembers")
 }
 
-type Member @model(subscriptions: null) @auth(
+type Member @model(subscriptions: null) @key(name: "gsi-UserMembers", fields: ["memberUserId"], queryField: "listMembersForUser") @auth(
     rules: [
       {allow: private, provider: iam, operations: [read]},
       {allow: private, provider: userPools, operations: [read]}

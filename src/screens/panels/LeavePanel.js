@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 
 import { deleteMember } from '../../graphql/mutations';
-import { listMembers } from '../../graphql/queries';
+import { listMembersForUser } from '../../graphql/queries';
 
 import { ListItem } from 'react-native-elements';
 
@@ -56,5 +56,5 @@ class LeavePanel extends React.Component {
 }
 
 export default compose(
-  graphqlMutation(gql(deleteMember), variables => ({query: gql(listMembers), variables: {filter: {memberPanelId: {eq: variables.memberPanelId}}}}), 'Member')
+  graphqlMutation(gql(deleteMember), variables => ({query: gql(listMembersForUser), variables: {memberPanelId: variables.memberPanelId }}), 'Member')
 )(LeavePanel);

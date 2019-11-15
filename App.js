@@ -12,6 +12,7 @@ import 'react-native-gesture-handler';
 
 import React from 'react';
 import { Platform, SafeAreaView, View, Text, Alert } from 'react-native';
+import { YellowBox } from 'react-native';
 
 import { AsyncStorage } from 'react-native';
 //import AsyncStorage from '@react-native-community/async-storage';
@@ -175,6 +176,8 @@ class AppWithAuth extends React.Component {
     this.state = {
       authState: null,
     }
+
+    YellowBox.ignoreWarnings(['componentWillMount has been renamed', 'componentWillReceiveProps has been renamed', 'componentWillUpdate has been renamed']);
   }
 
   handleStateChange = state => {

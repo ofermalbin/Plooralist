@@ -33,6 +33,7 @@ export const updateEndpoint = async (userId, analyticsAppId) => {
     }
     if(deviceToken !== null) {
       const updateEndpoint = await Analytics.updateEndpoint({
+        channelType: (Platform.OS === 'ios') ? 'APNS' : 'GCM', // The channel type. Valid values: APNS, GCM
         address: deviceToken,
         optOut: 'NONE',
         userId: userId,

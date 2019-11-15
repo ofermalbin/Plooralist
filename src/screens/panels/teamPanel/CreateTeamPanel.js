@@ -13,7 +13,7 @@ import gql from 'graphql-tag';
 
 import { graphqlMutation } from 'aws-appsync-react';
 
-import { listMembers } from '../../../graphql/queries';
+import { listMembersForUser } from '../../../graphql/queries';
 import { createPanelAndMembers } from '../../../graphql/mutations';
 
 import { withCurrentUser } from '../../../contexts';
@@ -222,7 +222,7 @@ class CreateTeamPanel extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(createPanelAndMembers), variables => ({query: gql(listMembers), variables: {filter: {memberUserId: {eq: variables.memberUserId}}}}), 'Member'),
+  graphqlMutation(gql(createPanelAndMembers), variables => ({query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId }}), 'Member'),
 ) (withCurrentUser(CreateTeamPanel));
 
 enhance.navigationOptions = ({ navigation }) => {

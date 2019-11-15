@@ -10,7 +10,7 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 
 import { updateMember } from '../../graphql/mutations';
-import { listMembers } from '../../graphql/queries';
+import { listMembersForUser } from '../../graphql/queries';
 
 import { AvatarS3Image } from '../../components';
 
@@ -71,5 +71,5 @@ class _RowPanel extends React.Component {
 };
 
 export default compose(
-  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembers), variables: {filter: {memberPanelId: {eq: variables.memberPanelId}}}}), 'Member'),
+  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembersForUser), variables: {memberPanelId: variables.memberPanelId }}), 'Member'),
 )(_RowPanel);

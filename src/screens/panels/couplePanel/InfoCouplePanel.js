@@ -49,7 +49,6 @@ class InfoCouplePanel extends React.Component {
           bottomDivider={true}
           containerStyle={infoListStyles.container}
           titleStyle={infoListStyles.title}
-          subtitleStyle={infoListStyles.subtitle}
           title={name}
           leftAvatar={
             <AvatarS3Image

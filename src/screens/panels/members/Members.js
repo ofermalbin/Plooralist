@@ -11,7 +11,7 @@ import gql from 'graphql-tag';
 
 import { buildSubscription } from 'aws-appsync';
 
-import { listMembers } from '../../../graphql/queries';
+import { listMembersForUser } from '../../../graphql/queries';
 import { onCreateMember, onUpdateMember, onDeleteMember } from '../../../graphql/subscriptions';
 
 import { infoListStyles } from '../config/stylesheets';
@@ -29,19 +29,19 @@ class Members extends React.Component {
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembers), variables: {filter: {memberPanelId: {eq: memberPanelId}}}}
+        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembers), variables: {filter: {memberPanelId: {eq: memberPanelId}}}}
+        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembers), variables: {filter: {memberPanelId: {eq: memberPanelId}}}}
+        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
       )
     );
   }
@@ -73,15 +73,15 @@ class Members extends React.Component {
 }
 
 export default compose(
-  graphql(gql(listMembers), {
+  graphql(gql(listMembersForUser), {
     options: props => ({
       fetchPolicy: 'cache-and-network',
       variables: {
-        filter: {memberPanelId: {eq: props.member.memberPanelId}}
+        memberPanelId: props.member.memberPanelId
       }
     }),
     props: props => ({
-      members: props.data.listMembers ? props.data.listMembers.items : [],
+      members: props.data.listMembersForUser ? props.data.listMembersForUser.items : [],
       data: props.data
     }),
   }),

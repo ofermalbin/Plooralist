@@ -187,7 +187,10 @@
     "notifications": {
         "plooralistPinpoint": {
             "service": "Pinpoint",
-            "channels": []
+            "channels": [
+                "APNS",
+                "FCM"
+            ]
         }
     },
     "storage": {

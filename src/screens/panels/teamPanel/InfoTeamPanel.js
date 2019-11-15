@@ -56,19 +56,19 @@ class InfoTeamPanel extends React.Component {
     /*this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembers), variables: {filter: {memberPanelId: {eq: memberPanelId}}}}
+        {query: gql(listMembersForUser), variables: {filter: {memberPanelId: {eq: memberPanelId}}}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembers), variables: {filter: {memberPanelId: {eq: memberPanelId}}}}
+        {query: gql(listMembersForUser), variables: {filter: {memberPanelId: {eq: memberPanelId}}}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembers), variables: {filter: {memberPanelId: {eq: memberPanelId}}}}
+        {query: gql(listMembersForUser), variables: {filter: {memberPanelId: {eq: memberPanelId}}}}
       )
     );*/
   }
@@ -133,7 +133,6 @@ class InfoTeamPanel extends React.Component {
           bottomDivider={true}
           containerStyle={infoListStyles.container}
           titleStyle={infoListStyles.title}
-          subtitleStyle={infoListStyles.subtitle}
           chevron={isOwner}
           title={__capitalize_Words(panel.name)}
           leftAvatar={

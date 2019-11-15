@@ -6,7 +6,7 @@ import compose from 'lodash.flowright';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { listMembers } from '../../graphql/queries';
+import { listMembersForUser } from '../../graphql/queries';
 
 import { find } from 'lodash';
 
@@ -31,15 +31,15 @@ class CurrentUser extends React.Component {
 }
 
 export default withCurrentUser(compose(
-  graphql(gql(listMembers), {
+  graphql(gql(listMembersForUser), {
     options: props => ({
       fetchPolicy: 'cache-and-network',
       variables: {
-        filter: { memberUserId: { eq: props.currentUser ? props.currentUser.id : null } }
+        memberUserId: props.currentUser ? props.currentUser.id : null
       }
     }),
     props: props => ({
-      members: props.data.listMembers ? props.data.listMembers.items : [],
+      members: props.data.listMembersForUser ? props.data.listMembersForUser.items : [],
       data: props.data
     }),
   }),

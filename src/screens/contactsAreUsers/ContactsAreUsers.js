@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 
 import { buildSubscription } from 'aws-appsync';
 
-import { listMembers } from '../../graphql/queries';
+import { listMembersForUser } from '../../graphql/queries';
 import { onCreatePanel, onUpdatePanel, onDeletePanel } from '../../graphql/subscriptions';
 
 import { find, forEach, groupBy, indexOf } from 'lodash';
@@ -29,9 +29,9 @@ class ContactsAreUsers extends React.Component {
 
   componentDidMount() {
     const { currentUser } = this.props;
-    //this.props.data.subscribeToMore(buildSubscription(onCreatePanel(currentUser.phoneNumber), listMembers));
-    //this.props.data.subscribeToMore(buildSubscription(onUpdatePanel(currentUser.phoneNumber), listMembers));
-    //this.props.data.subscribeToMore(buildSubscription(onDeletePanel(currentUser.phoneNumber), listMembers));
+    //this.props.data.subscribeToMore(buildSubscription(onCreatePanel(currentUser.phoneNumber), listMembersForUser));
+    //this.props.data.subscribeToMore(buildSubscription(onUpdatePanel(currentUser.phoneNumber), listMembersForUser));
+    //this.props.data.subscribeToMore(buildSubscription(onDeletePanel(currentUser.phoneNumber), listMembersForUser));
   }
 
   render() {
@@ -60,15 +60,15 @@ class ContactsAreUsers extends React.Component {
 }
 
 export default withCurrentUser(compose(
-  graphql(gql(listMembers), {
+  graphql(gql(listMembersForUser), {
     options: props => ({
       fetchPolicy: 'cache-and-network',
       variables: {
-        filter: { memberUserId: { eq: props.currentUser ? props.currentUser.id : null } }
+        memberUserId: props.currentUser ? props.currentUser.id : null
       }
     }),
     props: props => ({
-      members: props.data.listMembers ? props.data.listMembers.items : [],
+      members: props.data.listMembersForUser ? props.data.listMembersForUser.items : [],
       data: props.data
     }),
   }),

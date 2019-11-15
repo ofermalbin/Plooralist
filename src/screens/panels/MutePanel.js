@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 
 import { updateMember } from '../../graphql/mutations';
-import { listMembers } from '../../graphql/queries';
+import { listMembersForUser } from '../../graphql/queries';
 
 import { ListItem } from 'react-native-elements';
 
@@ -83,5 +83,5 @@ class MutePanel extends React.Component {
 }
 
 export default compose(
-  graphqlMutation(gql(updateMember), gql(listMembers), 'Member'),
+  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId }}), 'Member'),
 )(MutePanel);

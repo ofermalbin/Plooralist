@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 
 import { updateMember } from '../../graphql/mutations';
-import { listMembers } from '../../graphql/queries';
+import { listMembersForUser } from '../../graphql/queries';
 
 import { ListItem } from 'react-native-elements';
 
@@ -77,5 +77,5 @@ class BlockPanel extends React.Component {
 }
 
 export default compose(
-  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembers), variables: {filter: {memberPanelId: {eq: variables.memberPanelId}}}}), 'Member'),
+  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembersForUser), variables: {memberPanelId: variables.memberPanelId }}), 'Member'),
 )(BlockPanel);

@@ -9,7 +9,7 @@ import gql from 'graphql-tag';
 
 import { graphqlMutation } from 'aws-appsync-react';
 
-import { listMembers } from '../../graphql/queries';
+import { listMembersForUser } from '../../graphql/queries';
 import { createPanelAndMembers } from '../../graphql/mutations';
 
 import { withCurrentUser } from '../../contexts';
@@ -159,5 +159,5 @@ class RowContactIsUser extends React.Component {
 };
 
 export default compose(
-  graphqlMutation(gql(createPanelAndMembers), variables => ({query: gql(listMembers), variables: {filter: {memberUserId: {eq: variables.memberUserId }}}}), 'Member'),
+  graphqlMutation(gql(createPanelAndMembers), variables => ({query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId }}), 'Member'),
 ) (withCurrentUser(RowContactIsUser))
