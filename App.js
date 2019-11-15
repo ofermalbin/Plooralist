@@ -177,7 +177,12 @@ class AppWithAuth extends React.Component {
       authState: null,
     }
 
-    YellowBox.ignoreWarnings(['componentWillMount has been renamed', 'componentWillReceiveProps has been renamed', 'componentWillUpdate has been renamed']);
+    YellowBox.ignoreWarnings([
+      'componentWillMount has been renamed', // TODO: Remove when fixed
+      'componentWillReceiveProps has been renamed', // TODO: Remove when fixed
+      'componentWillUpdate has been renamed', // TODO: Remove when fixed
+      'VirtualizedLists should never be nested', // TODO: Remove when fixed
+    ]);
   }
 
   handleStateChange = state => {
