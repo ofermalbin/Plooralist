@@ -9,7 +9,7 @@ import gql from 'graphql-tag';
 import { buildSubscription } from 'aws-appsync';
 
 import { listMembersForUser } from '../../graphql/queries';
-import { onCreatePanel, onUpdatePanel, onDeletePanel } from '../../graphql/subscriptions';
+import { onCreateMember, onUpdateMember, onDeleteMember } from '../../graphql/subscriptions';
 
 import { find, forEach, groupBy, indexOf } from 'lodash';
 
@@ -28,10 +28,25 @@ class ContactsAreUsers extends React.Component {
   }
 
   componentDidMount() {
-    const { currentUser } = this.props;
-    //this.props.data.subscribeToMore(buildSubscription(onCreatePanel(currentUser.phoneNumber), listMembersForUser));
-    //this.props.data.subscribeToMore(buildSubscription(onUpdatePanel(currentUser.phoneNumber), listMembersForUser));
-    //this.props.data.subscribeToMore(buildSubscription(onDeletePanel(currentUser.phoneNumber), listMembersForUser));
+    const { memberPanelId } = this.props.currentUser;
+    this.props.data.subscribeToMore(
+      buildSubscription(
+        {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
+        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
+      )
+    );
+    this.props.data.subscribeToMore(
+      buildSubscription(
+        {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
+        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
+      )
+    );
+    this.props.data.subscribeToMore(
+      buildSubscription(
+        {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
+        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
+      )
+    );
   }
 
   render() {

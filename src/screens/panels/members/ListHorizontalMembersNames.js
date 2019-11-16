@@ -25,15 +25,24 @@ class ListHorizontalMembersNames extends React.Component {
 
   componentDidMount() {
     const { memberPanelId } = this.props.member;
-    /*this.props.data.subscribeToMore(
-      buildSubscription(onCreateMember(panelId), { query: listMembersForUser, variables: {panelId: panelId }})
+    this.props.data.subscribeToMore(
+      buildSubscription(
+        {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
+        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
+      )
     );
     this.props.data.subscribeToMore(
-      buildSubscription(onUpdateMember(panelId), { query: listMembersForUser, variables: {panelId: panelId }})
+      buildSubscription(
+        {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
+        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
+      )
     );
     this.props.data.subscribeToMore(
-      buildSubscription(onDeleteMember(panelId), { query: listMembersForUser, variables: {panelId: panelId }})
-    );*/
+      buildSubscription(
+        {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
+        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
+      )
+    );
   }
 
   render() {

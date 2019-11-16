@@ -314,6 +314,203 @@ export const listMessages = `query ListMessages(
   }
 }
 `;
+export const listTasksForPanel = `query ListTasksForPanel(
+  $taskPanelId: ID
+  $sortDirection: ModelSortDirection
+  $filter: ModelTaskFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTasksForPanel(
+    taskPanelId: $taskPanelId
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      offline
+      version
+      createdAt
+      updatedAt
+      updatedBy
+      membersAreMute
+      name
+      description
+      completed
+      taskPanelId
+      taskUserId
+      user {
+        id
+        offline
+        phoneNumber
+        version
+        createdAt
+        updatedAt
+        name
+        email
+        locale
+        imgKey
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const listSubtasksForTask = `query ListSubtasksForTask(
+  $subtaskTaskId: ID
+  $sortDirection: ModelSortDirection
+  $filter: ModelSubtaskFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listSubtasksForTask(
+    subtaskTaskId: $subtaskTaskId
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      offline
+      version
+      createdAt
+      updatedAt
+      name
+      description
+      completed
+      subtaskTaskId
+      subtaskUserId
+      user {
+        id
+        offline
+        phoneNumber
+        version
+        createdAt
+        updatedAt
+        name
+        email
+        locale
+        imgKey
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const listTimeNotificationsForTask = `query ListTimeNotificationsForTask(
+  $timeNotificationTaskId: ID
+  $sortDirection: ModelSortDirection
+  $filter: ModelTimeNotificationFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTimeNotificationsForTask(
+    timeNotificationTaskId: $timeNotificationTaskId
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      offline
+      version
+      createdAt
+      updatedAt
+      lastSend
+      nextSend
+      dtstart
+      freq
+      interval
+      byweekday
+      bymonth
+      count
+      until
+      timeNotificationTaskId
+    }
+    nextToken
+  }
+}
+`;
+export const listPlaceNotificationsForTask = `query ListPlaceNotificationsForTask(
+  $placeNotificationTaskId: ID
+  $sortDirection: ModelSortDirection
+  $filter: ModelPlaceNotificationFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPlaceNotificationsForTask(
+    placeNotificationTaskId: $placeNotificationTaskId
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      offline
+      version
+      createdAt
+      updatedAt
+      placeID
+      name
+      latitude
+      longitude
+      when
+      radius
+      placeNotificationTaskId
+    }
+    nextToken
+  }
+}
+`;
+export const listMessagesForTask = `query ListMessagesForTask(
+  $messageTaskId: ID
+  $sortDirection: ModelSortDirection
+  $filter: ModelMessageFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listMessagesForTask(
+    messageTaskId: $messageTaskId
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      offline
+      version
+      createdAt
+      updatedAt
+      text
+      imgKey
+      place
+      messageUserId
+      messagePanelId
+      messageTaskId
+      messageSubtaskId
+      user {
+        id
+        offline
+        phoneNumber
+        version
+        createdAt
+        updatedAt
+        name
+        email
+        locale
+        imgKey
+      }
+    }
+    nextToken
+  }
+}
+`;
 export const listUsers = `query ListUsers(
   $filter: ModelUserFilterInput
   $limit: Int

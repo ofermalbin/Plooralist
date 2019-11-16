@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 
 import { buildSubscription } from 'aws-appsync';
 
-import { listTimeNotifications } from '../../graphql/queries';
+import { listTimeNotificationsForTask } from '../../graphql/queries';
 import { onCreateTimeNotification, onUpdateTimeNotification , onDeleteTimeNotification } from '../../graphql/subscriptions';
 
 import Loading from '../../components/Loading';
@@ -30,19 +30,19 @@ class TimeNotifications extends React.Component {
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateTimeNotification), variables: {timeNotificationTaskId: taskId}},
-        {query: gql(listTimeNotifications), variables: {filter: {timeNotificationTaskId: {eq: taskId}}}}
+        {query: gql(listTimeNotificationsForTask), variables: {timeNotificationTaskId: taskId}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateTimeNotification), variables: {timeNotificationTaskId: taskId}},
-        {query: gql(listTimeNotifications), variables: {filter: {timeNotificationTaskId: {eq: taskId}}}}
+        {query: gql(listTimeNotificationsForTask), variables: {timeNotificationTaskId: taskId}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteTimeNotification), variables: {timeNotificationTaskId: taskId}},
-        {query: gql(listTimeNotifications), variables: {filter: {timeNotificationTaskId: {eq: taskId}}}}
+        {query: gql(listTimeNotificationsForTask), variables: {timeNotificationTaskId: taskId}}
       )
     );
   }
@@ -80,18 +80,18 @@ class TimeNotifications extends React.Component {
 };
 
 export default compose(
-  graphql(gql(listTimeNotifications), {
+  graphql(gql(listTimeNotificationsForTask), {
     options: props => {
       const { task } = props;
       return ({
         fetchPolicy: 'cache-and-network',
         variables: {
-          filter: { timeNotificationTaskId: { eq: task.id }}
+          timeNotificationTaskId: task.id
         }
       })
     },
     props: props => ({
-      timeNotifications: props.data.listTimeNotifications ? props.data.listTimeNotifications.items : [],
+      timeNotifications: props.data.listTimeNotificationsForTask ? props.data.listTimeNotificationsForTask.items : [],
       data: props.data
     }),
   }),

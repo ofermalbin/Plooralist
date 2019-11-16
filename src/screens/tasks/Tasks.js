@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 
 import { buildSubscription } from 'aws-appsync';
 
-import { getMember, listTasks } from '../../graphql/queries';
+import { getMember, listTasksForPanel } from '../../graphql/queries';
 import { onCreateTask, onUpdateTask, onDeleteTask } from '../../graphql/subscriptions';
 
 import Loading from '../../components/Loading';
@@ -29,19 +29,19 @@ class Tasks extends React.Component {
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateTask), variables: {taskPanelId: panelId}},
-        {query: gql(listTasks), variables: {filter: {taskPanelId: {eq: panelId}}}}
+        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateTask), variables: {taskPanelId: panelId}},
-        {query: gql(listTasks), variables: {filter: {taskPanelId: {eq: panelId}}}}
+        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteTask), variables: {taskPanelId: panelId}},
-        {query: gql(listTasks), variables: {filter: {taskPanelId: {eq: panelId}}}}
+        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId}}
       )
     );
   }
@@ -77,18 +77,18 @@ const enhance = compose(
       member: props.data.getMember ? props.data.getMember : null,
     })
   }),
-  graphql(gql(listTasks), {
+  graphql(gql(listTasksForPanel), {
     options: props => {
       const { panelId } = props.navigation.state.params;
       return ({
         fetchPolicy: 'cache-and-network',
         variables: {
-          filter: { taskPanelId: { eq: panelId }}
+          taskPanelId: panelId
         }
       })
     },
     props: props => ({
-      tasks: props.data.listTasks ? props.data.listTasks.items : [],
+      tasks: props.data.listTasksForPanel ? props.data.listTasksForPanel.items : [],
       data: props.data
     }),
   }),

@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 
 import { deleteTask } from '../../graphql/mutations';
-import { listTasks } from '../../graphql/queries';
+import { listTasksForPanel } from '../../graphql/queries';
 
 import { ListItem } from 'react-native-elements';
 
@@ -56,5 +56,5 @@ class DeleteTask extends React.Component {
 }
 
 export default compose(
-  graphqlMutation(gql(deleteTask), variables => ({query: gql(listTasks), variables: {filter: {taskPanelId: {eq: variables.taskPanelId }}}}), 'Task')
+  graphqlMutation(gql(deleteTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId}}), 'Task')
 )(DeleteTask);

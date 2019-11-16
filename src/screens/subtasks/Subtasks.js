@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 
 import { buildSubscription } from 'aws-appsync';
 
-import { getTask, listSubtasks } from '../../graphql/queries';
+import { getTask, listSubtasksForTask } from '../../graphql/queries';
 import { onCreateSubtask, onUpdateSubtask, onDeleteSubtask } from '../../graphql/subscriptions';
 
 
@@ -26,19 +26,19 @@ class Subtasks extends React.Component {
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateSubtask), variables: {subtaskTaskId: taskId}},
-        {query: gql(listSubtasks), variables: {filter: {subtaskTaskId: {eq: taskId}}}}
+        {query: gql(listSubtasksForTask), variables: {subtaskTaskId: taskId}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateSubtask), variables: {subtaskTaskId: taskId}},
-        {query: gql(listSubtasks), variables: {filter: {subtaskTaskId: {eq: taskId}}}}
+        {query: gql(listSubtasksForTask), variables: {subtaskTaskId: taskId}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteSubtask), variables: {subtaskTaskId: taskId}},
-        {query: gql(listSubtasks), variables: {filter: {subtaskTaskId: {eq: taskId}}}}
+        {query: gql(listSubtasksForTask), variables: {subtaskTaskId: taskId}}
       )
     );
   }
@@ -52,18 +52,18 @@ class Subtasks extends React.Component {
 }
 
 const enhance = compose(
-  graphql(gql(listSubtasks), {
+  graphql(gql(listSubtasksForTask), {
     options: props => {
       const { taskId } = props.navigation.state.params;
       return ({
         fetchPolicy: 'cache-and-network',
         variables: {
-          filter: { subtaskTaskId: { eq: taskId }}
+          subtaskTaskId: taskId
         }
       })
     },
     props: props => ({
-      subtasks: props.data.listSubtasks ? props.data.listSubtasks.items : [],
+      subtasks: props.data.listSubtasksForTask ? props.data.listSubtasksForTask.items : [],
       data: props.data
     }),
   }),

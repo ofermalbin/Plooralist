@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 
 import { buildSubscription } from 'aws-appsync';
 
-import { listPlaceNotifications } from '../../graphql/queries';
+import { listPlaceNotificationsForTask } from '../../graphql/queries';
 import { onCreatePlaceNotification, onUpdatePlaceNotification , onDeletePlaceNotification } from '../../graphql/subscriptions';
 
 import Loading from '../../components/Loading';
@@ -30,19 +30,19 @@ class PlaceNotifications extends React.Component {
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onCreatePlaceNotification), variables: {placeNotificationTaskId: taskId}},
-        {query: gql(listPlaceNotifications), variables: {filter: {placeNotificationTaskId: {eq: taskId}}}}
+        {query: gql(listPlaceNotificationsForTask), variables: {placeNotificationTaskId: taskId}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdatePlaceNotification), variables: {placeNotificationTaskId: taskId}},
-        {query: gql(listPlaceNotifications), variables: {filter: {placeNotificationTaskId: {eq: taskId}}}}
+        {query: gql(listPlaceNotificationsForTask), variables: {placeNotificationTaskId: taskId}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onDeletePlaceNotification), variables: {placeNotificationTaskId: taskId}},
-        {query: gql(listPlaceNotifications), variables: {filter: {placeNotificationTaskId: {eq: taskId}}}}
+        {query: gql(listPlaceNotificationsForTask), variables: {placeNotificationTaskId: taskId}}
       )
     );
   }
@@ -80,18 +80,18 @@ class PlaceNotifications extends React.Component {
 };
 
 export default compose(
-  graphql(gql(listPlaceNotifications), {
+  graphql(gql(listPlaceNotificationsForTask), {
     options: props => {
       const { task } = props;
       return ({
         fetchPolicy: 'cache-and-network',
         variables: {
-          filter: { placeNotificationTaskId: { eq: task.id }}
+          placeNotificationTaskId: task.id
         }
       })
     },
     props: props => ({
-      placeNotifications: props.data.listPlaceNotifications ? props.data.listPlaceNotifications.items : [],
+      placeNotifications: props.data.listPlaceNotificationsForTask ? props.data.listPlaceNotificationsForTask.items : [],
       data: props.data
     }),
   }),

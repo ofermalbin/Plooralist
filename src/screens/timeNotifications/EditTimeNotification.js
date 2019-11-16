@@ -13,7 +13,7 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 
 import { updateTimeNotification, deleteTimeNotification } from '../../graphql/mutations';
-import { listTimeNotifications } from '../../graphql/queries';
+import { listTimeNotificationsForTask } from '../../graphql/queries';
 
 import { omit } from 'lodash';
 
@@ -131,8 +131,8 @@ class EditTimeNotification extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(updateTimeNotification), variables => ({ query: gql(listTimeNotifications), variables: {filter: {timeNotificationTaskId: {eq: variables.timeNotificationTaskId}}}}), 'TimeNotification'),
-  graphqlMutation(gql(deleteTimeNotification), variables => ({ query: gql(listTimeNotifications), variables: {filter: {timeNotificationTaskId: {eq: variables.timeNotificationTaskId}}}}), 'TimeNotification')
+  graphqlMutation(gql(updateTimeNotification), variables => ({ query: gql(listTimeNotificationsForTask), variables: {timeNotificationTaskId: variables.timeNotificationTaskId}}), 'TimeNotification'),
+  graphqlMutation(gql(deleteTimeNotification), variables => ({ query: gql(listTimeNotificationsForTask), variables: {timeNotificationTaskId: variables.timeNotificationTaskId}}), 'TimeNotification')
 ) (EditTimeNotification)
 
 

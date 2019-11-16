@@ -11,7 +11,7 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 import { buildSubscription } from 'aws-appsync';
 
-import { getTask, listTasks, listSubtasks } from '../../graphql/queries';
+import { getTask, listTasksForPanel, listSubtasks } from '../../graphql/queries';
 import { updateTask } from '../../graphql/mutations';
 
 import { onCreateSubtask, /*onUpdateSubtask*/ } from '../../graphql/subscriptions';
@@ -220,7 +220,7 @@ const enhance = compose(
       subtasksData: props.data
     }),
   }),
-  graphqlMutation(gql(updateTask), variables => ({query: gql(listTasks), variables: {filter: {taskPanelId: {eq: variables.taskPanelId}} }}), 'Task')
+  graphqlMutation(gql(updateTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId}}), 'Task')
 )(withCurrentUser(InfoTask));
 
 enhance.navigationOptions = ({ navigation }) => {

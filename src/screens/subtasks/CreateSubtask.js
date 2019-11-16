@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 
 import { graphqlMutation } from 'aws-appsync-react';
 
-import { listSubtasks } from '../../graphql/queries';
+import { listSubtasksForTask } from '../../graphql/queries';
 import { createSubtask } from '../../graphql/mutations';
 
 import { withCurrentUser } from '../../contexts';
@@ -48,5 +48,5 @@ class CreateSubtask extends React.Component {
 }
 
 export default compose(
-  graphqlMutation(gql(createSubtask), variables => ({query: gql(listSubtasks), variables: {filter: {subtaskTaskId: {eq: variables.subtaskTaskId}}}}), 'Subtask')
+  graphqlMutation(gql(createSubtask), variables => ({query: gql(listSubtasksForTask), variables: {subtaskTaskId: variables.subtaskTaskId}}), 'Subtask')
 )(withCurrentUser(CreateSubtask));

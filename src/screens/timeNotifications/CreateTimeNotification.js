@@ -13,7 +13,7 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 
 import { createTimeNotification } from '../../graphql/mutations';
-import { listTimeNotifications } from '../../graphql/queries';
+import { listTimeNotificationsForTask } from '../../graphql/queries';
 
 import TimeNotificationDtStart from './TimeNotificationDtStart';
 import TimeNotificationRecurrence from './TimeNotificationRecurrence';
@@ -73,7 +73,7 @@ class CreateTimeNotification extends React.Component {
       createdAt: now.toISOString(),
       updatedAt: now.toISOString()
     };
-    
+
     this.props.createTimeNotification({...offline, input: input});
     this.props.navigation.goBack();
 
@@ -107,7 +107,7 @@ class CreateTimeNotification extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(createTimeNotification), variables => ({query: gql(listTimeNotifications), variables: {filter: {timeNotificationTaskId: {eq: variables.timeNotificationTaskId}}}}), 'TimeNotification')
+  graphqlMutation(gql(createTimeNotification), variables => ({query: gql(listTimeNotificationsForTask), variables: {timeNotificationTaskId: variables.timeNotificationTaskId}}), 'TimeNotification')
 ) (CreateTimeNotification)
 
 

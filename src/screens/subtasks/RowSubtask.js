@@ -10,7 +10,7 @@ import gql from 'graphql-tag';
 
 import { graphqlMutation } from 'aws-appsync-react';
 
-import { listSubtasks } from '../../graphql/queries';
+import { listSubtasksForTask } from '../../graphql/queries';
 import { updateSubtask, deleteSubtask } from '../../graphql/mutations';
 
 import { withCurrentUser } from '../../contexts';
@@ -139,6 +139,6 @@ class RowSubtask extends React.Component {
 };
 
 export default compose(
-  graphqlMutation(gql(updateSubtask), variables => ({ query: gql(listSubtasks), variables: {filter: {subtaskTaskId: {eq: variables.subtaskTaskId}}}}), 'Subtask'),
-  graphqlMutation(gql(deleteSubtask), variables => ({ query: gql(listSubtasks), variables: {filter: {subtaskTaskId: {eq: variables.subtaskTaskId}}}}), 'Subtask')
+  graphqlMutation(gql(updateSubtask), variables => ({ query: gql(listSubtasksForTask), variables: {subtaskTaskId: variables.subtaskTaskId}}), 'Subtask'),
+  graphqlMutation(gql(deleteSubtask), variables => ({ query: gql(listSubtasksForTask), variables: {subtaskTaskId: variables.subtaskTaskId}}), 'Subtask')
 )(withCurrentUser(RowSubtask));

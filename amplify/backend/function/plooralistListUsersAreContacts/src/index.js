@@ -28,7 +28,8 @@ exports.handler = async (event, context) => {
       IndexName: 'phoneNumber-index',
       KeyConditionExpression: '#phoneNumber = :phoneNumber',
       ExpressionAttributeNames : {'#phoneNumber' : 'phoneNumber'},
-      ExpressionAttributeValues : {':phoneNumber' : contact}
+      ExpressionAttributeValues : {':phoneNumber' : contact},
+      Limit: 1
     };
 
     try {

@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 
 import { addTaskMuteMember, removeTaskMuteMember } from '../../graphql/mutations';
-import { listTasks } from '../../graphql/queries';
+import { listTasksForPanel } from '../../graphql/queries';
 
 import { ListItem } from 'react-native-elements';
 
@@ -81,8 +81,8 @@ class MuteTask extends React.Component {
 }
 
 /*export default compose(
-  //graphqlMutation(gql(addTaskMuteMember), variables => ({ query: listTasks, variables: {panelId: variables.panelId }}), 'Task'),
-  //graphqlMutation(gql(removeTaskMuteMember), variables => ({ query: listTasks, variables: {panelId: variables.panelId }}), 'Task')
+  //graphqlMutation(gql(addTaskMuteMember), variables => ({ query: listTasksForPanel, variables: {panelId: variables.panelId }}), 'Task'),
+  //graphqlMutation(gql(removeTaskMuteMember), variables => ({ query: listTasksForPanel, variables: {panelId: variables.panelId }}), 'Task')
 )(withCurrentUser(MuteTask));*/
 
 export default withCurrentUser(MuteTask);

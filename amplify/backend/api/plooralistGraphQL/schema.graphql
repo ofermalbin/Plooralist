@@ -52,7 +52,7 @@ type Member @model(subscriptions: null) @key(name: "gsi-UserMembers", fields: ["
   user: User @connection
 }
 
-type Task @model(subscriptions: null) @versioned {
+type Task @model(subscriptions: null) @key(name: "gsi-PanelTasks", fields: ["taskPanelId"], queryField: "listTasksForPanel") @versioned {
 	id: ID!
   offline: Boolean
 	version: Int
@@ -68,7 +68,7 @@ type Task @model(subscriptions: null) @versioned {
   user: User @connection
 }
 
-type Subtask @model(subscriptions: null) @versioned {
+type Subtask @model(subscriptions: null) @key(name: "gsi-TaskSubtasks", fields: ["subtaskTaskId"], queryField: "listSubtasksForTask") @versioned {
 	id: ID!
   offline: Boolean
 	version: Int
@@ -82,7 +82,7 @@ type Subtask @model(subscriptions: null) @versioned {
   user: User @connection
 }
 
-type TimeNotification @model(subscriptions: null) @versioned {
+type TimeNotification @model(subscriptions: null) @key(name: "gsi-TaskTimeNotifications", fields: ["timeNotificationTaskId"], queryField: "listTimeNotificationsForTask") @versioned {
 	id: ID!
   offline: Boolean
 	version: Int
@@ -100,7 +100,7 @@ type TimeNotification @model(subscriptions: null) @versioned {
   timeNotificationTaskId: ID!
 }
 
-type PlaceNotification @model(subscriptions: null) @versioned {
+type PlaceNotification @model(subscriptions: null) @key(name: "gsi-TaskPlaceNotifications", fields: ["placeNotificationTaskId"], queryField: "listPlaceNotificationsForTask") @versioned {
 	id: ID!
   offline: Boolean
 	version: Int
@@ -115,7 +115,7 @@ type PlaceNotification @model(subscriptions: null) @versioned {
   placeNotificationTaskId: ID!
 }
 
-type Message @model(subscriptions: null) @versioned {
+type Message @model(subscriptions: null) @key(name: "gsi-TaskMessages", fields: ["messageTaskId"], queryField: "listMessagesForTask") @versioned {
 	id: ID!
   offline: Boolean
 	version: Int

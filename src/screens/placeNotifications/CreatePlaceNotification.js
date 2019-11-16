@@ -15,7 +15,7 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 
 import { createPlaceNotification } from '../../graphql/mutations';
-import { listPlaceNotifications } from '../../graphql/queries';
+import { listPlaceNotificationsForTask } from '../../graphql/queries';
 
 import { pick } from 'lodash';
 
@@ -75,7 +75,7 @@ class CreatePlaceNotification extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(createPlaceNotification), variables => ({query: gql(listPlaceNotifications), variables: {filter: {placeNotificationTaskId: {eq: variables.placeNotificationTaskId}}}}), 'PlaceNotification')
+  graphqlMutation(gql(createPlaceNotification), variables => ({query: gql(listPlaceNotificationsForTask), variables: {placeNotificationTaskId: variables.placeNotificationTaskId}}), 'PlaceNotification')
 ) (CreatePlaceNotification)
 
 

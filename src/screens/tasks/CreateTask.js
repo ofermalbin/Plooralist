@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 
 import { graphqlMutation } from 'aws-appsync-react';
 
-import { listTasks } from '../../graphql/queries';
+import { listTasksForPanel } from '../../graphql/queries';
 import { createTask } from '../../graphql/mutations';
 
 import { withCurrentUser } from '../../contexts';
@@ -52,5 +52,5 @@ class CreateTask extends React.Component {
 }
 
 export default withCurrentUser(compose(
-  graphqlMutation(gql(createTask), variables => ({query: gql(listTasks), variables: {filter: {taskPanelId: {eq: variables.taskPanelId}}}}), 'Task')
+  graphqlMutation(gql(createTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId}}), 'Task')
 )(CreateTask));
