@@ -51,28 +51,6 @@ class InfoTeamPanel extends React.Component {
     }
   }
 
-  componentDidMount() {
-    const { memberPanelId } = this.props.member;
-    this.props.data.subscribeToMore(
-      buildSubscription(
-        {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
-      )
-    );
-    this.props.data.subscribeToMore(
-      buildSubscription(
-        {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
-      )
-    );
-    this.props.data.subscribeToMore(
-      buildSubscription(
-        {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
-      )
-    );
-  }
-  
   onEditNamePress() {
     const { panel } = this.props;
     this.props.navigation.navigate('EditPanelName', {panel: panel});

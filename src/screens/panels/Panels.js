@@ -9,8 +9,6 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 import { buildSubscription } from 'aws-appsync';
 
-import colors from '../../config/colors';
-
 import { listMembersForUser } from '../../graphql/queries';
 import { onCreateStreamMember, onUpdateStreamMember, onDeleteStreamMember } from '../../graphql/subscriptions';
 
@@ -19,6 +17,8 @@ import { withCurrentUser } from '../../contexts';
 import Loading from '../../components/Loading';
 
 import ListPanels from './ListPanels';
+
+import colors from '../../config/colors';
 
 class Panels extends React.Component {
 

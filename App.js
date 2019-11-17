@@ -197,6 +197,7 @@ class AppWithAuth extends React.Component {
     if (authState != "signedIn") {
       return (
         <Authenticator
+          //authState="signUp"
           onStateChange={this.handleStateChange.bind(this)}
           amplifyConfig={aws_exports}
           hideDefault={true}
