@@ -151,7 +151,7 @@ class RowContactIsUser extends React.Component {
         titleStyle={listStyles.title}
         chevron={true}
         title={user.name}
-        subtitle='no member'
+        subtitle='joined Plooralist'
         leftAvatar={<AvatarS3Image name={user.name} imgKey={user.imgKey} containerStyle={listStyles.avatarContainer} rounded={true} />}
         onPress={this.onPress.bind(this)} />
     )

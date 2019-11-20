@@ -9,7 +9,7 @@ import gql from 'graphql-tag';
 import { buildSubscription } from 'aws-appsync';
 
 import { listMembersForUser } from '../../graphql/queries';
-import { onCreateMember, onUpdateMember, onDeleteMember } from '../../graphql/subscriptions';
+import { onCreateStreamMember, onUpdateStreamMember, onDeleteStreamMember } from '../../graphql/subscriptions';
 
 import { find, forEach, groupBy, indexOf } from 'lodash';
 
@@ -28,31 +28,33 @@ class ContactsAreUsers extends React.Component {
   }
 
   componentDidMount() {
-    const { memberPanelId } = this.props.currentUser;
-    this.props.data.subscribeToMore(
-      buildSubscription(
-        {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
-      )
-    );
-    this.props.data.subscribeToMore(
-      buildSubscription(
-        {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
-      )
-    );
-    this.props.data.subscribeToMore(
-      buildSubscription(
-        {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
-      )
-    );
+    const { currentUser } = this.props;
+    if (currentUser) {
+      this.props.data.subscribeToMore(
+        buildSubscription(
+          {query: gql(onCreateStreamMember), variables: {memberUserId: currentUser.id}},
+          {query: gql(listMembersForUser), variables: {memberUserId: currentUser.id}}
+        )
+      );
+      this.props.data.subscribeToMore(
+        buildSubscription(
+          {query: gql(onUpdateStreamMember), variables: {memberUserId: currentUser.id}},
+          {query: gql(listMembersForUser), variables: {memberUserId: currentUser.id}}
+        )
+      );
+      this.props.data.subscribeToMore(
+        buildSubscription(
+          {query: gql(onDeleteStreamMember), variables: {memberUserId: currentUser.id}},
+          {query: gql(listMembersForUser), variables: {memberUserId: currentUser.id}}
+        )
+      );
+    }
   }
 
   render() {
     const { currentUser, contacts } = this.props;
     const coupleMembers = this.props.members.filter(member => member.panel && member.panel.type && member.panel.type === 2);
-    
+
     const users = this.props.usersAreContacts.map(userIsContact => Object.assign({}, userIsContact, {name: getUserName(userIsContact, contacts), member: find(coupleMembers, coupleMember => coupleMember.panel && coupleMember.panel.members && coupleMember.panel.members.items && indexOf(coupleMember.panel.members.items.map(item => item.memberUserId), userIsContact.id) > -1)}));
     let sections = [];
     forEach(groupBy(users, (user) => (user.name[0])), (data) => {

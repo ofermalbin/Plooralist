@@ -131,7 +131,7 @@ class RowSubtask extends React.Component {
           }}
           onPress={this.onPress.bind(this)}
           disabled={subtask.offline}
-          disabledStyle={{backgroundColor:'red'}}
+          disabledStyle={{opacity: 0.7}}
         />
       </Swipeout>
     )

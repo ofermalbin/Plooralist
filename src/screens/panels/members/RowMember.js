@@ -110,7 +110,7 @@ class RowMember extends React.Component {
             />
           }
           disabled={member.offline}
-          disabledStyle={{backgroundColor:'red'}}
+          disabledStyle={{opacity: 0.7}}
         />
       </Swipeout>
     )

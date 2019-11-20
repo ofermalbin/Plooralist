@@ -135,8 +135,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true
-        versionCode 60
-        versionName "1.0.60"
+        versionCode 65
+        versionName "1.0.65"
     }
     splits {
         abi {
@@ -183,6 +183,7 @@ android {
 }
 
 dependencies {
+    implementation project(':@aws-amplify_pushnotification')
     implementation project(':react-native-code-push')
     implementation 'androidx.multidex:multidex:2.0.0'
     implementation 'io.radar:sdk:2.1.+'

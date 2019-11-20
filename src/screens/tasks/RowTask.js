@@ -75,7 +75,7 @@ class RowTask extends React.Component {
         }}
         onPress={this.onPress.bind(this)}
         disabled={task.offline}
-        disabledStyle={{backgroundColor:'red'}}
+        disabledStyle={{opacity: 0.7}}
       />
     )
   }
