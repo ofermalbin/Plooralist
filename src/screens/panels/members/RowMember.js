@@ -118,6 +118,6 @@ class RowMember extends React.Component {
 };
 
 export default compose(
-  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembersForUser), variables: {memberPanelId: variables.memberPanelId }}), 'Member'),
-  graphqlMutation(gql(deleteMember), variables => ({query: gql(listMembersForUser), variables: {memberPanelId: variables.memberPanelId }}), 'Member')
+  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembersForUser), variables: {memberPanelId: variables.memberPanelId}}), 'Member'),
+  graphqlMutation(gql(deleteMember), variables => ({query: gql(listMembersForUser), variables: {memberPanelId: variables.memberPanelId}}), 'Member')
 )(withCurrentUser(withContacts(RowMember)));

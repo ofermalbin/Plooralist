@@ -77,8 +77,7 @@ const enhance = withCurrentUser(compose(
     options: props => ({
       fetchPolicy: 'cache-and-network',
       variables: {
-        memberUserId: props.currentUser ? props.currentUser.id : null,
-        limit: 100
+        memberUserId: props.currentUser ? props.currentUser.id : null
       }
     }),
     props: props => ({

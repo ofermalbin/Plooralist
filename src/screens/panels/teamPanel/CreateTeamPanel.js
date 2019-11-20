@@ -222,7 +222,7 @@ class CreateTeamPanel extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(createPanelAndMembers), variables => ({query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId }}), 'Member'),
+  graphqlMutation(gql(createPanelAndMembers), variables => ({query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId}}), 'Member'),
 ) (withCurrentUser(CreateTeamPanel));
 
 enhance.navigationOptions = ({ navigation }) => {

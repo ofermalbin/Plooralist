@@ -83,5 +83,5 @@ class MutePanel extends React.Component {
 }
 
 export default compose(
-  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId }}), 'Member'),
+  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId}}), 'Member'),
 )(MutePanel);

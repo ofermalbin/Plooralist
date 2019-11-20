@@ -51,12 +51,9 @@ class ContactsAreUsers extends React.Component {
 
   render() {
     const { currentUser, contacts } = this.props;
-    const coupleMembers = this.props.members.filter(member => member.panel.type === 2);
-
-    //alert(JSON.stringify(coupleMembers.map(member => member.panel)));
-    //coupleMembers && coupleMembers.length && alert(JSON.stringify(coupleMembers[0].panel.members.items))
-
-    const users = this.props.usersAreContacts.map(userIsContact => Object.assign({}, userIsContact, {name: getUserName(userIsContact, contacts), member: find(coupleMembers, coupleMember => indexOf(coupleMember.panel.members.items.map(item => item.memberUserId), userIsContact.id) > -1)}));
+    const coupleMembers = this.props.members.filter(member => member.panel && member.panel.type && member.panel.type === 2);
+    
+    const users = this.props.usersAreContacts.map(userIsContact => Object.assign({}, userIsContact, {name: getUserName(userIsContact, contacts), member: find(coupleMembers, coupleMember => coupleMember.panel && coupleMember.panel.members && coupleMember.panel.members.items && indexOf(coupleMember.panel.members.items.map(item => item.memberUserId), userIsContact.id) > -1)}));
     let sections = [];
     forEach(groupBy(users, (user) => (user.name[0])), (data) => {
       sections.push({title: data[0].name[0].toUpperCase(), data: data});

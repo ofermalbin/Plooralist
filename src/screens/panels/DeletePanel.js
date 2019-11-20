@@ -56,5 +56,5 @@ class DeletePanel extends React.Component {
 }
 
 export default compose(
-  graphqlMutation(gql(deletePanel), variables => ({query: gql(listPanels), variables: {filter: {id: {eq: variables.id }}}}), 'Panel')
+  graphqlMutation(gql(deletePanel), variables => ({query: gql(listPanels), variables: {filter: {id: {eq: variables.id}}}}), 'Panel')
 )(DeletePanel);

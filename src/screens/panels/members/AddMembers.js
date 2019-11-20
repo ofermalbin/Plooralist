@@ -83,7 +83,7 @@ class AddMembers extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(createMember), variables => ({query: gql(listMembersForUser), variables: {memberPanelId: variables.memberPanelId }}), 'Member'),
+  graphqlMutation(gql(createMember), variables => ({query: gql(listMembersForUser), variables: {memberPanelId: variables.memberPanelId}}), 'Member'),
 )(withUsersAreContacts(AddMembers));
 
 enhance.navigationOptions = ({ navigation }) => {

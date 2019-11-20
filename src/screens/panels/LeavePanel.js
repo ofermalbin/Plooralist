@@ -56,5 +56,5 @@ class LeavePanel extends React.Component {
 }
 
 export default compose(
-  graphqlMutation(gql(deleteMember), variables => ({query: gql(listMembersForUser), variables: {memberPanelId: variables.memberPanelId }}), 'Member')
+  graphqlMutation(gql(deleteMember), variables => ({query: gql(listMembersForUser), variables: {memberPanelId: variables.memberPanelId}}), 'Member')
 )(LeavePanel);
