@@ -316,6 +316,7 @@ export const listMessages = `query ListMessages(
 `;
 export const listTasksForPanel = `query ListTasksForPanel(
   $taskPanelId: ID
+  $updatedAt: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
   $filter: ModelTaskFilterInput
   $limit: Int
@@ -323,6 +324,7 @@ export const listTasksForPanel = `query ListTasksForPanel(
 ) {
   listTasksForPanel(
     taskPanelId: $taskPanelId
+    updatedAt: $updatedAt
     sortDirection: $sortDirection
     filter: $filter
     limit: $limit

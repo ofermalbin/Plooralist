@@ -29,19 +29,19 @@ class Tasks extends React.Component {
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateTask), variables: {taskPanelId: panelId}},
-        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId}}
+        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId, sortDirection: 'DESC'}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateTask), variables: {taskPanelId: panelId}},
-        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId}}
+        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId, sortDirection: 'DESC'}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteTask), variables: {taskPanelId: panelId}},
-        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId}}
+        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId, sortDirection: 'DESC'}}
       )
     );
   }
@@ -83,7 +83,8 @@ const enhance = compose(
       return ({
         fetchPolicy: 'cache-and-network',
         variables: {
-          taskPanelId: panelId
+          taskPanelId: panelId,
+          sortDirection: 'DESC'
         }
       })
     },

@@ -52,7 +52,7 @@ type Member @model(subscriptions: null) @key(name: "gsi-UserMembers", fields: ["
   user: User @connection
 }
 
-type Task @model(subscriptions: null) @key(name: "gsi-PanelTasks", fields: ["taskPanelId"], queryField: "listTasksForPanel") @versioned {
+type Task @model(subscriptions: null) @key(name: "gsi-PanelTasks", fields: ["taskPanelId", "updatedAt"], queryField: "listTasksForPanel") @versioned {
 	id: ID!
   offline: Boolean
 	version: Int

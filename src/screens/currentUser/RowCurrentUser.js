@@ -89,7 +89,7 @@ class RowCurrentUser extends React.Component {
         titleStyle={listStyles.title}
         chevron={true}
         title={name}
-        subtitle='not row'
+        subtitle='new'
         leftAvatar={<AvatarS3Image name={name} imgKey={imgKey} containerStyle={listStyles.avatarContainer} rounded={true} />}
         onPress={this.onPress.bind(this)} />
     )

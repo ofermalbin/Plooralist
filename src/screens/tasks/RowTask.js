@@ -82,5 +82,5 @@ class RowTask extends React.Component {
 };
 
 export default compose(
-  graphqlMutation(gql(updateTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId}}), 'Task')
+  graphqlMutation(gql(updateTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId, sortDirection: 'DESC'}}), 'Task')
 )(withCurrentUser(RowTask));

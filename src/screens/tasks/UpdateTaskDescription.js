@@ -70,7 +70,7 @@ class UpdateTaskDescription extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(updateTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId}}), 'Task')
+  graphqlMutation(gql(updateTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId, sortDirection: 'DESC'}}), 'Task')
 ) (withCurrentUser(UpdateTaskDescription))
 
 
