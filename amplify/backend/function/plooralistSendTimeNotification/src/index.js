@@ -55,7 +55,7 @@ exports.handler = async (event, context) => {
     };
 
     const timeNotificationsData = await scanTimeNotifications();
-    console.log('timeNotificationsData', JSON.stringify(timeNotificationsData));
+    //console.log('timeNotificationsData', JSON.stringify(timeNotificationsData));
 
     const scanTasksPromises = timeNotificationsData.Items.map(item => {
 
@@ -74,10 +74,10 @@ exports.handler = async (event, context) => {
     });
 
     const tasksPromisesAllData = await Promise.all(scanTasksPromises);
-    console.log('tasksPromisesAllData', JSON.stringify(tasksPromisesAllData));
+    //console.log('tasksPromisesAllData', JSON.stringify(tasksPromisesAllData));
 
     const tasks = _.uniqBy(_.flattenDeep(_.filter(tasksPromisesAllData, data => data.Items.length).map(data => data.Items)), 'id');
-    console.log('tasks', JSON.stringify(tasks));
+    //console.log('tasks', JSON.stringify(tasks));
 
     const scanSubtasksPromises = timeNotificationsData.Items.map(item => {
 
@@ -96,7 +96,7 @@ exports.handler = async (event, context) => {
     });
 
     const subtasksPromisesAllData = await Promise.all(scanSubtasksPromises);
-    console.log('subtasksPromisesAllData', JSON.stringify(subtasksPromisesAllData));
+    //console.log('subtasksPromisesAllData', JSON.stringify(subtasksPromisesAllData));
 
     const subtasksGroupByTaskId = _.groupBy(_.uniqBy(_.flattenDeep(_.filter(subtasksPromisesAllData, data => data.Items.length).map(data => data.Items)), 'id'), 'subtaskTaskId');
 
@@ -117,7 +117,7 @@ exports.handler = async (event, context) => {
     });
 
     const panelsPromisesAllData = await Promise.all(scanPanelsPromises);
-    console.log('panelsPromisesAllData', JSON.stringify(panelsPromisesAllData));
+    //console.log('panelsPromisesAllData', JSON.stringify(panelsPromisesAllData));
 
     const panels = _.uniqBy(_.flattenDeep(_.filter(panelsPromisesAllData, data => data.Items.length).map(data => data.Items)), 'id');
 
@@ -138,15 +138,13 @@ exports.handler = async (event, context) => {
     });
 
     const membersPromisesAllData = await Promise.all(scanMembersPromises);
-    console.log('membersPromisesAllData', JSON.stringify(membersPromisesAllData));
+    //console.log('membersPromisesAllData', JSON.stringify(membersPromisesAllData));
 
     const membersGroupByPanelId = _.groupBy(_.flattenDeep(_.filter(membersPromisesAllData, data => data.Items.length).map(data => data.Items)), 'memberPanelId');
-    console.log('membersGroupByPanelId', JSON.stringify(membersGroupByPanelId));
+    //console.log('membersGroupByPanelId', JSON.stringify(membersGroupByPanelId));
 
-    const taskNotificationsMessages = _.filter(tasks, item => membersGroupByPanelId[item.memberPanelId]).map(task => {
-
-        console.log('task', JSON.stringify(task));
-
+    const taskNotificationsMessages = _.filter(tasks, item => membersGroupByPanelId[item.taskPanelId]).map(task => {
+      
         const subtasksMessage = subtasksGroupByTaskId[task.id] ? _.join(subtasksGroupByTaskId[task.id].map(subtask => `${subtask.name}${subtask.completed ? ' ✔️' : ''}`), '\n') : null;
 
         const message = {
@@ -162,9 +160,7 @@ exports.handler = async (event, context) => {
         const membersAreMute = (task.membersAreMute && task.membersAreMute.values) ? task.membersAreMute.values : null;
         const users = {};
 
-        console.log('membersGroupByPanelId[task.taskPanelId]', JSON.stringify(membersGroupByPanelId[task.taskPanelId]));
-
-        _.each(membersGroupByPanelId[task.memberPanelId], member => (!member.block && !member.mute && (!membersAreMute || !membersAreMute.length || (_.indexOf(membersAreMute, member.memberUserId) === -1))) ? users[member.memberUserId]={} : null);
+        _.each(membersGroupByPanelId[task.taskPanelId], member => (!member.block && !member.mute && (!membersAreMute || !membersAreMute.length || (_.indexOf(membersAreMute, member.memberUserId) === -1))) ? users[member.memberUserId]={} : null);
 
         if(_.isEmpty(users)) {
             console.log('users isEmpty');
