@@ -29,19 +29,19 @@ class Tasks extends React.Component {
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateTask), variables: {taskPanelId: panelId}},
-        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId, sortDirection: 'DESC'}}
+        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateTask), variables: {taskPanelId: panelId}},
-        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId, sortDirection: 'DESC'}}
+        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteTask), variables: {taskPanelId: panelId}},
-        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId, sortDirection: 'DESC'}}
+        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId}}
       )
     );
   }

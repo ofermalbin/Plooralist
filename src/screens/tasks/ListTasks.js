@@ -16,6 +16,10 @@ class ListTasks extends React.Component {
     super(props);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.flatListRef.scrollToOffset({ animated: true, offset: 0 });
+  }
+
   renderHeader() {
     const { member } = this.props;
     const isBlock = isPanelBlock(member);
@@ -31,7 +35,9 @@ class ListTasks extends React.Component {
     const canAccess = canAccessPanel(member);
     return (
       <FlatList
-        data={this.props.tasks}
+        ref={(ref) => { this.flatListRef = ref; }}
+        //data={this.props.tasks}
+        data={orderBy(this.props.tasks, ['updatedAt'], ['desc'])}
         //data={orderBy(this.props.tasks, ['completed', 'updatedAt'], ['asc', 'desc'])}
         renderItem={({ item }) => <RowTask task={item} member={member} isPanelOwner={isOwner} isPanelBlock={isBlock} navigation={this.props.navigation} />}
         keyExtractor={item => item.id}

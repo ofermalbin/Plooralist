@@ -52,5 +52,5 @@ class CreateTask extends React.Component {
 }
 
 export default withCurrentUser(compose(
-  graphqlMutation(gql(createTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId, sortDirection: 'DESC'}}), 'Task')
+  graphqlMutation(gql(createTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId}}), 'Task')
 )(CreateTask));

@@ -56,5 +56,5 @@ class DeleteTask extends React.Component {
 }
 
 export default compose(
-  graphqlMutation(gql(deleteTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId, sortDirection: 'DESC'}}), 'Task')
+  graphqlMutation(gql(deleteTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId}}), 'Task')
 )(DeleteTask);

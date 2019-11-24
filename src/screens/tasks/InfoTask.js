@@ -220,7 +220,7 @@ const enhance = compose(
       subtasksData: props.data
     }),
   }),
-  graphqlMutation(gql(updateTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId, sortDirection: 'DESC'}}), 'Task')
+  graphqlMutation(gql(updateTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId}}), 'Task')
 )(withCurrentUser(InfoTask));
 
 enhance.navigationOptions = ({ navigation }) => {
