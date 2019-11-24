@@ -133,7 +133,7 @@ class InfoTask extends React.Component {
           }}
           onPress={isOwner ? this.onUpdateNamePress.bind(this) : null}
           disabled={task.offline}
-          disabledStyle={{opacity: 0.7}}
+          disabledStyle={{backgroundColor: '#F0F8FF'}}
         />
         <ListItem
           topDivider={true}
@@ -144,7 +144,7 @@ class InfoTask extends React.Component {
           title={task.description ? task.description : 'Description'}
           onPress={isOwner ? this.onUpdateDescriptionPress.bind(this) : null}
           disabled={task.offline}
-          disabledStyle={{opacity: 0.7}}
+          disabledStyle={{backgroundColor: '#F0F8FF'}}
         />
         {((subtasksCount || isOwner) || null) && <ListItem
           topDivider={true}

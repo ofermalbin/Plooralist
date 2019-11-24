@@ -9,6 +9,8 @@ import { graphqlMutation } from 'aws-appsync-react';
 import { listSubtasksForTask } from '../../graphql/queries';
 import { createSubtask } from '../../graphql/mutations';
 
+import uuid from 'react-native-uuid';
+
 import { withCurrentUser } from '../../contexts';
 
 import TextVoiceInput from '../../components/Voice';
@@ -22,6 +24,7 @@ class CreateSubtask extends React.Component {
   onSave(name) {
     const { currentUser, taskId } = this.props;
     const input = {
+      id: uuid.v4(),
       name: name,
       completed: false,
       subtaskTaskId: taskId,

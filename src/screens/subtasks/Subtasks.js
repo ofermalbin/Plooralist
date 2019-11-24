@@ -58,7 +58,7 @@ const enhance = compose(
       return ({
         fetchPolicy: 'cache-and-network',
         variables: {
-          subtaskTaskId: taskId
+          subtaskTaskId: taskId, sortDirection: "DESC", limit: 100
         }
       })
     },

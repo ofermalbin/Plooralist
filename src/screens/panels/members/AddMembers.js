@@ -9,7 +9,7 @@ import { graphqlMutation } from 'aws-appsync-react';
 
 import { withUsersAreContacts } from '../../../contexts';
 
-import { listMembersForUser } from '../../../graphql/queries';
+import { listMembersForPanel } from '../../../graphql/queries';
 import { createMember } from '../../../graphql/mutations';
 
 import _AddMembers from './_AddMembers';
@@ -83,7 +83,7 @@ class AddMembers extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(createMember), variables => ({query: gql(listMembersForUser), variables: {memberPanelId: variables.memberPanelId}}), 'Member'),
+  graphqlMutation(gql(createMember), variables => ({query: gql(listMembersForPanel), variables: {memberPanelId: variables.memberPanelId}}), 'Member'),
 )(withUsersAreContacts(AddMembers));
 
 enhance.navigationOptions = ({ navigation }) => {

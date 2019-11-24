@@ -22,7 +22,7 @@ class CurrentUser extends React.Component {
   }
 
   render() {
-    const member = this.props.members.find(member => member.panel.type === 1);
+    const member = this.props.members.find(member => member.panel && member.panel.type && (member.panel.type === 1));
 
     return (
       member ? <RowPanel member={member} navigation={this.props.navigation} /> : <RowCurrentUser navigation={this.props.navigation} />
@@ -35,7 +35,7 @@ export default withCurrentUser(compose(
     options: props => ({
       fetchPolicy: 'cache-and-network',
       variables: {
-        memberUserId: props.currentUser ? props.currentUser.id : null
+        memberUserId: props.currentUser ? props.currentUser.id : null, sortDirection: "DESC", limit: 100
       }
     }),
     props: props => ({

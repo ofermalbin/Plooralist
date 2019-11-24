@@ -601,6 +601,20 @@ export const listPanels = `query ListPanels(
             name
             imgKey
             members {
+              items {
+                id
+                offline
+                version
+                memberPanelId
+                memberUserId
+                createdAt
+                updatedAt
+                isOwner
+                canAccess
+                block
+                mute
+                pin
+              }
               nextToken
             }
           }
@@ -837,6 +851,105 @@ export const listMembers = `query ListMembers(
               type
               name
               imgKey
+              members {
+                nextToken
+              }
+            }
+          }
+          nextToken
+        }
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const listMembersForPanel = `query ListMembersForPanel(
+  $memberPanelId: ID
+  $sortDirection: ModelSortDirection
+  $filter: ModelMemberFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listMembersForPanel(
+    memberPanelId: $memberPanelId
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      offline
+      version
+      memberPanelId
+      memberUserId
+      createdAt
+      updatedAt
+      isOwner
+      canAccess
+      block
+      mute
+      pin
+      user {
+        id
+        offline
+        phoneNumber
+        version
+        createdAt
+        updatedAt
+        name
+        email
+        locale
+        imgKey
+      }
+      panel {
+        id
+        offline
+        version
+        createdAt
+        updatedAt
+        type
+        name
+        imgKey
+        members {
+          items {
+            id
+            offline
+            version
+            memberPanelId
+            memberUserId
+            createdAt
+            updatedAt
+            isOwner
+            canAccess
+            block
+            mute
+            pin
+            user {
+              id
+              offline
+              phoneNumber
+              version
+              createdAt
+              updatedAt
+              name
+              email
+              locale
+              imgKey
+            }
+            panel {
+              id
+              offline
+              version
+              createdAt
+              updatedAt
+              type
+              name
+              imgKey
+              members {
+                nextToken
+              }
             }
           }
           nextToken
@@ -930,6 +1043,9 @@ export const listMembersForUser = `query ListMembersForUser(
               type
               name
               imgKey
+              members {
+                nextToken
+              }
             }
           }
           nextToken

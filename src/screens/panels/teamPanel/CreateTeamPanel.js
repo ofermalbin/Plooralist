@@ -5,7 +5,6 @@ import { StyleSheet, View, FlatList, Alert } from 'react-native';
 
 import { ListItem, Button, Divider, Input, colors } from 'react-native-elements';
 
-import uuid from 'react-native-uuid';
 import { each } from 'lodash';
 
 import compose from 'lodash.flowright';
@@ -15,6 +14,8 @@ import { graphqlMutation } from 'aws-appsync-react';
 
 import { listMembersForUser } from '../../../graphql/queries';
 import { createPanelAndMembers } from '../../../graphql/mutations';
+
+import uuid from 'react-native-uuid';
 
 import { withCurrentUser } from '../../../contexts';
 
@@ -70,6 +71,7 @@ class CreateTeamPanel extends React.Component {
 
     const name = this.state.name;
     const input = {
+      id: uuid.v4(),
       type: 3,
       name: name,
       imgKey: null,
@@ -222,7 +224,7 @@ class CreateTeamPanel extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(createPanelAndMembers), variables => ({query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId}}), 'Member'),
+  graphqlMutation(gql(createPanelAndMembers), variables => ({query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId, sortDirection: "DESC", limit: 100}}), 'Member'),
 ) (withCurrentUser(CreateTeamPanel));
 
 enhance.navigationOptions = ({ navigation }) => {

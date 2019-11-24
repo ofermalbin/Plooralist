@@ -64,7 +64,7 @@ class _RowPanel extends React.Component {
         rightIcon={member.block && {name: 'block', iconStyle: [listStyles.rightIcon, {color: 'red'}]}}
         onPress={!isBlock ? this.onPress.bind(this) : () => unblockBottomSheet(this.onBlockPress.bind(this))}
         disabled={member.offline}
-        disabledStyle={{opacity: 0.7}}
+        disabledStyle={{backgroundColor: '#F0F8FF'}}
       />
     )
   }

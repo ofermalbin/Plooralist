@@ -11,9 +11,14 @@ class ListPanels extends React.Component {
     super(props);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.flatListRef.scrollToOffset({ animated: true, offset: 0 });
+  }
+
   render() {
     return (
       <FlatList
+        ref={(ref) => { this.flatListRef = ref; }}
         data={orderBy(this.props.members, 'panel.updatedAt', 'desc')}
         renderItem={({ item }) => <RowPanel member={item} navigation={this.props.navigation} />}
         keyExtractor={item => item.id}

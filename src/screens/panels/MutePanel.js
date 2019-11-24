@@ -76,7 +76,7 @@ class MutePanel extends React.Component {
         rightTitle={this.state.isMute ? 'On' : 'Off'}
         onPress={this.onMutePress.bind(this)}
         disabled={member.offline}
-        disabledStyle={{opacity: 0.7}}
+        disabledStyle={{backgroundColor: '#F0F8FF'}}
       />
     )
   }

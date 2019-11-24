@@ -83,8 +83,7 @@ const enhance = compose(
       return ({
         fetchPolicy: 'cache-and-network',
         variables: {
-          taskPanelId: panelId,
-          sortDirection: 'DESC'
+          taskPanelId: panelId, sortDirection: "DESC", limit: 100
         }
       })
     },

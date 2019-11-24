@@ -11,7 +11,7 @@ import gql from 'graphql-tag';
 
 import { buildSubscription } from 'aws-appsync';
 
-import { listMembersForUser } from '../../../graphql/queries';
+import { listMembersForPanel } from '../../../graphql/queries';
 import { onCreateMember, onUpdateMember, onDeleteMember } from '../../../graphql/subscriptions';
 
 import { infoListStyles } from '../config/stylesheets';
@@ -29,19 +29,19 @@ class Members extends React.Component {
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
       )
     );
   }
@@ -73,7 +73,7 @@ class Members extends React.Component {
 }
 
 export default compose(
-  graphql(gql(listMembersForUser), {
+  graphql(gql(listMembersForPanel), {
     options: props => ({
       fetchPolicy: 'cache-and-network',
       variables: {
@@ -81,7 +81,7 @@ export default compose(
       }
     }),
     props: props => ({
-      members: props.data.listMembersForUser ? props.data.listMembersForUser.items : [],
+      members: props.data.listMembersForPanel ? props.data.listMembersForPanel.items : [],
       data: props.data
     }),
   }),

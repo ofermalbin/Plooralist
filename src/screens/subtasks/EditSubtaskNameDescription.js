@@ -30,7 +30,7 @@ class EditSubtaskNameDescription extends React.Component {
   onSavePress() {
     const { subtask } = this.props.navigation.state.params;
     const name = this.state.name.trim();
-    const description = this.state.description.trim();
+    const description = this.state.description ? this.state.description.trim() : null;
     const input = {
       id: subtask.id,
       expectedVersion: subtask.version,

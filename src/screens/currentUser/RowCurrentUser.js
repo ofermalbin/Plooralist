@@ -10,6 +10,8 @@ import { graphqlMutation } from 'aws-appsync-react';
 import { listMembersForUser } from '../../graphql/queries';
 import { createPanelAndMembers } from '../../graphql/mutations';
 
+import uuid from 'react-native-uuid';
+
 import { withCurrentUser } from '../../contexts';
 
 import { AvatarS3Image } from '../../components';
@@ -27,6 +29,7 @@ class RowCurrentUser extends React.Component {
   onPress() {
     const { currentUser } = this.props;
     const input = {
+      id: uuid.v4(),
       type: 1,
       ownersIds: [currentUser.id],
       canAccessIds: [],
@@ -97,5 +100,5 @@ class RowCurrentUser extends React.Component {
 };
 
 export default compose(
-  graphqlMutation(gql(createPanelAndMembers), variables => ({ query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId }}), 'Member'),
+  graphqlMutation(gql(createPanelAndMembers), variables => ({ query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId, sortDirection: "DESC", limit: 100}}), 'Member'),
 ) (withCurrentUser(RowCurrentUser))

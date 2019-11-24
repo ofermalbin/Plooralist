@@ -11,6 +11,8 @@ import { graphqlMutation } from 'aws-appsync-react';
 import { listTasksForPanel } from '../../graphql/queries';
 import { createTask } from '../../graphql/mutations';
 
+import uuid from 'react-native-uuid';
+
 import { withCurrentUser } from '../../contexts';
 
 import TextVoiceInput from '../../components/Voice';
@@ -24,6 +26,7 @@ class CreateTask extends React.Component {
   onSave(name) {
     const { currentUser, panelId } = this.props;
     const input = {
+      id: uuid.v4(),
       name: name,
       completed: false,
       taskPanelId: panelId,
@@ -52,5 +55,5 @@ class CreateTask extends React.Component {
 }
 
 export default withCurrentUser(compose(
-  graphqlMutation(gql(createTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId}}), 'Task')
+  graphqlMutation(gql(createTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId, sortDirection: "DESC", limit: 100}}), 'Task')
 )(CreateTask));

@@ -9,7 +9,7 @@ import gql from 'graphql-tag';
 
 import { graphqlMutation } from 'aws-appsync-react';
 
-import { listMembersForUser } from '../../../graphql/queries';
+import { listMembersForPanel } from '../../../graphql/queries';
 import { updateMember, deleteMember } from '../../../graphql/mutations';
 
 import Swipeout from 'react-native-swipeout';
@@ -110,7 +110,7 @@ class RowMember extends React.Component {
             />
           }
           disabled={member.offline}
-          disabledStyle={{opacity: 0.7}}
+          disabledStyle={{backgroundColor: '#F0F8FF'}}
         />
       </Swipeout>
     )
@@ -118,6 +118,6 @@ class RowMember extends React.Component {
 };
 
 export default compose(
-  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembersForUser), variables: {memberPanelId: variables.memberPanelId}}), 'Member'),
-  graphqlMutation(gql(deleteMember), variables => ({query: gql(listMembersForUser), variables: {memberPanelId: variables.memberPanelId}}), 'Member')
+  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembersForPanel), variables: {memberPanelId: variables.memberPanelId}}), 'Member'),
+  graphqlMutation(gql(deleteMember), variables => ({query: gql(listMembersForPanel), variables: {memberPanelId: variables.memberPanelId}}), 'Member')
 )(withCurrentUser(withContacts(RowMember)));

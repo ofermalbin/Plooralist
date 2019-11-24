@@ -12,6 +12,8 @@ import { graphqlMutation } from 'aws-appsync-react';
 import { listMembersForUser } from '../../graphql/queries';
 import { createPanelAndMembers } from '../../graphql/mutations';
 
+import uuid from 'react-native-uuid';
+
 import { withCurrentUser } from '../../contexts';
 
 import { listStyles } from './config/stylesheets';
@@ -26,6 +28,7 @@ class RowContactIsUser extends React.Component {
     const { currentUser, user } = this.props;
 
     const input = {
+      id: uuid.v4(),
       type: 2,
       ownersIds: [currentUser.id, user.id],
       canAccessIds: [],
@@ -159,5 +162,5 @@ class RowContactIsUser extends React.Component {
 };
 
 export default compose(
-  graphqlMutation(gql(createPanelAndMembers), variables => ({query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId }}), 'Member'),
+  graphqlMutation(gql(createPanelAndMembers), variables => ({query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId, sortDirection: "DESC", limit: 100}}), 'Member'),
 ) (withCurrentUser(RowContactIsUser))

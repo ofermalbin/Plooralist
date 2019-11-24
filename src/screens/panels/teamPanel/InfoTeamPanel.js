@@ -126,7 +126,7 @@ class InfoTeamPanel extends React.Component {
           }
           onPress={this.onEditNamePress.bind(this)}
           disabled={panel.offline}
-          disabledStyle={{opacity: 0.7}}
+          disabledStyle={{backgroundColor: '#F0F8FF'}}
         />
         <Members {...this.props} isOwner={isOwner} />
         <MutePanel {...this.props} />

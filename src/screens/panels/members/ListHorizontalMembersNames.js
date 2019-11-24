@@ -10,7 +10,7 @@ import gql from 'graphql-tag';
 
 import { buildSubscription } from 'aws-appsync';
 
-import { listMembersForUser } from '../../../graphql/queries';
+import { listMembersForPanel } from '../../../graphql/queries';
 import { onCreateMember, onUpdateMember, onDeleteMember } from '../../../graphql/subscriptions';
 
 import { titlePanelStyles } from '../config/stylesheets';
@@ -23,27 +23,27 @@ class ListHorizontalMembersNames extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
+  /*componentDidMount() {
     const { memberPanelId } = this.props.member;
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForUser), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
       )
     );
-  }
+  }*/
 
   render() {
     const { member } = this.props;

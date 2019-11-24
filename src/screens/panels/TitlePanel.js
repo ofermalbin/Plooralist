@@ -82,7 +82,7 @@ export default compose(
     },
     props: props => ({
       member: props.data.getMember ? props.data.getMember : null,
-      data: props.data
+      memberData: props.data
     })
   }),
 )(TitlePanel);

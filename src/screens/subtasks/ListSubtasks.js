@@ -18,6 +18,10 @@ class ListSubtasks extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.flatListRef.scrollToOffset({ animated: true, offset: 0 });
+  }
+
   onSelected(selected) {
     this.setState({selected});
   }
@@ -34,7 +38,9 @@ class ListSubtasks extends React.Component {
     const { isTaskOwner } = this.props;
     return (
       <FlatList
-        data={orderBy(this.props.subtasks, ['completed', 'updatedAt'], ['asc', 'desc'])}
+        ref={(ref) => { this.flatListRef = ref; }}
+        data={orderBy(this.props.subtasks, ['updatedAt'], ['desc'])}
+        //data={orderBy(this.props.subtasks, ['completed', 'updatedAt'], ['asc', 'desc'])}
         renderItem={({ item }) => <RowSubtask subtask={item} isTaskOwner={isTaskOwner} navigation={this.props.navigation} selected={this.state.selected} onSelected={this.onSelected.bind(this)} />}
         keyExtractor={item => item.id}
         ItemSeparatorComponent={() => <Divider/>}
