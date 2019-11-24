@@ -25,7 +25,7 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 
 import { updateUser, deleteUser, createUser } from '../../graphql/mutations';
-import { getUser, listUsers } from '../../graphql/queries';
+import { getUser } from '../../graphql/queries';
 
 import { listStyles, currentUserAvatarStyles, currentUserStyles, createByAtStyles } from './config/stylesheets';
 
@@ -177,6 +177,8 @@ class CurrentUserInfo extends React.Component {
           rounded={false} showEditButton={true}
           showEditButton={true}
           editButton={{ size: 24, onPress: this.onEditAvatarPress.bind(this) }}
+          disabled={currentUser.offline}
+          disabledStyle={{backgroundColor: '#F0F8FF'}}
         />
         <ListItem
           containerStyle={currentUserStyles.container}
@@ -256,7 +258,7 @@ export default withCurrentUser(compose(
       currentUser: props.data.getUser ? props.data.getUser : null,
     })
   }),
-  graphqlMutation(gql(updateUser), gql(listUsers), 'User'),
-  graphqlMutation(gql(deleteUser), gql(listUsers), 'User'),
-  graphqlMutation(gql(createUser), gql(listUsers), 'User')
+  graphqlMutation(gql(updateUser), gql(getUser), 'User'),
+  graphqlMutation(gql(deleteUser), gql(getUser), 'User'),
+  graphqlMutation(gql(createUser), gql(getUser), 'User')
 )(CurrentUserInfo));

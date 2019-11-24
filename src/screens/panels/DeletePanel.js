@@ -7,7 +7,7 @@ import gql from 'graphql-tag';
 
 import { graphqlMutation } from 'aws-appsync-react';
 
-import { listPanels } from '../../graphql/queries';
+import { getPanel } from '../../graphql/queries';
 import { deletePanel } from '../../graphql/mutations';
 
 import { ListItem } from 'react-native-elements';
@@ -56,5 +56,5 @@ class DeletePanel extends React.Component {
 }
 
 export default compose(
-  graphqlMutation(gql(deletePanel), variables => ({query: gql(listPanels), variables: {filter: {id: {eq: variables.id}}}}), 'Panel')
+  graphqlMutation(gql(deletePanel), gql(getPanel), 'Panel')
 )(DeletePanel);

@@ -4,7 +4,7 @@ import compose from 'lodash.flowright';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { listPanels, getMember } from '../../graphql/queries';
+import { getPanel, getMember } from '../../graphql/queries';
 
 import Loading from '../../components/Loading';
 
@@ -55,20 +55,20 @@ class TitlePanel extends React.Component {
 };
 
 export default compose(
-  graphql(gql(listPanels), {
+  graphql(gql(getPanel), {
     options: props => {
-      const { panelId } = props;
+      const { panelId } = props.navigation.state.params;
       return ({
         fetchPolicy: 'cache-and-network',
         variables: {
-          filter: {id: {eq: panelId}}
+          id: panelId ? panelId : null
         }
       })
     },
     props: props => ({
-      panel: props.data.listPanels ? props.data.listPanels.items[0] : null,
+      panel: props.data.getPanel ? props.data.getPanel : null,
       panelData: props.data
-    }),
+    })
   }),
   graphql(gql(getMember), {
     options: props => {

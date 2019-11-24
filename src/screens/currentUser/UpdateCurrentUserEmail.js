@@ -10,7 +10,7 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 
 import { updateUser } from '../../graphql/mutations';
-import { getUser, listUsers } from '../../graphql/queries';
+import { getUser } from '../../graphql/queries';
 
 import { inputStyles } from './config/stylesheets';
 
@@ -65,7 +65,7 @@ class UpdateCurrentUserEmail extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(updateUser), gql(listUsers), 'User')
+  graphqlMutation(gql(updateUser), gql(getUser), 'User')
 ) (UpdateCurrentUserEmail)
 
 

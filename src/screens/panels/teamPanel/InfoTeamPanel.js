@@ -14,7 +14,7 @@ import gql from 'graphql-tag';
 
 import { graphqlMutation } from 'aws-appsync-react';
 
-import { listPanels } from '../../../graphql/queries';
+import { getPanel } from '../../../graphql/queries';
 import { updatePanel } from '../../../graphql/mutations';
 
 import { infoAvatarStyles, infoListStyles, createByAtStyles } from '../config/stylesheets';
@@ -142,6 +142,5 @@ class InfoTeamPanel extends React.Component {
 };
 
 export default compose(
-  //Todo Query vs Scan
-  graphqlMutation(gql(updatePanel), variables => ({query: gql(listPanels), variables: {filter: {id: {eq: variables.id}}}}), 'Panel')
+  graphqlMutation(gql(updatePanel), gql(getPanel), 'Panel')
 )(InfoTeamPanel);
