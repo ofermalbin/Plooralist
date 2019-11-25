@@ -15,6 +15,8 @@ import { graphqlMutation } from 'aws-appsync-react';
 import { createTimeNotification } from '../../graphql/mutations';
 import { listTimeNotificationsForTask } from '../../graphql/queries';
 
+import uuid from 'react-native-uuid';
+
 import TimeNotificationDtStart from './TimeNotificationDtStart';
 import TimeNotificationRecurrence from './TimeNotificationRecurrence';
 
@@ -60,6 +62,7 @@ class CreateTimeNotification extends React.Component {
     }
 
     const input = {
+      id: uuid.v4(),
       timeNotificationTaskId: task.id,
       lastSend: null,
       nextSend: nextSend ? nextSend.toISOString() : null,

@@ -52,7 +52,7 @@ class Members extends React.Component {
 
   render() {
 
-    const { isOwner } = this.props;
+    const { isOwner, canAccess } = this.props;
     return (
       <View>
         <ListItem
@@ -63,8 +63,8 @@ class Members extends React.Component {
           rightTitleStyle={infoListStyles.rightTitle}
           title='Members'
           leftIcon={{ name: 'group', iconStyle: infoListStyles.leftIcon }}
-          rightTitle={isOwner ? 'Add' : null}
-          onPress={isOwner ? this.onAddMembersPress.bind(this) : null}
+          rightTitle={canAccess ? 'Add' : null}
+          onPress={canAccess ? this.onAddMembersPress.bind(this) : null}
         />
         <ListMembers {...this.props} />
       </View>

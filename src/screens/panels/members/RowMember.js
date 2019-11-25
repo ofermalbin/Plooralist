@@ -61,6 +61,7 @@ class RowMember extends React.Component {
     const { member, myMember, contacts } = this.props;
 
     const isOwner = isPanelOwner(myMember);
+    const canAccess = canAccessPanel(myMember);
 
     const isMemberOwner = isPanelOwner(member);
     const isMemberCanAccess = canAccessPanel(member);
@@ -87,7 +88,7 @@ class RowMember extends React.Component {
     return (
       <Swipeout
         rowID={member.id}
-        disabled={!isOwner || isMemberOwner}
+        disabled={!canAccess || isMemberOwner}
         autoClose={true}
         close={!(this.props.selected === member.id)}
         onOpen={(sectionID, rowID) => this.props.onSelected(rowID)}

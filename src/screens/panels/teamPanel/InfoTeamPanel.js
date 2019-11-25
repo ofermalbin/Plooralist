@@ -128,7 +128,7 @@ class InfoTeamPanel extends React.Component {
           disabled={panel.offline}
           disabledStyle={{backgroundColor: '#F0F8FF'}}
         />
-        <Members {...this.props} isOwner={isOwner} />
+        <Members {...this.props} isOwner={isOwner} canAccess={canAccess} />
         <MutePanel {...this.props} />
         <LeavePanel {...this.props} />
         {isOwner && <DeletePanel {...this.props} />}

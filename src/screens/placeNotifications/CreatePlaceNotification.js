@@ -17,6 +17,8 @@ import { graphqlMutation } from 'aws-appsync-react';
 import { createPlaceNotification } from '../../graphql/mutations';
 import { listPlaceNotificationsForTask } from '../../graphql/queries';
 
+import uuid from 'react-native-uuid';
+
 import { pick } from 'lodash';
 
 import { placeNotificationStyles } from './config/stylesheets';
@@ -46,6 +48,7 @@ class CreatePlaceNotification extends React.Component {
     const { task } = this.props.navigation.state.params;
 
     const input = {
+      id: uuid.v4(),
       placeNotificationTaskId: task.id,
       ...pick(this.state.place, ['placeID', 'name', 'latitude', 'longitude', 'when', 'radius'])
     };

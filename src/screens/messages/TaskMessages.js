@@ -13,6 +13,8 @@ import { getTask, listMessagesForTask } from '../../graphql/queries';
 import { createMessage } from '../../graphql/mutations';
 import { onCreateTaskMessage, onUpdateTaskMessage, onDeleteTaskMessage } from '../../graphql/subscriptions';
 
+import uuid from 'react-native-uuid';
+
 import { pick } from 'lodash';
 
 import { withCurrentUser } from '../../contexts';
@@ -68,10 +70,10 @@ class TaskMessages extends React.Component {
     const { currentUser } = this.props;
 
     const input = {
+      id: uuid.v4(),
       messagePanelId: task.taskPanelId,
       messageTaskId: task.id,
       messageSubtaskId: null,
-      offline: true,
       text: message.text || null,
       imgKey: message.imgKey || null,
       place: message.place || null,

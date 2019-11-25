@@ -60,6 +60,8 @@ class PlaceNotification extends React.Component {
         subtitle={`${when[placeNotification.when]}  ${placeNotification.radius} meters`}
         onLongPress={isTaskOwner ? this.onTestPress.bind(this, placeNotification) : null}
         onPress={isTaskOwner ? this.onPlaceNotificationPress.bind(this, placeNotification) : null}
+        disabled={placeNotification.offline}
+        disabledStyle={{backgroundColor: '#F0F8FF'}}
       />
     )
   }

@@ -57,6 +57,8 @@ class TimeNotification extends React.Component {
           </View>
         onLongPress={isTaskOwner ? this.onTestPress.bind(this) : null}
         onPress={isTaskOwner ? this.onTimeNotificationPress.bind(this) : null}
+        disabled={timeNotification.offline}
+        disabledStyle={{backgroundColor: '#F0F8FF'}}
       />
     )
   }

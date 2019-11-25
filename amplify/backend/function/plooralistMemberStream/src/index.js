@@ -21,6 +21,10 @@ const apiKey = process.env.API_KEY;
 
 const environment = process.env.ENV;
 
+const ddb = new AWS.DynamoDB.DocumentClient();
+
+const PanelTable = `Panel-${appsyncId}-${environment}`;
+
 const _ = require('lodash');
 
 const graphQLfromLambda = async (query, operationName, variables) => {
@@ -57,6 +61,8 @@ const graphQLfromLambda = async (query, operationName, variables) => {
 }
 
 exports.handler = async (event, context) => {
+
+    const now = new Date();
 
     let insertItems = [];
     let modifyItems = [];
@@ -139,6 +145,28 @@ exports.handler = async (event, context) => {
 
     const members = _.uniqBy(_.concat(insertItems, modifyItems, removeItems), 'memberPanelId');
     console.log('members', JSON.stringify(members));
+
+    const updatePanelsPromises = members.map(item => {
+
+        const params = {
+            TableName : PanelTable,
+            Key: { id : item.memberPanelId },
+            UpdateExpression: 'set updatedAt = :now',
+            ExpressionAttributeValues: {
+                ':now' : now.toISOString()
+            }
+        };
+
+        try {
+            const data = ddb.update(params).promise();
+            return data;
+        } catch (error) {
+            return error;
+        }
+    });
+
+    const updatePanelsAllData = await Promise.all(updatePanelsPromises);
+    console.log('updatePanelsAllData', JSON.stringify(updatePanelsAllData));
 
     console.log('return');
     return;
