@@ -1092,6 +1092,13 @@
     wcwidth "^1.0.1"
     ws "^1.1.0"
 
+"@react-native-community/datetimepicker@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-2.1.0.tgz#4e3413462cbbe5c48fab6cebd422835031cdf7b9"
+  integrity sha512-InktUrx0/4JTy1YsgswljgID7oB3L8wkFobRhnLGWPExSsNHeecGW2/nBP31ZaOPHcjVWhpOQMZt0zDpKfGE/Q==
+  dependencies:
+    invariant "^2.2.4"
+
 "@react-native-community/eslint-config@^0.0.5":
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/@react-native-community/eslint-config/-/eslint-config-0.0.5.tgz#584f6493258202a57efc22e7be66966e43832795"
@@ -5706,7 +5713,7 @@ mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
-moment@^2.19.0, moment@^2.22.0, moment@^2.24.0:
+moment@^2.19.0, moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
@@ -6690,13 +6697,6 @@ react-native-contacts@^5.0.4:
   resolved "https://registry.yarnpkg.com/react-native-contacts/-/react-native-contacts-5.0.4.tgz#fc3049b0bcc1f3e22a2f7b15a5ae678bd229249e"
   integrity sha512-72z/kB3vNVTwanbqVkJk+0WslFl1ZxxOUEqmvHtQqLHjEZZSjN5AibPQSUxun+LsNrHHR28sErff8U2R34YX2Q==
 
-react-native-datepicker@^1.7.2:
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/react-native-datepicker/-/react-native-datepicker-1.7.2.tgz#58d0822591a0ac9b32aba082650222a0ee29669d"
-  integrity sha1-WNCCJZGgrJsyq6CCZQIioO4pZp0=
-  dependencies:
-    moment "^2.22.0"
-
 react-native-elements@^0.19.1:
   version "0.19.1"
   resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-0.19.1.tgz#f92b69d864a150215d01f81fe3c52a9cada83e45"
@@ -7327,10 +7327,10 @@ rimraf@~2.2.6:
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
 
-rrule@^2.6.2:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/rrule/-/rrule-2.6.2.tgz#f175c6c0b20d6f798739e4e1d979ffb3d79589e8"
-  integrity sha512-xL38CM1zOYOIp4OO8hdD6zHH5UdR9siHMvPiv+CCSh7o0LYJ0owg87QcFW7GXJ0PfpLBHjanEMvvBjJxbRhAcQ==
+rrule@^2.6.3:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/rrule/-/rrule-2.6.3.tgz#a6bce01f71844208e9500052a6e6671c0d179296"
+  integrity sha512-wWypJiQekvgZLGNKSI8OvC8KtAvA/L/CtF1EjI9qmZEkT/6WIyRL5rdIy5FfeC4z33aRp90/0KuAdHmLdw0KgA==
   dependencies:
     tslib "^1.9.0"
   optionalDependencies:
