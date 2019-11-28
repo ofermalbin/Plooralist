@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StyleSheet, View, Text, Alert } from 'react-native';
+import { ScrollView, View, Text, Alert } from 'react-native';
 
 import { ListItem, Button } from 'react-native-elements';
 
@@ -14,8 +14,6 @@ import { graphqlMutation } from 'aws-appsync-react';
 
 import { updateTimeNotification, deleteTimeNotification } from '../../graphql/mutations';
 import { listTimeNotificationsForTask } from '../../graphql/queries';
-
-import { omit } from 'lodash';
 
 import TimeNotificationDtStart from './TimeNotificationDtStart';
 import TimeNotificationRecurrence from './TimeNotificationRecurrence';
@@ -36,8 +34,7 @@ class EditTimeNotification extends React.Component {
         interval: timeNotification.interval,
         byweekday: timeNotification.byweekday,
         bymonth: timeNotification.bymonth,
-        count: timeNotification.count,
-        until: timeNotification.until,
+        count: timeNotification.count
       }
     }
     props.navigation.setParams({onSavePress: this.onSavePress.bind(this)});
@@ -45,6 +42,7 @@ class EditTimeNotification extends React.Component {
 
   onSavePress() {
     const { task, timeNotification } = this.props.navigation.state.params;
+
     const now = new Date();
 
     let nextSend = null;
@@ -61,11 +59,7 @@ class EditTimeNotification extends React.Component {
       expectedVersion: timeNotification.version
     };
 
-    const offline = {
-      ...Object.assign({}, omit(timeNotification, ['__typename']), omit(input, ['expectedVersion'])),
-      offline: true,
-      updatedAt: now.toISOString()
-    };
+    const offline = Object.assign(timeNotification, {offline: true, updatedAt: (new Date()).toISOString()});
 
     this.props.updateTimeNotification({...offline, input});
     this.props.navigation.goBack();
@@ -110,6 +104,7 @@ class EditTimeNotification extends React.Component {
     }
 
     return (
+      <ScrollView>
       <View style={{ marginTop: 22 }}>
         <TimeNotificationDtStart recurrence={this.state.recurrence} dtstart={this.state.dtstart} onDtstartChange={this.onDtstartChange.bind(this)}/>
         <TimeNotificationRecurrence navigation={this.props.navigation} recurrence={this.state.recurrence} dtstart={this.state.dtstart} onRecurrenceChange={this.onRecurrenceChange.bind(this)}/>
@@ -122,10 +117,9 @@ class EditTimeNotification extends React.Component {
           title='Delete'
           onPress={this.onDeletePress.bind(this)}
         />
-        <View style={timeNotificationStyles.recurrenceTextContainer}>
-          {nextSend && <TimeNotificationDtSendText style={timeNotificationStyles.recurrenceText} date={nextSend} />}
-        </View>
+        {nextSend && <TimeNotificationDtSendText style={timeNotificationStyles.sendText} date={nextSend} />}
       </View>
+      </ScrollView>
     )
   }
 }

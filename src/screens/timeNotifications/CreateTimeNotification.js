@@ -44,8 +44,7 @@ class CreateTimeNotification extends React.Component {
         interval: 1,
         byweekday: null,
         bymonth: null,
-        count: 1,
-        until: null
+        count: 1
       }
     }
     props.navigation.setParams({disabled:false, onAddPress: this.onAddPress.bind(this)});

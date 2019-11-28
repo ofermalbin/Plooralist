@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text } from 'react-native';
-import PropTypes from 'prop-types';
 
 import moment from 'moment/min/moment-with-locales.js';
 

@@ -172,7 +172,6 @@ export const getTimeNotification = `query GetTimeNotification($id: ID!) {
     byweekday
     bymonth
     count
-    until
     timeNotificationTaskId
   }
 }
@@ -197,7 +196,6 @@ export const listTimeNotifications = `query ListTimeNotifications(
       byweekday
       bymonth
       count
-      until
       timeNotificationTaskId
     }
     nextToken
@@ -430,7 +428,6 @@ export const listTimeNotificationsForTask = `query ListTimeNotificationsForTask(
       byweekday
       bymonth
       count
-      until
       timeNotificationTaskId
     }
     nextToken
@@ -601,20 +598,6 @@ export const listPanels = `query ListPanels(
             name
             imgKey
             members {
-              items {
-                id
-                offline
-                version
-                memberPanelId
-                memberUserId
-                createdAt
-                updatedAt
-                isOwner
-                canAccess
-                block
-                mute
-                pin
-              }
               nextToken
             }
           }
@@ -851,9 +834,6 @@ export const listMembers = `query ListMembers(
               type
               name
               imgKey
-              members {
-                nextToken
-              }
             }
           }
           nextToken
@@ -947,9 +927,6 @@ export const listMembersForPanel = `query ListMembersForPanel(
               type
               name
               imgKey
-              members {
-                nextToken
-              }
             }
           }
           nextToken
@@ -1043,9 +1020,6 @@ export const listMembersForUser = `query ListMembersForUser(
               type
               name
               imgKey
-              members {
-                nextToken
-              }
             }
           }
           nextToken

@@ -1017,7 +1017,6 @@ export const createTimeNotification = `mutation CreateTimeNotification($input: C
     byweekday
     bymonth
     count
-    until
     timeNotificationTaskId
   }
 }
@@ -1037,7 +1036,6 @@ export const updateTimeNotification = `mutation UpdateTimeNotification($input: U
     byweekday
     bymonth
     count
-    until
     timeNotificationTaskId
   }
 }
@@ -1057,7 +1055,6 @@ export const deleteTimeNotification = `mutation DeleteTimeNotification($input: D
     byweekday
     bymonth
     count
-    until
     timeNotificationTaskId
   }
 }

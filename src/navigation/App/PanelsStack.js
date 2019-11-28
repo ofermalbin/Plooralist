@@ -4,7 +4,7 @@ import { Button, Icon } from 'react-native-elements';
 
 import Panels, { InfoPanel, SelectPanel, CreateTeamPanel, EditPanelName, CreateMembers, AddMembers } from '../../screens/panels';
 import Tasks, { InfoTask, UpdateTaskName, UpdateTaskDescription } from '../../screens/tasks';
-import { CreateTimeNotification, EditTimeNotification, EditTimeNotificationRecurrence, EditTimeNotificationRecurrenceCustom } from '../../screens/timeNotifications';
+import { CreateTimeNotification, EditTimeNotification, EditTimeNotificationRecurrenceCustom } from '../../screens/timeNotifications';
 import { CreatePlaceNotification, EditPlaceNotification } from '../../screens/placeNotifications';
 import Subtasks, { EditSubtaskNameDescription } from '../../screens/subtasks';
 import { MessagePicture, TaskMessages } from '../../screens/messages';
@@ -70,9 +70,6 @@ export default createStackNavigator({
   },
   EditTimeNotification: {
     screen: EditTimeNotification,
-  },
-  EditTimeNotificationRecurrence: {
-    screen: EditTimeNotificationRecurrence,
   },
   EditTimeNotificationRecurrenceCustom: {
     screen: EditTimeNotificationRecurrenceCustom,

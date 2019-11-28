@@ -96,7 +96,6 @@ type TimeNotification @model(subscriptions: null) @key(name: "gsi-TaskTimeNotifi
 	byweekday: [Int!]
 	bymonth: [Int!]
 	count: Int
-	until: String
   timeNotificationTaskId: ID!
 }
 

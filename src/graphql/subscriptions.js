@@ -808,7 +808,6 @@ export const onCreateTimeNotification = `subscription OnCreateTimeNotification($
     byweekday
     bymonth
     count
-    until
     timeNotificationTaskId
   }
 }
@@ -828,7 +827,6 @@ export const onUpdateTimeNotification = `subscription OnUpdateTimeNotification($
     byweekday
     bymonth
     count
-    until
     timeNotificationTaskId
   }
 }
@@ -848,7 +846,6 @@ export const onDeleteTimeNotification = `subscription OnDeleteTimeNotification($
     byweekday
     bymonth
     count
-    until
     timeNotificationTaskId
   }
 }

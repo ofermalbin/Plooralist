@@ -15,7 +15,7 @@ import { graphqlMutation } from 'aws-appsync-react';
 import { updatePlaceNotification, deletePlaceNotification } from '../../graphql/mutations';
 import { listPlaceNotificationsForTask } from '../../graphql/queries';
 
-import { pick, omit } from 'lodash';
+import { pick } from 'lodash';
 
 import { placeNotificationStyles } from './config/stylesheets';
 
@@ -46,11 +46,7 @@ class EditPlaceNotification extends React.Component {
     };
 
     const now = new Date();
-    const offline = {
-      ...Object.assign({}, omit(placeNotification, ['__typename']), omit(input, ['expectedVersion'])),
-      offline: true,
-      updatedAt: now.toISOString()
-    };
+    const offline = Object.assign(placeNotification, {offline: true, updatedAt: (new Date()).toISOString()});
 
     this.props.updatePlaceNotification({...offline, input});
     this.props.navigation.goBack();

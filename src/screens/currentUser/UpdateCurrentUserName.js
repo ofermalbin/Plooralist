@@ -14,8 +14,6 @@ import { getUser } from '../../graphql/queries';
 
 import { inputStyles } from './config/stylesheets';
 
-import { omit } from 'lodash';
-
 class UpdateCurrentUserName extends React.Component {
 
   constructor(props) {

@@ -61,7 +61,7 @@ class TimeNotificationDtStart extends React.Component {
   }
 
   render() {
-    
+
     const locale = 'en';
     const { dtstart, mode, show } = this.state;
     return (
@@ -75,7 +75,7 @@ class TimeNotificationDtStart extends React.Component {
           chevron={true}
           title='Start'
           subtitle={moment(dtstart).locale(locale).format('LLLL')}
-          onPress={() => this.setState({show: true})}
+          onPress={() => this.setState({show: !this.state.show})}
         />
         {show && <DateTimePicker
           value={dtstart}

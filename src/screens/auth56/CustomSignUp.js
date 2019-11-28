@@ -6,7 +6,6 @@ import {
     Button,
     TouchableWithoutFeedback,
     Keyboard,
-    Picker,
     ScrollView
 } from 'react-native';
 import {

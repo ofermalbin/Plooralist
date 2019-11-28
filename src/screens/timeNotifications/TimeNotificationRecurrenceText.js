@@ -7,35 +7,35 @@ import deepEqual from 'deep-equal';
 
 const Freqs = [
   {
-    value: {freq: 3, interval: 1, count: 1, byweekday: null, bymonth: null, until: null},
+    value: {freq: 3, interval: 1, count: 1, byweekday: null, bymonth: null},
     label: 'One Time'
   },
   {
-    value: {freq: 4, interval: 1, count: null, byweekday: null, bymonth: null, until: null},
+    value: {freq: 4, interval: 1, count: null, byweekday: null, bymonth: null},
     label: 'Every Hour'
   },
   {
-    value: {freq: 4, interval: 2, count: null, byweekday: null, bymonth: null, until: null},
+    value: {freq: 4, interval: 2, count: null, byweekday: null, bymonth: null},
     label: 'Every 2 Hours'
   },
   {
-    value: {freq: 3, interval: 1, count: null, byweekday: null, bymonth: null, until: null},
+    value: {freq: 3, interval: 1, count: null, byweekday: null, bymonth: null},
     label: 'Every Day'
   },
   {
-    value: {freq: 2, interval: 1, count: null, byweekday: null, bymonth: null, until: null},
+    value: {freq: 2, interval: 1, count: null, byweekday: null, bymonth: null},
     label: 'Every Week'
   },
   {
-    value: {freq: 2, interval: 2, count: null, byweekday: null, bymonth: null, until: null},
+    value: {freq: 2, interval: 2, count: null, byweekday: null, bymonth: null},
     label: 'Every 2 Weeks'
   },
   {
-    value: {freq: 1, interval: 1, count: null, byweekday: null, bymonth: null, until: null},
+    value: {freq: 1, interval: 1, count: null, byweekday: null, bymonth: null},
     label: 'Every Month'
   },
   {
-    value: {freq: 0, interval: 1, count: null, byweekday: null, bymonth: null, until: null},
+    value: {freq: 0, interval: 1, count: null, byweekday: null, bymonth: null},
     label: 'Every Year'
   },
 ];

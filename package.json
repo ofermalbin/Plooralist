@@ -22,7 +22,7 @@
     "deep-equal": "^1.1.1",
     "geolib": "^3.1.0",
     "graphql-tag": "^2.10.1",
-    "libphonenumber-js": "^1.7.27",
+    "libphonenumber-js": "^1.7.29",
     "lodash": "^4.17.15",
     "lodash.flowright": "^3.5.0",
     "moment": "^2.24.0",

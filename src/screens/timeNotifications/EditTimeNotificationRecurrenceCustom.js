@@ -1,15 +1,13 @@
 import React from 'react';
 
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { Button , ButtonGroup } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 
 import moment from 'moment/min/moment-with-locales.js';
 
 import { defaultOptions } from '../../lib/tcombForm';
 
 import t from 'tcomb-form-native';
-
-const buttons = ['Never', 'Until', 'Count'];
 
 const styles = StyleSheet.create({
   container: {
@@ -57,12 +55,13 @@ var Positive = t.refinement(t.Number, function (n) {
   return n > 0;
 });
 
-const RecurrenceCustomBasicForm = {
+const RecurrenceCustomForm = t.struct({
   freq: Freqs,
   interval: Positive,
   byweekday: t.maybe(t.list(t.Number)),
   bymonth: t.maybe(t.list(t.Number)),
-};
+  count: t.maybe(Positive)
+});
 
 var listTransformer = {
   format: value => (value ? String(value) : ''),
@@ -114,31 +113,9 @@ let options = Object.assign({}, defaultOptions, {
         { value: 11, text: 'Nov' },
         { value: 12, text: 'Dec' },
       ],
-    },
-    until: {
-      mode: 'date',
-      auto: 'none',
-    },
+    }
   }
 });
-
-const RecurrenceCustomForm = function(value, selectedEndIndex) {
-  let RecurrenceCustomFormObject = Object.assign({}, RecurrenceCustomBasicForm);
-  switch(selectedEndIndex) {
-      case 0:
-          RecurrenceCustomFormObject = Object.assign({}, RecurrenceCustomBasicForm);
-          break;
-      case 1:
-          RecurrenceCustomFormObject = Object.assign({}, RecurrenceCustomBasicForm, {until: t.Date});
-          break;
-      case 2:
-          RecurrenceCustomFormObject = Object.assign({}, RecurrenceCustomBasicForm, {count: t.Number});
-          break;
-      default:
-          ;
-  }
-  return t.struct(RecurrenceCustomFormObject);
-};
 
 const Form = t.form.Form;
 
@@ -159,33 +136,15 @@ class EditTimeNotificationRecurrenceCustom extends React.Component {
     const { navigation } = this.props;
     const { recurrence } = this.props.navigation.state.params;
 
-    options.fields.until.config = {
-      format: (date) => moment(date).locale('en').format('LL'),
-    };
-
     this.state = {
       value: recurrence,
-      type: RecurrenceCustomForm(recurrence, this.initEndIndex(recurrence)),
+      type: RecurrenceCustomForm,
       options: options,
-      selectedEndIndex: this.initEndIndex(recurrence),
     }
   }
 
   componentDidMount() {
     this.props.navigation.setParams({ onDonePress: this.onDonePress.bind(this) });
-  }
-
-  initEndIndex(recurrence) {
-    let initEndIndex = 0;
-    if (recurrence) {
-      if (recurrence.until) {
-        initEndIndex = 1;
-      }
-      else if (recurrence.count) {
-        initEndIndex = 2;
-      }
-    }
-    return initEndIndex;
   }
 
   onDonePress() {
@@ -198,31 +157,19 @@ class EditTimeNotificationRecurrenceCustom extends React.Component {
   }
 
   onChange(value) {
-    this.setState({value: value, type: RecurrenceCustomForm(value, this.state.selectedEndIndex)});
-  }
-
-  updateEndIndex (selectedEndIndex) {
-    this.setState({selectedEndIndex: selectedEndIndex});
-    this.setState({value: this.state.value, type: RecurrenceCustomForm(this.state.value, selectedEndIndex)});
-    //this.onChange(this.props.recurrence);
+    this.setState({value: value, type: RecurrenceCustomForm});
   }
 
   render() {
     return (
       <ScrollView>
-        <View style={timeNotificationStyles.container} >
+        <View style={styles.container} >
           <Form
             ref='form'
             type={this.state.type}
             options={this.state.options}
             onChange={this.onChange.bind(this)}
             value={this.state.value}
-          />
-          <ButtonGroup
-            onPress={this.updateEndIndex.bind(this)}
-            selectedIndex={this.state.selectedEndIndex}
-            buttons={buttons}
-            containerStyle={{height: 30}}
           />
         </View>
       </ScrollView>

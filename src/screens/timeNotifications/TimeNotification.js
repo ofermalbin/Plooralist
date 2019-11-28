@@ -51,9 +51,9 @@ class TimeNotification extends React.Component {
         title=<TimeNotificationDtStartText {...timeNotification} style={timeNotificationStyles.notificationText} />
         subtitle=
           <View>
-            <TimeNotificationRecurrenceText recurrence={pick(timeNotification, ['freq', 'interval', 'count', 'byweekday', 'bymonth', 'until'])} dtstart={new Date(timeNotification.dtstart)} style={timeNotificationStyles.notificationText} />
-            {!task.completed && timeNotification.lastSend && <TimeNotificationDtSendText style={timeNotificationStyles.recurrenceText} date={timeNotification.lastSend} />}
-            {!task.completed && timeNotification.nextSend && <TimeNotificationDtSendText style={timeNotificationStyles.recurrenceText} date={timeNotification.nextSend} />}
+            <TimeNotificationRecurrenceText recurrence={pick(timeNotification, ['freq', 'interval', 'count', 'byweekday', 'bymonth'])} dtstart={new Date(timeNotification.dtstart)} style={timeNotificationStyles.notificationText} />
+            {!task.completed && timeNotification.lastSend && <TimeNotificationDtSendText style={timeNotificationStyles.sendText} date={timeNotification.lastSend} />}
+            {!task.completed && timeNotification.nextSend && <TimeNotificationDtSendText style={timeNotificationStyles.sendText} date={timeNotification.nextSend} />}
           </View>
         onLongPress={isTaskOwner ? this.onTestPress.bind(this) : null}
         onPress={isTaskOwner ? this.onTimeNotificationPress.bind(this) : null}

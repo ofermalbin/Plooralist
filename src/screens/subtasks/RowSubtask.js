@@ -15,8 +15,6 @@ import { updateSubtask, deleteSubtask } from '../../graphql/mutations';
 
 import { withCurrentUser } from '../../contexts';
 
-import { omit } from 'lodash';
-
 import { rowSubtaskStyles } from './config/stylesheets';
 import colors from '../../config/colors';
 
