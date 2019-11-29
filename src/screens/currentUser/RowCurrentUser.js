@@ -18,7 +18,7 @@ import { AvatarS3Image } from '../../components';
 
 import { getCurrentUserName } from '../../util';
 
-import { listStyles } from './config/stylesheets';
+import { rowCurrentUserStyles } from './config/stylesheets';
 
 class RowCurrentUser extends React.Component {
 
@@ -88,12 +88,12 @@ class RowCurrentUser extends React.Component {
     const name = getCurrentUserName();
     return (
       <ListItem
-        containerStyle={listStyles.container}
-        titleStyle={listStyles.title}
+        containerStyle={rowCurrentUserStyles.container}
+        titleStyle={rowCurrentUserStyles.title}
         chevron={true}
         title={name}
         subtitle='new'
-        leftAvatar={<AvatarS3Image name={name} imgKey={imgKey} containerStyle={listStyles.avatarContainer} rounded={true} />}
+        leftAvatar={<AvatarS3Image name={name} imgKey={imgKey} containerStyle={rowCurrentUserStyles.avatarContainer} rounded={true} />}
         onPress={this.onPress.bind(this)} />
     )
   }

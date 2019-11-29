@@ -11,10 +11,10 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 import { buildSubscription } from 'aws-appsync';
 
-import { getTask, listTasksForPanel, listSubtasks } from '../../graphql/queries';
+import { getTask, listTasksForPanel, listSubtasksForTask } from '../../graphql/queries';
 import { updateTask } from '../../graphql/mutations';
 
-import { onCreateSubtask, /*onUpdateSubtask*/ } from '../../graphql/subscriptions';
+import { onCreateSubtask, onUpdateSubtask, onDeleteSubtask } from '../../graphql/subscriptions';
 
 import moment from 'moment/min/moment-with-locales.js';
 
@@ -48,12 +48,24 @@ class InfoTask extends React.Component {
 
   componentDidMount() {
     const { taskId } = this.props.navigation.state.params;
-    /*this.props.subtasksData.subscribeToMore(
-      buildSubscription(onCreateSubtask(taskId), { query: listSubtasks, variables: {taskId: taskId }})
-    )*/
-    /*this.props.subtasksData.subscribeToMore(
-      buildSubscription(onUpdateSubtask(taskId), { query: listSubtasks, variables: {taskId: taskId }})
-    )*/
+    this.props.subtasksData.subscribeToMore(
+      buildSubscription(
+        {query: gql(onCreateSubtask), variables: {subtaskTaskId: taskId}},
+        {query: gql(listSubtasksForTask), variables: {subtaskTaskId: taskId}}
+      )
+    );
+    this.props.subtasksData.subscribeToMore(
+      buildSubscription(
+        {query: gql(onUpdateSubtask), variables: {subtaskTaskId: taskId}},
+        {query: gql(listSubtasksForTask), variables: {subtaskTaskId: taskId}}
+      )
+    );
+    this.props.subtasksData.subscribeToMore(
+      buildSubscription(
+        {query: gql(onDeleteSubtask), variables: {subtaskTaskId: taskId}},
+        {query: gql(listSubtasksForTask), variables: {subtaskTaskId: taskId}}
+      )
+    );
   }
 
   componentWillReceiveProps(nextProps) {
@@ -205,18 +217,18 @@ const enhance = compose(
       task: props.data.getTask ? props.data.getTask : null,
     })
   }),
-  graphql(gql(listSubtasks), {
+  graphql(gql(listSubtasksForTask), {
     options: props => {
       const { taskId } = props.navigation.state.params;
       return ({
         fetchPolicy: 'cache-and-network',
         variables: {
-          filter: {subtaskTaskId: {eq: taskId }}
+          subtaskTaskId: taskId, sortDirection: "DESC", limit: 100
         }
       })
     },
     props: props => ({
-      subtasks: props.data.listSubtasks ? props.data.listSubtasks.items : [],
+      subtasks: props.data.listSubtasksForTask ? props.data.listSubtasksForTask.items : [],
       subtasksData: props.data
     }),
   }),

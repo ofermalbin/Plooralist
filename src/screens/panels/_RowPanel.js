@@ -14,7 +14,7 @@ import { listMembersForUser } from '../../graphql/queries';
 
 import { AvatarS3Image } from '../../components';
 
-import { listStyles } from './config/stylesheets';
+import { rowPanelStyles } from './config/stylesheets';
 
 import { isPanelBlock, unblockBottomSheet } from '../panels';
 
@@ -49,19 +49,19 @@ class _RowPanel extends React.Component {
 
     return (
       <ListItem
-        containerStyle={listStyles.container}
-        titleStyle={listStyles.title}
+        containerStyle={rowPanelStyles.container}
+        titleStyle={rowPanelStyles.title}
         chevron={true}
         title={name}
         leftAvatar={
           <AvatarS3Image
             imgKey={imgKey}
             name={name}
-            containerStyle={listStyles.avatarContainer}
+            containerStyle={rowPanelStyles.avatarContainer}
             rounded={true}
           />
         }
-        rightIcon={member.block && {name: 'block', iconStyle: [listStyles.rightIcon, {color: 'red'}]}}
+        rightIcon={member.block && {name: 'block', iconStyle: [rowPanelStyles.rightIcon, {color: 'red'}]}}
         onPress={!isBlock ? this.onPress.bind(this) : () => unblockBottomSheet(this.onBlockPress.bind(this))}
         disabled={member.offline}
         disabledStyle={{backgroundColor: '#F0F8FF'}}

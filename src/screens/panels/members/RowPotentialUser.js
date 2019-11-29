@@ -14,7 +14,7 @@ import { AvatarS3Image } from '../../../components';
 
 import { getUserName } from '../../../util';
 
-import { listStyles } from '../config/stylesheets';
+import { rowPanelStyles } from '../config/stylesheets';
 
 class RowPotentialUser extends React.Component {
 
@@ -45,19 +45,19 @@ class RowPotentialUser extends React.Component {
     const name = getUserName(user, contacts);
     return (
       <ListItem
-        containerStyle={listStyles.container}
-        titleStyle={listStyles.title}
+        containerStyle={rowPanelStyles.container}
+        titleStyle={rowPanelStyles.title}
         title={name}
         leftAvatar={
           <AvatarS3Image
             imgKey={user.imgKey}
             name={name}
-            containerStyle={listStyles.avatarContainer}
+            containerStyle={rowPanelStyles.avatarContainer}
             rounded={true}
           />
         }
         checkBox={{
-          size: listStyles.checkboxContainer.width,
+          size: rowPanelStyles.checkboxContainer.width,
           checked: this.state.checked,
           checkedColor: colors.checkedIcon,
           uncheckedColor: colors.uncheckedIcon,

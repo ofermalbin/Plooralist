@@ -24,7 +24,7 @@ import { AvatarS3Image } from '../../../components';
 
 import { getCurrentUserName, getUserName } from '../../../util';
 
-import { listStyles } from '../config/stylesheets';
+import { rowPanelStyles } from '../config/stylesheets';
 
 import { isPanelOwner, canAccessPanel } from '../../panels';
 
@@ -98,15 +98,15 @@ class RowMember extends React.Component {
         sensitivity={1}
       >
         <ListItem
-          containerStyle={listStyles.container}
-          titleStyle={listStyles.title}
+          containerStyle={rowPanelStyles.container}
+          titleStyle={rowPanelStyles.title}
           title={name}
           subtitle={(isMemberOwner && 'owner') || (isMemberCanAccess && 'can Access') || null}
           leftAvatar={
             <AvatarS3Image
               imgKey={member.user.imgKey}
               name={name}
-              containerStyle={listStyles.avatarContainer}
+              containerStyle={rowPanelStyles.avatarContainer}
               rounded={true}
             />
           }

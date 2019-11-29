@@ -8,7 +8,7 @@ import { AvatarS3Image } from '../../../components';
 
 import { getUserName } from '../../../util';
 
-import { listStyles } from '../config/stylesheets';
+import { rowPanelStyles } from '../config/stylesheets';
 
 class RowHorizontalPotentialUser extends React.Component {
 
@@ -25,12 +25,12 @@ class RowHorizontalPotentialUser extends React.Component {
     const name = getUserName(user, contacts)
     return (
       <ListItem
-        containerStyle={listStyles.container}
+        containerStyle={rowPanelStyles.container}
         leftAvatar={
           <AvatarS3Image
             imgKey={user.imgKey}
             name={name}
-            containerStyle={listStyles.avatarContainer}
+            containerStyle={rowPanelStyles.avatarContainer}
             rounded={true}
             showEditButton={true}
             editButton={{

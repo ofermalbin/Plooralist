@@ -16,7 +16,7 @@ import uuid from 'react-native-uuid';
 
 import { withCurrentUser } from '../../contexts';
 
-import { listStyles } from './config/stylesheets';
+import { rowRowContactIsUserStyles } from './config/stylesheets';
 
 class RowContactIsUser extends React.Component {
 
@@ -150,12 +150,12 @@ class RowContactIsUser extends React.Component {
 
     return (
       <ListItem
-        containerStyle={listStyles.container}
-        titleStyle={listStyles.title}
+        containerStyle={rowRowContactIsUserStyles.container}
+        titleStyle={rowRowContactIsUserStyles.title}
         chevron={true}
         title={user.name}
         subtitle='joined Plooralist'
-        leftAvatar={<AvatarS3Image name={user.name} imgKey={user.imgKey} containerStyle={listStyles.avatarContainer} rounded={true} />}
+        leftAvatar={<AvatarS3Image name={user.name} imgKey={user.imgKey} containerStyle={rowRowContactIsUserStyles.avatarContainer} rounded={true} />}
         onPress={this.onPress.bind(this)} />
     )
   }

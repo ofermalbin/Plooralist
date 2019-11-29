@@ -14,7 +14,7 @@ import { AvatarS3Image } from '../../../components';
 
 import { getContactByUsername, getContactName } from '../../../util';
 
-import { listStyles } from '../config/stylesheets';
+import { rowPanelStyles } from '../config/stylesheets';
 
 class RowViewPotentialUser extends React.Component {
 
@@ -26,14 +26,14 @@ class RowViewPotentialUser extends React.Component {
     const name = getContactName(getContactByUsername(this.props.contacts, this.props.phoneNumber)) || this.props.phoneNumber;
     return (
       <ListItem
-        containerStyle={listStyles.container}
-        titleStyle={listStyles.title}
+        containerStyle={rowPanelStyles.container}
+        titleStyle={rowPanelStyles.title}
         title={name}
         leftAvatar={
           <AvatarS3Image
             imgKey={this.props.imgKey}
             name={name}
-            containerStyle={listStyles.avatarContainer}
+            containerStyle={rowPanelStyles.avatarContainer}
             rounded={true}
           />
         }

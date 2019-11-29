@@ -10,7 +10,7 @@ import RowContactIsNotUser from './RowContactIsNotUser';
 
 import { withCurrentUser, withContacts, withUsersAreContacts } from '../../contexts';
 
-import { listStyles, actionListStyles } from './config/stylesheets';
+import { listStyles } from './config/stylesheets';
 
 class ContactsAreNotUsers extends React.Component {
 

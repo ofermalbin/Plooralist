@@ -73,7 +73,7 @@ class TimeNotificationRecurrence extends React.Component {
       recurrence: defaultRecurrence,
       value: 1,
       dtstart: null,
-      show: false
+      show: false,
     }
   }
 
@@ -84,20 +84,21 @@ class TimeNotificationRecurrence extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({dtstart: nextProps.dtstart});
-    (nextProps.recurrence != this.props.recurrence) && this.onRecurrenceChange(nextProps.recurrence)
+    !deepEqual(nextProps.recurrence, this.props.recurrence) && this.onRecurrenceChange(nextProps.recurrence)
   }
 
   onPickerValueChange(value) {
     const freq = find(Freqs, f => value && (f.value === value));
     if (freq) {
-      this.setState({recurrence: freq.recurrence})
-      this.props.onRecurrenceChange(freq.recurrence);
+      this.onRecurrenceChange(freq.recurrence);
     }
-    this.setState({value})
+    else {
+      this.setState({value});
+    }
   }
 
   onRecurrenceChange(recurrence) {
-    let value = this.props.value;
+    let value;
     if(recurrence) {
       const freq = find(Freqs, f => deepEqual(f.recurrence, recurrence));
       if (freq) {
@@ -108,9 +109,6 @@ class TimeNotificationRecurrence extends React.Component {
       }
       this.setState({recurrence, value});
       this.props.onRecurrenceChange(recurrence);
-    }
-    else {
-      value = 1;
     }
   }
 
@@ -138,7 +136,7 @@ class TimeNotificationRecurrence extends React.Component {
           onValueChange={this.onPickerValueChange.bind(this)}
         >
           {Freqs.map((freq, i) => (
-          <Picker.Item label={freq.label} value={freq.value} />
+          <Picker.Item label={freq.label} value={freq.value} key={freq.value} />
         ))}
         </Picker>}
         {show && !value && <ListItem

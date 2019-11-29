@@ -4,9 +4,9 @@ import { normalize, colors } from 'react-native-elements';
 
 const SCREEN_WIDTH = Dimensions.get('window').width
 
-import { inputStyles, listStyles, createByAtStyles, actionListStyles, infoListStyles, infoAvatarStyles } from '../../../config/stylesheets';
+import { inputStyles, createByAtStyles, actionListStyles, infoListStyles, infoAvatarStyles } from '../../../config/stylesheets';
 
-export { inputStyles, listStyles, createByAtStyles, actionListStyles, infoListStyles, infoAvatarStyles };
+export { inputStyles, createByAtStyles, actionListStyles, infoListStyles, infoAvatarStyles };
 
 export const rowSubtaskStyles = StyleSheet.create({
   container: {

@@ -27,7 +27,7 @@ import { graphqlMutation } from 'aws-appsync-react';
 import { updateUser, deleteUser, createUser } from '../../graphql/mutations';
 import { getUser } from '../../graphql/queries';
 
-import { listStyles, currentUserAvatarStyles, currentUserStyles, createByAtStyles } from './config/stylesheets';
+import { currentUserAvatarStyles, currentUserStyles, createByAtStyles } from './config/stylesheets';
 
 import { PhotoEdit } from '../photos';
 
