@@ -8,7 +8,8 @@
             "DeploymentBucketName": "amplify-plooralist-dev-132343-deployment",
             "UnauthRoleName": "amplify-plooralist-dev-132343-unauthRole",
             "StackName": "amplify-plooralist-dev-132343",
-            "StackId": "arn:aws:cloudformation:us-east-1:838066868241:stack/amplify-plooralist-dev-132343/3af8bc00-fd63-11e9-8259-0a28f59d0ab4"
+            "StackId": "arn:aws:cloudformation:us-east-1:838066868241:stack/amplify-plooralist-dev-132343/3af8bc00-fd63-11e9-8259-0a28f59d0ab4",
+            "AmplifyAppId": "d2h8x0xj8ohwjs"
         },
         "categories": {
             "notifications": {
@@ -23,7 +24,9 @@
             },
             "function": {
                 "plooralistAuthPostConfirmation": {},
-                "plooralistSendTimeNotification": {}
+                "plooralistSendTimeNotification": {},
+                "plooralistCreatePanelAndMembers": {},
+                "plooralistMemberStream": {}
             }
         }
     }
