@@ -237,15 +237,3 @@ enhance.navigationOptions = ({ navigation }) => {
 }
 
 export default enhance;
-
-/*<ListItem
-    containerStyle={{ marginTop: -85, backgroundColor: 'transparent'}}
-    title=' '
-    rightIcon={{
-      size: 20,
-      name: 'photo-camera',
-      reverse: true,
-      color: colors.grey4,
-      onPress: this.onEditAvatarPress.bind(this)
-    }}
-/>*/

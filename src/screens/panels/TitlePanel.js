@@ -35,7 +35,7 @@ class TitlePanel extends React.Component {
 
     let title;
 
-    switch(member.panel.type) {
+    switch(panel.type) {
       case 1:
         title = <TitleSinglePanel {...this.props} onPress={this.onPress.bind(this)} />;
         break;

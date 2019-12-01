@@ -100,5 +100,5 @@ class RowCurrentUser extends React.Component {
 };
 
 export default compose(
-  graphqlMutation(gql(createPanelAndMembers), variables => ({ query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId, sortDirection: "DESC", limit: 100}}), 'Member'),
+  graphqlMutation(gql(createPanelAndMembers), variables => ({query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId, sortDirection: "DESC", limit: 100}}), 'Member'),
 ) (withCurrentUser(RowCurrentUser))

@@ -4,6 +4,15 @@ import { StyleSheet, View, Text, ScrollView, Alert } from 'react-native';
 
 import { ListItem, Icon } from 'react-native-elements';
 
+import compose from 'lodash.flowright';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
+import { buildSubscription } from 'aws-appsync';
+
+import { listMembersForPanel } from '../../../graphql/queries';
+import { onCreateMember, onUpdateMember, onDeleteMember } from '../../../graphql/subscriptions';
+
 import Loading from '../../../components/Loading';
 
 import moment from 'moment/min/moment-with-locales.js';
@@ -27,9 +36,31 @@ class InfoCouplePanel extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    const { memberPanelId } = this.props.member;
+    this.props.data.subscribeToMore(
+      buildSubscription(
+        {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
+        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+      )
+    );
+    this.props.data.subscribeToMore(
+      buildSubscription(
+        {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
+        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+      )
+    );
+    this.props.data.subscribeToMore(
+      buildSubscription(
+        {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
+        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+      )
+    );
+  }
+
   render() {
-    const { member, contacts } = this.props;
-    const couple = find(member.panel.members.items, couple => couple.memberUserId != member.memberUserId);
+    const { member, members, contacts } = this.props;
+    const couple = find(members, couple => couple.memberUserId != member.memberUserId);
 
     const name = getUserName(couple.user, contacts);
     const imgKey = couple.user.imgKey;
@@ -70,4 +101,17 @@ class InfoCouplePanel extends React.Component {
   }
 };
 
-export default withContacts(InfoCouplePanel);
+export default compose(
+  graphql(gql(listMembersForPanel), {
+    options: props => ({
+      fetchPolicy: 'cache-and-network',
+      variables: {
+        memberPanelId: props.member.memberPanelId
+      }
+    }),
+    props: props => ({
+      members: props.data.listMembersForPanel ? props.data.listMembersForPanel.items : [],
+      data: props.data
+    }),
+  }),
+) (withContacts(InfoCouplePanel));

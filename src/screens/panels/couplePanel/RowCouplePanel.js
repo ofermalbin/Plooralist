@@ -1,5 +1,14 @@
 import React from 'react';
 
+import compose from 'lodash.flowright';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
+import { buildSubscription } from 'aws-appsync';
+
+import { listMembersForPanel } from '../../../graphql/queries';
+import { onCreateMember, onUpdateMember, onDeleteMember } from '../../../graphql/subscriptions';
+
 import { withContacts } from '../../../contexts';
 
 import { find } from 'lodash';
@@ -14,11 +23,33 @@ class RowCouplePanel extends React.Component {
     super(props);
   }
 
-  render() {
-    const { member, contacts } = this.props;
-    const couple = find(member.panel.members.items, couple => couple.memberUserId != member.memberUserId);
+  componentDidMount() {
+    const { memberPanelId } = this.props.member;
+    this.props.data.subscribeToMore(
+      buildSubscription(
+        {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
+        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+      )
+    );
+    this.props.data.subscribeToMore(
+      buildSubscription(
+        {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
+        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+      )
+    );
+    this.props.data.subscribeToMore(
+      buildSubscription(
+        {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
+        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+      )
+    );
+  }
 
-    if (!couple) {
+  render() {
+    const { member, members, contacts } = this.props;
+    const couple = find(members, couple => couple.memberUserId != member.memberUserId);
+
+    if (!member || !couple) {
       return null;
     }
 
@@ -28,4 +59,17 @@ class RowCouplePanel extends React.Component {
   }
 };
 
-export default withContacts(RowCouplePanel);
+export default compose(
+  graphql(gql(listMembersForPanel), {
+    options: props => ({
+      fetchPolicy: 'cache-and-network',
+      variables: {
+        memberPanelId: props.member.memberPanelId
+      }
+    }),
+    props: props => ({
+      members: props.data.listMembersForPanel ? props.data.listMembersForPanel.items : [],
+      data: props.data
+    }),
+  }),
+) (withContacts(RowCouplePanel));
