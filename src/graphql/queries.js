@@ -569,6 +569,7 @@ export const listPanels = `query ListPanels(
           version
           memberPanelId
           memberUserId
+          coupleUserId
           createdAt
           updatedAt
           isOwner
@@ -626,6 +627,7 @@ export const getPanel = `query GetPanel($id: ID!) {
         version
         memberPanelId
         memberUserId
+        coupleUserId
         createdAt
         updatedAt
         isOwner
@@ -661,6 +663,7 @@ export const getPanel = `query GetPanel($id: ID!) {
               version
               memberPanelId
               memberUserId
+              coupleUserId
               createdAt
               updatedAt
               isOwner
@@ -685,6 +688,7 @@ export const getMember = `query GetMember($id: ID!) {
     version
     memberPanelId
     memberUserId
+    coupleUserId
     createdAt
     updatedAt
     isOwner
@@ -720,6 +724,7 @@ export const getMember = `query GetMember($id: ID!) {
           version
           memberPanelId
           memberUserId
+          coupleUserId
           createdAt
           updatedAt
           isOwner
@@ -771,6 +776,7 @@ export const listMembers = `query ListMembers(
       version
       memberPanelId
       memberUserId
+      coupleUserId
       createdAt
       updatedAt
       isOwner
@@ -806,6 +812,7 @@ export const listMembers = `query ListMembers(
             version
             memberPanelId
             memberUserId
+            coupleUserId
             createdAt
             updatedAt
             isOwner
@@ -864,6 +871,7 @@ export const listMembersForPanel = `query ListMembersForPanel(
       version
       memberPanelId
       memberUserId
+      coupleUserId
       createdAt
       updatedAt
       isOwner
@@ -899,6 +907,7 @@ export const listMembersForPanel = `query ListMembersForPanel(
             version
             memberPanelId
             memberUserId
+            coupleUserId
             createdAt
             updatedAt
             isOwner
@@ -957,6 +966,7 @@ export const listMembersForUser = `query ListMembersForUser(
       version
       memberPanelId
       memberUserId
+      coupleUserId
       createdAt
       updatedAt
       isOwner
@@ -992,6 +1002,7 @@ export const listMembersForUser = `query ListMembersForUser(
             version
             memberPanelId
             memberUserId
+            coupleUserId
             createdAt
             updatedAt
             isOwner

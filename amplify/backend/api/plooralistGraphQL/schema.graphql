@@ -41,6 +41,7 @@ type Member @model(subscriptions: null) @key(name: "gsi-PanelMembers", fields: [
 	version: Int
   memberPanelId: ID!
   memberUserId: ID!
+  coupleUserId: ID
 	createdAt: String
 	updatedAt: String
 	isOwner: Boolean

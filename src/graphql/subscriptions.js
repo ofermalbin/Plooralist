@@ -8,6 +8,7 @@ export const onCreateStreamMember = `subscription OnCreateStreamMember($memberUs
     version
     memberPanelId
     memberUserId
+    coupleUserId
     createdAt
     updatedAt
     isOwner
@@ -43,6 +44,7 @@ export const onCreateStreamMember = `subscription OnCreateStreamMember($memberUs
           version
           memberPanelId
           memberUserId
+          coupleUserId
           createdAt
           updatedAt
           isOwner
@@ -89,6 +91,7 @@ export const onUpdateStreamMember = `subscription OnUpdateStreamMember($memberUs
     version
     memberPanelId
     memberUserId
+    coupleUserId
     createdAt
     updatedAt
     isOwner
@@ -124,6 +127,7 @@ export const onUpdateStreamMember = `subscription OnUpdateStreamMember($memberUs
           version
           memberPanelId
           memberUserId
+          coupleUserId
           createdAt
           updatedAt
           isOwner
@@ -170,6 +174,7 @@ export const onDeleteStreamMember = `subscription OnDeleteStreamMember($memberUs
     version
     memberPanelId
     memberUserId
+    coupleUserId
     createdAt
     updatedAt
     isOwner
@@ -205,6 +210,7 @@ export const onDeleteStreamMember = `subscription OnDeleteStreamMember($memberUs
           version
           memberPanelId
           memberUserId
+          coupleUserId
           createdAt
           updatedAt
           isOwner
@@ -251,6 +257,7 @@ export const onCreateMember = `subscription OnCreateMember($memberPanelId: Strin
     version
     memberPanelId
     memberUserId
+    coupleUserId
     createdAt
     updatedAt
     isOwner
@@ -286,6 +293,7 @@ export const onCreateMember = `subscription OnCreateMember($memberPanelId: Strin
           version
           memberPanelId
           memberUserId
+          coupleUserId
           createdAt
           updatedAt
           isOwner
@@ -332,6 +340,7 @@ export const onUpdateMember = `subscription OnUpdateMember($memberPanelId: Strin
     version
     memberPanelId
     memberUserId
+    coupleUserId
     createdAt
     updatedAt
     isOwner
@@ -367,6 +376,7 @@ export const onUpdateMember = `subscription OnUpdateMember($memberPanelId: Strin
           version
           memberPanelId
           memberUserId
+          coupleUserId
           createdAt
           updatedAt
           isOwner
@@ -413,6 +423,7 @@ export const onDeleteMember = `subscription OnDeleteMember($memberPanelId: Strin
     version
     memberPanelId
     memberUserId
+    coupleUserId
     createdAt
     updatedAt
     isOwner
@@ -448,6 +459,7 @@ export const onDeleteMember = `subscription OnDeleteMember($memberPanelId: Strin
           version
           memberPanelId
           memberUserId
+          coupleUserId
           createdAt
           updatedAt
           isOwner
@@ -504,6 +516,7 @@ export const onUpdatePanel = `subscription OnUpdatePanel($id: String!) {
         version
         memberPanelId
         memberUserId
+        coupleUserId
         createdAt
         updatedAt
         isOwner
@@ -539,6 +552,7 @@ export const onUpdatePanel = `subscription OnUpdatePanel($id: String!) {
               version
               memberPanelId
               memberUserId
+              coupleUserId
               createdAt
               updatedAt
               isOwner
@@ -573,6 +587,7 @@ export const onDeletePanel = `subscription OnDeletePanel($id: String!) {
         version
         memberPanelId
         memberUserId
+        coupleUserId
         createdAt
         updatedAt
         isOwner
@@ -608,6 +623,7 @@ export const onDeletePanel = `subscription OnDeletePanel($id: String!) {
               version
               memberPanelId
               memberUserId
+              coupleUserId
               createdAt
               updatedAt
               isOwner

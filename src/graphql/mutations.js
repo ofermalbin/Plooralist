@@ -22,6 +22,7 @@ export const createPanelAndMembers = `mutation CreatePanelAndMembers(
     version
     memberPanelId
     memberUserId
+    coupleUserId
     createdAt
     updatedAt
     isOwner
@@ -57,6 +58,7 @@ export const createPanelAndMembers = `mutation CreatePanelAndMembers(
           version
           memberPanelId
           memberUserId
+          coupleUserId
           createdAt
           updatedAt
           isOwner
@@ -103,6 +105,7 @@ export const createStreamMember = `mutation CreateStreamMember($input: StreamMem
     version
     memberPanelId
     memberUserId
+    coupleUserId
     createdAt
     updatedAt
     isOwner
@@ -138,6 +141,7 @@ export const createStreamMember = `mutation CreateStreamMember($input: StreamMem
           version
           memberPanelId
           memberUserId
+          coupleUserId
           createdAt
           updatedAt
           isOwner
@@ -184,6 +188,7 @@ export const updateStreamMember = `mutation UpdateStreamMember($input: StreamMem
     version
     memberPanelId
     memberUserId
+    coupleUserId
     createdAt
     updatedAt
     isOwner
@@ -219,6 +224,7 @@ export const updateStreamMember = `mutation UpdateStreamMember($input: StreamMem
           version
           memberPanelId
           memberUserId
+          coupleUserId
           createdAt
           updatedAt
           isOwner
@@ -265,6 +271,7 @@ export const deleteStreamMember = `mutation DeleteStreamMember($input: StreamMem
     version
     memberPanelId
     memberUserId
+    coupleUserId
     createdAt
     updatedAt
     isOwner
@@ -300,6 +307,7 @@ export const deleteStreamMember = `mutation DeleteStreamMember($input: StreamMem
           version
           memberPanelId
           memberUserId
+          coupleUserId
           createdAt
           updatedAt
           isOwner
@@ -339,8 +347,11 @@ export const deleteStreamMember = `mutation DeleteStreamMember($input: StreamMem
   }
 }
 `;
-export const createUser = `mutation CreateUser($input: CreateUserInput!) {
-  createUser(input: $input) {
+export const createUser = `mutation CreateUser(
+  $input: CreateUserInput!
+  $condition: ModelUserConditionInput
+) {
+  createUser(input: $input, condition: $condition) {
     id
     offline
     phoneNumber
@@ -354,8 +365,11 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
   }
 }
 `;
-export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
-  updateUser(input: $input) {
+export const updateUser = `mutation UpdateUser(
+  $input: UpdateUserInput!
+  $condition: ModelUserConditionInput
+) {
+  updateUser(input: $input, condition: $condition) {
     id
     offline
     phoneNumber
@@ -369,8 +383,11 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
   }
 }
 `;
-export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
-  deleteUser(input: $input) {
+export const deleteUser = `mutation DeleteUser(
+  $input: DeleteUserInput!
+  $condition: ModelUserConditionInput
+) {
+  deleteUser(input: $input, condition: $condition) {
     id
     offline
     phoneNumber
@@ -384,8 +401,11 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
   }
 }
 `;
-export const createPanel = `mutation CreatePanel($input: CreatePanelInput!) {
-  createPanel(input: $input) {
+export const createPanel = `mutation CreatePanel(
+  $input: CreatePanelInput!
+  $condition: ModelPanelConditionInput
+) {
+  createPanel(input: $input, condition: $condition) {
     id
     offline
     version
@@ -401,6 +421,7 @@ export const createPanel = `mutation CreatePanel($input: CreatePanelInput!) {
         version
         memberPanelId
         memberUserId
+        coupleUserId
         createdAt
         updatedAt
         isOwner
@@ -436,6 +457,7 @@ export const createPanel = `mutation CreatePanel($input: CreatePanelInput!) {
               version
               memberPanelId
               memberUserId
+              coupleUserId
               createdAt
               updatedAt
               isOwner
@@ -453,8 +475,11 @@ export const createPanel = `mutation CreatePanel($input: CreatePanelInput!) {
   }
 }
 `;
-export const updatePanel = `mutation UpdatePanel($input: UpdatePanelInput!) {
-  updatePanel(input: $input) {
+export const updatePanel = `mutation UpdatePanel(
+  $input: UpdatePanelInput!
+  $condition: ModelPanelConditionInput
+) {
+  updatePanel(input: $input, condition: $condition) {
     id
     offline
     version
@@ -470,6 +495,7 @@ export const updatePanel = `mutation UpdatePanel($input: UpdatePanelInput!) {
         version
         memberPanelId
         memberUserId
+        coupleUserId
         createdAt
         updatedAt
         isOwner
@@ -505,6 +531,7 @@ export const updatePanel = `mutation UpdatePanel($input: UpdatePanelInput!) {
               version
               memberPanelId
               memberUserId
+              coupleUserId
               createdAt
               updatedAt
               isOwner
@@ -522,8 +549,11 @@ export const updatePanel = `mutation UpdatePanel($input: UpdatePanelInput!) {
   }
 }
 `;
-export const deletePanel = `mutation DeletePanel($input: DeletePanelInput!) {
-  deletePanel(input: $input) {
+export const deletePanel = `mutation DeletePanel(
+  $input: DeletePanelInput!
+  $condition: ModelPanelConditionInput
+) {
+  deletePanel(input: $input, condition: $condition) {
     id
     offline
     version
@@ -539,6 +569,7 @@ export const deletePanel = `mutation DeletePanel($input: DeletePanelInput!) {
         version
         memberPanelId
         memberUserId
+        coupleUserId
         createdAt
         updatedAt
         isOwner
@@ -574,6 +605,7 @@ export const deletePanel = `mutation DeletePanel($input: DeletePanelInput!) {
               version
               memberPanelId
               memberUserId
+              coupleUserId
               createdAt
               updatedAt
               isOwner
@@ -591,13 +623,17 @@ export const deletePanel = `mutation DeletePanel($input: DeletePanelInput!) {
   }
 }
 `;
-export const createMember = `mutation CreateMember($input: CreateMemberInput!) {
-  createMember(input: $input) {
+export const createMember = `mutation CreateMember(
+  $input: CreateMemberInput!
+  $condition: ModelMemberConditionInput
+) {
+  createMember(input: $input, condition: $condition) {
     id
     offline
     version
     memberPanelId
     memberUserId
+    coupleUserId
     createdAt
     updatedAt
     isOwner
@@ -633,6 +669,7 @@ export const createMember = `mutation CreateMember($input: CreateMemberInput!) {
           version
           memberPanelId
           memberUserId
+          coupleUserId
           createdAt
           updatedAt
           isOwner
@@ -672,13 +709,17 @@ export const createMember = `mutation CreateMember($input: CreateMemberInput!) {
   }
 }
 `;
-export const updateMember = `mutation UpdateMember($input: UpdateMemberInput!) {
-  updateMember(input: $input) {
+export const updateMember = `mutation UpdateMember(
+  $input: UpdateMemberInput!
+  $condition: ModelMemberConditionInput
+) {
+  updateMember(input: $input, condition: $condition) {
     id
     offline
     version
     memberPanelId
     memberUserId
+    coupleUserId
     createdAt
     updatedAt
     isOwner
@@ -714,6 +755,7 @@ export const updateMember = `mutation UpdateMember($input: UpdateMemberInput!) {
           version
           memberPanelId
           memberUserId
+          coupleUserId
           createdAt
           updatedAt
           isOwner
@@ -753,13 +795,17 @@ export const updateMember = `mutation UpdateMember($input: UpdateMemberInput!) {
   }
 }
 `;
-export const deleteMember = `mutation DeleteMember($input: DeleteMemberInput!) {
-  deleteMember(input: $input) {
+export const deleteMember = `mutation DeleteMember(
+  $input: DeleteMemberInput!
+  $condition: ModelMemberConditionInput
+) {
+  deleteMember(input: $input, condition: $condition) {
     id
     offline
     version
     memberPanelId
     memberUserId
+    coupleUserId
     createdAt
     updatedAt
     isOwner
@@ -795,6 +841,7 @@ export const deleteMember = `mutation DeleteMember($input: DeleteMemberInput!) {
           version
           memberPanelId
           memberUserId
+          coupleUserId
           createdAt
           updatedAt
           isOwner
@@ -834,8 +881,11 @@ export const deleteMember = `mutation DeleteMember($input: DeleteMemberInput!) {
   }
 }
 `;
-export const createTask = `mutation CreateTask($input: CreateTaskInput!) {
-  createTask(input: $input) {
+export const createTask = `mutation CreateTask(
+  $input: CreateTaskInput!
+  $condition: ModelTaskConditionInput
+) {
+  createTask(input: $input, condition: $condition) {
     id
     offline
     version
@@ -863,8 +913,11 @@ export const createTask = `mutation CreateTask($input: CreateTaskInput!) {
   }
 }
 `;
-export const updateTask = `mutation UpdateTask($input: UpdateTaskInput!) {
-  updateTask(input: $input) {
+export const updateTask = `mutation UpdateTask(
+  $input: UpdateTaskInput!
+  $condition: ModelTaskConditionInput
+) {
+  updateTask(input: $input, condition: $condition) {
     id
     offline
     version
@@ -892,8 +945,11 @@ export const updateTask = `mutation UpdateTask($input: UpdateTaskInput!) {
   }
 }
 `;
-export const deleteTask = `mutation DeleteTask($input: DeleteTaskInput!) {
-  deleteTask(input: $input) {
+export const deleteTask = `mutation DeleteTask(
+  $input: DeleteTaskInput!
+  $condition: ModelTaskConditionInput
+) {
+  deleteTask(input: $input, condition: $condition) {
     id
     offline
     version
@@ -921,8 +977,11 @@ export const deleteTask = `mutation DeleteTask($input: DeleteTaskInput!) {
   }
 }
 `;
-export const createSubtask = `mutation CreateSubtask($input: CreateSubtaskInput!) {
-  createSubtask(input: $input) {
+export const createSubtask = `mutation CreateSubtask(
+  $input: CreateSubtaskInput!
+  $condition: ModelSubtaskConditionInput
+) {
+  createSubtask(input: $input, condition: $condition) {
     id
     offline
     version
@@ -948,8 +1007,11 @@ export const createSubtask = `mutation CreateSubtask($input: CreateSubtaskInput!
   }
 }
 `;
-export const updateSubtask = `mutation UpdateSubtask($input: UpdateSubtaskInput!) {
-  updateSubtask(input: $input) {
+export const updateSubtask = `mutation UpdateSubtask(
+  $input: UpdateSubtaskInput!
+  $condition: ModelSubtaskConditionInput
+) {
+  updateSubtask(input: $input, condition: $condition) {
     id
     offline
     version
@@ -975,8 +1037,11 @@ export const updateSubtask = `mutation UpdateSubtask($input: UpdateSubtaskInput!
   }
 }
 `;
-export const deleteSubtask = `mutation DeleteSubtask($input: DeleteSubtaskInput!) {
-  deleteSubtask(input: $input) {
+export const deleteSubtask = `mutation DeleteSubtask(
+  $input: DeleteSubtaskInput!
+  $condition: ModelSubtaskConditionInput
+) {
+  deleteSubtask(input: $input, condition: $condition) {
     id
     offline
     version
@@ -1002,8 +1067,11 @@ export const deleteSubtask = `mutation DeleteSubtask($input: DeleteSubtaskInput!
   }
 }
 `;
-export const createTimeNotification = `mutation CreateTimeNotification($input: CreateTimeNotificationInput!) {
-  createTimeNotification(input: $input) {
+export const createTimeNotification = `mutation CreateTimeNotification(
+  $input: CreateTimeNotificationInput!
+  $condition: ModelTimeNotificationConditionInput
+) {
+  createTimeNotification(input: $input, condition: $condition) {
     id
     offline
     version
@@ -1021,8 +1089,11 @@ export const createTimeNotification = `mutation CreateTimeNotification($input: C
   }
 }
 `;
-export const updateTimeNotification = `mutation UpdateTimeNotification($input: UpdateTimeNotificationInput!) {
-  updateTimeNotification(input: $input) {
+export const updateTimeNotification = `mutation UpdateTimeNotification(
+  $input: UpdateTimeNotificationInput!
+  $condition: ModelTimeNotificationConditionInput
+) {
+  updateTimeNotification(input: $input, condition: $condition) {
     id
     offline
     version
@@ -1040,8 +1111,11 @@ export const updateTimeNotification = `mutation UpdateTimeNotification($input: U
   }
 }
 `;
-export const deleteTimeNotification = `mutation DeleteTimeNotification($input: DeleteTimeNotificationInput!) {
-  deleteTimeNotification(input: $input) {
+export const deleteTimeNotification = `mutation DeleteTimeNotification(
+  $input: DeleteTimeNotificationInput!
+  $condition: ModelTimeNotificationConditionInput
+) {
+  deleteTimeNotification(input: $input, condition: $condition) {
     id
     offline
     version
@@ -1059,8 +1133,11 @@ export const deleteTimeNotification = `mutation DeleteTimeNotification($input: D
   }
 }
 `;
-export const createPlaceNotification = `mutation CreatePlaceNotification($input: CreatePlaceNotificationInput!) {
-  createPlaceNotification(input: $input) {
+export const createPlaceNotification = `mutation CreatePlaceNotification(
+  $input: CreatePlaceNotificationInput!
+  $condition: ModelPlaceNotificationConditionInput
+) {
+  createPlaceNotification(input: $input, condition: $condition) {
     id
     offline
     version
@@ -1076,8 +1153,11 @@ export const createPlaceNotification = `mutation CreatePlaceNotification($input:
   }
 }
 `;
-export const updatePlaceNotification = `mutation UpdatePlaceNotification($input: UpdatePlaceNotificationInput!) {
-  updatePlaceNotification(input: $input) {
+export const updatePlaceNotification = `mutation UpdatePlaceNotification(
+  $input: UpdatePlaceNotificationInput!
+  $condition: ModelPlaceNotificationConditionInput
+) {
+  updatePlaceNotification(input: $input, condition: $condition) {
     id
     offline
     version
@@ -1093,8 +1173,11 @@ export const updatePlaceNotification = `mutation UpdatePlaceNotification($input:
   }
 }
 `;
-export const deletePlaceNotification = `mutation DeletePlaceNotification($input: DeletePlaceNotificationInput!) {
-  deletePlaceNotification(input: $input) {
+export const deletePlaceNotification = `mutation DeletePlaceNotification(
+  $input: DeletePlaceNotificationInput!
+  $condition: ModelPlaceNotificationConditionInput
+) {
+  deletePlaceNotification(input: $input, condition: $condition) {
     id
     offline
     version
@@ -1110,8 +1193,11 @@ export const deletePlaceNotification = `mutation DeletePlaceNotification($input:
   }
 }
 `;
-export const createMessage = `mutation CreateMessage($input: CreateMessageInput!) {
-  createMessage(input: $input) {
+export const createMessage = `mutation CreateMessage(
+  $input: CreateMessageInput!
+  $condition: ModelMessageConditionInput
+) {
+  createMessage(input: $input, condition: $condition) {
     id
     offline
     version
@@ -1139,8 +1225,11 @@ export const createMessage = `mutation CreateMessage($input: CreateMessageInput!
   }
 }
 `;
-export const updateMessage = `mutation UpdateMessage($input: UpdateMessageInput!) {
-  updateMessage(input: $input) {
+export const updateMessage = `mutation UpdateMessage(
+  $input: UpdateMessageInput!
+  $condition: ModelMessageConditionInput
+) {
+  updateMessage(input: $input, condition: $condition) {
     id
     offline
     version
@@ -1168,8 +1257,11 @@ export const updateMessage = `mutation UpdateMessage($input: UpdateMessageInput!
   }
 }
 `;
-export const deleteMessage = `mutation DeleteMessage($input: DeleteMessageInput!) {
-  deleteMessage(input: $input) {
+export const deleteMessage = `mutation DeleteMessage(
+  $input: DeleteMessageInput!
+  $condition: ModelMessageConditionInput
+) {
+  deleteMessage(input: $input, condition: $condition) {
     id
     offline
     version
