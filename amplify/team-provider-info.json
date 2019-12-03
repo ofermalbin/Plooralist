@@ -1,38 +1,79 @@
 {
-    "dev": {
+    "test": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-plooralist-dev-132343-authRole",
-            "UnauthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-dev-132343-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-dev-132343-authRole",
+            "AuthRoleName": "amplify-plooralist-test-150509-authRole",
+            "UnauthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-test-150509-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-test-150509-authRole",
             "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-plooralist-dev-132343-deployment",
-            "UnauthRoleName": "amplify-plooralist-dev-132343-unauthRole",
-            "StackName": "amplify-plooralist-dev-132343",
-            "StackId": "arn:aws:cloudformation:us-east-1:838066868241:stack/amplify-plooralist-dev-132343/3af8bc00-fd63-11e9-8259-0a28f59d0ab4",
-            "AmplifyAppId": "d2h8x0xj8ohwjs"
+            "DeploymentBucketName": "amplify-plooralist-test-150509-deployment",
+            "UnauthRoleName": "amplify-plooralist-test-150509-unauthRole",
+            "StackName": "amplify-plooralist-test-150509",
+            "StackId": "arn:aws:cloudformation:us-east-1:838066868241:stack/amplify-plooralist-test-150509/8abe55b0-15cd-11ea-be1b-0e1cfc6fd327",
+            "AmplifyAppId": "d15c5u4e7dllq5"
         },
         "categories": {
-            "notifications": {
-                "Pinpoint": {
-                    "Name": "plooralistPinpoint-dev",
-                    "Id": "76256c1605ba459ba544d138e7254ac3",
-                    "Region": "us-east-1"
-                }
-            },
             "auth": {
                 "plooralistAuth": {}
             },
             "function": {
-                "plooralistAuthPostConfirmation": {},
-                "plooralistSendTimeNotification": {},
-                "plooralistCreatePanelAndMembers": {},
-                "plooralistMemberStream": {},
                 "plooralistListUsersAreContacts": {},
+                "plooralistCreatePanelAndMembers": {},
                 "plooralistPanelStream": {},
-                "plooralistPlaceNotificationStream": {},
-                "plooralistGetEventsFromRadar": {},
+                "plooralistMemberStream": {},
+                "plooralistAuthPostConfirmation": {},
                 "plooralistTaskStream": {},
-                "plooralistCreateCouplPanelsFromUsersAreContacts": {}
+                "plooralistPlaceNotificationStream": {},
+                "plooralistSendTimeNotification": {},
+                "plooralistGetEventsFromRadar": {},
+                "plooralistCreateCouplPanelsFromUsersAreContacts": {},
+                "plooralistGraphQL": {},
+                "plooralistPinpoint": {}
+            },
+            "notifications": {
+                "Pinpoint": {
+                    "Name": "plooralistPinpoint-test",
+                    "Id": "f206986fb47847f6a41d5f7f3506feb2",
+                    "Region": "us-east-1"
+                }
+            }
+        }
+    },
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-plooralist-dev-174156-authRole",
+            "UnauthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-dev-174156-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-dev-174156-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-plooralist-dev-174156-deployment",
+            "UnauthRoleName": "amplify-plooralist-dev-174156-unauthRole",
+            "StackName": "amplify-plooralist-dev-174156",
+            "StackId": "arn:aws:cloudformation:us-east-1:838066868241:stack/amplify-plooralist-dev-174156/71348bd0-15e3-11ea-a619-0a36a8f29061",
+            "AmplifyAppId": "d15c5u4e7dllq5"
+        },
+        "categories": {
+            "auth": {
+                "plooralistAuth": {}
+            },
+            "function": {
+                "plooralistListUsersAreContacts": {},
+                "plooralistCreatePanelAndMembers": {},
+                "plooralistPanelStream": {},
+                "plooralistMemberStream": {},
+                "plooralistAuthPostConfirmation": {},
+                "plooralistTaskStream": {},
+                "plooralistPlaceNotificationStream": {},
+                "plooralistSendTimeNotification": {},
+                "plooralistGetEventsFromRadar": {},
+                "plooralistCreateCouplPanelsFromUsersAreContacts": {},
+                "plooralistGraphQL": {},
+                "plooralistPinpoint": {}
+            },
+            "notifications": {
+                "Pinpoint": {
+                    "Name": "plooralistPinpoint-dev",
+                    "Id": "8a70114466b74bfc9ffb12f2013d9327",
+                    "Region": "us-east-1"
+                }
             }
         }
     }

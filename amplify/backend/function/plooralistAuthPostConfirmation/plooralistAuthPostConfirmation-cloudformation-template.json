@@ -101,8 +101,8 @@
 				"Runtime": "nodejs8.10",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-plooralist-dev-132343-deployment",
-					"S3Key": "amplify-builds/plooralistAuthPostConfirmation-6b6763666b4e46744a47-build.zip"
+					"S3Bucket": "amplify-plooralist-dev-174156-deployment",
+					"S3Key": "amplify-builds/plooralistAuthPostConfirmation-31575949473331596764-build.zip"
 				}
 			}
 		},

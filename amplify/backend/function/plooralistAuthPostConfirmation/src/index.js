@@ -13,15 +13,9 @@
 };*/
 
 const AWS = require("aws-sdk");
-/*const appsyncId = process.env.API_PLOORALISTGRAPHQL_GRAPHQLAPIIDOUTPUT;
+const appsyncId = process.env.API_PLOORALISTGRAPHQL_GRAPHQLAPIIDOUTPUT;
 const region = process.env.REGION;
-
-const environment = process.env.ENV;*/
-
-const appsyncId = 'bc2yzxkrcfbfxnxeh2gqivfjbq';
-const region = 'us-east-1';
-
-const environment = 'dev';
+const environment = process.env.ENV;
 
 const UserTable = `User-${appsyncId}-${environment}`;
 

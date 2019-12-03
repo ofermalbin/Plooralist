@@ -76,8 +76,8 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-plooralist-dev-132343-deployment",
-					"S3Key": "amplify-builds/plooralistCreateCouplPanelsFromUsersAreContacts-68435a4b4f4a59536738-build.zip"
+					"S3Bucket": "amplify-plooralist-dev-174156-deployment",
+					"S3Key": "amplify-builds/plooralistCreateCouplPanelsFromUsersAreContacts-576a7a706a4f58703350-build.zip"
 				}
 			}
 		},

@@ -131,7 +131,7 @@ type Message @model(subscriptions: null) @key(name: "gsi-TaskMessages", fields: 
 }
 
 type Query {
-  listUsersAreContacts(contacts: [String]): [User]
+  listUsersAreContacts(contacts: [String]): [User] @function(name: "listUsersAreContacts-${env}")
   plooralistCreateCouplPanelsFromUsersAreContacts(usersIds: [ID!]): String @function(name: "plooralistCreateCouplPanelsFromUsersAreContacts-${env}")
   getCurrentUser: User
 }
