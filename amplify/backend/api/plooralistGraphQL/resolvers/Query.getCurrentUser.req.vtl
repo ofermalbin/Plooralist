@@ -4,12 +4,12 @@
     "scanIndexForward": true,
     "select" : "ALL_ATTRIBUTES",
     "query" : {
-        "expression" : "#id = :username",
+        "expression" : "#id = :userId",
         "expressionNames": {
             "#id" : "id"
         },
         "expressionValues" : {
-            ":username" : $util.dynamodb.toDynamoDBJson($ctx.identity.username)
+            ":userId" : $util.dynamodb.toDynamoDBJson($ctx.identity.username)
         }
     }
 }

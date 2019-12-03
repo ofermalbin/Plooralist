@@ -30,7 +30,9 @@
                 "plooralistListUsersAreContacts": {},
                 "plooralistPanelStream": {},
                 "plooralistPlaceNotificationStream": {},
-                "plooralistGetEventsFromRadar": {}
+                "plooralistGetEventsFromRadar": {},
+                "plooralistTaskStream": {},
+                "plooralistCreateCouplPanelsFromUsersAreContacts": {}
             }
         }
     }

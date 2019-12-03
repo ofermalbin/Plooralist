@@ -9,23 +9,19 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 import { buildSubscription } from 'aws-appsync';
 
-import { plooralistCreateCouplPanelsFromUsersAreContacts, listMembersForUser } from '../../graphql/queries';
-import { onCreateStreamMember, onUpdateStreamMember, onDeleteStreamMember } from '../../graphql/subscriptions';
+import { listMembersForUser } from '../../../graphql/queries';
+import { onCreateStreamMember, onUpdateStreamMember, onDeleteStreamMember } from '../../../graphql/subscriptions';
 
-import { withCurrentUser, withUsersAreContacts } from '../../contexts';
+import { withCurrentUser } from '../../../contexts';
 
-import Loading from '../../components/Loading';
+import Loading from '../../../components/Loading';
 
-import ListPanels from './ListPanels';
+import ListPanels from '../ListPanels';
 
-import colors from '../../config/colors';
-
-class Panels extends React.Component {
+class CouplesPanels extends React.Component {
 
   constructor(props) {
     super(props);
-
-    props.navigation.setParams({onSelectPress: this.onSelectPress.bind(this)});
   }
 
   componentDidMount() {
@@ -52,13 +48,9 @@ class Panels extends React.Component {
     }
   }
 
-  onSelectPress() {
-    this.props.navigation.navigate('SelectPanel');
-  }
-
   render() {
 
-    const { currentUser } = this.props;
+    const { currentUser, members } = this.props;
 
     if (!currentUser) {
       return (
@@ -66,13 +58,14 @@ class Panels extends React.Component {
       );
     }
 
+    const coupleMembers = members.filter(member => member.panel && member.panel.type && member.panel.type === 2);
     return (
-      <ListPanels {...this.props} />
+      <ListPanels navigation={this.props.navigation} members={coupleMembers} />
     );
   }
 }
 
-const enhance = withCurrentUser(withUsersAreContacts(compose(
+export default withCurrentUser(compose(
   graphql(gql(listMembersForUser), {
     options: props => ({
       fetchPolicy: 'cache-and-network',
@@ -85,38 +78,4 @@ const enhance = withCurrentUser(withUsersAreContacts(compose(
       data: props.data
     }),
   }),
-  graphql(gql(plooralistCreateCouplPanelsFromUsersAreContacts), {
-    options: props => ({
-      variables: {
-        usersIds: props.usersAreContacts ? props.usersAreContacts.map(user => user.id) : null
-      }
-    }),
-  }),
-) (Panels)));
-
-enhance.navigationOptions = ({ navigation }) => {
-    const { params = {} } = navigation.state;
-    return {
-      headerTitle: "Plooralist",
-      headerLeft: <Button
-        type="clear"
-        icon={{
-          name: 'search',
-          color: colors.headerIcon,
-        }}
-        title=''
-        onPress={() => navigation.navigate('Search')}
-      />,
-      headerRight: <Button
-        type="clear"
-        icon={{
-          name: 'edit',
-          color: colors.headerIcon,
-        }}
-        title=''
-        onPress={() => params.onSelectPress()}
-      />
-    };
-}
-
-export default enhance;
+) (CouplesPanels));

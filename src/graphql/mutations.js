@@ -51,49 +51,6 @@ export const createPanelAndMembers = `mutation CreatePanelAndMembers(
       type
       name
       imgKey
-      members {
-        items {
-          id
-          offline
-          version
-          memberPanelId
-          memberUserId
-          coupleUserId
-          createdAt
-          updatedAt
-          isOwner
-          canAccess
-          block
-          mute
-          pin
-          user {
-            id
-            offline
-            phoneNumber
-            version
-            createdAt
-            updatedAt
-            name
-            email
-            locale
-            imgKey
-          }
-          panel {
-            id
-            offline
-            version
-            createdAt
-            updatedAt
-            type
-            name
-            imgKey
-            members {
-              nextToken
-            }
-          }
-        }
-        nextToken
-      }
     }
   }
 }
@@ -134,49 +91,6 @@ export const createStreamMember = `mutation CreateStreamMember($input: StreamMem
       type
       name
       imgKey
-      members {
-        items {
-          id
-          offline
-          version
-          memberPanelId
-          memberUserId
-          coupleUserId
-          createdAt
-          updatedAt
-          isOwner
-          canAccess
-          block
-          mute
-          pin
-          user {
-            id
-            offline
-            phoneNumber
-            version
-            createdAt
-            updatedAt
-            name
-            email
-            locale
-            imgKey
-          }
-          panel {
-            id
-            offline
-            version
-            createdAt
-            updatedAt
-            type
-            name
-            imgKey
-            members {
-              nextToken
-            }
-          }
-        }
-        nextToken
-      }
     }
   }
 }
@@ -217,49 +131,6 @@ export const updateStreamMember = `mutation UpdateStreamMember($input: StreamMem
       type
       name
       imgKey
-      members {
-        items {
-          id
-          offline
-          version
-          memberPanelId
-          memberUserId
-          coupleUserId
-          createdAt
-          updatedAt
-          isOwner
-          canAccess
-          block
-          mute
-          pin
-          user {
-            id
-            offline
-            phoneNumber
-            version
-            createdAt
-            updatedAt
-            name
-            email
-            locale
-            imgKey
-          }
-          panel {
-            id
-            offline
-            version
-            createdAt
-            updatedAt
-            type
-            name
-            imgKey
-            members {
-              nextToken
-            }
-          }
-        }
-        nextToken
-      }
     }
   }
 }
@@ -300,49 +171,6 @@ export const deleteStreamMember = `mutation DeleteStreamMember($input: StreamMem
       type
       name
       imgKey
-      members {
-        items {
-          id
-          offline
-          version
-          memberPanelId
-          memberUserId
-          coupleUserId
-          createdAt
-          updatedAt
-          isOwner
-          canAccess
-          block
-          mute
-          pin
-          user {
-            id
-            offline
-            phoneNumber
-            version
-            createdAt
-            updatedAt
-            name
-            email
-            locale
-            imgKey
-          }
-          panel {
-            id
-            offline
-            version
-            createdAt
-            updatedAt
-            type
-            name
-            imgKey
-            members {
-              nextToken
-            }
-          }
-        }
-        nextToken
-      }
     }
   }
 }
@@ -414,64 +242,6 @@ export const createPanel = `mutation CreatePanel(
     type
     name
     imgKey
-    members {
-      items {
-        id
-        offline
-        version
-        memberPanelId
-        memberUserId
-        coupleUserId
-        createdAt
-        updatedAt
-        isOwner
-        canAccess
-        block
-        mute
-        pin
-        user {
-          id
-          offline
-          phoneNumber
-          version
-          createdAt
-          updatedAt
-          name
-          email
-          locale
-          imgKey
-        }
-        panel {
-          id
-          offline
-          version
-          createdAt
-          updatedAt
-          type
-          name
-          imgKey
-          members {
-            items {
-              id
-              offline
-              version
-              memberPanelId
-              memberUserId
-              coupleUserId
-              createdAt
-              updatedAt
-              isOwner
-              canAccess
-              block
-              mute
-              pin
-            }
-            nextToken
-          }
-        }
-      }
-      nextToken
-    }
   }
 }
 `;
@@ -488,64 +258,6 @@ export const updatePanel = `mutation UpdatePanel(
     type
     name
     imgKey
-    members {
-      items {
-        id
-        offline
-        version
-        memberPanelId
-        memberUserId
-        coupleUserId
-        createdAt
-        updatedAt
-        isOwner
-        canAccess
-        block
-        mute
-        pin
-        user {
-          id
-          offline
-          phoneNumber
-          version
-          createdAt
-          updatedAt
-          name
-          email
-          locale
-          imgKey
-        }
-        panel {
-          id
-          offline
-          version
-          createdAt
-          updatedAt
-          type
-          name
-          imgKey
-          members {
-            items {
-              id
-              offline
-              version
-              memberPanelId
-              memberUserId
-              coupleUserId
-              createdAt
-              updatedAt
-              isOwner
-              canAccess
-              block
-              mute
-              pin
-            }
-            nextToken
-          }
-        }
-      }
-      nextToken
-    }
   }
 }
 `;
@@ -562,64 +274,6 @@ export const deletePanel = `mutation DeletePanel(
     type
     name
     imgKey
-    members {
-      items {
-        id
-        offline
-        version
-        memberPanelId
-        memberUserId
-        coupleUserId
-        createdAt
-        updatedAt
-        isOwner
-        canAccess
-        block
-        mute
-        pin
-        user {
-          id
-          offline
-          phoneNumber
-          version
-          createdAt
-          updatedAt
-          name
-          email
-          locale
-          imgKey
-        }
-        panel {
-          id
-          offline
-          version
-          createdAt
-          updatedAt
-          type
-          name
-          imgKey
-          members {
-            items {
-              id
-              offline
-              version
-              memberPanelId
-              memberUserId
-              coupleUserId
-              createdAt
-              updatedAt
-              isOwner
-              canAccess
-              block
-              mute
-              pin
-            }
-            nextToken
-          }
-        }
-      }
-      nextToken
-    }
   }
 }
 `;
@@ -662,49 +316,6 @@ export const createMember = `mutation CreateMember(
       type
       name
       imgKey
-      members {
-        items {
-          id
-          offline
-          version
-          memberPanelId
-          memberUserId
-          coupleUserId
-          createdAt
-          updatedAt
-          isOwner
-          canAccess
-          block
-          mute
-          pin
-          user {
-            id
-            offline
-            phoneNumber
-            version
-            createdAt
-            updatedAt
-            name
-            email
-            locale
-            imgKey
-          }
-          panel {
-            id
-            offline
-            version
-            createdAt
-            updatedAt
-            type
-            name
-            imgKey
-            members {
-              nextToken
-            }
-          }
-        }
-        nextToken
-      }
     }
   }
 }
@@ -748,49 +359,6 @@ export const updateMember = `mutation UpdateMember(
       type
       name
       imgKey
-      members {
-        items {
-          id
-          offline
-          version
-          memberPanelId
-          memberUserId
-          coupleUserId
-          createdAt
-          updatedAt
-          isOwner
-          canAccess
-          block
-          mute
-          pin
-          user {
-            id
-            offline
-            phoneNumber
-            version
-            createdAt
-            updatedAt
-            name
-            email
-            locale
-            imgKey
-          }
-          panel {
-            id
-            offline
-            version
-            createdAt
-            updatedAt
-            type
-            name
-            imgKey
-            members {
-              nextToken
-            }
-          }
-        }
-        nextToken
-      }
     }
   }
 }
@@ -834,49 +402,6 @@ export const deleteMember = `mutation DeleteMember(
       type
       name
       imgKey
-      members {
-        items {
-          id
-          offline
-          version
-          memberPanelId
-          memberUserId
-          coupleUserId
-          createdAt
-          updatedAt
-          isOwner
-          canAccess
-          block
-          mute
-          pin
-          user {
-            id
-            offline
-            phoneNumber
-            version
-            createdAt
-            updatedAt
-            name
-            email
-            locale
-            imgKey
-          }
-          panel {
-            id
-            offline
-            version
-            createdAt
-            updatedAt
-            type
-            name
-            imgKey
-            members {
-              nextToken
-            }
-          }
-        }
-        nextToken
-      }
     }
   }
 }

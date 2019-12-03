@@ -28,7 +28,6 @@ type Panel @model(subscriptions: null) @auth(
 	type: Int!
 	name: String
 	imgKey: String
-  members: [Member] @connection(name: "PanelMembers")
 }
 
 type Member @model(subscriptions: null) @key(name: "gsi-PanelMembers", fields: ["memberPanelId"], queryField: "listMembersForPanel") @key(name: "gsi-UserMembers", fields: ["memberUserId"], queryField: "listMembersForUser") @auth(
@@ -49,7 +48,7 @@ type Member @model(subscriptions: null) @key(name: "gsi-PanelMembers", fields: [
 	block: Boolean
 	mute: Boolean
 	pin: Boolean
-  panel: Panel @connection(name: "PanelMembers")
+  panel: Panel @connection
   user: User @connection
 }
 
@@ -133,6 +132,7 @@ type Message @model(subscriptions: null) @key(name: "gsi-TaskMessages", fields: 
 
 type Query {
   listUsersAreContacts(contacts: [String]): [User]
+  plooralistCreateCouplPanelsFromUsersAreContacts(usersIds: [ID!]): String @function(name: "plooralistCreateCouplPanelsFromUsersAreContacts-${env}")
   getCurrentUser: User
 }
 

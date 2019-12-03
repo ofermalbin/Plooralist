@@ -37,49 +37,6 @@ export const onCreateStreamMember = `subscription OnCreateStreamMember($memberUs
       type
       name
       imgKey
-      members {
-        items {
-          id
-          offline
-          version
-          memberPanelId
-          memberUserId
-          coupleUserId
-          createdAt
-          updatedAt
-          isOwner
-          canAccess
-          block
-          mute
-          pin
-          user {
-            id
-            offline
-            phoneNumber
-            version
-            createdAt
-            updatedAt
-            name
-            email
-            locale
-            imgKey
-          }
-          panel {
-            id
-            offline
-            version
-            createdAt
-            updatedAt
-            type
-            name
-            imgKey
-            members {
-              nextToken
-            }
-          }
-        }
-        nextToken
-      }
     }
   }
 }
@@ -120,49 +77,6 @@ export const onUpdateStreamMember = `subscription OnUpdateStreamMember($memberUs
       type
       name
       imgKey
-      members {
-        items {
-          id
-          offline
-          version
-          memberPanelId
-          memberUserId
-          coupleUserId
-          createdAt
-          updatedAt
-          isOwner
-          canAccess
-          block
-          mute
-          pin
-          user {
-            id
-            offline
-            phoneNumber
-            version
-            createdAt
-            updatedAt
-            name
-            email
-            locale
-            imgKey
-          }
-          panel {
-            id
-            offline
-            version
-            createdAt
-            updatedAt
-            type
-            name
-            imgKey
-            members {
-              nextToken
-            }
-          }
-        }
-        nextToken
-      }
     }
   }
 }
@@ -203,49 +117,6 @@ export const onDeleteStreamMember = `subscription OnDeleteStreamMember($memberUs
       type
       name
       imgKey
-      members {
-        items {
-          id
-          offline
-          version
-          memberPanelId
-          memberUserId
-          coupleUserId
-          createdAt
-          updatedAt
-          isOwner
-          canAccess
-          block
-          mute
-          pin
-          user {
-            id
-            offline
-            phoneNumber
-            version
-            createdAt
-            updatedAt
-            name
-            email
-            locale
-            imgKey
-          }
-          panel {
-            id
-            offline
-            version
-            createdAt
-            updatedAt
-            type
-            name
-            imgKey
-            members {
-              nextToken
-            }
-          }
-        }
-        nextToken
-      }
     }
   }
 }
@@ -286,49 +157,6 @@ export const onCreateMember = `subscription OnCreateMember($memberPanelId: Strin
       type
       name
       imgKey
-      members {
-        items {
-          id
-          offline
-          version
-          memberPanelId
-          memberUserId
-          coupleUserId
-          createdAt
-          updatedAt
-          isOwner
-          canAccess
-          block
-          mute
-          pin
-          user {
-            id
-            offline
-            phoneNumber
-            version
-            createdAt
-            updatedAt
-            name
-            email
-            locale
-            imgKey
-          }
-          panel {
-            id
-            offline
-            version
-            createdAt
-            updatedAt
-            type
-            name
-            imgKey
-            members {
-              nextToken
-            }
-          }
-        }
-        nextToken
-      }
     }
   }
 }
@@ -369,49 +197,6 @@ export const onUpdateMember = `subscription OnUpdateMember($memberPanelId: Strin
       type
       name
       imgKey
-      members {
-        items {
-          id
-          offline
-          version
-          memberPanelId
-          memberUserId
-          coupleUserId
-          createdAt
-          updatedAt
-          isOwner
-          canAccess
-          block
-          mute
-          pin
-          user {
-            id
-            offline
-            phoneNumber
-            version
-            createdAt
-            updatedAt
-            name
-            email
-            locale
-            imgKey
-          }
-          panel {
-            id
-            offline
-            version
-            createdAt
-            updatedAt
-            type
-            name
-            imgKey
-            members {
-              nextToken
-            }
-          }
-        }
-        nextToken
-      }
     }
   }
 }
@@ -452,49 +237,6 @@ export const onDeleteMember = `subscription OnDeleteMember($memberPanelId: Strin
       type
       name
       imgKey
-      members {
-        items {
-          id
-          offline
-          version
-          memberPanelId
-          memberUserId
-          coupleUserId
-          createdAt
-          updatedAt
-          isOwner
-          canAccess
-          block
-          mute
-          pin
-          user {
-            id
-            offline
-            phoneNumber
-            version
-            createdAt
-            updatedAt
-            name
-            email
-            locale
-            imgKey
-          }
-          panel {
-            id
-            offline
-            version
-            createdAt
-            updatedAt
-            type
-            name
-            imgKey
-            members {
-              nextToken
-            }
-          }
-        }
-        nextToken
-      }
     }
   }
 }
@@ -509,64 +251,6 @@ export const onUpdatePanel = `subscription OnUpdatePanel($id: String!) {
     type
     name
     imgKey
-    members {
-      items {
-        id
-        offline
-        version
-        memberPanelId
-        memberUserId
-        coupleUserId
-        createdAt
-        updatedAt
-        isOwner
-        canAccess
-        block
-        mute
-        pin
-        user {
-          id
-          offline
-          phoneNumber
-          version
-          createdAt
-          updatedAt
-          name
-          email
-          locale
-          imgKey
-        }
-        panel {
-          id
-          offline
-          version
-          createdAt
-          updatedAt
-          type
-          name
-          imgKey
-          members {
-            items {
-              id
-              offline
-              version
-              memberPanelId
-              memberUserId
-              coupleUserId
-              createdAt
-              updatedAt
-              isOwner
-              canAccess
-              block
-              mute
-              pin
-            }
-            nextToken
-          }
-        }
-      }
-      nextToken
-    }
   }
 }
 `;
@@ -580,64 +264,6 @@ export const onDeletePanel = `subscription OnDeletePanel($id: String!) {
     type
     name
     imgKey
-    members {
-      items {
-        id
-        offline
-        version
-        memberPanelId
-        memberUserId
-        coupleUserId
-        createdAt
-        updatedAt
-        isOwner
-        canAccess
-        block
-        mute
-        pin
-        user {
-          id
-          offline
-          phoneNumber
-          version
-          createdAt
-          updatedAt
-          name
-          email
-          locale
-          imgKey
-        }
-        panel {
-          id
-          offline
-          version
-          createdAt
-          updatedAt
-          type
-          name
-          imgKey
-          members {
-            items {
-              id
-              offline
-              version
-              memberPanelId
-              memberUserId
-              coupleUserId
-              createdAt
-              updatedAt
-              isOwner
-              canAccess
-              block
-              mute
-              pin
-            }
-            nextToken
-          }
-        }
-      }
-      nextToken
-    }
   }
 }
 `;

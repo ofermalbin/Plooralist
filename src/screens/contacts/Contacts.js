@@ -4,7 +4,7 @@ import { ListItem, Avatar, Divider } from 'react-native-elements';
 
 import { actionListStyles } from './config/stylesheets';
 
-import ContactsAreUsers from '../contactsAreUsers';
+import { CouplesPanels } from '../panels';
 
 class Contacts extends React.Component {
 
@@ -21,22 +21,22 @@ class Contacts extends React.Component {
       <ScrollView>
         <View>
           <ListItem
-              bottomDivider={true}
-              containerStyle={actionListStyles.container}
-              titleStyle={actionListStyles.title}
-              chevron={false}
-              leftIcon={
-                <Avatar
-                  containerStyle={actionListStyles.leftIconAvatarContainer}
-                  rounded={true}
-                  icon={{name: "person-add", size: actionListStyles.leftIconAvatarIcon.borderRadius, color: actionListStyles.leftIconAvatarIcon.color}}
-                  placeholderStyle={actionListStyles.leftIconAvatarPlaceholder}
-                />
-              }
-              title='Invite Friends'
-              onPress={this.onInviteFriendsPress.bind(this)}
-            />
-            <ContactsAreUsers navigation={this.props.navigation} />
+            bottomDivider={true}
+            containerStyle={actionListStyles.container}
+            titleStyle={actionListStyles.title}
+            chevron={false}
+            leftIcon={
+              <Avatar
+                containerStyle={actionListStyles.leftIconAvatarContainer}
+                rounded={true}
+                icon={{name: "person-add", size: actionListStyles.leftIconAvatarIcon.borderRadius, color: actionListStyles.leftIconAvatarIcon.color}}
+                placeholderStyle={actionListStyles.leftIconAvatarPlaceholder}
+              />
+            }
+            title='Invite Friends'
+            onPress={this.onInviteFriendsPress.bind(this)}
+          />
+          <CouplesPanels navigation={this.props.navigation} />
         </View>
       </ScrollView>
     );

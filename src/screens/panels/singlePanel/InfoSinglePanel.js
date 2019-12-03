@@ -13,7 +13,6 @@ import { withCurrentUser } from '../../../contexts';
 import { infoAvatarStyles, infoListStyles, createByAtStyles } from '../config/stylesheets';
 
 import MutePanel from '../MutePanel';
-import DeletePanel from '../DeletePanel';
 
 class InfoSinglePanel extends React.Component {
 
@@ -52,7 +51,6 @@ class InfoSinglePanel extends React.Component {
           }
         />
         <MutePanel {...this.props} />
-        <DeletePanel {...this.props} />
         <View style={createByAtStyles.container}>
           <Text style={createByAtStyles.text}>{`${'created at '}${moment(member.panel.createdAt).locale('en').format('LL')}.`}</Text>
         </View>

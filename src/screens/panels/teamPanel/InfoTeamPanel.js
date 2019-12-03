@@ -12,10 +12,12 @@ import compose from 'lodash.flowright';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
+import { buildSubscription } from 'aws-appsync';
 import { graphqlMutation } from 'aws-appsync-react';
 
-import { getPanel } from '../../../graphql/queries';
+import { getPanel, listMembersForPanel } from '../../../graphql/queries';
 import { updatePanel } from '../../../graphql/mutations';
+import { onCreateMember, onUpdateMember, onDeleteMember } from '../../../graphql/subscriptions';
 
 import { infoAvatarStyles, infoListStyles, createByAtStyles } from '../config/stylesheets';
 
@@ -49,6 +51,28 @@ class InfoTeamPanel extends React.Component {
     this.state = {
       source: null,
     }
+  }
+
+  componentDidMount() {
+    const { memberPanelId } = this.props.member;
+    this.props.data.subscribeToMore(
+      buildSubscription(
+        {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
+        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+      )
+    );
+    this.props.data.subscribeToMore(
+      buildSubscription(
+        {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
+        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+      )
+    );
+    this.props.data.subscribeToMore(
+      buildSubscription(
+        {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
+        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+      )
+    );
   }
 
   onEditNamePress() {
@@ -142,5 +166,17 @@ class InfoTeamPanel extends React.Component {
 };
 
 export default compose(
+  graphql(gql(listMembersForPanel), {
+    options: props => ({
+      fetchPolicy: 'cache-and-network',
+      variables: {
+        memberPanelId: props.member.memberPanelId
+      }
+    }),
+    props: props => ({
+      members: props.data.listMembersForPanel ? props.data.listMembersForPanel.items : [],
+      data: props.data
+    }),
+  }),
   graphqlMutation(gql(updatePanel), gql(getPanel), 'Panel')
-)(InfoTeamPanel);
+) (InfoTeamPanel);

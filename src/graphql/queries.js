@@ -16,6 +16,10 @@ export const listUsersAreContacts = `query ListUsersAreContacts($contacts: [Stri
   }
 }
 `;
+export const plooralistCreateCouplPanelsFromUsersAreContacts = `query PlooralistCreateCouplPanelsFromUsersAreContacts($usersIds: [ID!]) {
+  plooralistCreateCouplPanelsFromUsersAreContacts(usersIds: $usersIds)
+}
+`;
 export const getCurrentUser = `query GetCurrentUser {
   getCurrentUser {
     id
@@ -562,49 +566,6 @@ export const listPanels = `query ListPanels(
       type
       name
       imgKey
-      members {
-        items {
-          id
-          offline
-          version
-          memberPanelId
-          memberUserId
-          coupleUserId
-          createdAt
-          updatedAt
-          isOwner
-          canAccess
-          block
-          mute
-          pin
-          user {
-            id
-            offline
-            phoneNumber
-            version
-            createdAt
-            updatedAt
-            name
-            email
-            locale
-            imgKey
-          }
-          panel {
-            id
-            offline
-            version
-            createdAt
-            updatedAt
-            type
-            name
-            imgKey
-            members {
-              nextToken
-            }
-          }
-        }
-        nextToken
-      }
     }
     nextToken
   }
@@ -620,64 +581,6 @@ export const getPanel = `query GetPanel($id: ID!) {
     type
     name
     imgKey
-    members {
-      items {
-        id
-        offline
-        version
-        memberPanelId
-        memberUserId
-        coupleUserId
-        createdAt
-        updatedAt
-        isOwner
-        canAccess
-        block
-        mute
-        pin
-        user {
-          id
-          offline
-          phoneNumber
-          version
-          createdAt
-          updatedAt
-          name
-          email
-          locale
-          imgKey
-        }
-        panel {
-          id
-          offline
-          version
-          createdAt
-          updatedAt
-          type
-          name
-          imgKey
-          members {
-            items {
-              id
-              offline
-              version
-              memberPanelId
-              memberUserId
-              coupleUserId
-              createdAt
-              updatedAt
-              isOwner
-              canAccess
-              block
-              mute
-              pin
-            }
-            nextToken
-          }
-        }
-      }
-      nextToken
-    }
   }
 }
 `;
@@ -717,49 +620,6 @@ export const getMember = `query GetMember($id: ID!) {
       type
       name
       imgKey
-      members {
-        items {
-          id
-          offline
-          version
-          memberPanelId
-          memberUserId
-          coupleUserId
-          createdAt
-          updatedAt
-          isOwner
-          canAccess
-          block
-          mute
-          pin
-          user {
-            id
-            offline
-            phoneNumber
-            version
-            createdAt
-            updatedAt
-            name
-            email
-            locale
-            imgKey
-          }
-          panel {
-            id
-            offline
-            version
-            createdAt
-            updatedAt
-            type
-            name
-            imgKey
-            members {
-              nextToken
-            }
-          }
-        }
-        nextToken
-      }
     }
   }
 }
@@ -805,46 +665,6 @@ export const listMembers = `query ListMembers(
         type
         name
         imgKey
-        members {
-          items {
-            id
-            offline
-            version
-            memberPanelId
-            memberUserId
-            coupleUserId
-            createdAt
-            updatedAt
-            isOwner
-            canAccess
-            block
-            mute
-            pin
-            user {
-              id
-              offline
-              phoneNumber
-              version
-              createdAt
-              updatedAt
-              name
-              email
-              locale
-              imgKey
-            }
-            panel {
-              id
-              offline
-              version
-              createdAt
-              updatedAt
-              type
-              name
-              imgKey
-            }
-          }
-          nextToken
-        }
       }
     }
     nextToken
@@ -900,46 +720,6 @@ export const listMembersForPanel = `query ListMembersForPanel(
         type
         name
         imgKey
-        members {
-          items {
-            id
-            offline
-            version
-            memberPanelId
-            memberUserId
-            coupleUserId
-            createdAt
-            updatedAt
-            isOwner
-            canAccess
-            block
-            mute
-            pin
-            user {
-              id
-              offline
-              phoneNumber
-              version
-              createdAt
-              updatedAt
-              name
-              email
-              locale
-              imgKey
-            }
-            panel {
-              id
-              offline
-              version
-              createdAt
-              updatedAt
-              type
-              name
-              imgKey
-            }
-          }
-          nextToken
-        }
       }
     }
     nextToken
@@ -995,46 +775,6 @@ export const listMembersForUser = `query ListMembersForUser(
         type
         name
         imgKey
-        members {
-          items {
-            id
-            offline
-            version
-            memberPanelId
-            memberUserId
-            coupleUserId
-            createdAt
-            updatedAt
-            isOwner
-            canAccess
-            block
-            mute
-            pin
-            user {
-              id
-              offline
-              phoneNumber
-              version
-              createdAt
-              updatedAt
-              name
-              email
-              locale
-              imgKey
-            }
-            panel {
-              id
-              offline
-              version
-              createdAt
-              updatedAt
-              type
-              name
-              imgKey
-            }
-          }
-          nextToken
-        }
       }
     }
     nextToken

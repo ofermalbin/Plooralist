@@ -4,15 +4,6 @@ import { View, Text, FlatList } from 'react-native';
 
 import { Button, Divider, normalize, colors } from "react-native-elements";
 
-import compose from 'lodash.flowright';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
-
-import { buildSubscription } from 'aws-appsync';
-
-import { listMembersForPanel } from '../../../graphql/queries';
-import { onCreateMember, onUpdateMember, onDeleteMember } from '../../../graphql/subscriptions';
-
 import { titlePanelStyles } from '../config/stylesheets';
 
 import TextMemberName from './TextMemberName';
@@ -23,31 +14,8 @@ class ListHorizontalMembersNames extends React.Component {
     super(props);
   }
 
-  /*componentDidMount() {
-    const { memberPanelId } = this.props.member;
-    this.props.data.subscribeToMore(
-      buildSubscription(
-        {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
-      )
-    );
-    this.props.data.subscribeToMore(
-      buildSubscription(
-        {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
-      )
-    );
-    this.props.data.subscribeToMore(
-      buildSubscription(
-        {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
-      )
-    );
-  }*/
-
   render() {
-    const { member } = this.props;
-    const members = member.panel.members.items;
+    const { member, members } = this.props;
 
     return (
       <FlatList

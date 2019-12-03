@@ -23,17 +23,23 @@ const
 
 exports.handler = async (event, context) => {
 
-    const userId = event.arguments.userId;
-    const usersIds = event.arguments.couplesIds;
+    const usersIds = event.arguments.usersIds;
+    const userId = event.identity.username;
+    console.log('usersIds', JSON.stringify(usersIds));
+    console.log('userId', JSON.stringify(userId));
 
-    const getCouplesPanels = () => {
+    const getCouplesMembers = () => {
         const params = {
             TableName: MemberTable,
             IndexName: 'gsi-UserMembers',
-            KeyConditionExpression: 'memberUserId = :userId and coupleUserId > :null',
+            KeyConditionExpression: 'memberUserId = :userId',
+            FilterExpression: '#type = :type',
+            ExpressionAttributeNames: {
+              '#type': 'type',
+            },
             ExpressionAttributeValues: {
               ':userId': userId,
-              ':null': null
+              ':type': 2
             },
         };
 
@@ -45,9 +51,14 @@ exports.handler = async (event, context) => {
         }
     };
 
-    const panelsData = await getCouplesPanels();
+    const membersData = await getCouplesMembers();
+    const members = membersData.Items;
+    console.log('members', JSON.stringify(members));
+    const membersCouplesMUsersIds = members.map(member => member.coupleUserId);
+    console.log('membersCouplesMUsersIds', JSON.stringify(membersCouplesMUsersIds));
+    console.log('difference', JSON.stringify(_.difference(usersIds, membersCouplesMUsersIds)));
 
-    const promises = couplesIds.map(coupleId => {
+    const promises = _.difference(usersIds, membersCouplesMUsersIds).map(coupleUserId => {
 
       const now = new Date();
       const panelId = uuidv4();
@@ -78,8 +89,8 @@ exports.handler = async (event, context) => {
           pin: null,
       };
 
-      const userItem = Object.assign({}, memberParams, {id: uuidv4()}, {memberUserId: userId}));
-      const coupleItem = Object.assign({}, memberParams, {id: uuidv4()}, {memberUserId: coupleId}));
+      const userItem = Object.assign({}, memberParams, {id: uuidv4()}, {memberUserId: userId});
+      const coupleItem = Object.assign({}, memberParams, {id: uuidv4()}, {memberUserId: coupleUserId});
 
       const params = {
         TransactItems: [{
@@ -110,7 +121,5 @@ exports.handler = async (event, context) => {
     });
 
     const membersItems = await Promise.all(promises);
-    const unprocessedItems = _.flatten(membersItems.filter(member => member.UnprocessedItems && member.UnprocessedItems.PutRequest));
-    const processedItems = _.pullAll(items, unprocessedItems);
-    return items[0];
+    return;
 };

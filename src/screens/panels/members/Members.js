@@ -3,17 +3,6 @@ import { View } from 'react-native';
 
 import { ListItem } from 'react-native-elements';
 
-import { HeaderBackButton } from 'react-navigation-stack';
-
-import compose from 'lodash.flowright';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
-
-import { buildSubscription } from 'aws-appsync';
-
-import { listMembersForPanel } from '../../../graphql/queries';
-import { onCreateMember, onUpdateMember, onDeleteMember } from '../../../graphql/subscriptions';
-
 import { infoListStyles } from '../config/stylesheets';
 
 import ListMembers from './ListMembers';
@@ -22,28 +11,6 @@ class Members extends React.Component {
 
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
-    const { memberPanelId } = this.props.member;
-    this.props.data.subscribeToMore(
-      buildSubscription(
-        {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
-      )
-    );
-    this.props.data.subscribeToMore(
-      buildSubscription(
-        {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
-      )
-    );
-    this.props.data.subscribeToMore(
-      buildSubscription(
-        {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
-      )
-    );
   }
 
   onAddMembersPress() {
@@ -72,17 +39,4 @@ class Members extends React.Component {
   }
 }
 
-export default compose(
-  graphql(gql(listMembersForPanel), {
-    options: props => ({
-      fetchPolicy: 'cache-and-network',
-      variables: {
-        memberPanelId: props.member.memberPanelId
-      }
-    }),
-    props: props => ({
-      members: props.data.listMembersForPanel ? props.data.listMembersForPanel.items : [],
-      data: props.data
-    }),
-  }),
-) (Members);
+export default Members;

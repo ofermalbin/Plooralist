@@ -7,8 +7,8 @@ import { find, indexOf } from 'lodash';
 
 import { actionListStyles } from './config/stylesheets';
 
-import { CurrentUser } from '../currentUser';
-import ContactsAreUsers from '../contactsAreUsers';
+import { SinglesPanels, CouplesPanels } from '../panels';
+
 import ContactsAreNotUsers from '../contactsAreNotUsers';
 
 class SelectPanel extends React.Component {
@@ -41,8 +41,8 @@ class SelectPanel extends React.Component {
           title='New Team'
           onPress={this.onTeamPress.bind(this)}
         />
-        <CurrentUser navigation={this.props.navigation} />
-        <ContactsAreUsers navigation={this.props.navigation} />
+        <SinglesPanels navigation={this.props.navigation} />
+        <CouplesPanels navigation={this.props.navigation} />
         <ContactsAreNotUsers navigation={this.props.navigation} />
       </View>
       </ScrollView>
