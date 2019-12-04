@@ -12,6 +12,14 @@
 		"apiplooralistGraphQLGraphQLAPIEndpointOutput": {
 			"Type": "String",
 			"Default": "apiplooralistGraphQLGraphQLAPIEndpointOutput"
+		},
+		"analyticsplooralistPinpointId": {
+			"Type": "String",
+			"Default": "analyticsplooralistPinpointId"
+		},
+		"analyticsplooralistPinpointRegion": {
+			"Type": "String",
+			"Default": "analyticsplooralistPinpointRegion"
 		}
 	},
 	"Conditions": {
@@ -36,12 +44,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"plooralistCreatePanelAndMembers",
+						"plooralistGetEventsFromRadar",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"plooralistCreatePanelAndMembers",
+									"plooralistGetEventsFromRadar",
 									"-",
 									{
 										"Ref": "env"
@@ -64,6 +72,12 @@
 						},
 						"API_PLOORALISTGRAPHQL_GRAPHQLAPIENDPOINTOUTPUT": {
 							"Ref": "apiplooralistGraphQLGraphQLAPIEndpointOutput"
+						},
+						"ANALYTICS_PLOORALISTPINPOINT_ID": {
+							"Ref": "analyticsplooralistPinpointId"
+						},
+						"ANALYTICS_PLOORALISTPINPOINT_REGION": {
+							"Ref": "analyticsplooralistPinpointRegion"
 						}
 					}
 				},
@@ -77,7 +91,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-plooralist-dev-115520-deployment",
-					"S3Key": "amplify-builds/plooralistCreatePanelAndMembers-4c366445722f7335674f-build.zip"
+					"S3Key": "amplify-builds/plooralistGetEventsFromRadar-48785378563865723238-build.zip"
 				}
 			}
 		},
@@ -87,12 +101,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"plooralistLambdaRole809bb940",
+						"plooralistLambdaRolec21fa902",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"plooralistLambdaRole809bb940",
+									"plooralistLambdaRolec21fa902",
 									"-",
 									{
 										"Ref": "env"
@@ -202,10 +216,7 @@
 							"Action": [
 								"appsync:Create*",
 								"appsync:StartSchemaCreation",
-								"appsync:GraphQL",
-								"appsync:Get*",
-								"appsync:List*",
-								"appsync:Update*"
+								"appsync:GraphQL"
 							],
 							"Resource": [
 								{
@@ -223,6 +234,40 @@
 											":apis/",
 											{
 												"Ref": "apiplooralistGraphQLGraphQLAPIIdOutput"
+											},
+											"/*"
+										]
+									]
+								}
+							]
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"mobiletargeting:Put*",
+								"mobiletargeting:Create*",
+								"mobiletargeting:Send*",
+								"mobiletargeting:Get*",
+								"mobiletargeting:List*",
+								"mobiletargeting:Update*",
+								"mobiletargeting:Delete*"
+							],
+							"Resource": [
+								{
+									"Fn::Join": [
+										"",
+										[
+											"arn:aws:mobiletargeting:",
+											{
+												"Ref": "analyticsplooralistPinpointRegion"
+											},
+											":",
+											{
+												"Ref": "AWS::AccountId"
+											},
+											":apps/",
+											{
+												"Ref": "analyticsplooralistPinpointId"
 											},
 											"/*"
 										]

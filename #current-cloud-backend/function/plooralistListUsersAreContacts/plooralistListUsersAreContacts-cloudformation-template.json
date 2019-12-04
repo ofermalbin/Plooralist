@@ -36,12 +36,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"plooralistCreatePanelAndMembers",
+						"plooralistListUsersAreContacts",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"plooralistCreatePanelAndMembers",
+									"plooralistListUsersAreContacts",
 									"-",
 									{
 										"Ref": "env"
@@ -77,7 +77,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-plooralist-dev-115520-deployment",
-					"S3Key": "amplify-builds/plooralistCreatePanelAndMembers-4c366445722f7335674f-build.zip"
+					"S3Key": "amplify-builds/plooralistListUsersAreContacts-63366b656c4445716164-build.zip"
 				}
 			}
 		},
@@ -87,12 +87,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"plooralistLambdaRole809bb940",
+						"plooralistLambdaRole9d870a9d",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"plooralistLambdaRole809bb940",
+									"plooralistLambdaRole9d870a9d",
 									"-",
 									{
 										"Ref": "env"
@@ -200,12 +200,8 @@
 						{
 							"Effect": "Allow",
 							"Action": [
-								"appsync:Create*",
-								"appsync:StartSchemaCreation",
-								"appsync:GraphQL",
 								"appsync:Get*",
-								"appsync:List*",
-								"appsync:Update*"
+								"appsync:List*"
 							],
 							"Resource": [
 								{

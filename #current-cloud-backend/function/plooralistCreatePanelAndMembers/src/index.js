@@ -40,6 +40,7 @@ exports.handler = async (event, context) => {
     const createPanel = () => {
         const params = {
             TableName: PanelTable,
+            ConditionExpression: "attribute_not_exists(id)",
             Item: panel
         };
 

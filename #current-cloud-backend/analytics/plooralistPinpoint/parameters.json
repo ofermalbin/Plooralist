@@ -1,0 +1,20 @@
+{
+    "appName": "plooralistPinpoint",
+    "roleName": "pinpointLambdaRole53d4ea03",
+    "cloudWatchPolicyName": "cloudWatchPolicy53d4ea03",
+    "pinpointPolicyName": "pinpointPolicy53d4ea03",
+    "authPolicyName": "pinpoint_amplify_53d4ea03",
+    "unauthPolicyName": "pinpoint_amplify_53d4ea03",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

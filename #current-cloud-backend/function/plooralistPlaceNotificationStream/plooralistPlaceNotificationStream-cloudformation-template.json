@@ -4,14 +4,6 @@
 	"Parameters": {
 		"env": {
 			"Type": "String"
-		},
-		"apiplooralistGraphQLGraphQLAPIIdOutput": {
-			"Type": "String",
-			"Default": "apiplooralistGraphQLGraphQLAPIIdOutput"
-		},
-		"apiplooralistGraphQLGraphQLAPIEndpointOutput": {
-			"Type": "String",
-			"Default": "apiplooralistGraphQLGraphQLAPIEndpointOutput"
 		}
 	},
 	"Conditions": {
@@ -36,12 +28,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"plooralistCreatePanelAndMembers",
+						"plooralistPlaceNotificationStream",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"plooralistCreatePanelAndMembers",
+									"plooralistPlaceNotificationStream",
 									"-",
 									{
 										"Ref": "env"
@@ -58,12 +50,6 @@
 						},
 						"REGION": {
 							"Ref": "AWS::Region"
-						},
-						"API_PLOORALISTGRAPHQL_GRAPHQLAPIIDOUTPUT": {
-							"Ref": "apiplooralistGraphQLGraphQLAPIIdOutput"
-						},
-						"API_PLOORALISTGRAPHQL_GRAPHQLAPIENDPOINTOUTPUT": {
-							"Ref": "apiplooralistGraphQLGraphQLAPIEndpointOutput"
 						}
 					}
 				},
@@ -77,7 +63,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-plooralist-dev-115520-deployment",
-					"S3Key": "amplify-builds/plooralistCreatePanelAndMembers-4c366445722f7335674f-build.zip"
+					"S3Key": "amplify-builds/plooralistPlaceNotificationStream-2f4f31597a4b4d4f3267-build.zip"
 				}
 			}
 		},
@@ -87,12 +73,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"plooralistLambdaRole809bb940",
+						"plooralistLambdaRole9a07a14c",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"plooralistLambdaRole809bb940",
+									"plooralistLambdaRole9a07a14c",
 									"-",
 									{
 										"Ref": "env"
@@ -166,7 +152,7 @@
 							],
 							"Resource": {
 								"Fn::Sub": [
-									"arn:aws:dynamodb:${region}:${account}:table/*",
+									"arn:aws:dynamodb:${region}:${account}:table/*/stream/*",
 									{
 										"region": {
 											"Ref": "AWS::Region"
@@ -177,58 +163,6 @@
 									}
 								]
 							}
-						}
-					]
-				}
-			}
-		},
-		"AmplifyResourcesPolicy": {
-			"DependsOn": [
-				"LambdaExecutionRole"
-			],
-			"Type": "AWS::IAM::Policy",
-			"Properties": {
-				"PolicyName": "amplify-lambda-execution-policy",
-				"Roles": [
-					{
-						"Ref": "LambdaExecutionRole"
-					}
-				],
-				"PolicyDocument": {
-					"Version": "2012-10-17",
-					"Statement": [
-						{
-							"Effect": "Allow",
-							"Action": [
-								"appsync:Create*",
-								"appsync:StartSchemaCreation",
-								"appsync:GraphQL",
-								"appsync:Get*",
-								"appsync:List*",
-								"appsync:Update*"
-							],
-							"Resource": [
-								{
-									"Fn::Join": [
-										"",
-										[
-											"arn:aws:appsync:",
-											{
-												"Ref": "AWS::Region"
-											},
-											":",
-											{
-												"Ref": "AWS::AccountId"
-											},
-											":apis/",
-											{
-												"Ref": "apiplooralistGraphQLGraphQLAPIIdOutput"
-											},
-											"/*"
-										]
-									]
-								}
-							]
 						}
 					]
 				}

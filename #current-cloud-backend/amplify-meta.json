@@ -1,0 +1,449 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "amplify-plooralist-dev-115520-authRole",
+			"UnauthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-dev-115520-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-dev-115520-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "amplify-plooralist-dev-115520-deployment",
+			"UnauthRoleName": "amplify-plooralist-dev-115520-unauthRole",
+			"StackName": "amplify-plooralist-dev-115520",
+			"StackId": "arn:aws:cloudformation:us-east-1:838066868241:stack/amplify-plooralist-dev-115520/31013560-167c-11ea-bd51-1245bb6cedee",
+			"AmplifyAppId": "d15c5u4e7dllq5"
+		}
+	},
+	"function": {
+		"plooralistListUsersAreContacts": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "api",
+					"resourceName": "plooralistGraphQL",
+					"attributes": [
+						"GraphQLAPIIdOutput",
+						"GraphQLAPIEndpointOutput"
+					]
+				}
+			],
+			"lastBuildTimeStamp": "2019-12-04T10:01:30.157Z",
+			"lastPackageTimeStamp": "2019-12-04T10:01:45.343Z",
+			"distZipFilename": "plooralistListUsersAreContacts-63366b656c4445716164-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-plooralist-dev-115520-deployment/amplify-cfn-templates/function/plooralistListUsersAreContacts-cloudformation-template.json",
+				"logicalId": "functionplooralistListUsersAreContacts"
+			},
+			"lastPushTimeStamp": "2019-12-04T12:53:02.048Z",
+			"output": {
+				"Region": "us-east-1",
+				"Arn": "arn:aws:lambda:us-east-1:838066868241:function:plooralistListUsersAreContacts-dev",
+				"Name": "plooralistListUsersAreContacts-dev",
+				"LambdaExecutionRole": "plooralistLambdaRole9d870a9d-dev"
+			},
+			"lastPushDirHash": "IdvQc+rLp801FuxKnvPMV6hh3uE="
+		},
+		"plooralistCreatePanelAndMembers": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "api",
+					"resourceName": "plooralistGraphQL",
+					"attributes": [
+						"GraphQLAPIIdOutput",
+						"GraphQLAPIEndpointOutput"
+					]
+				}
+			],
+			"lastBuildTimeStamp": "2019-12-04T10:01:31.055Z",
+			"lastPackageTimeStamp": "2019-12-04T10:01:46.053Z",
+			"distZipFilename": "plooralistCreatePanelAndMembers-7264514a637673413464-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-plooralist-dev-115520-deployment/amplify-cfn-templates/function/plooralistCreatePanelAndMembers-cloudformation-template.json",
+				"logicalId": "functionplooralistCreatePanelAndMembers"
+			},
+			"lastPushTimeStamp": "2019-12-04T12:53:02.051Z",
+			"output": {
+				"Region": "us-east-1",
+				"Arn": "arn:aws:lambda:us-east-1:838066868241:function:plooralistCreatePanelAndMembers-dev",
+				"Name": "plooralistCreatePanelAndMembers-dev",
+				"LambdaExecutionRole": "plooralistLambdaRole809bb940-dev"
+			},
+			"lastPushDirHash": "2n2rJ5mlLVQ76N2XuCSXCqgm6+w="
+		},
+		"plooralistPanelStream": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "api",
+					"resourceName": "plooralistGraphQL",
+					"attributes": [
+						"GraphQLAPIIdOutput",
+						"GraphQLAPIEndpointOutput"
+					]
+				}
+			],
+			"lastBuildTimeStamp": "2019-12-04T10:01:31.895Z",
+			"lastPackageTimeStamp": "2019-12-04T10:01:45.900Z",
+			"distZipFilename": "plooralistPanelStream-31675839686b61543677-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-plooralist-dev-115520-deployment/amplify-cfn-templates/function/plooralistPanelStream-cloudformation-template.json",
+				"logicalId": "functionplooralistPanelStream"
+			},
+			"lastPushTimeStamp": "2019-12-04T12:53:02.052Z",
+			"output": {
+				"Region": "us-east-1",
+				"Arn": "arn:aws:lambda:us-east-1:838066868241:function:plooralistPanelStream-dev",
+				"Name": "plooralistPanelStream-dev",
+				"LambdaExecutionRole": "plooralistLambdaRole8516b9d2-dev"
+			},
+			"lastPushDirHash": "ORRA8+yTVANW8YLbWksjn2oPfYI="
+		},
+		"plooralistMemberStream": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "api",
+					"resourceName": "plooralistGraphQL",
+					"attributes": [
+						"GraphQLAPIIdOutput",
+						"GraphQLAPIEndpointOutput"
+					]
+				}
+			],
+			"lastBuildTimeStamp": "2019-12-04T10:01:32.708Z",
+			"lastPackageTimeStamp": "2019-12-04T12:50:46.116Z",
+			"distZipFilename": "plooralistMemberStream-445a7272584876545256-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-plooralist-dev-115520-deployment/amplify-cfn-templates/function/plooralistMemberStream-cloudformation-template.json",
+				"logicalId": "functionplooralistMemberStream"
+			},
+			"lastPushTimeStamp": "2019-12-04T12:53:02.066Z",
+			"output": {
+				"Region": "us-east-1",
+				"Arn": "arn:aws:lambda:us-east-1:838066868241:function:plooralistMemberStream-dev",
+				"Name": "plooralistMemberStream-dev",
+				"LambdaExecutionRole": "plooralistLambdaRole1f7f6343-dev"
+			},
+			"lastPushDirHash": "6EqCe6v8LEt9famyELg4POqmw9I="
+		},
+		"plooralistAuthPostConfirmation": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"lastBuildTimeStamp": "2019-12-04T10:01:33.862Z",
+			"lastPackageTimeStamp": "2019-12-04T10:01:41.589Z",
+			"distZipFilename": "plooralistAuthPostConfirmation-31575949473331596764-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-plooralist-dev-115520-deployment/amplify-cfn-templates/function/plooralistAuthPostConfirmation-cloudformation-template.json",
+				"logicalId": "functionplooralistAuthPostConfirmation"
+			},
+			"lastPushTimeStamp": "2019-12-04T12:53:02.054Z",
+			"output": {
+				"Region": "us-east-1",
+				"Arn": "arn:aws:lambda:us-east-1:838066868241:function:plooralistAuthPostConfirmation-dev",
+				"Name": "plooralistAuthPostConfirmation-dev"
+			},
+			"lastPushDirHash": "pPkE8nd2Ek3Ixqk0n0Ask2Yi4+0="
+		},
+		"plooralistTaskStream": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "api",
+					"resourceName": "plooralistGraphQL",
+					"attributes": [
+						"GraphQLAPIIdOutput",
+						"GraphQLAPIEndpointOutput"
+					]
+				},
+				{
+					"category": "analytics",
+					"resourceName": "plooralistPinpoint",
+					"attributes": [
+						"Id",
+						"Region"
+					]
+				}
+			],
+			"lastBuildTimeStamp": "2019-12-04T10:01:35.296Z",
+			"lastPackageTimeStamp": "2019-12-04T10:01:46.644Z",
+			"distZipFilename": "plooralistTaskStream-6364356b6b367a544256-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-plooralist-dev-115520-deployment/amplify-cfn-templates/function/plooralistTaskStream-cloudformation-template.json",
+				"logicalId": "functionplooralistTaskStream"
+			},
+			"lastPushTimeStamp": "2019-12-04T12:53:02.056Z",
+			"output": {
+				"Region": "us-east-1",
+				"Arn": "arn:aws:lambda:us-east-1:838066868241:function:plooralistTaskStream-dev",
+				"Name": "plooralistTaskStream-dev",
+				"LambdaExecutionRole": "plooralistLambdaRoleba6816ca-dev"
+			},
+			"lastPushDirHash": "PV9HPYUa0TRMXG89istvWuz+CHA="
+		},
+		"plooralistPlaceNotificationStream": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"lastBuildTimeStamp": "2019-12-04T10:01:36.725Z",
+			"lastPackageTimeStamp": "2019-12-04T10:01:40.172Z",
+			"distZipFilename": "plooralistPlaceNotificationStream-2f4f31597a4b4d4f3267-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-plooralist-dev-115520-deployment/amplify-cfn-templates/function/plooralistPlaceNotificationStream-cloudformation-template.json",
+				"logicalId": "functionplooralistPlaceNotificationStream"
+			},
+			"lastPushTimeStamp": "2019-12-04T12:53:02.057Z",
+			"output": {
+				"Region": "us-east-1",
+				"Arn": "arn:aws:lambda:us-east-1:838066868241:function:plooralistPlaceNotificationStream-dev",
+				"Name": "plooralistPlaceNotificationStream-dev",
+				"LambdaExecutionRole": "plooralistLambdaRole9a07a14c-dev"
+			},
+			"lastPushDirHash": "5vQBMtI0vrbPo2PCnwuZTRQ2wN0="
+		},
+		"plooralistSendTimeNotification": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "api",
+					"resourceName": "plooralistGraphQL",
+					"attributes": [
+						"GraphQLAPIIdOutput",
+						"GraphQLAPIEndpointOutput"
+					]
+				},
+				{
+					"category": "analytics",
+					"resourceName": "plooralistPinpoint",
+					"attributes": [
+						"Id",
+						"Region"
+					]
+				}
+			],
+			"lastBuildTimeStamp": "2019-12-04T10:01:37.567Z",
+			"lastPackageTimeStamp": "2019-12-04T10:01:46.450Z",
+			"distZipFilename": "plooralistSendTimeNotification-5338344b3733524f4f6d-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-plooralist-dev-115520-deployment/amplify-cfn-templates/function/plooralistSendTimeNotification-cloudformation-template.json",
+				"logicalId": "functionplooralistSendTimeNotification"
+			},
+			"lastPushTimeStamp": "2019-12-04T12:53:02.058Z",
+			"output": {
+				"Region": "us-east-1",
+				"Arn": "arn:aws:lambda:us-east-1:838066868241:function:plooralistSendTimeNotification-dev",
+				"Name": "plooralistSendTimeNotification-dev",
+				"LambdaExecutionRole": "plooralistLambdaRole8c1fef26-dev"
+			},
+			"lastPushDirHash": "IedBhHHWpCwsdfwNrNKexqcWqJM="
+		},
+		"plooralistGetEventsFromRadar": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "api",
+					"resourceName": "plooralistGraphQL",
+					"attributes": [
+						"GraphQLAPIIdOutput",
+						"GraphQLAPIEndpointOutput"
+					]
+				},
+				{
+					"category": "analytics",
+					"resourceName": "plooralistPinpoint",
+					"attributes": [
+						"Id",
+						"Region"
+					]
+				}
+			],
+			"lastBuildTimeStamp": "2019-12-04T10:01:38.409Z",
+			"lastPackageTimeStamp": "2019-12-04T10:01:45.642Z",
+			"distZipFilename": "plooralistGetEventsFromRadar-48785378563865723238-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-plooralist-dev-115520-deployment/amplify-cfn-templates/function/plooralistGetEventsFromRadar-cloudformation-template.json",
+				"logicalId": "functionplooralistGetEventsFromRadar"
+			},
+			"lastPushTimeStamp": "2019-12-04T12:53:02.059Z",
+			"output": {
+				"Region": "us-east-1",
+				"Arn": "arn:aws:lambda:us-east-1:838066868241:function:plooralistGetEventsFromRadar-dev",
+				"Name": "plooralistGetEventsFromRadar-dev",
+				"LambdaExecutionRole": "plooralistLambdaRolec21fa902-dev"
+			},
+			"lastPushDirHash": "WNSWDOMCPm4DCH0Yy0BPoG0mDEc="
+		},
+		"plooralistCreateCouplPanelsFromUsersAreContacts": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "api",
+					"resourceName": "plooralistGraphQL",
+					"attributes": [
+						"GraphQLAPIIdOutput",
+						"GraphQLAPIEndpointOutput"
+					]
+				}
+			],
+			"lastBuildTimeStamp": "2019-12-04T10:01:39.351Z",
+			"lastPackageTimeStamp": "2019-12-04T10:01:45.528Z",
+			"distZipFilename": "plooralistCreateCouplPanelsFromUsersAreContacts-305874794f31502b4259-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-plooralist-dev-115520-deployment/amplify-cfn-templates/function/plooralistCreateCouplPanelsFromUsersAreContacts-cloudformation-template.json",
+				"logicalId": "functionplooralistCreateCouplPanelsFromUsersAreContacts"
+			},
+			"lastPushTimeStamp": "2019-12-04T12:53:02.060Z",
+			"output": {
+				"Region": "us-east-1",
+				"Arn": "arn:aws:lambda:us-east-1:838066868241:function:plooralistCreateCouplPanelsFromUsersAreContacts-dev",
+				"Name": "plooralistCreateCouplPanelsFromUsersAreContacts-dev",
+				"LambdaExecutionRole": "plooralistLambdaRole1c2ab76f-dev"
+			},
+			"lastPushDirHash": "zwQNbcvmhqbJKpnMEET1jfgbzMM="
+		}
+	},
+	"auth": {
+		"plooralistAuth": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "plooralistAuthPostConfirmation",
+					"triggerProvider": "Cognito",
+					"attributes": [
+						"Arn",
+						"Name"
+					]
+				}
+			],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-plooralist-dev-115520-deployment/amplify-cfn-templates/auth/plooralistAuth-cloudformation-template.yml",
+				"logicalId": "authplooralistAuth"
+			},
+			"lastPushTimeStamp": "2019-12-04T12:53:02.061Z",
+			"output": {
+				"AppClientSecret": "t6va49j1n2l1v2v1tgvrprccgruvvuf8co6o5fnu7mi0896e3e9",
+				"UserPoolId": "us-east-1_rQa93aAO7",
+				"AppClientIDWeb": "7dbiij1kago62k1tj0fnrb8dfv",
+				"AppClientID": "7t539mfr0g9n3f4kivsuqd28fl",
+				"IdentityPoolId": "us-east-1:4e45a9cc-e845-4d3c-a759-768a7c5b3ebd",
+				"IdentityPoolName": "plooralistIdentityPool__dev",
+				"UserPoolName": "plooralistplooralistUserPool"
+			},
+			"lastPushDirHash": "bXTYujLb2b2OCn3XF4kdmQuFTN0="
+		}
+	},
+	"api": {
+		"plooralistGraphQL": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [
+						{
+							"authenticationType": "AWS_IAM"
+						}
+					],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authplooralistAuth"
+						}
+					}
+				},
+				"GraphQLAPIIdOutput": "hv75vesyi5frnodnizuu6rmonq",
+				"GraphQLAPIEndpointOutput": "https://b37qk64v4jerlbjgbxtxa4azg4.appsync-api.us-east-1.amazonaws.com/graphql"
+			},
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-plooralist-dev-115520-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"logicalId": "apiplooralistGraphQL"
+			},
+			"lastPushTimeStamp": "2019-12-04T12:53:02.062Z",
+			"lastPushDirHash": "81GsrwdFl59pzaSmusZNrpnf+DY="
+		}
+	},
+	"analytics": {
+		"plooralistPinpoint": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-plooralist-dev-115520-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"logicalId": "analyticsplooralistPinpoint"
+			},
+			"lastPushTimeStamp": "2019-12-04T12:53:02.063Z",
+			"output": {
+				"appName": "plooralistPinpoint-dev",
+				"Region": "us-east-1",
+				"Id": "b2ef37d652d847bb85c7a310ec0d0309"
+			},
+			"lastPushDirHash": "4T+8YxvyiOM0RkCfm1Q0s+wGah8="
+		}
+	},
+	"notifications": {
+		"plooralistPinpoint": {
+			"service": "Pinpoint",
+			"output": {
+				"Name": "plooralistPinpoint-dev",
+				"Id": "4a8f1e35943b47d5acf60b10734f4315",
+				"Region": "us-east-1",
+				"APNS": {
+					"ApplicationId": "4a8f1e35943b47d5acf60b10734f4315",
+					"CreationDate": "2019-12-04T09:59:52.517Z",
+					"DefaultAuthenticationMethod": "Certificate",
+					"Enabled": true,
+					"HasCredential": true,
+					"HasTokenKey": false,
+					"Id": "apns",
+					"IsArchived": false,
+					"LastModifiedDate": "2019-12-04T09:59:52.518Z",
+					"Platform": "APNS",
+					"Version": 1
+				},
+				"FCM": {
+					"ApplicationId": "4a8f1e35943b47d5acf60b10734f4315",
+					"CreationDate": "2019-12-04T10:00:24.084Z",
+					"Enabled": true,
+					"HasCredential": true,
+					"Id": "gcm",
+					"IsArchived": false,
+					"LastModifiedDate": "2019-12-04T10:00:24.084Z",
+					"Platform": "GCM",
+					"Version": 1
+				}
+			},
+			"lastPushTimeStamp": "2019-12-04T13:07:06.524Z"
+		}
+	},
+	"storage": {
+		"plooralistS3": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-plooralist-dev-115520-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"logicalId": "storageplooralistS3"
+			},
+			"lastPushTimeStamp": "2019-12-04T12:53:02.064Z",
+			"output": {
+				"BucketName": "plooralists3bucket-dev",
+				"Region": "us-east-1"
+			},
+			"lastPushDirHash": "V36zKFKLp59xNuCsM7KlIsb1Gxo="
+		}
+	}
+}
