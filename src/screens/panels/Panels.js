@@ -87,6 +87,7 @@ const enhance = withCurrentUser(withUsersAreContacts(compose(
   }),
   graphql(gql(createCouplPanelsFromUsersAreContacts), {
     options: props => ({
+      fetchPolicy: 'cache-and-network',
       variables: {
         usersIds: props.usersAreContacts ? props.usersAreContacts.map(user => user.id) : null
       }

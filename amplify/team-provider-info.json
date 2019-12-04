@@ -1,80 +1,41 @@
 {
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-plooralist-dev-174156-authRole",
-            "UnauthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-dev-174156-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-dev-174156-authRole",
-            "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-plooralist-dev-174156-deployment",
-            "UnauthRoleName": "amplify-plooralist-dev-174156-unauthRole",
-            "StackName": "amplify-plooralist-dev-174156",
-            "StackId": "arn:aws:cloudformation:us-east-1:838066868241:stack/amplify-plooralist-dev-174156/71348bd0-15e3-11ea-a619-0a36a8f29061",
-            "AmplifyAppId": "d15c5u4e7dllq5"
-        },
-        "categories": {
-            "auth": {
-                "plooralistAuth": {}
-            },
-            "function": {
-                "plooralistListUsersAreContacts": {},
-                "plooralistCreatePanelAndMembers": {},
-                "plooralistPanelStream": {},
-                "plooralistMemberStream": {},
-                "plooralistAuthPostConfirmation": {},
-                "plooralistTaskStream": {},
-                "plooralistPlaceNotificationStream": {},
-                "plooralistSendTimeNotification": {},
-                "plooralistGetEventsFromRadar": {},
-                "plooralistCreateCouplPanelsFromUsersAreContacts": {},
-                "plooralistGraphQL": {},
-                "plooralistPinpoint": {}
-            },
-            "notifications": {
-                "Pinpoint": {
-                    "Name": "plooralistPinpoint-dev",
-                    "Id": "8a70114466b74bfc9ffb12f2013d9327",
-                    "Region": "us-east-1"
-                }
-            }
-        }
-    },
-    "test": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-plooralist-test-225503-authRole",
-            "UnauthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-test-225503-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-test-225503-authRole",
-            "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-plooralist-test-225503-deployment",
-            "UnauthRoleName": "amplify-plooralist-test-225503-unauthRole",
-            "StackName": "amplify-plooralist-test-225503",
-            "StackId": "arn:aws:cloudformation:us-east-1:838066868241:stack/amplify-plooralist-test-225503/2f794a60-160f-11ea-a845-0ab389d40b93",
-            "AmplifyAppId": "d15c5u4e7dllq5"
-        },
-        "categories": {
-            "auth": {
-                "plooralistAuth": {}
-            },
-            "function": {
-                "plooralistListUsersAreContacts": {},
-                "plooralistCreatePanelAndMembers": {},
-                "plooralistPanelStream": {},
-                "plooralistMemberStream": {},
-                "plooralistAuthPostConfirmation": {},
-                "plooralistTaskStream": {},
-                "plooralistPlaceNotificationStream": {},
-                "plooralistSendTimeNotification": {},
-                "plooralistGetEventsFromRadar": {},
-                "plooralistCreateCouplPanelsFromUsersAreContacts": {},
-                "plooralistGraphQL": {},
-                "plooralistPinpoint": {}
-            },
-            "notifications": {
-                "Pinpoint": {
-                    "Name": "plooralistPinpoint-test",
-                    "Id": "43c97e4992f346c5abef233ecd6b5606",
-                    "Region": "us-east-1"
-                }
-            }
-        }
-    }
+	"dev": {
+		"awscloudformation": {
+			"AuthRoleName": "amplify-plooralist-dev-115520-authRole",
+			"UnauthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-dev-115520-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-dev-115520-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "amplify-plooralist-dev-115520-deployment",
+			"UnauthRoleName": "amplify-plooralist-dev-115520-unauthRole",
+			"StackName": "amplify-plooralist-dev-115520",
+			"StackId": "arn:aws:cloudformation:us-east-1:838066868241:stack/amplify-plooralist-dev-115520/31013560-167c-11ea-bd51-1245bb6cedee",
+			"AmplifyAppId": "d15c5u4e7dllq5"
+		},
+		"categories": {
+			"auth": {
+				"plooralistAuth": {}
+			},
+			"function": {
+				"plooralistListUsersAreContacts": {},
+				"plooralistCreatePanelAndMembers": {},
+				"plooralistPanelStream": {},
+				"plooralistMemberStream": {},
+				"plooralistAuthPostConfirmation": {},
+				"plooralistTaskStream": {},
+				"plooralistPlaceNotificationStream": {},
+				"plooralistSendTimeNotification": {},
+				"plooralistGetEventsFromRadar": {},
+				"plooralistCreateCouplPanelsFromUsersAreContacts": {},
+				"plooralistGraphQL": {},
+				"plooralistPinpoint": {}
+			},
+			"notifications": {
+				"Pinpoint": {
+					"Name": "plooralistPinpoint-dev",
+					"Id": "4a8f1e35943b47d5acf60b10734f4315",
+					"Region": "us-east-1"
+				}
+			}
+		}
+	}
 }

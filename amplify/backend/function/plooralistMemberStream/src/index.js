@@ -151,6 +151,7 @@ exports.handler = async (event, context) => {
         const params = {
             TableName : PanelTable,
             Key: { id : item.memberPanelId },
+            ConditionExpression: 'attribute_exists(id)',
             UpdateExpression: 'set updatedAt = :now',
             ExpressionAttributeValues: {
                 ':now' : now.toISOString()

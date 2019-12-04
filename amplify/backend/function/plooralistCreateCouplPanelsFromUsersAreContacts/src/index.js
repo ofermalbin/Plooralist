@@ -33,14 +33,10 @@ exports.handler = async (event, context) => {
             TableName: MemberTable,
             IndexName: 'gsi-UserMembers',
             KeyConditionExpression: 'memberUserId = :userId',
-            FilterExpression: '#type = :type',
-            ExpressionAttributeNames: {
-              '#type': 'type',
-            },
+            FilterExpression: 'attribute_exists(coupleUserId)',
             ExpressionAttributeValues: {
-              ':userId': userId,
-              ':type': 2
-            },
+              ':userId': userId
+            }
         };
 
         try {
@@ -80,24 +76,24 @@ exports.handler = async (event, context) => {
           version: 1,
           memberPanelId: panelId,
           memberUserId: null,
+          coupleUserId: null,
           createdAt: now.toISOString(),
           updatedAt: now.toISOString(),
           isOwner: true,
           canAccess: true,
           block: null,
           mute: null,
-          pin: null,
+          pin: null
       };
 
-      const userItem = Object.assign({}, memberParams, {id: uuidv4()}, {memberUserId: userId});
-      const coupleItem = Object.assign({}, memberParams, {id: uuidv4()}, {memberUserId: coupleUserId});
+      const userItem = Object.assign({}, memberParams, {id: uuidv4()}, {memberUserId: userId, coupleUserId: coupleUserId});
+      const coupleItem = Object.assign({}, memberParams, {id: uuidv4()}, {memberUserId: coupleUserId, coupleUserId: userId});
 
       const transactItems = {
         TransactItems: [{
           Put: {
             TableName : PanelTable,
-            Item: panelItem,
-            ConditionExpression: "attribute_not_exists(id)",
+            Item: panelItem
           }
         }, {
           Put: {

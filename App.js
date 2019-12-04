@@ -2,6 +2,8 @@
 adminaws
 AKIA4GIFNSAIXKFEWYWU
 8BgxbHoaHZf2/niufNadJSk+PLgNleDaU2DLtC4E
+/Users/ofermalbin/Documents/GitHub/Plooralist/__keys__/ios/NotificationCertificates.p12
+AAAA7b0uGnk:APA91bGAaTMUDxHGDL1c69smJFUkGC1kZWBPOMj_VSqejRexd1xkVwdua6qHvFaUAOSArple_fLiTfhp5Exzne8mrQ1GLDYrSaRLgH0YnKECgrjhDWJBaZuCip_BiRAQtQekVVu0AK8n
 */
 
 /*

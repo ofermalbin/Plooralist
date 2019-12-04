@@ -76,8 +76,8 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-plooralist-test-225503-deployment",
-					"S3Key": "amplify-builds/plooralistMemberStream-49673063386466523458-build.zip"
+					"S3Bucket": "amplify-plooralist-dev-115520-deployment",
+					"S3Key": "amplify-builds/plooralistMemberStream-3141516f466b73747869-build.zip"
 				}
 			}
 		},

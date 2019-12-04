@@ -175,6 +175,7 @@ input StreamMemberInput {
   version: Int
   memberPanelId: ID
   memberUserId: ID
+  coupleUserId: ID
   createdAt: String
   updatedAt: String
   isOwner: Boolean
