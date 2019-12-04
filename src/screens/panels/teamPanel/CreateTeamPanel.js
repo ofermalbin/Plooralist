@@ -81,40 +81,6 @@ class CreateTeamPanel extends React.Component {
     };
 
     const now = new Date();
-    let membersItems = [];
-    each(users, user => membersItems.push(
-      {
-        __typename: 'Member',
-        id: null,
-        offline: true,
-        version: null,
-        createdAt: now.toISOString(),
-        updatedAt: now.toISOString(),
-        memberPanelId: null,
-        memberUserId: user.id,
-        user: user,
-        panel: {
-          __typename: 'Panel',
-          id: null,
-          offline: true,
-          version: null,
-          type: 3,
-          createdAt: now.toISOString(),
-          updatedAt: now.toISOString(),
-          name: name,
-          imgKey: null,
-          members: {
-            __typename: 'Members',
-            nextToken: null
-          }
-        },
-        isOwner: true,
-        canAccess: true,
-        block: false,
-        mute: false,
-        pin: false,
-      })
-    );
 
     const offline = {
       offline: true,
@@ -123,6 +89,7 @@ class CreateTeamPanel extends React.Component {
       updatedAt: now.toISOString(),
       memberPanelId: null,
       memberUserId: currentUser.id,
+      coupleUserId: null,
       user: currentUser,
       isOwner: true,
       canAccess: true,
@@ -138,12 +105,7 @@ class CreateTeamPanel extends React.Component {
         createdAt: now.toISOString(),
         updatedAt: now.toISOString(),
         name: name,
-        imgKey: null,
-        members: {
-          __typename: 'Members',
-          items: membersItems,
-          nextToken: null
-        }
+        imgKey: null
       }
     };
 
