@@ -9,7 +9,7 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 import { buildSubscription } from 'aws-appsync';
 
-import { plooralistCreateCouplPanelsFromUsersAreContacts, listMembersForUser } from '../../graphql/queries';
+import { createCouplPanelsFromUsersAreContacts, listMembersForUser } from '../../graphql/queries';
 import { onCreateStreamMember, onUpdateStreamMember, onDeleteStreamMember } from '../../graphql/subscriptions';
 
 import { withCurrentUser, withUsersAreContacts } from '../../contexts';
@@ -85,7 +85,7 @@ const enhance = withCurrentUser(withUsersAreContacts(compose(
       data: props.data
     }),
   }),
-  graphql(gql(plooralistCreateCouplPanelsFromUsersAreContacts), {
+  graphql(gql(createCouplPanelsFromUsersAreContacts), {
     options: props => ({
       variables: {
         usersIds: props.usersAreContacts ? props.usersAreContacts.map(user => user.id) : null

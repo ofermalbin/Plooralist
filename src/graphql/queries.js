@@ -16,8 +16,8 @@ export const listUsersAreContacts = `query ListUsersAreContacts($contacts: [Stri
   }
 }
 `;
-export const plooralistCreateCouplPanelsFromUsersAreContacts = `query PlooralistCreateCouplPanelsFromUsersAreContacts($usersIds: [ID!]) {
-  plooralistCreateCouplPanelsFromUsersAreContacts(usersIds: $usersIds)
+export const createCouplPanelsFromUsersAreContacts = `query CreateCouplPanelsFromUsersAreContacts($usersIds: [ID!]) {
+  createCouplPanelsFromUsersAreContacts(usersIds: $usersIds)
 }
 `;
 export const getCurrentUser = `query GetCurrentUser {

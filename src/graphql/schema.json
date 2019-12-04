@@ -43,7 +43,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "plooralistCreateCouplPanelsFromUsersAreContacts",
+          "name" : "createCouplPanelsFromUsersAreContacts",
           "description" : null,
           "args" : [ {
             "name" : "usersIds",

@@ -92,7 +92,7 @@ exports.handler = async (event, context) => {
       const userItem = Object.assign({}, memberParams, {id: uuidv4()}, {memberUserId: userId});
       const coupleItem = Object.assign({}, memberParams, {id: uuidv4()}, {memberUserId: coupleUserId});
 
-      const params = {
+      const transactItems = {
         TransactItems: [{
           Put: {
             TableName : PanelTable,
@@ -113,7 +113,7 @@ exports.handler = async (event, context) => {
       };
 
       try {
-          const data = ddb.transactWrite(requestItems).promise();
+          const data = ddb.transactWrite(transactItems).promise();
           return data;
       } catch (error) {
           return error;
@@ -121,5 +121,6 @@ exports.handler = async (event, context) => {
     });
 
     const membersItems = await Promise.all(promises);
+    console.log('membersItems', JSON.stringify(membersItems));
     return;
 };
