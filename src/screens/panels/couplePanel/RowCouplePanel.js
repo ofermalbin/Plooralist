@@ -49,7 +49,7 @@ class RowCouplePanel extends React.Component {
     const { member, members, contacts } = this.props;
     const couple = find(members, couple => couple.memberUserId != member.memberUserId);
 
-    if (!member || !couple) {
+    if (!member || !couple || !couple.user) {
       return null;
     }
 

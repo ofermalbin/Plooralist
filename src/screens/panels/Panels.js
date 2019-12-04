@@ -31,19 +31,19 @@ class Panels extends React.Component {
   componentDidMount() {
     const { currentUser } = this.props;
     if (currentUser) {
-      this.props.data.subscribeToMore(
+      this.props.membersData.subscribeToMore(
         buildSubscription(
           {query: gql(onCreateStreamMember), variables: {memberUserId: currentUser.id}},
           {query: gql(listMembersForUser), variables: {memberUserId: currentUser.id}}
         )
       );
-      this.props.data.subscribeToMore(
+      this.props.membersData.subscribeToMore(
         buildSubscription(
           {query: gql(onUpdateStreamMember), variables: {memberUserId: currentUser.id}},
           {query: gql(listMembersForUser), variables: {memberUserId: currentUser.id}}
         )
       );
-      this.props.data.subscribeToMore(
+      this.props.membersData.subscribeToMore(
         buildSubscription(
           {query: gql(onDeleteStreamMember), variables: {memberUserId: currentUser.id}},
           {query: gql(listMembersForUser), variables: {memberUserId: currentUser.id}}
@@ -82,7 +82,7 @@ const enhance = withCurrentUser(withUsersAreContacts(compose(
     }),
     props: props => ({
       members: props.data.listMembersForUser ? props.data.listMembersForUser.items : [],
-      data: props.data
+      membersData: props.data
     }),
   }),
   graphql(gql(createCouplPanelsFromUsersAreContacts), {

@@ -10,6 +10,9 @@ export const getCurrentUserName = () => {
 }
 
 export const getUserName = (user, contacts) => {
+  if (!user) {
+    return null;
+  }
   const contact = getContactByUsername(contacts, user.phoneNumber);
   return __capitalize_Words(contact ? getContactName(contact) : user.name);
 };
