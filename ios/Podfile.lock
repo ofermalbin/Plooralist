@@ -274,7 +274,7 @@ PODS:
     - React
   - RNDateTimePicker (2.1.0):
     - React
-  - RNGestureHandler (1.5.1):
+  - RNGestureHandler (1.5.2):
     - React
   - RNReanimated (1.4.0):
     - React
@@ -483,7 +483,7 @@ SPEC CHECKSUMS:
   RNAWSCognito: 8cdb673873f82dc770c769b87c336eb4b67b8ae0
   RNCAsyncStorage: 3c304d1adfaea02ec732ac218801cb13897aa8c0
   RNDateTimePicker: 9db00606d689f5653f08aa601c81b9d3266a0a19
-  RNGestureHandler: 7add966bb5d90ee8cf38d4341f87814474357972
+  RNGestureHandler: 946a7691e41df61e2c4b1884deab41a4cdc3afff
   RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
   RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4

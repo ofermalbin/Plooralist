@@ -1,9 +1,0 @@
-{
-    "permissions": {
-        "api": {
-            "plooralistGraphQL": [
-                "read"
-            ]
-        }
-    }
-}
