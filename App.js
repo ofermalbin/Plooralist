@@ -2,8 +2,12 @@
 adminaws
 AKIA4GIFNSAIXKFEWYWU
 8BgxbHoaHZf2/niufNadJSk+PLgNleDaU2DLtC4E
+
 /Users/ofermalbin/Documents/GitHub/Plooralist/__keys__/ios/NotificationCertificates.p12
 AAAA7b0uGnk:APA91bGAaTMUDxHGDL1c69smJFUkGC1kZWBPOMj_VSqejRexd1xkVwdua6qHvFaUAOSArple_fLiTfhp5Exzne8mrQ1GLDYrSaRLgH0YnKECgrjhDWJBaZuCip_BiRAQtQekVVu0AK8n
+
+code-push release-react Plooralist ios -t "1.0.71"
+code-push release-react Plooralist android
 */
 
 /*
@@ -16,13 +20,14 @@ import React from 'react';
 import { Platform, SafeAreaView, View, Text, Alert } from 'react-native';
 import { YellowBox } from 'react-native';
 
-import { AsyncStorage } from 'react-native';
-//import AsyncStorage from '@react-native-community/async-storage';
+//import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import Amplify, { Analytics, Auth } from 'aws-amplify';
 import { AmplifyTheme } from 'aws-amplify-react-native';
 import { Loading, SignIn, RequireNewPassword } from 'aws-amplify-react-native';
 
+import { PushNotificationIOS } from 'react-native';
 import PushNotification from '@aws-amplify/pushnotification';
 
 import aws_exports from './src/aws-exports';
@@ -46,12 +51,12 @@ import SplashScreen from 'react-native-splash-screen';
 
 import codePush from 'react-native-code-push';
 
-import { MemoryStorageNew } from './AmplifyAuthStorage';
+//import { MemoryStorageNew } from './AmplifyAuthStorage';
 
 import { onRegister } from './src/lib/pushNotification';
 
 Amplify.configure(aws_exports);
-Auth.configure({storage: MemoryStorageNew});
+//Auth.configure({storage: MemoryStorageNew});
 Analytics.configure(aws_exports);
 PushNotification.configure(aws_exports);
 

@@ -138,14 +138,6 @@ PODS:
     - React-jsi (= 0.61.5)
     - React-jsiexecutor (= 0.61.5)
     - Yoga
-  - React-Core/RCTPushNotificationHeaders (0.61.5):
-    - Folly (= 2018.10.22.00)
-    - glog
-    - React-Core/Default
-    - React-cxxreact (= 0.61.5)
-    - React-jsi (= 0.61.5)
-    - React-jsiexecutor (= 0.61.5)
-    - Yoga
   - React-Core/RCTSettingsHeaders (0.61.5):
     - Folly (= 2018.10.22.00)
     - glog
@@ -246,8 +238,6 @@ PODS:
     - React-Core/RCTLinkingHeaders (= 0.61.5)
   - React-RCTNetwork (0.61.5):
     - React-Core/RCTNetworkHeaders (= 0.61.5)
-  - React-RCTPushNotification (0.61.5):
-    - React-Core/RCTPushNotificationHeaders (= 0.61.5)
   - React-RCTSettings (0.61.5):
     - React-Core/RCTSettingsHeaders (= 0.61.5)
   - React-RCTText (0.61.5):
@@ -271,6 +261,8 @@ PODS:
     - JKBigInteger2 (= 0.0.5)
     - React
   - RNCAsyncStorage (1.6.3):
+    - React
+  - RNCPushNotificationIOS (1.0.3):
     - React
   - RNDateTimePicker (2.1.0):
     - React
@@ -320,7 +312,6 @@ DEPENDENCIES:
   - React-RCTImage (from `../node_modules/react-native/Libraries/Image`)
   - React-RCTLinking (from `../node_modules/react-native/Libraries/LinkingIOS`)
   - React-RCTNetwork (from `../node_modules/react-native/Libraries/Network`)
-  - React-RCTPushNotification (from `../node_modules/react-native/Libraries/PushNotificationIOS`)
   - React-RCTSettings (from `../node_modules/react-native/Libraries/Settings`)
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
@@ -328,6 +319,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNAWSCognito (from `../node_modules/amazon-cognito-identity-js`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
+  - "RNCPushNotificationIOS (from `../node_modules/@react-native-community/push-notification-ios`)"
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -409,8 +401,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/LinkingIOS"
   React-RCTNetwork:
     :path: "../node_modules/react-native/Libraries/Network"
-  React-RCTPushNotification:
-    :path: "../node_modules/react-native/Libraries/PushNotificationIOS"
   React-RCTSettings:
     :path: "../node_modules/react-native/Libraries/Settings"
   React-RCTText:
@@ -423,6 +413,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/amazon-cognito-identity-js"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
+  RNCPushNotificationIOS:
+    :path: "../node_modules/@react-native-community/push-notification-ios"
   RNDateTimePicker:
     :path: "../node_modules/@react-native-community/datetimepicker"
   RNGestureHandler:
@@ -475,13 +467,13 @@ SPEC CHECKSUMS:
   React-RCTImage: 6b8e8df449eb7c814c99a92d6b52de6fe39dea4e
   React-RCTLinking: 121bb231c7503cf9094f4d8461b96a130fabf4a5
   React-RCTNetwork: fb353640aafcee84ca8b78957297bd395f065c9a
-  React-RCTPushNotification: 6d0c0cd88a40465677e07a614f65ea88c1c3de24
   React-RCTSettings: 8db258ea2a5efee381fcf7a6d5044e2f8b68b640
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
   RNAWSCognito: 8cdb673873f82dc770c769b87c336eb4b67b8ae0
   RNCAsyncStorage: 3c304d1adfaea02ec732ac218801cb13897aa8c0
+  RNCPushNotificationIOS: 83ec11fe19d4ea9e32cc339d8e7d2cc3c88f543e
   RNDateTimePicker: 9db00606d689f5653f08aa601c81b9d3266a0a19
   RNGestureHandler: 946a7691e41df61e2c4b1884deab41a4cdc3afff
   RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
@@ -490,6 +482,6 @@ SPEC CHECKSUMS:
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: 6ceb41ac1bc3a85b601b6cede10ff4dd74c0e32e
+PODFILE CHECKSUM: 96a7d21a22e4f857454fb92dc7ad20dfb5fbe2cb
 
 COCOAPODS: 1.8.4

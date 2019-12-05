@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Platform, Alert } from 'react-native';
 
-import { AsyncStorage } from 'react-native';
-//import AsyncStorage from '@react-native-community/async-storage';
+//import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import { Analytics } from 'aws-amplify';
 
@@ -20,6 +20,7 @@ export const updateEndpoint = async (userId, analyticsAppId) => {
   try {
     if (Platform.OS === 'ios') {
       deviceToken = await AsyncStorage.getItem('@deviceToken');
+      //Alert.alert('Ios Device @deviceToken', deviceToken);
     }
     else if (Platform.OS === 'android') {
       deviceToken = await AsyncStorage.getItem('@deviceToken');
@@ -31,6 +32,11 @@ export const updateEndpoint = async (userId, analyticsAppId) => {
         //Alert.alert('Android Device @deviceToken', deviceToken);
       }
     }
+  } catch(e) {
+    console.log(e);
+    Alert.alert('Get Device Token Error', e);
+  }
+  try {
     if(deviceToken !== null) {
       const updateEndpoint = await Analytics.updateEndpoint({
         channelType: (Platform.OS === 'ios') ? 'APNS' : 'GCM', // The channel type. Valid values: APNS, GCM
@@ -41,6 +47,6 @@ export const updateEndpoint = async (userId, analyticsAppId) => {
     }
   } catch(e) {
     console.log(e);
-    Alert.alert('Get Device Token Error', e);
+    Alert.alert('Update Endpoint Error', JSON.stringify(e));
   }
 }
