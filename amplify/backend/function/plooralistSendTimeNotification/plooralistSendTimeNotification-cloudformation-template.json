@@ -90,7 +90,7 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-plooralist-test-204450-deployment",
+					"S3Bucket": "amplify-plooralist-dev-125034-deployment",
 					"S3Key": "amplify-builds/plooralistSendTimeNotification-5338344b3733524f4f6d-build.zip"
 				}
 			}

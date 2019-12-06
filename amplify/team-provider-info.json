@@ -1,14 +1,14 @@
 {
-	"test": {
+	"dev": {
 		"awscloudformation": {
-			"AuthRoleName": "amplify-plooralist-test-204450-authRole",
-			"UnauthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-test-204450-unauthRole",
-			"AuthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-test-204450-authRole",
+			"AuthRoleName": "amplify-plooralist-dev-125034-authRole",
+			"UnauthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-dev-125034-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-dev-125034-authRole",
 			"Region": "us-east-1",
-			"DeploymentBucketName": "amplify-plooralist-test-204450-deployment",
-			"UnauthRoleName": "amplify-plooralist-test-204450-unauthRole",
-			"StackName": "amplify-plooralist-test-204450",
-			"StackId": "arn:aws:cloudformation:us-east-1:838066868241:stack/amplify-plooralist-test-204450/54066990-178f-11ea-b539-12d8771823f5",
+			"DeploymentBucketName": "amplify-plooralist-dev-125034-deployment",
+			"UnauthRoleName": "amplify-plooralist-dev-125034-unauthRole",
+			"StackName": "amplify-plooralist-dev-125034",
+			"StackId": "arn:aws:cloudformation:us-east-1:838066868241:stack/amplify-plooralist-dev-125034/3d0fe360-1816-11ea-9d4b-12dc156c2e93",
 			"AmplifyAppId": "d15c5u4e7dllq5"
 		},
 		"categories": {
@@ -29,13 +29,7 @@
 				"plooralistGraphQL": {},
 				"plooralistPinpoint": {}
 			},
-			"notifications": {
-				"Pinpoint": {
-					"Name": "plooralistPinpoint-test",
-					"Id": "12f8a11cd142434c8240ad04448dfd36",
-					"Region": "us-east-1"
-				}
-			}
+			"notifications": {}
 		}
 	}
 }

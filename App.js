@@ -6,7 +6,7 @@ AKIA4GIFNSAIXKFEWYWU
 /Users/ofermalbin/Documents/GitHub/Plooralist/__keys__/ios/NotificationCertificates.p12
 AAAA7b0uGnk:APA91bGAaTMUDxHGDL1c69smJFUkGC1kZWBPOMj_VSqejRexd1xkVwdua6qHvFaUAOSArple_fLiTfhp5Exzne8mrQ1GLDYrSaRLgH0YnKECgrjhDWJBaZuCip_BiRAQtQekVVu0AK8n
 
-code-push release-react Plooralist ios -t "1.0.71"
+code-push release-react Plooralist ios -t "1.0.73"
 code-push release-react Plooralist android
 */
 
@@ -27,7 +27,9 @@ import Amplify, { Analytics, Auth } from 'aws-amplify';
 import { AmplifyTheme } from 'aws-amplify-react-native';
 import { Loading, SignIn, RequireNewPassword } from 'aws-amplify-react-native';
 
-import { PushNotificationIOS } from 'react-native';
+//import { PushNotificationIOS } from 'react-native';
+import PushNotificationIOS from "@react-native-community/push-notification-ios";
+
 import PushNotification from '@aws-amplify/pushnotification';
 
 import aws_exports from './src/aws-exports';

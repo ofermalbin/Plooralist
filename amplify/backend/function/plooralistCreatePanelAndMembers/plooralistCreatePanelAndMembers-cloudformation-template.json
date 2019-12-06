@@ -76,7 +76,7 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-plooralist-test-204450-deployment",
+					"S3Bucket": "amplify-plooralist-dev-125034-deployment",
 					"S3Key": "amplify-builds/plooralistCreatePanelAndMembers-4c366445722f7335674f-build.zip"
 				}
 			}

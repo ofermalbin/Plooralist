@@ -199,15 +199,7 @@
             "providerPlugin": "awscloudformation"
         }
     },
-    "notifications": {
-        "plooralistPinpoint": {
-            "service": "Pinpoint",
-            "channels": [
-                "APNS",
-                "FCM"
-            ]
-        }
-    },
+    "notifications": {},
     "storage": {
         "plooralistS3": {
             "service": "S3",
