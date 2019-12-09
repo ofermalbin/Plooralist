@@ -14,6 +14,8 @@ import { listTasksForPanel } from '../../graphql/queries';
 
 import { withCurrentUser } from '../../contexts';
 
+import { listTasksForPanelVariables } from './util';
+
 import { inputStyles } from './config/stylesheets';
 
 class UpdateTaskName extends React.Component {
@@ -70,7 +72,7 @@ class UpdateTaskName extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(updateTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId}}), 'Task')
+  graphqlMutation(gql(updateTask), variables => ({query: gql(listTasksForPanel), variables: listTasksForPanelVariables(variables.taskPanelId)}), 'Task')
 ) (withCurrentUser(UpdateTaskName))
 
 

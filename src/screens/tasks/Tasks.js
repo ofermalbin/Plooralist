@@ -18,6 +18,8 @@ import ListTasks from './ListTasks';
 
 import { isPanelBlock } from '../panels';
 
+import { listTasksForPanelVariables } from './util';
+
 class Tasks extends React.Component {
 
   constructor(props) {
@@ -29,19 +31,19 @@ class Tasks extends React.Component {
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateTask), variables: {taskPanelId: panelId}},
-        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId}}
+        {query: gql(listTasksForPanel), variables: listTasksForPanelVariables(panelId)}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateTask), variables: {taskPanelId: panelId}},
-        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId}}
+        {query: gql(listTasksForPanel), variables: listTasksForPanelVariables(panelId)}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteTask), variables: {taskPanelId: panelId}},
-        {query: gql(listTasksForPanel), variables: {taskPanelId: panelId}}
+        {query: gql(listTasksForPanel), variables: listTasksForPanelVariables(panelId)}
       )
     );
   }
@@ -82,9 +84,7 @@ const enhance = compose(
       const { panelId } = props.navigation.state.params;
       return ({
         fetchPolicy: 'cache-and-network',
-        variables: {
-          taskPanelId: panelId, sortDirection: "DESC", limit: 100
-        }
+        variables: listTasksForPanelVariables(panelId)
       })
     },
     props: props => ({

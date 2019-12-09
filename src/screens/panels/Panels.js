@@ -18,6 +18,8 @@ import Loading from '../../components/Loading';
 
 import ListPanels from './ListPanels';
 
+import { listMembersForUserVariables } from './util';
+
 import colors from '../../config/colors';
 
 class Panels extends React.Component {
@@ -33,20 +35,20 @@ class Panels extends React.Component {
     if (currentUser) {
       this.props.membersData.subscribeToMore(
         buildSubscription(
-          {query: gql(onCreateStreamMember), variables: {memberUserId: currentUser.id}},
-          {query: gql(listMembersForUser), variables: {memberUserId: currentUser.id}}
+          {query: gql(onCreateStreamMember), variables: {panelUserId: currentUser.id}},
+          {query: gql(listMembersForUser), variables: listMembersForUserVariables(currentUser.id)}
         )
       );
       this.props.membersData.subscribeToMore(
         buildSubscription(
-          {query: gql(onUpdateStreamMember), variables: {memberUserId: currentUser.id}},
-          {query: gql(listMembersForUser), variables: {memberUserId: currentUser.id}}
+          {query: gql(onUpdateStreamMember), variables: {panelUserId: currentUser.id}},
+          {query: gql(listMembersForUser), variables: listMembersForUserVariables(currentUser.id)}
         )
       );
       this.props.membersData.subscribeToMore(
         buildSubscription(
-          {query: gql(onDeleteStreamMember), variables: {memberUserId: currentUser.id}},
-          {query: gql(listMembersForUser), variables: {memberUserId: currentUser.id}}
+          {query: gql(onDeleteStreamMember), variables: {panelUserId: currentUser.id}},
+          {query: gql(listMembersForUser), variables: listMembersForUserVariables(currentUser.id)}
         )
       );
     }
@@ -76,9 +78,7 @@ const enhance = withCurrentUser(withUsersAreContacts(compose(
   graphql(gql(listMembersForUser), {
     options: props => ({
       fetchPolicy: 'cache-and-network',
-      variables: {
-        memberUserId: props.currentUser ? props.currentUser.id : null, sortDirection: "DESC", limit: 100
-      }
+      variables: listMembersForUserVariables(props.currentUser ? props.currentUser.id : null)
     }),
     props: props => ({
       members: props.data.listMembersForUser ? props.data.listMembersForUser.items : [],

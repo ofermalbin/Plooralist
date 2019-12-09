@@ -16,6 +16,8 @@ import { includes } from 'lodash';
 
 import { withCurrentUser } from '../../contexts';
 
+import { listTasksForPanelVariables } from './util';
+
 import { infoListStyles } from './config/stylesheets';
 
 class MuteTask extends React.Component {

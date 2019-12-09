@@ -17,6 +17,8 @@ import { withCurrentUser } from '../../contexts';
 
 import TextVoiceInput from '../../components/Voice';
 
+import { listTasksForPanelVariables } from './util';
+
 class CreateTask extends React.Component {
 
   constructor(props) {
@@ -55,5 +57,5 @@ class CreateTask extends React.Component {
 }
 
 export default withCurrentUser(compose(
-  graphqlMutation(gql(createTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId, sortDirection: "DESC", limit: 100}}), 'Task')
+  graphqlMutation(gql(createTask), variables => ({query: gql(listTasksForPanel), variables: listTasksForPanelVariables(variables.taskPanelId)}), 'Task')
 )(CreateTask));

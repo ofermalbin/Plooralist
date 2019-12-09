@@ -18,6 +18,8 @@ import Loading from '../../../components/Loading';
 
 import ListPanels from '../ListPanels';
 
+import { listMembersForUserVariables } from '../util';
+
 class SinglesPanels extends React.Component {
 
   constructor(props) {
@@ -29,20 +31,20 @@ class SinglesPanels extends React.Component {
     if (currentUser) {
       this.props.data.subscribeToMore(
         buildSubscription(
-          {query: gql(onCreateStreamMember), variables: {memberUserId: currentUser.id}},
-          {query: gql(listMembersForUser), variables: {memberUserId: currentUser.id}}
+          {query: gql(onCreateStreamMember), variables: {panelUserId: currentUser.id}},
+          {query: gql(listMembersForUser), variables: listMembersForUserVariables(currentUser.id)}
         )
       );
       this.props.data.subscribeToMore(
         buildSubscription(
-          {query: gql(onUpdateStreamMember), variables: {memberUserId: currentUser.id}},
-          {query: gql(listMembersForUser), variables: {memberUserId: currentUser.id}}
+          {query: gql(onUpdateStreamMember), variables: {panelUserId: currentUser.id}},
+          {query: gql(listMembersForUser), variables: listMembersForUserVariables(currentUser.id)}
         )
       );
       this.props.data.subscribeToMore(
         buildSubscription(
-          {query: gql(onDeleteStreamMember), variables: {memberUserId: currentUser.id}},
-          {query: gql(listMembersForUser), variables: {memberUserId: currentUser.id}}
+          {query: gql(onDeleteStreamMember), variables: {panelUserId: currentUser.id}},
+          {query: gql(listMembersForUser), variables: listMembersForUserVariables(currentUser.id)}
         )
       );
     }
@@ -70,7 +72,7 @@ export default withCurrentUser(compose(
     options: props => ({
       fetchPolicy: 'cache-and-network',
       variables: {
-        memberUserId: props.currentUser ? props.currentUser.id : null, sortDirection: "DESC", limit: 100
+        memberUserId: props.currentUser ? props.currentUser.id : null
       }
     }),
     props: props => ({

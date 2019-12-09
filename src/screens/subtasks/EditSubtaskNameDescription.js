@@ -12,6 +12,8 @@ import { graphqlMutation } from 'aws-appsync-react';
 import { updateSubtask } from '../../graphql/mutations';
 import { listSubtasksForTask } from '../../graphql/queries';
 
+import { listSubtasksForTaskVariables } from './util';
+
 import { inputStyles } from './config/stylesheets';
 
 class EditSubtaskNameDescription extends React.Component {
@@ -87,7 +89,7 @@ class EditSubtaskNameDescription extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(updateSubtask), variables => ({query: gql(listSubtasksForTask), variables: {subtaskTaskId: variables.subtaskTaskId}}), 'Subtask')
+  graphqlMutation(gql(updateSubtask), variables => ({query: gql(listSubtasksForTask), variables: listSubtasksForTaskVariables(variables.subtaskTaskId)}), 'Subtask')
 ) (EditSubtaskNameDescription)
 
 

@@ -14,7 +14,7 @@ import { ListItem } from 'react-native-elements';
 
 import { includes } from 'lodash';
 
-import { isPanelMute } from '../panels';
+import { isPanelMute, listMembersForUserVariables } from './util';
 
 import { infoListStyles } from './config/stylesheets';
 
@@ -83,5 +83,5 @@ class MutePanel extends React.Component {
 }
 
 export default compose(
-  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId}}), 'Member'),
+  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembersForUser), variables: listMembersForUserVariables(variables.memberUserId)}), 'Member'),
 )(MutePanel);

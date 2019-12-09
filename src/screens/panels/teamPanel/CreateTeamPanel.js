@@ -26,6 +26,8 @@ import Loading from '../../../components/Loading';
 
 import { PhotoEdit } from '../../photos';
 
+import { listMembersForUserVariables } from '../util';
+
 import { infoAvatarStyles, inputStyles, infoListStyles } from '../config/stylesheets';
 
 import { storeFileInS3 } from '../../../lib/s3';
@@ -186,7 +188,7 @@ class CreateTeamPanel extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(createPanelAndMembers), variables => ({query: gql(listMembersForUser), variables: {memberUserId: variables.memberUserId, sortDirection: "DESC", limit: 100}}), 'Member'),
+  graphqlMutation(gql(createPanelAndMembers), variables => ({query: gql(listMembersForUser), variables: listMembersForUserVariables(variables.memberUserId)}), 'Member'),
 ) (withCurrentUser(CreateTeamPanel));
 
 enhance.navigationOptions = ({ navigation }) => {

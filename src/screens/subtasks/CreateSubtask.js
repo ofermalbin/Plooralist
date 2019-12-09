@@ -15,6 +15,8 @@ import { withCurrentUser } from '../../contexts';
 
 import TextVoiceInput from '../../components/Voice';
 
+import { listSubtasksForTaskVariables } from './util';
+
 class CreateSubtask extends React.Component {
 
   constructor(props) {
@@ -51,5 +53,5 @@ class CreateSubtask extends React.Component {
 }
 
 export default compose(
-  graphqlMutation(gql(createSubtask), variables => ({query: gql(listSubtasksForTask), variables: {subtaskTaskId: variables.subtaskTaskId}}), 'Subtask')
+  graphqlMutation(gql(createSubtask), variables => ({query: gql(listSubtasksForTask), variables: listSubtasksForTaskVariables(variables.subtaskTaskId)}), 'Subtask')
 )(withCurrentUser(CreateSubtask));

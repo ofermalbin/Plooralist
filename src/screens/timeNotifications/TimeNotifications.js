@@ -19,6 +19,8 @@ import { infoListStyles } from './config/stylesheets';
 
 import TimeNotification from './TimeNotification';
 
+import { listTimeNotificationsForTaskVariables } from './util';
+
 class TimeNotifications extends React.Component {
 
   constructor(props) {
@@ -26,23 +28,23 @@ class TimeNotifications extends React.Component {
   }
 
   componentDidMount() {
-    const { taskId } = this.props.navigation.state.params;
+    const { task } = this.props;
     this.props.data.subscribeToMore(
       buildSubscription(
-        {query: gql(onCreateTimeNotification), variables: {timeNotificationTaskId: taskId}},
-        {query: gql(listTimeNotificationsForTask), variables: {timeNotificationTaskId: taskId}}
+        {query: gql(onCreateTimeNotification), variables: {timeNotificationTaskId: task.id}},
+        {query: gql(listTimeNotificationsForTask), variables: listTimeNotificationsForTaskVariables(task.id)}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
-        {query: gql(onUpdateTimeNotification), variables: {timeNotificationTaskId: taskId}},
-        {query: gql(listTimeNotificationsForTask), variables: {timeNotificationTaskId: taskId}}
+        {query: gql(onUpdateTimeNotification), variables: {timeNotificationTaskId: task.id}},
+        {query: gql(listTimeNotificationsForTask), variables: listTimeNotificationsForTaskVariables(task.id)}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
-        {query: gql(onDeleteTimeNotification), variables: {timeNotificationTaskId: taskId}},
-        {query: gql(listTimeNotificationsForTask), variables: {timeNotificationTaskId: taskId}}
+        {query: gql(onDeleteTimeNotification), variables: {timeNotificationTaskId: task.id}},
+        {query: gql(listTimeNotificationsForTask), variables: listTimeNotificationsForTaskVariables(task.id)}
       )
     );
   }
@@ -85,9 +87,7 @@ export default compose(
       const { task } = props;
       return ({
         fetchPolicy: 'cache-and-network',
-        variables: {
-          timeNotificationTaskId: task.id
-        }
+        variables: listTimeNotificationsForTaskVariables(task.id)
       })
     },
     props: props => ({

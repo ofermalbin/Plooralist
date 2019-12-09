@@ -15,6 +15,8 @@ import { onCreateSubtask, onUpdateSubtask, onDeleteSubtask } from '../../graphql
 import { TitleTask } from '../tasks';
 import ListSubtasks from './ListSubtasks';
 
+import { listSubtasksForTaskVariables } from './util';
+
 class Subtasks extends React.Component {
 
   constructor(props) {
@@ -23,22 +25,22 @@ class Subtasks extends React.Component {
 
   componentDidMount() {
     const { taskId } = this.props.navigation.state.params;
-    this.props.data.subscribeToMore(
+    this.props.subtasksData.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateSubtask), variables: {subtaskTaskId: taskId}},
-        {query: gql(listSubtasksForTask), variables: {subtaskTaskId: taskId}}
+        {query: gql(listSubtasksForTask), variables: listSubtasksForTaskVariables(taskId)}
       )
     );
-    this.props.data.subscribeToMore(
+    this.props.subtasksData.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateSubtask), variables: {subtaskTaskId: taskId}},
-        {query: gql(listSubtasksForTask), variables: {subtaskTaskId: taskId}}
+        {query: gql(listSubtasksForTask), variables: listSubtasksForTaskVariables(taskId)}
       )
     );
-    this.props.data.subscribeToMore(
+    this.props.subtasksData.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteSubtask), variables: {subtaskTaskId: taskId}},
-        {query: gql(listSubtasksForTask), variables: {subtaskTaskId: taskId}}
+        {query: gql(listSubtasksForTask), variables: listSubtasksForTaskVariables(taskId)}
       )
     );
   }
@@ -57,14 +59,12 @@ const enhance = compose(
       const { taskId } = props.navigation.state.params;
       return ({
         fetchPolicy: 'cache-and-network',
-        variables: {
-          subtaskTaskId: taskId, sortDirection: "DESC", limit: 100
-        }
+        variables: listSubtasksForTaskVariables(taskId)
       })
     },
     props: props => ({
       subtasks: props.data.listSubtasksForTask ? props.data.listSubtasksForTask.items : [],
-      data: props.data
+      subtasksData: props.data
     }),
   }),
   graphql(gql(getTask), {

@@ -12,6 +12,8 @@ import { updateTask } from '../../graphql/mutations';
 
 import { withCurrentUser } from '../../contexts';
 
+import { listTasksForPanelVariables } from './util';
+
 import { rowTaskStyles } from './config/stylesheets';
 import colors from '../../config/colors';
 
@@ -82,5 +84,5 @@ class RowTask extends React.Component {
 };
 
 export default compose(
-  graphqlMutation(gql(updateTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId}}), 'Task')
+  graphqlMutation(gql(updateTask), variables => ({query: gql(listTasksForPanel), variables: listTasksForPanelVariables(variables.taskPanelId)}), 'Task')
 )(withCurrentUser(RowTask));

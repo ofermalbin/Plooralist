@@ -23,6 +23,8 @@ import { TitleTask } from '../tasks';
 
 import Messages from './Messages';
 
+import { listMessagesForTaskVariables } from './util';
+
 class TaskMessages extends React.Component {
 
   constructor(props) {
@@ -38,22 +40,22 @@ class TaskMessages extends React.Component {
       messages: this.props.messages,
     });
     const { taskId } = this.props.navigation.state.params;
-    this.props.data.subscribeToMore(
+    this.props.messagesData.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateTaskMessage), variables: {messageTaskId: taskId}},
-        {query: gql(listMessagesForTask), variables: {messageTaskId: taskId}}
+        {query: gql(listMessagesForTask), variables: listMessagesForTaskVariables(taskId)}
       )
     );
-    this.props.data.subscribeToMore(
+    this.props.messagesData.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateTaskMessage), variables: {messageTaskId: taskId}},
-        {query: gql(listMessagesForTask), variables: {messageTaskId: taskId}}
+        {query: gql(listMessagesForTask), variables: listMessagesForTaskVariables(taskId)}
       )
     );
-    this.props.data.subscribeToMore(
+    this.props.messagesData.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteTaskMessage), variables: {messageTaskId: taskId}},
-        {query: gql(listMessagesForTask), variables: {messageTaskId: taskId}}
+        {query: gql(listMessagesForTask), variables: listMessagesForTaskVariables(taskId)}
       )
     );
   }
@@ -105,14 +107,12 @@ const enhance = compose(
       const { taskId } = props.navigation.state.params;
       return ({
         fetchPolicy: 'cache-and-network',
-        variables: {
-          messageTaskId: taskId
-        }
+        variables: listMessagesForTaskVariables(taskId)
       })
     },
     props: props => ({
       messages: props.data.listMessagesForTask ? props.data.listMessagesForTask.items : [],
-      data: props.data
+      messagesData: props.data
     }),
   }),
   graphql(gql(getTask), {
@@ -129,7 +129,7 @@ const enhance = compose(
       task: props.data.getTask ? props.data.getTask : null,
     })
   }),
-  graphqlMutation(gql(createMessage), variables => ({ query: gql(listMessagesForTask), variables: {messageTaskId: variables.messageTaskId}}), 'Message')
+  graphqlMutation(gql(createMessage), variables => ({ query: gql(listMessagesForTask), variables: listMessagesForTaskVariables(variables.messageTaskId)}), 'Message')
 ) (withCurrentUser(TaskMessages));
 
 enhance.navigationOptions = ({ navigation }) => {

@@ -36,6 +36,9 @@ import PlaceNotifications from '../placeNotifications';
 import MuteTask from './MuteTask';
 import DeleteTask from './DeleteTask';
 
+import { listTasksForPanelVariables } from './util';
+import { listSubtasksForTaskVariables } from '../subtasks/util';
+
 class InfoTask extends React.Component {
 
   constructor(props) {
@@ -51,19 +54,19 @@ class InfoTask extends React.Component {
     this.props.subtasksData.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateSubtask), variables: {subtaskTaskId: taskId}},
-        {query: gql(listSubtasksForTask), variables: {subtaskTaskId: taskId}}
+        {query: gql(listSubtasksForTask), variables: listSubtasksForTaskVariables(taskId)}
       )
     );
     this.props.subtasksData.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateSubtask), variables: {subtaskTaskId: taskId}},
-        {query: gql(listSubtasksForTask), variables: {subtaskTaskId: taskId}}
+        {query: gql(listSubtasksForTask), variables: listSubtasksForTaskVariables(taskId)}
       )
     );
     this.props.subtasksData.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteSubtask), variables: {subtaskTaskId: taskId}},
-        {query: gql(listSubtasksForTask), variables: {subtaskTaskId: taskId}}
+        {query: gql(listSubtasksForTask), variables: listSubtasksForTaskVariables(taskId)}
       )
     );
   }
@@ -222,9 +225,7 @@ const enhance = compose(
       const { taskId } = props.navigation.state.params;
       return ({
         fetchPolicy: 'cache-and-network',
-        variables: {
-          subtaskTaskId: taskId, sortDirection: "DESC", limit: 100
-        }
+        variables: listSubtasksForTaskVariables(taskId)
       })
     },
     props: props => ({
@@ -232,7 +233,7 @@ const enhance = compose(
       subtasksData: props.data
     }),
   }),
-  graphqlMutation(gql(updateTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId}}), 'Task')
+  graphqlMutation(gql(updateTask), variables => ({query: gql(listTasksForPanel), variables: listTasksForPanelVariables(variables.taskPanelId)}), 'Task')
 )(withCurrentUser(InfoTask));
 
 enhance.navigationOptions = ({ navigation }) => {

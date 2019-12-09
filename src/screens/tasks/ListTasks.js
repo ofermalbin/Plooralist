@@ -37,7 +37,6 @@ class ListTasks extends React.Component {
       <FlatList
         ref={(ref) => { this.flatListRef = ref; }}
         data={orderBy(this.props.tasks, ['updatedAt'], ['desc'])}
-        //data={orderBy(this.props.tasks, ['completed', 'updatedAt'], ['asc', 'desc'])}
         renderItem={({ item }) => <RowTask task={item} member={member} isPanelOwner={isOwner} isPanelBlock={isBlock} navigation={this.props.navigation} />}
         keyExtractor={item => item.id}
         ItemSeparatorComponent={() => <Divider/>}

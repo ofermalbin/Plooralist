@@ -26,7 +26,7 @@ import { getCurrentUserName, getUserName } from '../../../util';
 
 import { rowPanelStyles } from '../config/stylesheets';
 
-import { isPanelOwner, canAccessPanel } from '../../panels';
+import { isPanelOwner, canAccessPanel, listMembersForPanelVariables } from '../util';
 
 class RowMember extends React.Component {
 
@@ -119,6 +119,6 @@ class RowMember extends React.Component {
 };
 
 export default compose(
-  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembersForPanel), variables: {memberPanelId: variables.memberPanelId}}), 'Member'),
-  graphqlMutation(gql(deleteMember), variables => ({query: gql(listMembersForPanel), variables: {memberPanelId: variables.memberPanelId}}), 'Member')
+  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembersForPanel), variables: listMembersForPanelVariables(variables.memberPanelId)}), 'Member'),
+  graphqlMutation(gql(deleteMember), variables => ({query: gql(listMembersForPanel), variables: listMembersForPanelVariables(variables.memberPanelId)}), 'Member')
 )(withCurrentUser(withContacts(RowMember)));

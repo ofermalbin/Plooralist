@@ -17,6 +17,8 @@ import { listPlaceNotificationsForTask } from '../../graphql/queries';
 
 import { pick } from 'lodash';
 
+import { listPlaceNotificationsForTaskVariables } from './util';
+
 import { placeNotificationStyles } from './config/stylesheets';
 
 import _EditPlaceNotification from './_EditPlaceNotification';
@@ -88,8 +90,8 @@ class EditPlaceNotification extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(updatePlaceNotification), variables => ({ query: gql(listPlaceNotificationsForTask), variables: {placeNotificationTaskId: variables.placeNotificationTaskId}}), 'PlaceNotification'),
-  graphqlMutation(gql(deletePlaceNotification), variables => ({ query: gql(listPlaceNotificationsForTask), variables: {placeNotificationTaskId: variables.placeNotificationTaskId}}), 'PlaceNotification')
+  graphqlMutation(gql(updatePlaceNotification), variables => ({ query: gql(listPlaceNotificationsForTask), variables: listPlaceNotificationsForTaskVariables(variables.placeNotificationTaskId)}), 'PlaceNotification'),
+  graphqlMutation(gql(deletePlaceNotification), variables => ({ query: gql(listPlaceNotificationsForTask), variables: listPlaceNotificationsForTaskVariables(variables.placeNotificationTaskId)}), 'PlaceNotification')
 ) (EditPlaceNotification)
 
 

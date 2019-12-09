@@ -19,6 +19,8 @@ import TimeNotificationDtStart from './TimeNotificationDtStart';
 import TimeNotificationRecurrence from './TimeNotificationRecurrence';
 import TimeNotificationDtSendText from './TimeNotificationDtSendText';
 
+import { listTimeNotificationsForTaskVariables } from './util';
+
 import { timeNotificationStyles } from './config/stylesheets';
 
 class EditTimeNotification extends React.Component {
@@ -125,8 +127,8 @@ class EditTimeNotification extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(updateTimeNotification), variables => ({ query: gql(listTimeNotificationsForTask), variables: {timeNotificationTaskId: variables.timeNotificationTaskId}}), 'TimeNotification'),
-  graphqlMutation(gql(deleteTimeNotification), variables => ({ query: gql(listTimeNotificationsForTask), variables: {timeNotificationTaskId: variables.timeNotificationTaskId}}), 'TimeNotification')
+  graphqlMutation(gql(updateTimeNotification), variables => ({ query: gql(listTimeNotificationsForTask), variables: listTimeNotificationsForTaskVariables(variables.timeNotificationTaskId)}), 'TimeNotification'),
+  graphqlMutation(gql(deleteTimeNotification), variables => ({ query: gql(listTimeNotificationsForTask), variables: listTimeNotificationsForTaskVariables(variables.timeNotificationTaskId)}), 'TimeNotification')
 ) (EditTimeNotification)
 
 

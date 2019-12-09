@@ -19,6 +19,8 @@ import { infoListStyles } from './config/stylesheets';
 
 import PlaceNotification from './PlaceNotification';
 
+import { listPlaceNotificationsForTaskVariables } from './util';
+
 class PlaceNotifications extends React.Component {
 
   constructor(props) {
@@ -26,23 +28,23 @@ class PlaceNotifications extends React.Component {
   }
 
   componentDidMount() {
-    const { taskId } = this.props.navigation.state.params;
+    const { task } = this.props;
     this.props.data.subscribeToMore(
       buildSubscription(
-        {query: gql(onCreatePlaceNotification), variables: {placeNotificationTaskId: taskId}},
-        {query: gql(listPlaceNotificationsForTask), variables: {placeNotificationTaskId: taskId}}
+        {query: gql(onCreatePlaceNotification), variables: {placeNotificationTaskId: task.id}},
+        {query: gql(listPlaceNotificationsForTask), variables: listPlaceNotificationsForTaskVariables(task.id)}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
-        {query: gql(onUpdatePlaceNotification), variables: {placeNotificationTaskId: taskId}},
-        {query: gql(listPlaceNotificationsForTask), variables: {placeNotificationTaskId: taskId}}
+        {query: gql(onUpdatePlaceNotification), variables: {placeNotificationTaskId: task.id}},
+        {query: gql(listPlaceNotificationsForTask), variables: listPlaceNotificationsForTaskVariables(task.id)}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
-        {query: gql(onDeletePlaceNotification), variables: {placeNotificationTaskId: taskId}},
-        {query: gql(listPlaceNotificationsForTask), variables: {placeNotificationTaskId: taskId}}
+        {query: gql(onDeletePlaceNotification), variables: {placeNotificationTaskId: task.id}},
+        {query: gql(listPlaceNotificationsForTask), variables: listPlaceNotificationsForTaskVariables(task.id)}
       )
     );
   }
@@ -85,9 +87,7 @@ export default compose(
       const { task } = props;
       return ({
         fetchPolicy: 'cache-and-network',
-        variables: {
-          placeNotificationTaskId: task.id
-        }
+        variables: listPlaceNotificationsForTaskVariables(task.id)
       })
     },
     props: props => ({

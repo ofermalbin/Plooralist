@@ -20,6 +20,8 @@ import uuid from 'react-native-uuid';
 import TimeNotificationDtStart from './TimeNotificationDtStart';
 import TimeNotificationRecurrence from './TimeNotificationRecurrence';
 
+import { listTimeNotificationsForTaskVariables } from './util';
+
 import { timeNotificationStyles } from './config/stylesheets';
 
 class CreateTimeNotification extends React.Component {
@@ -109,7 +111,7 @@ class CreateTimeNotification extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(createTimeNotification), variables => ({query: gql(listTimeNotificationsForTask), variables: {timeNotificationTaskId: variables.timeNotificationTaskId}}), 'TimeNotification')
+  graphqlMutation(gql(createTimeNotification), variables => ({query: gql(listTimeNotificationsForTask), variables: listTimeNotificationsForTaskVariables(variables.timeNotificationTaskId)}), 'TimeNotification')
 ) (CreateTimeNotification)
 
 

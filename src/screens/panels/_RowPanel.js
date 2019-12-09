@@ -16,7 +16,7 @@ import { AvatarS3Image } from '../../components';
 
 import { rowPanelStyles } from './config/stylesheets';
 
-import { isPanelBlock, unblockBottomSheet } from '../panels';
+import { isPanelBlock, unblockBottomSheet, listMembersForUserVariables } from './util';
 
 import BottomSheet from 'react-native-bottomsheet';
 
@@ -71,5 +71,5 @@ class _RowPanel extends React.Component {
 };
 
 export default compose(
-  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembersForUser), variables: {memberPanelId: variables.memberPanelId}}), 'Member'),
+  graphqlMutation(gql(updateMember), variables => ({query: gql(listMembersForUser), variables: listMembersForUserVariables(variables.memberUserId)}), 'Member'),
 )(_RowPanel);

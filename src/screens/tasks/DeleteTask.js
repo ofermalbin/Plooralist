@@ -12,6 +12,8 @@ import { listTasksForPanel } from '../../graphql/queries';
 
 import { ListItem } from 'react-native-elements';
 
+import { listTasksForPanelVariables } from './util';
+
 import { infoListStyles } from './config/stylesheets';
 
 class DeleteTask extends React.Component {
@@ -56,5 +58,5 @@ class DeleteTask extends React.Component {
 }
 
 export default compose(
-  graphqlMutation(gql(deleteTask), variables => ({query: gql(listTasksForPanel), variables: {taskPanelId: variables.taskPanelId}}), 'Task')
+  graphqlMutation(gql(deleteTask), variables => ({query: gql(listTasksForPanel), variables: listTasksForPanelVariables(variables.taskPanelId)}), 'Task')
 )(DeleteTask);

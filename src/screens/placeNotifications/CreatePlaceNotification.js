@@ -21,6 +21,8 @@ import uuid from 'react-native-uuid';
 
 import { pick } from 'lodash';
 
+import { listPlaceNotificationsForTaskVariables } from './util';
+
 import { placeNotificationStyles } from './config/stylesheets';
 
 class CreatePlaceNotification extends React.Component {
@@ -78,7 +80,7 @@ class CreatePlaceNotification extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(createPlaceNotification), variables => ({query: gql(listPlaceNotificationsForTask), variables: {placeNotificationTaskId: variables.placeNotificationTaskId}}), 'PlaceNotification')
+  graphqlMutation(gql(createPlaceNotification), variables => ({query: gql(listPlaceNotificationsForTask), variables: listPlaceNotificationsForTaskVariables(variables.placeNotificationTaskId)}), 'PlaceNotification')
 ) (CreatePlaceNotification)
 
 

@@ -18,6 +18,8 @@ import { Button } from "react-native-elements";
 
 import { differenceWith } from 'lodash';
 
+import { listMembersForPanelVariables } from '../util';
+
 class AddMembers extends React.Component {
 
   constructor(props) {
@@ -41,6 +43,7 @@ class AddMembers extends React.Component {
       updatedAt: now.toISOString(),
       memberPanelId: panelId,
       memberUserId: null,
+      coupleUserId: null,
       user: null,
       isOwner: false,
       canAccess: true,
@@ -57,11 +60,6 @@ class AddMembers extends React.Component {
         updatedAt: now.toISOString(),
         name: null,
         imgKey: null,
-        members: {
-          __typename: 'Members',
-          items: null,
-          nextToken: null
-        }
       }
     };
 
@@ -83,7 +81,7 @@ class AddMembers extends React.Component {
 }
 
 const enhance = compose(
-  graphqlMutation(gql(createMember), variables => ({query: gql(listMembersForPanel), variables: {memberPanelId: variables.memberPanelId}}), 'Member'),
+  graphqlMutation(gql(createMember), variables => ({query: gql(listMembersForPanel), variables: listMembersForPanelVariables(variables.memberPanelId)}), 'Member'),
 )(withUsersAreContacts(AddMembers));
 
 enhance.navigationOptions = ({ navigation }) => {

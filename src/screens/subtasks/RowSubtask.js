@@ -15,6 +15,8 @@ import { updateSubtask, deleteSubtask } from '../../graphql/mutations';
 
 import { withCurrentUser } from '../../contexts';
 
+import { listSubtasksForTaskVariables } from './util';
+
 import { rowSubtaskStyles } from './config/stylesheets';
 import colors from '../../config/colors';
 
@@ -137,6 +139,6 @@ class RowSubtask extends React.Component {
 };
 
 export default compose(
-  graphqlMutation(gql(updateSubtask), variables => ({ query: gql(listSubtasksForTask), variables: {subtaskTaskId: variables.subtaskTaskId}}), 'Subtask'),
-  graphqlMutation(gql(deleteSubtask), variables => ({ query: gql(listSubtasksForTask), variables: {subtaskTaskId: variables.subtaskTaskId}}), 'Subtask')
+  graphqlMutation(gql(updateSubtask), variables => ({ query: gql(listSubtasksForTask), variables: listSubtasksForTaskVariables(variables.subtaskTaskId)}), 'Subtask'),
+  graphqlMutation(gql(deleteSubtask), variables => ({ query: gql(listSubtasksForTask), variables: listSubtasksForTaskVariables(variables.subtaskTaskId)}), 'Subtask')
 )(withCurrentUser(RowSubtask));
