@@ -1,8 +1,8 @@
 {
     "identityPoolName": "plooralistIdentityPool",
-    "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "ploorac9054ef9",
-    "userPoolName": "plooralistplooralistUserPool",
+    "allowUnauthenticatedIdentities": false,
+    "resourceNameTruncated": "ploora86b7bfcb",
+    "userPoolName": "plooralistUserPool",
     "autoVerifiedAttributes": [
         "phone_number"
     ],
@@ -26,7 +26,7 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "ploorac9054ef9_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "ploora86b7bfcb_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
     "useDefault": "manual",
     "authSelections": "identityPoolAndUserPool",

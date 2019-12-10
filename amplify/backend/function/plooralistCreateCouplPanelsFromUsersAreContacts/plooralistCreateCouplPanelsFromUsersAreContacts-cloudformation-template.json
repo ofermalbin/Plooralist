@@ -76,8 +76,8 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-plooralist-dev-125034-deployment",
-					"S3Key": "amplify-builds/plooralistCreateCouplPanelsFromUsersAreContacts-305874794f31502b4259-build.zip"
+					"S3Bucket": "amplify-plooralist-dev-145928-deployment",
+					"S3Key": "amplify-builds/plooralistCreateCouplPanelsFromUsersAreContacts-42436a794a306d624533-build.zip"
 				}
 			}
 		},
@@ -87,12 +87,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"plooralistLambdaRole1c2ab76f",
+						"plooralistLambdaRole1eea0a17",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"plooralistLambdaRole1c2ab76f",
+									"plooralistLambdaRole1eea0a17",
 									"-",
 									{
 										"Ref": "env"

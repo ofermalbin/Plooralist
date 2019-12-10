@@ -76,8 +76,8 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-plooralist-dev-125034-deployment",
-					"S3Key": "amplify-builds/plooralistMemberStream-445a7272584876545256-build.zip"
+					"S3Bucket": "amplify-plooralist-dev-145928-deployment",
+					"S3Key": "amplify-builds/plooralistMemberStream-3961474d3757516c446a-build.zip"
 				}
 			}
 		},
@@ -87,12 +87,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"plooralistLambdaRole1f7f6343",
+						"plooralistLambdaRoleccc30149",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"plooralistLambdaRole1f7f6343",
+									"plooralistLambdaRoleccc30149",
 									"-",
 									{
 										"Ref": "env"

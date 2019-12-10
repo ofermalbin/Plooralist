@@ -364,6 +364,7 @@ export const listTasksForPanel = `query ListTasksForPanel(
 `;
 export const listSubtasksForTask = `query ListSubtasksForTask(
   $subtaskTaskId: ID
+  $updatedAt: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
   $filter: ModelSubtaskFilterInput
   $limit: Int
@@ -371,6 +372,7 @@ export const listSubtasksForTask = `query ListSubtasksForTask(
 ) {
   listSubtasksForTask(
     subtaskTaskId: $subtaskTaskId
+    updatedAt: $updatedAt
     sortDirection: $sortDirection
     filter: $filter
     limit: $limit
@@ -406,6 +408,7 @@ export const listSubtasksForTask = `query ListSubtasksForTask(
 `;
 export const listTimeNotificationsForTask = `query ListTimeNotificationsForTask(
   $timeNotificationTaskId: ID
+  $updatedAt: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
   $filter: ModelTimeNotificationFilterInput
   $limit: Int
@@ -413,6 +416,7 @@ export const listTimeNotificationsForTask = `query ListTimeNotificationsForTask(
 ) {
   listTimeNotificationsForTask(
     timeNotificationTaskId: $timeNotificationTaskId
+    updatedAt: $updatedAt
     sortDirection: $sortDirection
     filter: $filter
     limit: $limit
@@ -440,6 +444,7 @@ export const listTimeNotificationsForTask = `query ListTimeNotificationsForTask(
 `;
 export const listPlaceNotificationsForTask = `query ListPlaceNotificationsForTask(
   $placeNotificationTaskId: ID
+  $updatedAt: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
   $filter: ModelPlaceNotificationFilterInput
   $limit: Int
@@ -447,6 +452,7 @@ export const listPlaceNotificationsForTask = `query ListPlaceNotificationsForTas
 ) {
   listPlaceNotificationsForTask(
     placeNotificationTaskId: $placeNotificationTaskId
+    updatedAt: $updatedAt
     sortDirection: $sortDirection
     filter: $filter
     limit: $limit
@@ -472,6 +478,7 @@ export const listPlaceNotificationsForTask = `query ListPlaceNotificationsForTas
 `;
 export const listMessagesForTask = `query ListMessagesForTask(
   $messageTaskId: ID
+  $updatedAt: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
   $filter: ModelMessageFilterInput
   $limit: Int
@@ -479,6 +486,7 @@ export const listMessagesForTask = `query ListMessagesForTask(
 ) {
   listMessagesForTask(
     messageTaskId: $messageTaskId
+    updatedAt: $updatedAt
     sortDirection: $sortDirection
     filter: $filter
     limit: $limit
@@ -673,6 +681,7 @@ export const listMembers = `query ListMembers(
 `;
 export const listMembersForPanel = `query ListMembersForPanel(
   $memberPanelId: ID
+  $updatedAt: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
   $filter: ModelMemberFilterInput
   $limit: Int
@@ -680,6 +689,7 @@ export const listMembersForPanel = `query ListMembersForPanel(
 ) {
   listMembersForPanel(
     memberPanelId: $memberPanelId
+    updatedAt: $updatedAt
     sortDirection: $sortDirection
     filter: $filter
     limit: $limit
@@ -728,6 +738,7 @@ export const listMembersForPanel = `query ListMembersForPanel(
 `;
 export const listMembersForUser = `query ListMembersForUser(
   $memberUserId: ID
+  $updatedAt: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
   $filter: ModelMemberFilterInput
   $limit: Int
@@ -735,6 +746,7 @@ export const listMembersForUser = `query ListMembersForUser(
 ) {
   listMembersForUser(
     memberUserId: $memberUserId
+    updatedAt: $updatedAt
     sortDirection: $sortDirection
     filter: $filter
     limit: $limit

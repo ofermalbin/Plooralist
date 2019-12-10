@@ -90,8 +90,8 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-plooralist-dev-125034-deployment",
-					"S3Key": "amplify-builds/plooralistSendTimeNotification-5338344b3733524f4f6d-build.zip"
+					"S3Bucket": "amplify-plooralist-dev-145928-deployment",
+					"S3Key": "amplify-builds/plooralistSendTimeNotification-477432506273647a7767-build.zip"
 				}
 			}
 		},
@@ -101,12 +101,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"plooralistLambdaRole8c1fef26",
+						"plooralistLambdaRoled530c367",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"plooralistLambdaRole8c1fef26",
+									"plooralistLambdaRoled530c367",
 									"-",
 									{
 										"Ref": "env"
@@ -168,25 +168,6 @@
 										},
 										"lambda": {
 											"Ref": "LambdaFunction"
-										}
-									}
-								]
-							}
-						},
-						{
-							"Effect": "Allow",
-							"Action": [
-								"dynamodb:*"
-							],
-							"Resource": {
-								"Fn::Sub": [
-									"arn:aws:dynamodb:${region}:${account}:table/*",
-									{
-										"region": {
-											"Ref": "AWS::Region"
-										},
-										"account": {
-											"Ref": "AWS::AccountId"
 										}
 									}
 								]

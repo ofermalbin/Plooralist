@@ -101,8 +101,8 @@
 				"Runtime": "nodejs8.10",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-plooralist-dev-125034-deployment",
-					"S3Key": "amplify-builds/plooralistAuthPostConfirmation-496430443233746c5265-build.zip"
+					"S3Bucket": "amplify-plooralist-dev-145928-deployment",
+					"S3Key": "amplify-builds/plooralistAuthPostConfirmation-7a73434975396545654c-build.zip"
 				}
 			}
 		},
@@ -187,17 +187,20 @@
 						{
 							"Effect": "Allow",
 							"Action": [
-								"dynamodb:*"
+								"lambda:invokeFunction"
 							],
 							"Resource": {
 								"Fn::Sub": [
-									"arn:aws:dynamodb:${region}:${account}:table/*",
+									"arn:aws:lambda:${region}:${account}:function:plooralistCreateUserAndSinglePanel-${env}",
 									{
 										"region": {
 											"Ref": "AWS::Region"
 										},
 										"account": {
 											"Ref": "AWS::AccountId"
+										},
+										"env": {
+											"Ref": "env"
 										}
 									}
 								]

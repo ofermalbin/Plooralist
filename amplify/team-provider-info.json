@@ -1,35 +1,30 @@
 {
-	"dev": {
-		"awscloudformation": {
-			"AuthRoleName": "amplify-plooralist-dev-125034-authRole",
-			"UnauthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-dev-125034-unauthRole",
-			"AuthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-dev-125034-authRole",
-			"Region": "us-east-1",
-			"DeploymentBucketName": "amplify-plooralist-dev-125034-deployment",
-			"UnauthRoleName": "amplify-plooralist-dev-125034-unauthRole",
-			"StackName": "amplify-plooralist-dev-125034",
-			"StackId": "arn:aws:cloudformation:us-east-1:838066868241:stack/amplify-plooralist-dev-125034/3d0fe360-1816-11ea-9d4b-12dc156c2e93",
-			"AmplifyAppId": "d15c5u4e7dllq5"
-		},
-		"categories": {
-			"auth": {
-				"plooralistAuth": {}
-			},
-			"function": {
-				"plooralistListUsersAreContacts": {},
-				"plooralistCreatePanelAndMembers": {},
-				"plooralistPanelStream": {},
-				"plooralistMemberStream": {},
-				"plooralistAuthPostConfirmation": {},
-				"plooralistTaskStream": {},
-				"plooralistPlaceNotificationStream": {},
-				"plooralistSendTimeNotification": {},
-				"plooralistGetEventsFromRadar": {},
-				"plooralistCreateCouplPanelsFromUsersAreContacts": {},
-				"plooralistGraphQL": {},
-				"plooralistPinpoint": {}
-			},
-			"notifications": {}
-		}
-	}
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-plooralist-dev-145928-authRole",
+            "UnauthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-dev-145928-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::838066868241:role/amplify-plooralist-dev-145928-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-plooralist-dev-145928-deployment",
+            "UnauthRoleName": "amplify-plooralist-dev-145928-unauthRole",
+            "StackName": "amplify-plooralist-dev-145928",
+            "StackId": "arn:aws:cloudformation:us-east-1:838066868241:stack/amplify-plooralist-dev-145928/e899cf00-1b4c-11ea-879c-12717722e021",
+            "AmplifyAppId": "d3kspu4g5kvyie"
+        },
+        "categories": {
+            "function": {
+                "plooralistAuthPostConfirmation": {}
+            },
+            "auth": {
+                "plooralistAuth": {}
+            },
+            "notifications": {
+                "Pinpoint": {
+                    "Name": "plooralistPinpoint-dev",
+                    "Id": "48ca928dd7d54efab29f3d8fe48165b1",
+                    "Region": "us-east-1"
+                }
+            }
+        }
+    }
 }

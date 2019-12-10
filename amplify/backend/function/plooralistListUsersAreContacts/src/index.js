@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
 
     const params = {
       TableName : UserTable,
-      IndexName: 'phoneNumber-index',
+      IndexName: 'gsi-PhoneNumber',
       KeyConditionExpression: '#phoneNumber = :phoneNumber',
       ExpressionAttributeNames : {'#phoneNumber' : 'phoneNumber'},
       ExpressionAttributeValues : {':phoneNumber' : contact},

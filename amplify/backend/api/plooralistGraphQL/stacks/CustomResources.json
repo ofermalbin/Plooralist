@@ -32,14 +32,14 @@
 			"Condition": "AlwaysFalse"
 		},
 		"LocalDataSource": {
-		  "Type": "AWS::AppSync::DataSource",
-		  "Properties": {
-		    "ApiId": {
-		      "Ref": "AppSyncApiId"
-		    },
-		    "Name": "LocalDataSource",
-		    "Type": "NONE"
-		  }
+			"Type": "AWS::AppSync::DataSource",
+			"Properties": {
+				"ApiId": {
+					"Ref": "AppSyncApiId"
+				},
+				"Name": "LocalDataSource",
+				"Type": "NONE"
+			}
 		},
 		"QueryGetCurrentUserResolver": {
 			"Type": "AWS::AppSync::Resolver",
@@ -79,243 +79,243 @@
 			}
 		},
 		"CreatePanelAndMembersLambdaDataSource": {
-		  "Type": "AWS::AppSync::DataSource",
-		  "Properties": {
-		    "ApiId": {
-		      "Ref": "AppSyncApiId"
-		    },
-		    "Name": "PlooralistCreatePanelAndMembers",
-		    "Type": "AWS_LAMBDA",
-		    "ServiceRoleArn": {
-		      "Fn::GetAtt": [
-		        "CreatePanelAndMembersLambdaDataSourceRole",
-		        "Arn"
-		      ]
-		    },
-		    "LambdaConfig": {
-		      "LambdaFunctionArn": {
-		        "Fn::Sub": [
-		          "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:plooralistCreatePanelAndMembers-${env}",
-		          { "env": { "Ref": "env" } }
-		        ]
-		      }
-		    }
-		  }
+			"Type": "AWS::AppSync::DataSource",
+			"Properties": {
+				"ApiId": {
+					"Ref": "AppSyncApiId"
+				},
+				"Name": "PlooralistCreatePanelAndMembers",
+				"Type": "AWS_LAMBDA",
+				"ServiceRoleArn": {
+					"Fn::GetAtt": [
+						"CreatePanelAndMembersLambdaDataSourceRole",
+						"Arn"
+					]
+				},
+				"LambdaConfig": {
+					"LambdaFunctionArn": {
+						"Fn::Sub": [
+							"arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:plooralistCreatePanelAndMembers-${env}",
+							{ "env": { "Ref": "env" } }
+						]
+					}
+				}
+			}
 		},
 		"CreatePanelAndMembersLambdaDataSourceRole": {
-		  "Type": "AWS::IAM::Role",
-		  "Properties": {
-		    "RoleName": {
-		      "Fn::Sub": [
-		        "CreatePanelAndMembersLambdaDataSourceRole-${env}",
-		        { "env": { "Ref": "env" } }
-		      ]
-		    },
-		    "AssumeRolePolicyDocument": {
-		      "Version": "2012-10-17",
-		      "Statement": [
-		        {
-		          "Effect": "Allow",
-		          "Principal": {
-		            "Service": "appsync.amazonaws.com"
-		          },
-		          "Action": "sts:AssumeRole"
-		        }
-		      ]
-		    },
-		    "Policies": [
-		      {
-		        "PolicyName": "InvokeLambdaFunction",
-		        "PolicyDocument": {
-		          "Version": "2012-10-17",
-		          "Statement": [
-		            {
-		              "Effect": "Allow",
-		              "Action": [
-		                "lambda:invokeFunction"
-		              ],
-		              "Resource": [
-		                {
-		                  "Fn::Sub": [
-		                    "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:plooralistCreatePanelAndMembers-${env}",
-		                    { "env": { "Ref": "env" } }
-		                  ]
-		                }
-		              ]
-		            }
-		          ]
-		        }
-		      }
-	    	]
-	  	}
+			"Type": "AWS::IAM::Role",
+			"Properties": {
+				"RoleName": {
+					"Fn::Sub": [
+						"CreatePanelAndMembersLambdaDataSourceRole-${env}",
+						{ "env": { "Ref": "env" } }
+					]
+				},
+				"AssumeRolePolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Principal": {
+								"Service": "appsync.amazonaws.com"
+							},
+							"Action": "sts:AssumeRole"
+						}
+					]
+				},
+				"Policies": [
+					{
+						"PolicyName": "InvokeLambdaFunction",
+						"PolicyDocument": {
+							"Version": "2012-10-17",
+							"Statement": [
+								{
+									"Effect": "Allow",
+									"Action": [
+										"lambda:invokeFunction"
+									],
+									"Resource": [
+										{
+											"Fn::Sub": [
+												"arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:plooralistCreatePanelAndMembers-${env}",
+												{ "env": { "Ref": "env" } }
+											]
+										}
+									]
+								}
+							]
+						}
+					}
+				]
+			}
 		},
 		"MutationCreatePanelAndMembersResolver": {
-		  "Type": "AWS::AppSync::Resolver",
-		  "Properties": {
-		    "ApiId": {
-		      "Ref": "AppSyncApiId"
-		    },
-		    "DataSourceName": {
-		      "Fn::GetAtt": [
-		        "CreatePanelAndMembersLambdaDataSource",
-		        "Name"
-		      ]
-		    },
-		    "TypeName": "Mutation",
-		    "FieldName": "createPanelAndMembers",
-		    "RequestMappingTemplateS3Location": {
-		      "Fn::Sub": [
-		        "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.createPanelAndMembers.req.vtl",
-		        {
-		          "S3DeploymentBucket": {
-		            "Ref": "S3DeploymentBucket"
-		          },
-		          "S3DeploymentRootKey": {
-		            "Ref": "S3DeploymentRootKey"
-		          }
-		        }
-		      ]
-		    },
-		    "ResponseMappingTemplateS3Location": {
-		      "Fn::Sub": [
-		        "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.createPanelAndMembers.res.vtl",
-		        {
-		          "S3DeploymentBucket": {
-		            "Ref": "S3DeploymentBucket"
-		          },
-		          "S3DeploymentRootKey": {
-		            "Ref": "S3DeploymentRootKey"
-		          }
-		        }
-		      ]
-		    }
-		  }
+			"Type": "AWS::AppSync::Resolver",
+			"Properties": {
+				"ApiId": {
+					"Ref": "AppSyncApiId"
+				},
+				"DataSourceName": {
+					"Fn::GetAtt": [
+						"CreatePanelAndMembersLambdaDataSource",
+						"Name"
+					]
+				},
+				"TypeName": "Mutation",
+				"FieldName": "createPanelAndMembers",
+				"RequestMappingTemplateS3Location": {
+					"Fn::Sub": [
+						"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.createPanelAndMembers.req.vtl",
+						{
+							"S3DeploymentBucket": {
+								"Ref": "S3DeploymentBucket"
+							},
+							"S3DeploymentRootKey": {
+								"Ref": "S3DeploymentRootKey"
+							}
+						}
+					]
+				},
+				"ResponseMappingTemplateS3Location": {
+					"Fn::Sub": [
+						"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.createPanelAndMembers.res.vtl",
+						{
+							"S3DeploymentBucket": {
+								"Ref": "S3DeploymentBucket"
+							},
+							"S3DeploymentRootKey": {
+								"Ref": "S3DeploymentRootKey"
+							}
+						}
+					]
+				}
+			}
 		},
 		"MutationCreateStreamMemberResolver": {
-		  "Type": "AWS::AppSync::Resolver",
-		  "Properties": {
-		    "ApiId": {
-		      "Ref": "AppSyncApiId"
-		    },
-		    "DataSourceName": {
-		      "Fn::GetAtt": [
-		        "LocalDataSource",
-		        "Name"
-		      ]
-		    },
-		    "TypeName": "Mutation",
-		    "FieldName": "createStreamMember",
-		    "RequestMappingTemplateS3Location": {
-		      "Fn::Sub": [
-		        "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.createStreamMember.req.vtl",
-		        {
-		          "S3DeploymentBucket": {
-		            "Ref": "S3DeploymentBucket"
-		          },
-		          "S3DeploymentRootKey": {
-		            "Ref": "S3DeploymentRootKey"
-		          }
-		        }
-		      ]
-		    },
-		    "ResponseMappingTemplateS3Location": {
-		      "Fn::Sub": [
-		        "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.createStreamMember.res.vtl",
-		        {
-		          "S3DeploymentBucket": {
-		            "Ref": "S3DeploymentBucket"
-		          },
-		          "S3DeploymentRootKey": {
-		            "Ref": "S3DeploymentRootKey"
-		          }
-		        }
-		      ]
-		    }
-		  }
+			"Type": "AWS::AppSync::Resolver",
+			"Properties": {
+				"ApiId": {
+					"Ref": "AppSyncApiId"
+				},
+				"DataSourceName": {
+					"Fn::GetAtt": [
+						"LocalDataSource",
+						"Name"
+					]
+				},
+				"TypeName": "Mutation",
+				"FieldName": "createStreamMember",
+				"RequestMappingTemplateS3Location": {
+					"Fn::Sub": [
+						"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.createStreamMember.req.vtl",
+						{
+							"S3DeploymentBucket": {
+								"Ref": "S3DeploymentBucket"
+							},
+							"S3DeploymentRootKey": {
+								"Ref": "S3DeploymentRootKey"
+							}
+						}
+					]
+				},
+				"ResponseMappingTemplateS3Location": {
+					"Fn::Sub": [
+						"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.createStreamMember.res.vtl",
+						{
+							"S3DeploymentBucket": {
+								"Ref": "S3DeploymentBucket"
+							},
+							"S3DeploymentRootKey": {
+								"Ref": "S3DeploymentRootKey"
+							}
+						}
+					]
+				}
+			}
 		},
 		"MutationStreamUpdateMemberResolver": {
-		  "Type": "AWS::AppSync::Resolver",
-		  "Properties": {
-		    "ApiId": {
-		      "Ref": "AppSyncApiId"
-		    },
-		    "DataSourceName": {
-		      "Fn::GetAtt": [
-		        "LocalDataSource",
-		        "Name"
-		      ]
-		    },
-		    "TypeName": "Mutation",
-		    "FieldName": "updateStreamMember",
-		    "RequestMappingTemplateS3Location": {
-		      "Fn::Sub": [
-		        "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.updateStreamMember.req.vtl",
-		        {
-		          "S3DeploymentBucket": {
-		            "Ref": "S3DeploymentBucket"
-		          },
-		          "S3DeploymentRootKey": {
-		            "Ref": "S3DeploymentRootKey"
-		          }
-		        }
-		      ]
-		    },
-		    "ResponseMappingTemplateS3Location": {
-		      "Fn::Sub": [
-		        "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.updateStreamMember.res.vtl",
-		        {
-		          "S3DeploymentBucket": {
-		            "Ref": "S3DeploymentBucket"
-		          },
-		          "S3DeploymentRootKey": {
-		            "Ref": "S3DeploymentRootKey"
-		          }
-		        }
-		      ]
-		    }
-		  }
+			"Type": "AWS::AppSync::Resolver",
+			"Properties": {
+				"ApiId": {
+					"Ref": "AppSyncApiId"
+				},
+				"DataSourceName": {
+					"Fn::GetAtt": [
+						"LocalDataSource",
+						"Name"
+					]
+				},
+				"TypeName": "Mutation",
+				"FieldName": "updateStreamMember",
+				"RequestMappingTemplateS3Location": {
+					"Fn::Sub": [
+						"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.updateStreamMember.req.vtl",
+						{
+							"S3DeploymentBucket": {
+								"Ref": "S3DeploymentBucket"
+							},
+							"S3DeploymentRootKey": {
+								"Ref": "S3DeploymentRootKey"
+							}
+						}
+					]
+				},
+				"ResponseMappingTemplateS3Location": {
+					"Fn::Sub": [
+						"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.updateStreamMember.res.vtl",
+						{
+							"S3DeploymentBucket": {
+								"Ref": "S3DeploymentBucket"
+							},
+							"S3DeploymentRootKey": {
+								"Ref": "S3DeploymentRootKey"
+							}
+						}
+					]
+				}
+			}
 		},
 		"MutationDeleteStreamMemberResolver": {
-		  "Type": "AWS::AppSync::Resolver",
-		  "Properties": {
-		    "ApiId": {
-		      "Ref": "AppSyncApiId"
-		    },
-		    "DataSourceName": {
-		      "Fn::GetAtt": [
-		        "LocalDataSource",
-		        "Name"
-		      ]
-		    },
-		    "TypeName": "Mutation",
-		    "FieldName": "deleteStreamMember",
-		    "RequestMappingTemplateS3Location": {
-		      "Fn::Sub": [
-		        "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.deleteStreamMember.req.vtl",
-		        {
-		          "S3DeploymentBucket": {
-		            "Ref": "S3DeploymentBucket"
-		          },
-		          "S3DeploymentRootKey": {
-		            "Ref": "S3DeploymentRootKey"
-		          }
-		        }
-		      ]
-		    },
-		    "ResponseMappingTemplateS3Location": {
-		      "Fn::Sub": [
-		        "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.deleteStreamMember.res.vtl",
-		        {
-		          "S3DeploymentBucket": {
-		            "Ref": "S3DeploymentBucket"
-		          },
-		          "S3DeploymentRootKey": {
-		            "Ref": "S3DeploymentRootKey"
-		          }
-		        }
-		      ]
-		    }
-		  }
+			"Type": "AWS::AppSync::Resolver",
+			"Properties": {
+				"ApiId": {
+					"Ref": "AppSyncApiId"
+				},
+				"DataSourceName": {
+					"Fn::GetAtt": [
+						"LocalDataSource",
+						"Name"
+					]
+				},
+				"TypeName": "Mutation",
+				"FieldName": "deleteStreamMember",
+				"RequestMappingTemplateS3Location": {
+					"Fn::Sub": [
+						"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.deleteStreamMember.req.vtl",
+						{
+							"S3DeploymentBucket": {
+								"Ref": "S3DeploymentBucket"
+							},
+							"S3DeploymentRootKey": {
+								"Ref": "S3DeploymentRootKey"
+							}
+						}
+					]
+				},
+				"ResponseMappingTemplateS3Location": {
+					"Fn::Sub": [
+						"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.deleteStreamMember.res.vtl",
+						{
+							"S3DeploymentBucket": {
+								"Ref": "S3DeploymentBucket"
+							},
+							"S3DeploymentRootKey": {
+								"Ref": "S3DeploymentRootKey"
+							}
+						}
+					]
+				}
+			}
 		}
 	},
 	"Conditions": {

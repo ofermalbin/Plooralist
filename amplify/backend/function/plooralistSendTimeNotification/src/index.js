@@ -144,7 +144,7 @@ exports.handler = async (event, context) => {
     //console.log('membersGroupByPanelId', JSON.stringify(membersGroupByPanelId));
 
     const taskNotificationsMessages = _.filter(tasks, item => membersGroupByPanelId[item.taskPanelId]).map(task => {
-      
+
         const subtasksMessage = subtasksGroupByTaskId[task.id] ? _.join(subtasksGroupByTaskId[task.id].map(subtask => `${subtask.name}${subtask.completed ? ' ✔️' : ''}`), '\n') : null;
 
         const message = {

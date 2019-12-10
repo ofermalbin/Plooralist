@@ -90,8 +90,8 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-plooralist-dev-125034-deployment",
-					"S3Key": "amplify-builds/plooralistGetEventsFromRadar-48785378563865723238-build.zip"
+					"S3Bucket": "amplify-plooralist-dev-145928-deployment",
+					"S3Key": "amplify-builds/plooralistGetEventsFromRadar-61685276787a3446534f-build.zip"
 				}
 			}
 		},
@@ -101,12 +101,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"plooralistLambdaRolec21fa902",
+						"plooralistLambdaRolea80b8cf8",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"plooralistLambdaRolec21fa902",
+									"plooralistLambdaRolea80b8cf8",
 									"-",
 									{
 										"Ref": "env"
@@ -172,25 +172,6 @@
 									}
 								]
 							}
-						},
-						{
-							"Effect": "Allow",
-							"Action": [
-								"dynamodb:*"
-							],
-							"Resource": {
-								"Fn::Sub": [
-									"arn:aws:dynamodb:${region}:${account}:table/*",
-									{
-										"region": {
-											"Ref": "AWS::Region"
-										},
-										"account": {
-											"Ref": "AWS::AccountId"
-										}
-									}
-								]
-							}
 						}
 					]
 				}
@@ -246,11 +227,7 @@
 							"Action": [
 								"mobiletargeting:Put*",
 								"mobiletargeting:Create*",
-								"mobiletargeting:Send*",
-								"mobiletargeting:Get*",
-								"mobiletargeting:List*",
-								"mobiletargeting:Update*",
-								"mobiletargeting:Delete*"
+								"mobiletargeting:Send*"
 							],
 							"Resource": [
 								{
@@ -268,8 +245,7 @@
 											":apps/",
 											{
 												"Ref": "analyticsplooralistPinpointId"
-											},
-											"/*"
+											}
 										]
 									]
 								}

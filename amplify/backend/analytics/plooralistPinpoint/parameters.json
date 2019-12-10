@@ -1,10 +1,10 @@
 {
     "appName": "plooralistPinpoint",
-    "roleName": "pinpointLambdaRole53d4ea03",
-    "cloudWatchPolicyName": "cloudWatchPolicy53d4ea03",
-    "pinpointPolicyName": "pinpointPolicy53d4ea03",
-    "authPolicyName": "pinpoint_amplify_53d4ea03",
-    "unauthPolicyName": "pinpoint_amplify_53d4ea03",
+    "roleName": "pinpointLambdaRole7ff53cd1",
+    "cloudWatchPolicyName": "cloudWatchPolicy7ff53cd1",
+    "pinpointPolicyName": "pinpointPolicy7ff53cd1",
+    "authPolicyName": "pinpoint_amplify_7ff53cd1",
+    "unauthPolicyName": "pinpoint_amplify_7ff53cd1",
     "authRoleName": {
         "Ref": "AuthRoleName"
     },
