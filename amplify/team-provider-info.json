@@ -13,7 +13,15 @@
         },
         "categories": {
             "function": {
-                "plooralistAuthPostConfirmation": {}
+                "plooralistAuthPostConfirmation": {},
+                "plooralistCreateUserAndSinglePanel": {},
+                "plooralistCreateCouplPanelsFromUsersAreContacts": {},
+                "plooralistListUsersAreContacts": {},
+                "plooralistCreatePanelAndMembers": {},
+                "plooralistMemberStream": {},
+                "plooralistPanelStream": {},
+                "plooralistTaskStream": {},
+                "plooralistPlaceNotificationStream": {}
             },
             "auth": {
                 "plooralistAuth": {}

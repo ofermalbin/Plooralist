@@ -33,9 +33,10 @@ exports.handler = async (event, context) => {
             TableName: MemberTable,
             IndexName: 'gsi-UserMembers',
             KeyConditionExpression: 'memberUserId = :userId',
-            FilterExpression: 'attribute_exists(coupleUserId)',
+            FilterExpression: 'coupleUserId <> :null',
             ExpressionAttributeValues: {
-              ':userId': userId
+              ':userId': userId,
+              ':null': null
             }
         };
 
@@ -50,11 +51,11 @@ exports.handler = async (event, context) => {
     const membersData = await getCouplesMembers();
     const members = membersData.Items;
     console.log('members', JSON.stringify(members));
-    const membersCouplesMUsersIds = members.map(member => member.coupleUserId);
-    console.log('membersCouplesMUsersIds', JSON.stringify(membersCouplesMUsersIds));
-    console.log('difference', JSON.stringify(_.difference(usersIds, membersCouplesMUsersIds)));
+    const membersCouplesUsersIds = members.map(member => member.coupleUserId);
+    console.log('membersCouplesUsersIds', JSON.stringify(membersCouplesUsersIds));
+    console.log('difference', JSON.stringify(_.difference(usersIds, membersCouplesUsersIds)));
 
-    const promises = _.difference(usersIds, membersCouplesMUsersIds).map(coupleUserId => {
+    const promises = _.difference(usersIds, membersCouplesUsersIds).map(coupleUserId => {
 
       const now = new Date();
       const panelId = uuidv4();

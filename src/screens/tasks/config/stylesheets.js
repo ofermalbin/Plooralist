@@ -26,11 +26,13 @@ export const rowTaskStyles = StyleSheet.create({
     fontSize: normalize(17),
     fontWeight: "bold",
     color: "#4f4f4f",
+    textAlign: 'left'
   },
   subtitle: {
     fontSize: normalize(12.7),
     fontWeight: '400',
     color: colors.grey3,
+    textAlign: 'left'
   },
   checkboxContainer: {
     width: normalize(37),
@@ -45,12 +47,14 @@ export const infoTaskStyles = StyleSheet.create({
   title: {
     fontSize: normalize(15),
     fontWeight: "bold",
-    color: "#4f4f4f"
+    color: "#4f4f4f",
+    textAlign: 'left'
   },
   lightTitle: {
     fontSize: normalize(15),
     fontWeight: "bold",
-    color: "#d7d7da"
+    color: "#d7d7da",
+    textAlign: 'left'
   },
   rightTitle: {
     fontSize: normalize(15),

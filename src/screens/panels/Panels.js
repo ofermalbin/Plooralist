@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, FlatList, Alert } from 'react-native';
-import { Button, Icon, Divider } from 'react-native-elements';
+import { Alert } from 'react-native';
+import { Button, Icon } from 'react-native-elements';
 
 import compose from 'lodash.flowright';
 import { graphql } from 'react-apollo';
@@ -28,30 +28,42 @@ class Panels extends React.Component {
     super(props);
 
     props.navigation.setParams({onSelectPress: this.onSelectPress.bind(this)});
+    this.streamMemberSubscribeToMore = this.streamMemberSubscribeToMore.bind(this);
   }
 
   componentDidMount() {
     const { currentUser } = this.props;
     if (currentUser) {
-      this.props.membersData.subscribeToMore(
-        buildSubscription(
-          {query: gql(onCreateStreamMember), variables: {panelUserId: currentUser.id}},
-          {query: gql(listMembersForUser), variables: listMembersForUserVariables(currentUser.id)}
-        )
-      );
-      this.props.membersData.subscribeToMore(
-        buildSubscription(
-          {query: gql(onUpdateStreamMember), variables: {panelUserId: currentUser.id}},
-          {query: gql(listMembersForUser), variables: listMembersForUserVariables(currentUser.id)}
-        )
-      );
-      this.props.membersData.subscribeToMore(
-        buildSubscription(
-          {query: gql(onDeleteStreamMember), variables: {panelUserId: currentUser.id}},
-          {query: gql(listMembersForUser), variables: listMembersForUserVariables(currentUser.id)}
-        )
-      );
+      this.streamMemberSubscribeToMore(currentUser);
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { currentUser } = nextProps;
+    if (!this.props.currentUser && currentUser) {
+      this.streamMemberSubscribeToMore(currentUser);
+    }
+  }
+
+  streamMemberSubscribeToMore(currentUser) {
+    this.props.membersData.subscribeToMore(
+      buildSubscription(
+        {query: gql(onCreateStreamMember), variables: {memberUserId: currentUser.id}},
+        {query: gql(listMembersForUser), variables: listMembersForUserVariables(currentUser.id)}
+      )
+    );
+    this.props.membersData.subscribeToMore(
+      buildSubscription(
+        {query: gql(onUpdateStreamMember), variables: {memberUserId: currentUser.id}},
+        {query: gql(listMembersForUser), variables: listMembersForUserVariables(currentUser.id)}
+      )
+    );
+    this.props.membersData.subscribeToMore(
+      buildSubscription(
+        {query: gql(onDeleteStreamMember), variables: {memberUserId: currentUser.id}},
+        {query: gql(listMembersForUser), variables: listMembersForUserVariables(currentUser.id)}
+      )
+    );
   }
 
   onSelectPress() {
@@ -76,22 +88,26 @@ class Panels extends React.Component {
 
 const enhance = withCurrentUser(withUsersAreContacts(compose(
   graphql(gql(listMembersForUser), {
-    options: props => ({
-      fetchPolicy: 'cache-and-network',
-      variables: listMembersForUserVariables(props.currentUser ? props.currentUser.id : null)
-    }),
+    options: props => {
+      const { currentUser } = props;
+      return ({
+        fetchPolicy: 'cache-and-network',
+        variables: listMembersForUserVariables(currentUser ? currentUser.id : null)
+      })
+    },
     props: props => ({
       members: props.data.listMembersForUser ? props.data.listMembersForUser.items : [],
       membersData: props.data
     }),
   }),
   graphql(gql(createCouplPanelsFromUsersAreContacts), {
-    options: props => ({
-      fetchPolicy: 'cache-and-network',
-      variables: {
-        usersIds: props.usersAreContacts ? props.usersAreContacts.map(user => user.id) : null
-      }
-    }),
+    options: props => {
+      const { usersAreContacts } = props;
+      return ({
+        fetchPolicy: 'cache-and-network',
+        variables: {usersIds: usersAreContacts.map(user => user.id)}
+      })
+    },
   }),
 ) (Panels)));
 
