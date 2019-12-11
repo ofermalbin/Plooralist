@@ -24,12 +24,12 @@ export const updateEndpoint = async (userId, analyticsAppId) => {
     }
     else if (Platform.OS === 'android') {
       deviceToken = await AsyncStorage.getItem('@deviceToken');
-      if (!deviceToken) {
-        deviceToken = await AsyncStorage.getItem('push_token' + analyticsAppId);
-        //Alert.alert('push_token', deviceToken || 'Null');
+      if (deviceToken) {
+        //Alert.alert('Android Device @deviceToken', deviceToken);
       }
       else {
-        //Alert.alert('Android Device @deviceToken', deviceToken);
+        deviceToken = await AsyncStorage.getItem('push_token' + analyticsAppId);
+        //Alert.alert('push_token', deviceToken || 'Null');
       }
     }
   } catch(e) {
