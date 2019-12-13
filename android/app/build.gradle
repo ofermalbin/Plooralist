@@ -83,7 +83,6 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
-apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -135,8 +134,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true
-        versionCode 75
-        versionName "1.0.75"
+        versionCode 78
+        versionName "1.0.78"
     }
     splits {
         abi {
@@ -183,8 +182,6 @@ android {
 }
 
 dependencies {
-    implementation project(':@aws-amplify_pushnotification')
-    implementation project(':react-native-code-push')
     implementation 'androidx.multidex:multidex:2.0.0'
     implementation 'io.radar:sdk:2.1.+'
     implementation 'com.google.firebase:firebase-messaging:20.0.0'

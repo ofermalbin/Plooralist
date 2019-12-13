@@ -98,13 +98,13 @@ class InfoTeamPanel extends React.Component {
       updatePhoto: async (photo) => {
         this.setState({source: photo});
         const awsKey = `${uuid.v1()}.jpeg`;
-        const { access, key } = await storeFileInS3(photo, awsKey, "public");
+        const url = await storeFileInS3(photo, awsKey, "public");
         const input = {
           id: panel.id,
           expectedVersion: panel.version,
-          imgKey: key
+          imgKey: url
         };
-        const offline = Object.assign(panel, {offline: true, imgKey: key, updatedAt: (new Date()).toISOString()});
+        const offline = Object.assign(panel, {offline: true, imgKey: url, updatedAt: (new Date()).toISOString()});
         this.props.updatePanel({...offline, input});
       }
     });

@@ -93,13 +93,13 @@ class CurrentUserInfo extends React.Component {
       updatePhoto: async (photo) => {
         this.setState({source: photo});
         const awsKey = `user/${currentUser.id}/${uuid.v1()}.jpeg`;
-        const { access, key } = await storeFileInS3(photo, awsKey, "public");
+        const url = await storeFileInS3(photo, awsKey, "public");
         const input = {
           id: currentUser.id,
           expectedVersion: currentUser.version,
-          imgKey: key,
+          imgKey: url,
         };
-        const offline = Object.assign(currentUser, {offline: true, imgKey: key, updatedAt: (new Date()).toISOString()});
+        const offline = Object.assign(currentUser, {offline: true, imgKey: url, updatedAt: (new Date()).toISOString()});
         this.props.updateUser({...offline, input});
       }
     });

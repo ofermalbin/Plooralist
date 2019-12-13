@@ -7,7 +7,6 @@
 
 #import <RNCPushNotificationIOS.h>
 
-#import <CodePush/CodePush.h>
 #import "RNSplashScreen.h"
 
 #import <RadarSDK/RadarSDK.h>
@@ -57,7 +56,7 @@
 #if DEBUG
   return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 #else
-  return [CodePush bundleURL];
+  return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
 }
 

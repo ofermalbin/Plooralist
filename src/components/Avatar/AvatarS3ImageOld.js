@@ -5,10 +5,6 @@ import { Storage } from 'aws-amplify';
 
 import { Avatar } from 'react-native-elements';
 
-import FastImage from 'react-native-fast-image';
-
-import aws_exports from '../../aws-exports';
-
 const __signature = (full_name='') => {
   const name = full_name.toUpperCase().split(' ');
   let signature = '';
@@ -47,30 +43,26 @@ export default class AvatarS3Image extends React.Component {
       this.state = { source: null };
   }
 
-  getImageSource() {
+  async getImageSource() {
     const { imgKey, level } = this.props;
-    /*await Storage.get(imgKey, {level : level? level : 'public'})
+    await Storage.get(imgKey, { level : level? level : 'public'})
       .then(url => {
         this.setState({
             source: { uri: url }
         });
       })
-      .catch(err => alert(err));*/
-      this.setState({
-        source: { uri: imgKey }
-        //source: { uri: `https://${aws_exports.aws_user_files_s3_bucket}.s3.amazonaws.com/public/${imgKey}` }
-      });
+      .catch(err => alert(err));
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { imgKey, source } = this.props;
     this.setState({
       source: source ? { uri: source } : null
     });
-    imgKey && this.getImageSource();
+    imgKey && await this.getImageSource();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps, prevState) {
     const { imgKey, source } = this.props;
     if (source !== prevProps.source) {
       this.setState({
@@ -78,34 +70,30 @@ export default class AvatarS3Image extends React.Component {
       });
     }
     if (imgKey !== prevProps.imgKey) {
-      imgKey ? this.getImageSource() : this.setState({
+      imgKey ? await this.getImageSource() : this.setState({
         source: null
       });
     }
   }
 
   render() {
-    const { name, onPress, editButton, showEditButton } = this.props;
-    if (!this.state.source) {
-      return (
-        <Avatar
-          containerStyle={this.props.containerStyle}
-          rounded={this.props.rounded}
-          icon={(!name) ? {name: "add-a-photo"} : null}
-          title={name ? __signature(name) : null}
-          titleStyle={this.props.titleStyle}
-          placeholderStyle={name ? {backgroundColor: __getColor(name)} : null}
-          onPress={onPress ? () => onPress(this.state.source) : null}
-          editButton={editButton}
-          showEditButton={showEditButton}
-        />
-      )
-    }
+    const { name, onPress } = this.props;
     return (
-      <FastImage
+      <Avatar
+        containerStyle={this.props.containerStyle}
+        rounded={this.props.rounded}
         source={this.state.source}
-        onError={(e) => alert(JSON.stringify(e.nativeEvent))}
-        style={this.props.containerStyle}
+        icon={(!name) ? {name: "add-a-photo"} : null}
+        title={(!this.state.source && name) ? __signature(name) : null}
+        titleStyle={this.props.titleStyle}
+        placeholderStyle={(!this.state.source && name) ? {backgroundColor: __getColor(name)} : null}
+        onPress={onPress ? () => onPress(this.state.source) : null}
+        activeOpacity={0.2}
+        editButton={this.props.editButton}
+        showEditButton={this.props.showEditButton}
+        imageProps={this.state.source && {
+          PlaceholderContent: <ActivityIndicator color='white'/>
+        }}
       />
     )
   }
