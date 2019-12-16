@@ -62,6 +62,8 @@ class TitleCouplePanel extends React.Component {
         <View style={titlePanelStyles.container}>
           <AvatarS3Image
             imgKey={imgKey}
+            level='protected'
+            identityId={couple.user.identityId}
             name={name}
             containerStyle={titlePanelStyles.avatarContainer}
             rounded={true}

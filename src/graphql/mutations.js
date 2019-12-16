@@ -33,6 +33,8 @@ export const createPanelAndMembers = `mutation CreatePanelAndMembers(
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -73,6 +75,8 @@ export const createStreamMember = `mutation CreateStreamMember($input: StreamMem
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -113,6 +117,8 @@ export const updateStreamMember = `mutation UpdateStreamMember($input: StreamMem
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -153,6 +159,8 @@ export const deleteStreamMember = `mutation DeleteStreamMember($input: StreamMem
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -182,6 +190,8 @@ export const createUser = `mutation CreateUser(
   createUser(input: $input, condition: $condition) {
     id
     offline
+    active
+    identityId
     phoneNumber
     version
     createdAt
@@ -200,6 +210,8 @@ export const updateUser = `mutation UpdateUser(
   updateUser(input: $input, condition: $condition) {
     id
     offline
+    active
+    identityId
     phoneNumber
     version
     createdAt
@@ -218,6 +230,8 @@ export const deleteUser = `mutation DeleteUser(
   deleteUser(input: $input, condition: $condition) {
     id
     offline
+    active
+    identityId
     phoneNumber
     version
     createdAt
@@ -298,6 +312,8 @@ export const createMember = `mutation CreateMember(
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -341,6 +357,8 @@ export const updateMember = `mutation UpdateMember(
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -384,6 +402,8 @@ export const deleteMember = `mutation DeleteMember(
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -426,6 +446,8 @@ export const createTask = `mutation CreateTask(
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -458,6 +480,8 @@ export const updateTask = `mutation UpdateTask(
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -490,6 +514,8 @@ export const deleteTask = `mutation DeleteTask(
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -520,6 +546,8 @@ export const createSubtask = `mutation CreateSubtask(
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -550,6 +578,8 @@ export const updateSubtask = `mutation UpdateSubtask(
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -580,6 +610,8 @@ export const deleteSubtask = `mutation DeleteSubtask(
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -738,6 +770,8 @@ export const createMessage = `mutation CreateMessage(
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -770,6 +804,8 @@ export const updateMessage = `mutation UpdateMessage(
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -802,6 +838,8 @@ export const deleteMessage = `mutation DeleteMessage(
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt

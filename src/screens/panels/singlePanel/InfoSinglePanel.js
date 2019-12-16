@@ -30,6 +30,8 @@ class InfoSinglePanel extends React.Component {
       <View>
         <AvatarS3Image
           imgKey={imgKey}
+          level='protected'
+          identityId={currentUser.identityId}
           name={name}
           containerStyle={infoAvatarStyles.container}
           titleStyle={infoAvatarStyles.title}
@@ -44,6 +46,9 @@ class InfoSinglePanel extends React.Component {
           leftAvatar={
             <AvatarS3Image
               imgKey={imgKey}
+              imgKey={imgKey}
+              level='protected'
+              identityId={currentUser.identityId}
               name={name}
               containerStyle={infoListStyles.avatarContainer}
               rounded={true}

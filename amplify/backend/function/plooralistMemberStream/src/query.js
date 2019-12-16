@@ -17,6 +17,8 @@ module.exports = {
       user {
         id
         offline
+        active
+        identityId
         phoneNumber
         version
         createdAt

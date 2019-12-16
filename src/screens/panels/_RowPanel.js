@@ -43,7 +43,7 @@ class _RowPanel extends React.Component {
   }
 
   render() {
-    const { member, panel, name, imgKey } = this.props;
+    const { member, panel, name, imgKey, level, identityId } = this.props;
 
     const isBlock = isPanelBlock(member);
 
@@ -56,6 +56,8 @@ class _RowPanel extends React.Component {
         leftAvatar={
           <AvatarS3Image
             imgKey={imgKey}
+            level={level}
+            identityId={identityId}
             name={name}
             containerStyle={rowPanelStyles.avatarContainer}
             rounded={true}

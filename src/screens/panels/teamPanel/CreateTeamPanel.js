@@ -112,14 +112,14 @@ class CreateTeamPanel extends React.Component {
     };
 
     if(this.state.source) {
-      alert('source');
-      this.setState({upload: true});
       const awsKey = `${uuid.v1()}.jpeg`;
-      const { access, key } = await storeFileInS3(this.state.source, awsKey, "public");
+      this.setState({upload: true});
+      const result = await storeFileInS3(this.state.source, awsKey, "public");
       this.props.createPanelAndMembers({
-          ...Object.assign({}, offline, {'panel.imgKey': key}),
-          ...Object.assign({}, input, {imgKey: key})
+          ...Object.assign({}, offline, {'panel.imgKey': result.key}),
+          ...Object.assign({}, input, {imgKey: result.key})
       });
+      this.setState({upload: false});
       this.props.navigation.navigate('Panels');
     }
     else {

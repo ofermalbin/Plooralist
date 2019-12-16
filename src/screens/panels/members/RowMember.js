@@ -105,6 +105,8 @@ class RowMember extends React.Component {
           leftAvatar={
             <AvatarS3Image
               imgKey={member.user.imgKey}
+              level='protected'
+              identityId={member.user.identityId}
               name={name}
               containerStyle={rowPanelStyles.avatarContainer}
               rounded={true}

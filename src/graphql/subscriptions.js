@@ -19,6 +19,8 @@ export const onCreateStreamMember = `subscription OnCreateStreamMember($memberUs
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -59,6 +61,8 @@ export const onUpdateStreamMember = `subscription OnUpdateStreamMember($memberUs
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -99,6 +103,8 @@ export const onDeleteStreamMember = `subscription OnDeleteStreamMember($memberUs
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -139,6 +145,8 @@ export const onCreateMember = `subscription OnCreateMember($memberPanelId: Strin
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -179,6 +187,8 @@ export const onUpdateMember = `subscription OnUpdateMember($memberPanelId: Strin
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -219,6 +229,8 @@ export const onDeleteMember = `subscription OnDeleteMember($memberPanelId: Strin
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -284,6 +296,8 @@ export const onCreateTask = `subscription OnCreateTask($taskPanelId: String!) {
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -313,6 +327,8 @@ export const onUpdateTask = `subscription OnUpdateTask($taskPanelId: String!) {
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -342,6 +358,8 @@ export const onDeleteTask = `subscription OnDeleteTask($taskPanelId: String!) {
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -369,6 +387,8 @@ export const onCreateSubtask = `subscription OnCreateSubtask($subtaskTaskId: Str
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -396,6 +416,8 @@ export const onUpdateSubtask = `subscription OnUpdateSubtask($subtaskTaskId: Str
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -423,6 +445,8 @@ export const onDeleteSubtask = `subscription OnDeleteSubtask($subtaskTaskId: Str
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -560,6 +584,8 @@ export const onCreateTaskMessage = `subscription OnCreateTaskMessage($messageTas
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -589,6 +615,8 @@ export const onUpdateTaskMessage = `subscription OnUpdateTaskMessage($messageTas
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -618,6 +646,8 @@ export const onDeleteTaskMessage = `subscription OnDeleteTaskMessage($messageTas
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt

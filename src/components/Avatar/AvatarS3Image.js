@@ -5,9 +5,10 @@ import { Storage } from 'aws-amplify';
 
 import { Avatar } from 'react-native-elements';
 
-import FastImage from 'react-native-fast-image';
-
 import aws_exports from '../../aws-exports';
+
+import FastImage from 'react-native-fast-image';
+import URL from 'url';
 
 const __signature = (full_name='') => {
   const name = full_name.toUpperCase().split(' ');
@@ -44,42 +45,49 @@ export default class AvatarS3Image extends React.Component {
   constructor(props) {
       super(props);
 
-      this.state = { source: null };
+      const { source } = props;
+      this.state = {
+        source: source,
+        query: null,
+        loading: false
+      };
   }
 
-  getImageSource() {
-    const { imgKey, level } = this.props;
-    /*await Storage.get(imgKey, {level : level? level : 'public'})
-      .then(url => {
+  async getImageSource() {
+    const { imgKey, level='public', identityId } = this.props;
+    const uri = `https://${aws_exports.aws_user_files_s3_bucket}.s3.amazonaws.com/${level}/${(level != 'public') ? identityId : ''}${(level != 'public') ? '/' : ''}${imgKey}`;
+    /*const params = Object.assign({}, {level: level}, (level === 'protected') && {identityId: identityId});
+    await Storage.get(imgKey, params)
+      .then(presignedUrl => {
+        const url = URL.parse(presignedUrl, true);
+        const uri = url.href.split('?')[0];
         this.setState({
-            source: { uri: url }
+            source: uri,
+            query: url.query
         });
       })
       .catch(err => alert(err));*/
       this.setState({
-        source: { uri: imgKey }
-        //source: { uri: `https://${aws_exports.aws_user_files_s3_bucket}.s3.amazonaws.com/public/${imgKey}` }
+          source: uri,
       });
   }
 
-  componentDidMount() {
-    const { imgKey, source } = this.props;
-    this.setState({
-      source: source ? { uri: source } : null
-    });
-    imgKey && this.getImageSource();
+  async componentDidMount() {
+    const { imgKey } = this.props;
+    imgKey && await this.getImageSource();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { imgKey, source } = this.props;
+  async componentDidUpdate(prevProps, prevState) {
+    const { imgKey, level, source } = this.props;
     if (source !== prevProps.source) {
       this.setState({
-        source: source ? { uri: source } : null
+        source: source
       });
     }
     if (imgKey !== prevProps.imgKey) {
-      imgKey ? this.getImageSource() : this.setState({
-        source: null
+      imgKey ? await this.getImageSource() : this.setState({
+        source: null,
+        query: null
       });
     }
   }
@@ -91,22 +99,31 @@ export default class AvatarS3Image extends React.Component {
         <Avatar
           containerStyle={this.props.containerStyle}
           rounded={this.props.rounded}
+          //source={this.state.source}
           icon={(!name) ? {name: "add-a-photo"} : null}
-          title={name ? __signature(name) : null}
+          title={(!this.state.source && name) ? __signature(name) : null}
           titleStyle={this.props.titleStyle}
-          placeholderStyle={name ? {backgroundColor: __getColor(name)} : null}
+          placeholderStyle={(!this.state.source && name) ? {backgroundColor: __getColor(name)} : null}
           onPress={onPress ? () => onPress(this.state.source) : null}
-          editButton={editButton}
-          showEditButton={showEditButton}
+          activeOpacity={0.2}
+          editButton={this.props.editButton}
+          showEditButton={this.props.showEditButton}
         />
       )
     }
     return (
       <FastImage
-        source={this.state.source}
-        onError={(e) => alert(JSON.stringify(e.nativeEvent))}
+        source={{
+          uri :this.state.source,
+          //headers: this.state.query,
+        }}
+        //onError={(e) => alert(JSON.stringify(e.nativeEvent))}
         style={this.props.containerStyle}
-      />
+        onLoadStart={() => { this.setState({ loading: true })} }
+        onLoadEnd={() => { this.setState({ loading: false })} }
+      >
+        <ActivityIndicator animating={ this.state.loading } />
+      </FastImage>
     )
   }
 }

@@ -48,6 +48,8 @@ exports.handler = async (event, context) => {
           version: 1,
           createdAt: now.toISOString(),
           updatedAt: now.toISOString(),
+          active: true,
+          identityId: null,
           phoneNumber: event.request.userAttributes.phone_number,
           name: event.request.userAttributes.name,
           email: null,

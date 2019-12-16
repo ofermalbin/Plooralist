@@ -71,6 +71,8 @@ class InfoCouplePanel extends React.Component {
         <AvatarS3Image
           imgKey={imgKey}
           name={name}
+          level='protected'
+          identityId={couple.user.identityId}
           containerStyle={infoAvatarStyles.container}
           titleStyle={infoAvatarStyles.title}
           rounded={false}

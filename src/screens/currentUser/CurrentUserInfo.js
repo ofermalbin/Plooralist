@@ -92,14 +92,14 @@ class CurrentUserInfo extends React.Component {
       },
       updatePhoto: async (photo) => {
         this.setState({source: photo});
-        const awsKey = `user/${currentUser.id}/${uuid.v1()}.jpeg`;
-        const url = await storeFileInS3(photo, awsKey, "public");
+        const awsKey = `${uuid.v1()}.jpeg`;
+        const result = await storeFileInS3(photo, awsKey, "protected", currentUser.identityId);
         const input = {
           id: currentUser.id,
           expectedVersion: currentUser.version,
-          imgKey: url,
+          imgKey: result.key,
         };
-        const offline = Object.assign(currentUser, {offline: true, imgKey: url, updatedAt: (new Date()).toISOString()});
+        const offline = Object.assign(currentUser, {offline: true, updatedAt: (new Date()).toISOString()});
         this.props.updateUser({...offline, input});
       }
     });
@@ -147,7 +147,13 @@ class CurrentUserInfo extends React.Component {
       [
         {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
         {text: 'OK', onPress: () => {
-          this.props.deleteUser(Object.assign(currentUser, { isDeleted: true }));
+          const input = {
+            id: currentUser.id,
+            expectedVersion: currentUser.version,
+            active: false,
+          };
+          const offline = Object.assign(currentUser, {offline: true, updatedAt: (new Date()).toISOString()});
+          this.props.updateUser({...offline, input});
           this.deleteCognitoUser();
           this.props.navigation.goBack();
         }},
@@ -171,6 +177,8 @@ class CurrentUserInfo extends React.Component {
         <AvatarS3Image
           source={this.state.source}
           imgKey={currentUser.imgKey}
+          level='protected'
+          identityId={currentUser.identityId}
           name={currentUser.name}
           containerStyle={currentUserAvatarStyles.container}
           titleStyle={currentUserAvatarStyles.title}
@@ -191,6 +199,8 @@ class CurrentUserInfo extends React.Component {
             <AvatarS3Image
               source={this.state.source}
               imgKey={currentUser.imgKey}
+              level='protected'
+              identityId={currentUser.identityId}
               name={currentUser.name}
               containerStyle={currentUserStyles.avatarContainer}
               rounded={true}

@@ -54,7 +54,7 @@ class RowCouplePanel extends React.Component {
     }
 
     return (
-      <_RowPanel {...this.props} name={getUserName(couple.user, contacts)} imgKey={couple.user.imgKey} />
+      <_RowPanel {...this.props} name={getUserName(couple.user, contacts)} imgKey={couple.user.imgKey} level='protected' identityId={couple.user.identityId} />
     )
   }
 };

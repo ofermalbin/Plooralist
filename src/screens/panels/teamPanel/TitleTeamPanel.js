@@ -53,6 +53,7 @@ class TitleTeamPanel extends React.Component {
         <View style={titlePanelStyles.container}>
           <AvatarS3Image
             imgKey={imgKey}
+            level='public'
             name={name}
             containerStyle={titlePanelStyles.avatarContainer}
             rounded={true}

@@ -5,6 +5,8 @@ type User @model(subscriptions: null) @key(name: "gsi-PhoneNumber", fields: ["ph
     ]) @versioned {
   id: ID!
   offline: Boolean
+  active: Boolean!
+  identityId: String
   phoneNumber: String!
 	version: Int
 	createdAt: String
@@ -133,7 +135,6 @@ type Message @model(subscriptions: null) @key(name: "gsi-TaskMessages", fields: 
 type Query {
   listUsersAreContacts(contacts: [String]): [User] @function(name: "plooralistListUsersAreContacts-${env}")
   createCouplPanelsFromUsersAreContacts(usersIds: [ID!]): String @function(name: "plooralistCreateCouplPanelsFromUsersAreContacts-${env}")
-  getCurrentUser: User
 }
 
 type Mutation {

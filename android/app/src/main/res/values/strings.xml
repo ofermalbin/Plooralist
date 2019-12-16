@@ -1,4 +1,3 @@
 <resources>
     <string name="app_name">Plooralist</string>
-    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">SrVRXBrXpG4MPxM3noNV7wKM4LL_5dfa2df8-a528-42f7-9c88-21feeebfff68</string>
 </resources>

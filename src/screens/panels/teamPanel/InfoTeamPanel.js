@@ -98,13 +98,13 @@ class InfoTeamPanel extends React.Component {
       updatePhoto: async (photo) => {
         this.setState({source: photo});
         const awsKey = `${uuid.v1()}.jpeg`;
-        const url = await storeFileInS3(photo, awsKey, "public");
+        const result = await storeFileInS3(photo, awsKey, "public");
         const input = {
           id: panel.id,
           expectedVersion: panel.version,
-          imgKey: url
+          imgKey: result.key
         };
-        const offline = Object.assign(panel, {offline: true, imgKey: url, updatedAt: (new Date()).toISOString()});
+        const offline = Object.assign(panel, {offline: true, updatedAt: (new Date()).toISOString()});
         this.props.updatePanel({...offline, input});
       }
     });
@@ -123,6 +123,7 @@ class InfoTeamPanel extends React.Component {
         <AvatarS3Image
           source={this.state.source}
           imgKey={panel.imgKey}
+          level='public'
           name={panel.name}
           containerStyle={infoAvatarStyles.container}
           titleStyle={infoAvatarStyles.title}
@@ -141,6 +142,7 @@ class InfoTeamPanel extends React.Component {
             <AvatarS3Image
               source={this.state.source}
               imgKey={panel.imgKey}
+              level='public'
               name={panel.name}
               containerStyle={infoListStyles.avatarContainer}
               rounded={true} showEditButton={true}

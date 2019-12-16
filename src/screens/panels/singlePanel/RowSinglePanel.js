@@ -12,9 +12,9 @@ class RowSinglePanel extends React.Component {
 
   render() {
     const { member, currentUser } = this.props;
-    
+
     return (
-      <_RowPanel {...this.props} name={'Me'} imgKey={currentUser.imgKey} />
+      <_RowPanel {...this.props} name={'Me'} imgKey={currentUser.imgKey} level='protected' identityId={currentUser.identityId} />
     )
   }
 };

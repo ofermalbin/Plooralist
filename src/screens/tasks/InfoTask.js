@@ -33,7 +33,6 @@ import Loading from '../../components/Loading';
 
 import TimeNotifications from '../timeNotifications';
 import PlaceNotifications from '../placeNotifications';
-import MuteTask from './MuteTask';
 import DeleteTask from './DeleteTask';
 
 import { listTasksForPanelVariables } from './util';
@@ -189,7 +188,6 @@ class InfoTask extends React.Component {
           leftIcon={{ type: 'material', name: 'attach-file', iconStyle: infoTaskStyles.leftIcon }}
           onPress={this.onMessagesPress.bind(this)}
         />
-        <MuteTask {...this.props} />
         {isOwner && <DeleteTask {...this.props} />}
         <View style={[createByAtStyles.container, {flexDirection: 'row'}]}>
           <Text style={createByAtStyles.text}>{`${'created by '}`}</Text>

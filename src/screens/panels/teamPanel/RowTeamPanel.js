@@ -12,7 +12,7 @@ class RowTeamPanel extends React.Component {
     const { member } = this.props;
 
     return (
-      <_RowPanel {...this.props} name={member.panel.name} imgKey={member.panel.imgKey} />
+      <_RowPanel {...this.props} name={member.panel.name} imgKey={member.panel.imgKey} level='public' />
     )
   }
 };

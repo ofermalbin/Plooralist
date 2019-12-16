@@ -32,6 +32,8 @@ class RowViewPotentialUser extends React.Component {
         leftAvatar={
           <AvatarS3Image
             imgKey={this.props.imgKey}
+            level='protected'
+            identityId={this.props.identityId}
             name={name}
             containerStyle={rowPanelStyles.avatarContainer}
             rounded={true}

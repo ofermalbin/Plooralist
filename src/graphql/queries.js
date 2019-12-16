@@ -5,6 +5,8 @@ export const listUsersAreContacts = `query ListUsersAreContacts($contacts: [Stri
   listUsersAreContacts(contacts: $contacts) {
     id
     offline
+    active
+    identityId
     phoneNumber
     version
     createdAt
@@ -18,21 +20,6 @@ export const listUsersAreContacts = `query ListUsersAreContacts($contacts: [Stri
 `;
 export const createCouplPanelsFromUsersAreContacts = `query CreateCouplPanelsFromUsersAreContacts($usersIds: [ID!]) {
   createCouplPanelsFromUsersAreContacts(usersIds: $usersIds)
-}
-`;
-export const getCurrentUser = `query GetCurrentUser {
-  getCurrentUser {
-    id
-    offline
-    phoneNumber
-    version
-    createdAt
-    updatedAt
-    name
-    email
-    locale
-    imgKey
-  }
 }
 `;
 export const getTask = `query GetTask($id: ID!) {
@@ -52,6 +39,8 @@ export const getTask = `query GetTask($id: ID!) {
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -86,6 +75,8 @@ export const listTasks = `query ListTasks(
       user {
         id
         offline
+        active
+        identityId
         phoneNumber
         version
         createdAt
@@ -115,6 +106,8 @@ export const getSubtask = `query GetSubtask($id: ID!) {
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -147,6 +140,8 @@ export const listSubtasks = `query ListSubtasks(
       user {
         id
         offline
+        active
+        identityId
         phoneNumber
         version
         createdAt
@@ -268,6 +263,8 @@ export const getMessage = `query GetMessage($id: ID!) {
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -302,6 +299,8 @@ export const listMessages = `query ListMessages(
       user {
         id
         offline
+        active
+        identityId
         phoneNumber
         version
         createdAt
@@ -348,6 +347,8 @@ export const listTasksForPanel = `query ListTasksForPanel(
       user {
         id
         offline
+        active
+        identityId
         phoneNumber
         version
         createdAt
@@ -392,6 +393,8 @@ export const listSubtasksForTask = `query ListSubtasksForTask(
       user {
         id
         offline
+        active
+        identityId
         phoneNumber
         version
         createdAt
@@ -508,6 +511,8 @@ export const listMessagesForTask = `query ListMessagesForTask(
       user {
         id
         offline
+        active
+        identityId
         phoneNumber
         version
         createdAt
@@ -531,6 +536,8 @@ export const listUsers = `query ListUsers(
     items {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -548,6 +555,8 @@ export const getUser = `query GetUser($id: ID!) {
   getUser(id: $id) {
     id
     offline
+    active
+    identityId
     phoneNumber
     version
     createdAt
@@ -610,6 +619,8 @@ export const getMember = `query GetMember($id: ID!) {
     user {
       id
       offline
+      active
+      identityId
       phoneNumber
       version
       createdAt
@@ -655,6 +666,8 @@ export const listMembers = `query ListMembers(
       user {
         id
         offline
+        active
+        identityId
         phoneNumber
         version
         createdAt
@@ -712,6 +725,8 @@ export const listMembersForPanel = `query ListMembersForPanel(
       user {
         id
         offline
+        active
+        identityId
         phoneNumber
         version
         createdAt
@@ -769,6 +784,8 @@ export const listMembersForUser = `query ListMembersForUser(
       user {
         id
         offline
+        active
+        identityId
         phoneNumber
         version
         createdAt

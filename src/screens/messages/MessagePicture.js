@@ -38,8 +38,8 @@ class MessagePicture extends React.Component {
     const text = this.state.text ? this.state.text.trim() : null;
     const awsKey = `${uuid.v1()}.jpeg`;
     this.setState({upload: true});
-    const { access, key } = await storeFileInS3(picture, awsKey, "public");
-    const message = Object.assign({}, {text: text}, {imgKey: key});
+    const result = await storeFileInS3(picture, awsKey, "public");
+    const message = Object.assign({}, {text: text}, {imgKey: result.key});
     onSend([message]);
     navigation.goBack();
   }
