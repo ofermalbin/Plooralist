@@ -30,6 +30,8 @@ import { infoAvatarStyles, infoListStyles, createByAtStyles } from '../config/st
 import MutePanel from '../MutePanel';
 import BlockPanel from '../BlockPanel';
 
+import { listMembersForPanelVariables } from '../util';
+
 class InfoCouplePanel extends React.Component {
 
   constructor(props) {
@@ -41,19 +43,19 @@ class InfoCouplePanel extends React.Component {
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: listMembersForPanelVariables(memberPanelId)}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: listMembersForPanelVariables(memberPanelId)}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: listMembersForPanelVariables(memberPanelId)}
       )
     );
   }
@@ -87,7 +89,9 @@ class InfoCouplePanel extends React.Component {
             <AvatarS3Image
               imgKey={imgKey}
               name={name}
-              containerStyle={infoListStyles.avatarContainer}
+              level='protected'
+              identityId={couple.user.identityId}
+              size='medium'
               rounded={true}
             />
           }
@@ -107,9 +111,7 @@ export default compose(
   graphql(gql(listMembersForPanel), {
     options: props => ({
       fetchPolicy: 'cache-and-network',
-      variables: {
-        memberPanelId: props.member.memberPanelId
-      }
+      variables: listMembersForPanelVariables(props.member.memberPanelId)
     }),
     props: props => ({
       members: props.data.listMembersForPanel ? props.data.listMembersForPanel.items : [],

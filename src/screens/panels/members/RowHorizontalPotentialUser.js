@@ -32,15 +32,15 @@ class RowHorizontalPotentialUser extends React.Component {
             level='protected'
             identityId={user.identityId}
             name={name}
-            containerStyle={rowPanelStyles.avatarContainer}
+            size='medium'
             rounded={true}
             showEditButton={true}
             editButton={{
               name: 'delete-forever',
               type: 'material',
               size: 16,
-              onPress: this.onDeleteAvatarPress.bind(this)
             }}
+            onEditPress={this.onDeleteAvatarPress.bind(this)}
           />
         }
       />

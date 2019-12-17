@@ -72,11 +72,6 @@ export const infoTaskStyles = StyleSheet.create({
     height: normalize(15),
     width: normalize(15),
   },
-  avatarContainer: {
-    width: normalize(30.7),
-    height: normalize(30.7),
-    borderRadius: normalize(30.7/2)
-  },
   notificationText: {
     fontSize: normalize(12),
     fontWeight: "bold",

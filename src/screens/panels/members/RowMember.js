@@ -108,7 +108,7 @@ class RowMember extends React.Component {
               level='protected'
               identityId={member.user.identityId}
               name={name}
-              containerStyle={rowPanelStyles.avatarContainer}
+              size='medium'
               rounded={true}
             />
           }

@@ -59,6 +59,8 @@ module.exports = {
       user {
         id
         offline
+        active
+        identityId
         phoneNumber
         version
         createdAt
@@ -99,6 +101,8 @@ module.exports = {
       user {
         id
         offline
+        active
+        identityId
         phoneNumber
         version
         createdAt

@@ -42,11 +42,6 @@ export const rowPanelStyles = StyleSheet.create({
   rightIcon: {
     color: "#5fb8f6",
   },
-  avatarContainer: {
-    width: normalize(46.7),
-    height: normalize(46.7),
-    borderRadius: normalize(46.7/2)
-  },
   checkboxContainer: {
     width: normalize(37),
     height: normalize(37),
@@ -57,11 +52,6 @@ export const titlePanelStyles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  avatarContainer: {
-    width: normalize(30.7),
-    height: normalize(30.7),
-    borderRadius: normalize(30.7/2)
   },
   nameContainer: {
     paddingLeft: 10,

@@ -54,7 +54,7 @@ class RowPotentialUser extends React.Component {
             level='protected'
             identityId={user.identityId}
             name={name}
-            containerStyle={rowPanelStyles.avatarContainer}
+            size='medium'
             rounded={true}
           />
         }

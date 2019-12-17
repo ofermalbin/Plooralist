@@ -40,11 +40,6 @@ export const rowRowContactIsNotUserStyles = StyleSheet.create({
   rightIcon: {
     color: "#5fb8f6",
   },
-  avatarContainer: {
-    width: normalize(46.7),
-    height: normalize(46.7),
-    borderRadius: normalize(46.7/2)
-  },
   checkboxContainer: {
     width: normalize(37),
     height: normalize(37),

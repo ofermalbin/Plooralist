@@ -20,6 +20,8 @@ import { find } from 'lodash';
 
 import { getUserName } from '../../../util';
 
+import { listMembersForPanelVariables } from '../util';
+
 import { titlePanelStyles } from '../config/stylesheets';
 
 class TitleCouplePanel extends React.Component {
@@ -33,19 +35,19 @@ class TitleCouplePanel extends React.Component {
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: listMembersForPanelVariables(memberPanelId)}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: listMembersForPanelVariables(memberPanelId)}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: listMembersForPanelVariables(memberPanelId)}
       )
     );
   }
@@ -65,7 +67,7 @@ class TitleCouplePanel extends React.Component {
             level='protected'
             identityId={couple.user.identityId}
             name={name}
-            containerStyle={titlePanelStyles.avatarContainer}
+            size='small'
             rounded={true}
           />
           <View style={titlePanelStyles.nameContainer}>
@@ -81,9 +83,7 @@ export default compose(
   graphql(gql(listMembersForPanel), {
     options: props => ({
       fetchPolicy: 'cache-and-network',
-      variables: {
-        memberPanelId: props.member.memberPanelId
-      }
+      variables: listMembersForPanelVariables(props.member.memberPanelId)
     }),
     props: props => ({
       members: props.data.listMembersForPanel ? props.data.listMembersForPanel.items : [],

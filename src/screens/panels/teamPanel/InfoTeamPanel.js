@@ -39,6 +39,8 @@ import uuid from 'react-native-uuid';
 
 import { storeFileInS3 } from '../../../lib/s3';
 
+import { listMembersForPanelVariables } from '../util';
+
 const __capitalize_Words = function(str) {
   return str && str.replace (/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
@@ -58,19 +60,19 @@ class InfoTeamPanel extends React.Component {
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: listMembersForPanelVariables(memberPanelId)}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: listMembersForPanelVariables(memberPanelId)}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: listMembersForPanelVariables(memberPanelId)}
       )
     );
   }
@@ -127,9 +129,10 @@ class InfoTeamPanel extends React.Component {
           name={panel.name}
           containerStyle={infoAvatarStyles.container}
           titleStyle={infoAvatarStyles.title}
-          rounded={false} showEditButton={true}
+          rounded={false}
           showEditButton={isOwner}
-          editButton={{ size: 24, onPress: this.onEditAvatarPress.bind(this) }}
+          editButton={{ size: 24 }}
+          onEditPress={this.onEditAvatarPress.bind(this)}
         />
         <ListItem
           topDivider={true}
@@ -144,10 +147,10 @@ class InfoTeamPanel extends React.Component {
               imgKey={panel.imgKey}
               level='public'
               name={panel.name}
-              containerStyle={infoListStyles.avatarContainer}
+              size='medium'
               rounded={true} showEditButton={true}
               showEditButton={isOwner}
-              editButton={{ onPress: this.onEditAvatarPress.bind(this) }}
+              passedEditButton={{ onPress: this.onEditAvatarPress.bind(this) }}
             />
           }
           onPress={this.onEditNamePress.bind(this)}
@@ -171,9 +174,7 @@ export default compose(
   graphql(gql(listMembersForPanel), {
     options: props => ({
       fetchPolicy: 'cache-and-network',
-      variables: {
-        memberPanelId: props.member.memberPanelId
-      }
+      variables: listMembersForPanelVariables(props.member.memberPanelId)
     }),
     props: props => ({
       members: props.data.listMembersForPanel ? props.data.listMembersForPanel.items : [],

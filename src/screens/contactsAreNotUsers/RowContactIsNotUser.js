@@ -32,7 +32,11 @@ class RowContactIsNotUser extends React.Component {
         titleStyle={rowRowContactIsNotUserStyles.title}
         chevron={true}
         title={name}
-        leftAvatar={<AvatarS3Image name={name} containerStyle={rowRowContactIsNotUserStyles.avatarContainer} rounded={true} />}
+        leftAvatar={<AvatarS3Image
+          name={name}
+          size='medium'
+          rounded={true}
+        />}
         onPress={this.onPress.bind(this)}
       />
     )

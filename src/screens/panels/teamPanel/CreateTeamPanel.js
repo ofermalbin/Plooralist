@@ -149,7 +149,8 @@ class CreateTeamPanel extends React.Component {
           source={this.state.source}
           name={this.state.name}
           rounded={false}
-          editButton={{ size: 24, onPress: this.onEditAvatarPress.bind(this) }}
+          passedEditButton={{ size: 24 }}
+          onEditPress={this.onEditAvatarPress.bind(this)}
           showEditButton={true}
         />
       }
@@ -165,7 +166,7 @@ class CreateTeamPanel extends React.Component {
         }
         leftAvatar={
           <AvatarS3Image
-            containerStyle={infoListStyles.avatarContainer}
+            size='medium'
             source={this.state.source}
             name={this.state.name}
             rounded={true}

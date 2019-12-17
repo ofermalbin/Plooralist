@@ -59,7 +59,7 @@ class _RowPanel extends React.Component {
             level={level}
             identityId={identityId}
             name={name}
-            containerStyle={rowPanelStyles.avatarContainer}
+            size='medium'
             rounded={true}
           />
         }

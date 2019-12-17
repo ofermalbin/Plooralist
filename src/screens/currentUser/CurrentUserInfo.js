@@ -184,7 +184,8 @@ class CurrentUserInfo extends React.Component {
           titleStyle={currentUserAvatarStyles.title}
           rounded={false} showEditButton={true}
           showEditButton={true}
-          editButton={{ size: 24, onPress: this.onEditAvatarPress.bind(this) }}
+          editButton={{ size: 24 }}
+          onEditPress={this.onEditAvatarPress.bind(this)}
           disabled={currentUser.offline}
           disabledStyle={{backgroundColor: '#F0F8FF'}}
         />
@@ -202,10 +203,10 @@ class CurrentUserInfo extends React.Component {
               level='protected'
               identityId={currentUser.identityId}
               name={currentUser.name}
-              containerStyle={currentUserStyles.avatarContainer}
+              size='medium'
               rounded={true}
+              onEditPress={this.onEditAvatarPress.bind(this)}
               showEditButton={true}
-              editButton={{ onPress: this.onEditAvatarPress.bind(this) }}
             />
           }
           onPress={this.onNamePress.bind(this)}

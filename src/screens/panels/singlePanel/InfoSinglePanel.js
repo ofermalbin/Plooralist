@@ -50,7 +50,7 @@ class InfoSinglePanel extends React.Component {
               level='protected'
               identityId={currentUser.identityId}
               name={name}
-              containerStyle={infoListStyles.avatarContainer}
+              size='medium'
               rounded={true}
             />
           }

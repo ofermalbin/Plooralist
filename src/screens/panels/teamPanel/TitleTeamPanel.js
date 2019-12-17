@@ -14,7 +14,9 @@ import { AvatarS3Image } from '../../../components';
 
 import { titlePanelStyles } from '../config/stylesheets';
 
-import { ListHorizontalMembersNames } from '../members'
+import { ListHorizontalMembersNames } from '../members';
+
+import { listMembersForPanelVariables } from '../util';
 
 class TitleTeamPanel extends React.Component {
 
@@ -27,19 +29,19 @@ class TitleTeamPanel extends React.Component {
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: listMembersForPanelVariables(memberPanelId)}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: listMembersForPanelVariables(memberPanelId)}
       )
     );
     this.props.data.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
-        {query: gql(listMembersForPanel), variables: {memberPanelId: memberPanelId}}
+        {query: gql(listMembersForPanel), variables: listMembersForPanelVariables(memberPanelId)}
       )
     );
   }
@@ -55,7 +57,7 @@ class TitleTeamPanel extends React.Component {
             imgKey={imgKey}
             level='public'
             name={name}
-            containerStyle={titlePanelStyles.avatarContainer}
+            size='small'
             rounded={true}
           />
           <View style={titlePanelStyles.nameContainer}>
@@ -72,9 +74,7 @@ export default compose(
   graphql(gql(listMembersForPanel), {
     options: props => ({
       fetchPolicy: 'cache-and-network',
-      variables: {
-        memberPanelId: props.member.memberPanelId
-      }
+      variables: listMembersForPanelVariables(props.member.memberPanelId)
     }),
     props: props => ({
       members: props.data.listMembersForPanel ? props.data.listMembersForPanel.items : [],

@@ -25,7 +25,7 @@ class TitleSinglePanel extends React.Component {
             level='protected'
             identityId={currentUser.identityId}
             name={name}
-            containerStyle={titlePanelStyles.avatarContainer}
+            size='small'
             rounded={true}
           />
           <View style={titlePanelStyles.nameContainer}>
