@@ -33,9 +33,9 @@ class Messages extends React.Component {
   _toGiftedMessages(messages) {
     let image_index = 0;
     return (orderBy(messages, 'updatedAt', 'desc')).map((message) => {
-      const { id, messageUserId, user, imgKey, image } = message;
+      const { id, offline, messageUserId, user, imgKey, uri } = message;
       const message_user = Object.assign({}, user, { _id: messageUserId} );
-      return Object.assign({}, {_id: id}, pick(message, ['text', 'place', 'updatedAt']), {user: message_user}, imgKey && {imgKey: imgKey, image: 'yes!', image_index: image_index++});
+      return Object.assign({}, {_id: id, offline: offline}, pick(message, ['text', 'place', 'updatedAt']), {user: message_user}, imgKey && {imgKey: imgKey, image: 'yes!', image_index: image_index++}, uri && {uri: uri, image: 'yes!', image_index: image_index++});
     })
   }
 
@@ -65,29 +65,16 @@ class Messages extends React.Component {
 
   renderActions() {
     const options = {
-      'Take Picture': () => {
-        launchCamera({
-          updatePhoto: (photo) => this.props.navigation.navigate('MessagePicture', {onSend: this.onSend.bind(this), picture: photo})
-        })
-      },
-      'Choose Picture': () => {
-        launchImageLibrary({
-          updatePhoto: (photo) => this.props.navigation.navigate('MessagePicture', {onSend: this.onSend.bind(this), picture: photo})
-        })
-      },
-      'My Location': () => {
-        Geolocation.getCurrentPosition(
-          (position) => {
-            const place = {
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
-            }
-            this.props.onSend({
-              place: JSON.stringify(place),
-            })
+      'Take Picture': () => launchCamera({updatePhoto: (photo) => this.props.onSend({uri: photo})}),
+      'Choose Picture': () => launchImageLibrary({updatePhoto: (photo) => this.props.onSend({uri: photo})}),
+      'My Location': () => Geolocation.getCurrentPosition((position) => {
+          const place = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
           }
-        )
-      },
+          this.props.onSend({place: JSON.stringify(place)})
+        }
+      ),
       'Cancel': () => {},
     };
     return (

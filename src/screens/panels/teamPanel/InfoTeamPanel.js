@@ -7,6 +7,8 @@ import moment from 'moment/min/moment-with-locales.js';
 import { ListItem, Icon } from 'react-native-elements';
 
 import { AvatarS3Image } from '../../../components';
+import FastImage from 'react-native-fast-image';
+import aws_exports from '../../../aws-exports';
 
 import compose from 'lodash.flowright';
 import { graphql } from 'react-apollo';
@@ -101,13 +103,17 @@ class InfoTeamPanel extends React.Component {
         this.setState({source: photo});
         const awsKey = `${uuid.v1()}.jpeg`;
         const result = await storeFileInS3(photo, awsKey, "public");
-        const input = {
-          id: panel.id,
-          expectedVersion: panel.version,
-          imgKey: result.key
-        };
-        const offline = Object.assign(panel, {offline: true, updatedAt: (new Date()).toISOString()});
-        this.props.updatePanel({...offline, input});
+        const uri = `https://${aws_exports.aws_user_files_s3_bucket}.s3.amazonaws.com/public/${result.key}`;
+        FastImage.preload([{uri}])
+        setTimeout(() => {
+          const input = {
+            id: panel.id,
+            expectedVersion: panel.version,
+            imgKey: result.key
+          };
+          const offline = Object.assign(panel, {offline: true, updatedAt: (new Date()).toISOString()});
+          this.props.updatePanel({...offline, input});
+        }, 1000);
       }
     });
   }

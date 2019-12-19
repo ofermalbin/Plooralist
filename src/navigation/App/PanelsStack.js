@@ -7,7 +7,7 @@ import Tasks, { InfoTask, UpdateTaskName, UpdateTaskDescription } from '../../sc
 import { CreateTimeNotification, EditTimeNotification, EditTimeNotificationRecurrenceCustom } from '../../screens/timeNotifications';
 import { CreatePlaceNotification, EditPlaceNotification } from '../../screens/placeNotifications';
 import Subtasks, { EditSubtaskNameDescription } from '../../screens/subtasks';
-import { MessagePicture, TaskMessages } from '../../screens/messages';
+import { TaskMessages } from '../../screens/messages';
 import { Voice2Text } from '../../components/Voice';
 
 import PhotoMax from '../../screens/photos';
@@ -79,9 +79,6 @@ export default createStackNavigator({
   },
   EditPlaceNotification: {
     screen: EditPlaceNotification,
-  },
-  MessagePicture: {
-    screen: MessagePicture,
   },
   TaskMessages: {
     screen: TaskMessages,

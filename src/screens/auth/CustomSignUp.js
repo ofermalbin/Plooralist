@@ -11,8 +11,6 @@ const logger = new Logger('SignUp');
 
 import { parsePhoneNumberFromString, parsePhoneNumber, ParseError } from 'libphonenumber-js';
 
-import SplashScreen from 'react-native-splash-screen';
-
 export default class CustomSignUp extends SignUp {
 
   componentDidMount() {
@@ -20,7 +18,6 @@ export default class CustomSignUp extends SignUp {
     //const password = [1,4,3].map(function(len, i) { return Array(len).fill(chars[i]).map(function(x) { return x[Math.floor(Math.random() * x.length)] }).join('') }).concat().join('').split('').sort(function(){return 0.5-Math.random()}).join('');
     const password = '@Ofer270560';
     this.setState({password});
-    SplashScreen.hide();
   }
 
   signUp() {

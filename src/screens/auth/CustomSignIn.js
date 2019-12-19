@@ -6,7 +6,6 @@ import SplashScreen from 'react-native-splash-screen';
 export default class CustomSignIn extends SignIn {
 
   componentDidMount() {
-    //SplashScreen.hide();
-    this.changeState('signUp');
+    SplashScreen.hide();
   }
 }

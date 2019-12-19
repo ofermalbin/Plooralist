@@ -14,6 +14,9 @@ import { ListItem, Icon } from 'react-native-elements';
 import { normalize, colors } from  "react-native-elements";
 
 import { AvatarS3Image } from '../../components';
+import FastImage from 'react-native-fast-image';
+import aws_exports from '../../aws-exports';
+
 import Loading from '../../components/Loading';
 
 import { withCurrentUser } from '../../contexts';
@@ -93,14 +96,18 @@ class CurrentUserInfo extends React.Component {
       updatePhoto: async (photo) => {
         this.setState({source: photo});
         const awsKey = `${uuid.v1()}.jpeg`;
-        const result = await storeFileInS3(photo, awsKey, "protected", currentUser.identityId);
-        const input = {
-          id: currentUser.id,
-          expectedVersion: currentUser.version,
-          imgKey: result.key,
-        };
-        const offline = Object.assign(currentUser, {offline: true, updatedAt: (new Date()).toISOString()});
-        this.props.updateUser({...offline, input});
+        const result = await storeFileInS3(photo, awsKey, "protected");
+        const uri = `https://${aws_exports.aws_user_files_s3_bucket}.s3.amazonaws.com/protected/${currentUser.identityId}/${result.key}`;
+        FastImage.preload([{uri}])
+        setTimeout(() => {
+          const input = {
+            id: currentUser.id,
+            expectedVersion: currentUser.version,
+            imgKey: result.key,
+          };
+          const offline = Object.assign(currentUser, {offline: true, updatedAt: (new Date()).toISOString()});
+          this.props.updateUser({...offline, input});
+        }, 1000);
       }
     });
   }

@@ -114,7 +114,7 @@ const enhance = withCurrentUser(withUsersAreContacts(compose(
 enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerTitle: "Plooralistt",
+      headerTitle: "Plooralist",
       headerLeft: <Button
         type="clear"
         icon={{

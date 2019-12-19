@@ -2,6 +2,10 @@ import React from 'react';
 
 import { HeaderBackButton } from 'react-navigation-stack';
 
+import { GiftedChat } from 'react-native-gifted-chat';
+import FastImage from 'react-native-fast-image';
+import aws_exports from '../../aws-exports';
+
 import compose from 'lodash.flowright';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -15,7 +19,7 @@ import { onCreateTaskMessage, onUpdateTaskMessage, onDeleteTaskMessage } from '.
 
 import uuid from 'react-native-uuid';
 
-import { pick } from 'lodash';
+import { storeFileInS3 } from '../../lib/s3';
 
 import { withCurrentUser } from '../../contexts';
 
@@ -30,7 +34,7 @@ class TaskMessages extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: [],
+      messages: []
     };
   }
 
@@ -66,21 +70,22 @@ class TaskMessages extends React.Component {
     });
   }
 
-  onSend(message) {
-
+  createMessage(typeInput) {
     const { task } = this.props.navigation.state.params;
     const { currentUser } = this.props;
 
-    const input = {
+    const defaultInput = {
       id: uuid.v4(),
       messagePanelId: task.taskPanelId,
       messageTaskId: task.id,
       messageSubtaskId: null,
-      text: message.text || null,
-      imgKey: message.imgKey || null,
-      place: message.place || null,
+      text: null,
+      imgKey: null,
+      place: null,
       messageUserId: currentUser.id
     };
+
+    const input = Object.assign({}, defaultInput, typeInput);
 
     const now = new Date();
     const offline = {
@@ -92,6 +97,46 @@ class TaskMessages extends React.Component {
     };
 
     this.props.createMessage({...offline, input: input});
+  }
+
+  async createImageMessage(fileUri) {
+
+    const { task } = this.props.navigation.state.params;
+    const { currentUser } = this.props;
+
+    const now = new Date();
+
+    const tempMessage = {
+      id: uuid.v4(),
+      createdAt: now.toISOString(),
+      updatedAt: now.toISOString(),
+      uri: fileUri,
+      messageUserId: currentUser.id,
+      user: currentUser
+    };
+
+    this.setState(previousState => ({
+      messages: GiftedChat.append(previousState.messages, tempMessage),
+    }))
+
+    const awsKey = `${uuid.v1()}.jpeg`;
+    const result = await storeFileInS3(fileUri, awsKey, "public");
+    const uri = `https://${aws_exports.aws_user_files_s3_bucket}.s3.amazonaws.com/public/${result.key}`;
+    FastImage.preload([{uri}])
+    setTimeout(() => this.createMessage({imgKey: result.key}), 1000);
+  }
+
+  onSend(message) {
+
+    if (message.text) {
+      this.createMessage({text: message.text});
+    }
+    else if (message.uri) {
+      this.createImageMessage(message.uri);
+    }
+    else if (message.place) {
+      this.createMessage({place: message.place});
+    }
   }
 
   render() {

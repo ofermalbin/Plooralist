@@ -19,11 +19,13 @@ export default class CustomView extends React.Component {
 
   render() {
     if (this.props.currentMessage.place) {
+      const placeParse = JSON.parse(this.props.currentMessage.place);
+      const place = ((typeof placeParse) === 'string') ? JSON.parse(placeParse) : placeParse;
       return (
         <TouchableOpacity onPress={() => {
           const url = Platform.select({
-            ios: `http://maps.apple.com/?ll=${this.props.currentMessage.place.latitude},${this.props.currentMessage.place.longitude}`,
-            android: `http://maps.google.com/?q=${this.props.currentMessage.place.latitude},${this.props.currentMessage.place.longitude}`
+            ios: `http://maps.apple.com/?ll=${place.latitude},${place.longitude}`,
+            android: `http://maps.google.com/?q=${place.latitude},${place.longitude}`
           });
           Linking.canOpenURL(url).then(supported => {
             if (supported) {
@@ -37,9 +39,8 @@ export default class CustomView extends React.Component {
             ref={ref => { this.map = ref; }}
             style={[styles.mapView, this.props.mapViewStyle]}
             region={{
-              ...JSON.parse(this.props.currentMessage.place),
-              //latitude: this.props.currentMessage.place.latitude,
-              //longitude: this.props.currentMessage.place.longitude,
+              latitude: place.latitude,
+              longitude: place.longitude,
               latitudeDelta:  0.00922*0.2,
               longitudeDelta: 0.00421*0.2
             }}
@@ -49,7 +50,8 @@ export default class CustomView extends React.Component {
           <MapView.Marker
             ref={ref => { this.marker = ref; }}
             coordinate={{
-              ...JSON.parse(this.props.currentMessage.place),
+              latitude: place.latitude,
+              longitude: place.longitude,              
             }}
           />
           </MapView>
