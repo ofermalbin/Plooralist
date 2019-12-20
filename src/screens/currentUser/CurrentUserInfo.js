@@ -189,7 +189,7 @@ class CurrentUserInfo extends React.Component {
           name={currentUser.name}
           containerStyle={currentUserAvatarStyles.container}
           titleStyle={currentUserAvatarStyles.title}
-          rounded={false} showEditButton={true}
+          rounded={false}
           showEditButton={true}
           editButton={{ size: 24 }}
           onEditPress={this.onEditAvatarPress.bind(this)}

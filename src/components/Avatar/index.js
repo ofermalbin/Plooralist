@@ -1,6 +1,5 @@
 import AvatarS3Image from './AvatarS3Image';
-import GiftedAvatarS3Image from './GiftedAvatarS3Image';
-import GiftedMessageS3Image from './GiftedMessageS3Image';
+import S3Image from './S3Image';
 
-export { GiftedAvatarS3Image, GiftedMessageS3Image };
+export { S3Image };
 export default AvatarS3Image;

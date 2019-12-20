@@ -15,7 +15,7 @@ import { withCurrentUser } from '../../contexts';
 
 import CustomView from './CustomView';
 
-import { GiftedMessageS3Image, GiftedAvatarS3Image } from '../../components';
+import { S3Image, AvatarS3Image } from '../../components';
 
 import { launchCamera, launchImageLibrary } from '../photos';
 
@@ -83,14 +83,32 @@ class Messages extends React.Component {
   }
 
   renderMessageImage(props) {
+    const { currentMessage } = props;
     return (
-        <GiftedMessageS3Image {...props} />
+        <S3Image
+          source={currentMessage.uri}
+          imgKey={currentMessage.imgKey}
+          level='public'
+          width={150}
+          height={100}
+          borderRadius={13}
+          margin={3}
+          resizeMode='cover'
+        />
     );
   }
 
   renderAvatar(props) {
+    const { user } = props.currentMessage;
     return (
-        <GiftedAvatarS3Image {...props} />
+        <AvatarS3Image
+          imgKey={user.imgKey}
+          level='protected'
+          identityId={user.identityId}
+          name={user.name}
+          size='small'
+          rounded={true}
+        />
     );
   }
 

@@ -127,7 +127,6 @@ class TaskMessages extends React.Component {
   }
 
   onSend(message) {
-
     if (message.text) {
       this.createMessage({text: message.text});
     }

@@ -3,12 +3,11 @@ import { Platform, StyleSheet, View, TouchableHighlight, ActivityIndicator } fro
 
 import { Storage } from 'aws-amplify';
 
-import { Avatar, Button, Icon } from 'react-native-elements';
+import { Avatar } from 'react-native-elements';
+
+import S3Image from './S3Image'
 
 import aws_exports from '../../aws-exports';
-
-import FastImage from 'react-native-fast-image';
-import URL from 'url';
 
 const __signature = (full_name='') => {
   const name = full_name.toUpperCase().split(' ');
@@ -48,13 +47,6 @@ const avatarSizes = {
   xlarge: 150,
 };
 
-const defaultEditButton = {
-  name: 'mode-edit',
-  type: 'material',
-  color: '#fff',
-  underlayColor: '#000',
-};
-
 export default class AvatarS3Image extends React.Component {
   constructor(props) {
       super(props);
@@ -62,97 +54,31 @@ export default class AvatarS3Image extends React.Component {
       const { source } = props;
       this.state = {
         source: source,
-        query: null,
-        loading: false
       };
   }
 
-  async getImageSource() {
-    const { imgKey, level='public', identityId } = this.props;
-    const uri = `https://${aws_exports.aws_user_files_s3_bucket}.s3.amazonaws.com/${level}/${(level != 'public') ? identityId : ''}${(level != 'public') ? '/' : ''}${imgKey}`;
-    /*const params = Object.assign({}, {level: level}, (level === 'protected') && {identityId: identityId});
-    await Storage.get(imgKey, params)
-      .then(presignedUrl => {
-        const url = URL.parse(presignedUrl, true);
-        const uri = url.href.split('?')[0];
-        this.setState({
-            source: uri,
-            query: url.query
-        });
-      })
-      .catch(err => alert(err));*/
-      this.setState({
-          source: uri,
-      });
-  }
-
-  async componentDidMount() {
-    const { imgKey } = this.props;
-    imgKey && await this.getImageSource();
-  }
-
-  async componentDidUpdate(prevProps, prevState) {
-    const { imgKey, level, source } = this.props;
+  componentDidUpdate(prevProps, prevState) {
+    const { source } = this.props;
     if (source !== prevProps.source) {
       this.setState({
         source: source
       });
     }
-    if (imgKey !== prevProps.imgKey) {
-      imgKey ? await this.getImageSource() : this.setState({
-        source: null,
-        query: null
-      });
-    }
   }
 
   render() {
-    const { name, size } = this.props;
+    const { name, size, imgKey, level='public', identityId } = this.props;
 
-      const width = typeof size === 'number' ? size : avatarSizes[size] || avatarSizes.small;
-      const height = width;
-      const titleSize = width / 2;
-      const iconSize = width / 2;
-
-      const editButton = {
-        ...defaultEditButton,
-        ...this.props.editButton,
-      };
-      const editButtonSize = editButton.size || (width + height) / 2 / 3;
-
-      const Utils = this.props.showEditButton && (
-        <TouchableHighlight
-          style={StyleSheet.flatten([
-            styles.editButton,
-            {
-              width: editButtonSize,
-              height: editButtonSize,
-              borderRadius: editButtonSize / 2,
-            },
-            editButton.style,
-          ])}
-          underlayColor={editButton.underlayColor}
-          onPress={this.props.onEditPress}
-        >
-          <View>
-            <Icon size={editButtonSize * 0.8} {...editButton} />
-          </View>
-        </TouchableHighlight> ||
-        <ActivityIndicator animating={ this.state.loading } />
-      );
-
-    if (!this.state.source) {
+    if (!this.state.source && !imgKey) {
       return (
         <Avatar
           containerStyle={this.props.containerStyle}
           size={size}
           rounded={this.props.rounded}
-          //source={this.state.source}
           icon={(!name) ? {name: "add-a-photo"} : null}
           title={(!this.state.source && name) ? __signature(name) : null}
           titleStyle={this.props.titleStyle}
-          placeholderStyle={(!this.state.source && name) ? {backgroundColor: __getColor(name)} : null}
-          onPress={this.props.onPress ? () => this.props.onPress(this.state.source) : null}
+          placeholderStyle={name ? {backgroundColor: __getColor(name)} : null}
           activeOpacity={0.2}
           editButton={this.props.editButton}
           onEditPress={this.props.onEditPress}
@@ -160,61 +86,23 @@ export default class AvatarS3Image extends React.Component {
         />
       )
     }
+    const width = (this.props.containerStyle && this.props.containerStyle.width) || (typeof size === 'number' ? size : avatarSizes[size] || avatarSizes.small);
+    const height = (this.props.containerStyle && this.props.containerStyle.height) || width;
+
     return (
-      <FastImage
-        source={{
-          uri :this.state.source,
-          //headers: this.state.query,
-        }}
-        //onError={(e) => alert(JSON.stringify(e.nativeEvent))}
-        style={this.props.containerStyle ? this.props.containerStyle : {
-          width: width,
-          height: height,
-          borderRadius: width/2
-        }}
-        onLoadStart={() => { this.setState({ loading: true })} }
-        onLoadEnd={() => { this.setState({ loading: false })} }
-      >
-        {Utils}
-      </FastImage>
+      <S3Image
+        source={this.state.source}
+        imgKey={imgKey}
+        level={level}
+        identityId={identityId}
+        width={width}
+        height={height}
+        borderRadius={this.props.rounded ? (width/2) : null}
+        rounded={this.props.rounded}
+        editButton={this.props.editButton}
+        onEditPress={this.props.onEditPress}
+        showEditButton={this.props.showEditButton}
+      />
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'transparent',
-  },
-  avatar: {
-    flex: 1,
-    width: null,
-    height: null,
-  },
-  overlayContainer: {
-    flex: 1,
-  },
-  title: {
-    color: '#ffffff',
-    backgroundColor: 'transparent',
-    textAlign: 'center',
-  },
-  editButton: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#aaa',
-    ...Platform.select({
-      android: {
-        elevation: 1,
-      },
-      default: {
-        shadowColor: '#000',
-        shadowOffset: { width: 1, height: 1 },
-        shadowRadius: 2,
-        shadowOpacity: 0.5,
-      },
-    }),
-  },
-});
