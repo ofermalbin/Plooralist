@@ -75,8 +75,8 @@ export default class AvatarS3Image extends React.Component {
           containerStyle={this.props.containerStyle}
           size={size}
           rounded={this.props.rounded}
-          icon={(!name) ? {name: "add-a-photo"} : null}
-          title={(!this.state.source && name) ? __signature(name) : null}
+          icon={!name ? {name: "add-a-photo"} : null}
+          title={name ? __signature(name) : null}
           titleStyle={this.props.titleStyle}
           placeholderStyle={name ? {backgroundColor: __getColor(name)} : null}
           activeOpacity={0.2}

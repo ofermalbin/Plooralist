@@ -513,6 +513,7 @@ exports.handler = async (event, context) => {
         const params = {
             TableName : PanelTable,
             Key: { id : item.taskPanelId },
+            ConditionExpression: 'attribute_exists(id)',
             UpdateExpression: 'set updatedAt = :now',
             ExpressionAttributeValues: {
                 ':now' : now.toISOString()
@@ -520,10 +521,13 @@ exports.handler = async (event, context) => {
         };
 
         try {
-            const data = ddb.update(params).promise();
+            const data = ddb.update(params).promise().catch(error => {
+                console.log('updatePanels', error.code, JSON.stringify(item));
+                return error;
+            });
             return data;
         } catch (error) {
-            return error;
+          return error;
         }
     });
 

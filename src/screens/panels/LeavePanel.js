@@ -12,6 +12,8 @@ import { listMembersForUser } from '../../graphql/queries';
 
 import { ListItem } from 'react-native-elements';
 
+import { listMembersForPanelVariables } from './util';
+
 import { infoListStyles } from './config/stylesheets';
 
 class LeavePanel extends React.Component {

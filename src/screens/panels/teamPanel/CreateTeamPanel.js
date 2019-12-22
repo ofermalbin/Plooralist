@@ -32,17 +32,6 @@ import { infoAvatarStyles, inputStyles, infoListStyles } from '../config/stylesh
 
 import { storeFileInS3 } from '../../../lib/s3';
 
-const styles = StyleSheet.create({
-  subtitleView: {
-    flexDirection: 'row',
-    paddingLeft: 10,
-    paddingTop: 5
-  },
-  pictureEditText: {
-    color: '#037aff',
-  },
-});
-
 class CreateTeamPanel extends React.Component {
 
   constructor(props) {
@@ -149,9 +138,9 @@ class CreateTeamPanel extends React.Component {
           source={this.state.source}
           name={this.state.name}
           rounded={false}
-          passedEditButton={{ size: 24 }}
-          onEditPress={this.onEditAvatarPress.bind(this)}
           showEditButton={true}
+          editButton={{ size: 24 }}
+          onEditPress={this.onEditAvatarPress.bind(this)}
         />
       }
       <ListItem
@@ -170,8 +159,10 @@ class CreateTeamPanel extends React.Component {
             source={this.state.source}
             name={this.state.name}
             rounded={true}
+            size='medium'
+            rounded={true}
+            onEditPress={this.onEditAvatarPress.bind(this)}
             showEditButton={true}
-            onEditButtonPress={this.onEditAvatarPress.bind(this)}
           />
         }
       />

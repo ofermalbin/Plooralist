@@ -14,7 +14,8 @@ import { ListItem } from 'react-native-elements';
 
 import { includes } from 'lodash';
 
-import { isPanelBlock } from '../panels';
+import { isPanelBlock } from './util';
+import { listMembersForPanelVariables } from './util';
 
 import { infoListStyles } from './config/stylesheets';
 
