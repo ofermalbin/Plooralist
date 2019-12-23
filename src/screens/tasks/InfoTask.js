@@ -102,15 +102,15 @@ class InfoTask extends React.Component {
   }
 
   onSubtasksPress() {
-    const { isPanelOwner } = this.props.navigation.state.params;
+    const { isPanelManager } = this.props.navigation.state.params;
     const { task, currentUser } = this.props;
-    const isTaskOwner = (task.taskUserId === currentUser.id) || isPanelOwner;
+    const isTaskOwner = (task.taskUserId === currentUser.id) || isPanelManager;
 
     this.props.navigation.navigate('Subtasks', {taskId: this.props.task.id, isTaskOwner: isTaskOwner});
   }
 
   render() {
-    const { isPanelOwner } = this.props.navigation.state.params;
+    const { isPanelManager } = this.props.navigation.state.params;
     const { task, currentUser, subtasks } = this.props;
 
     if (!task || !currentUser) {
@@ -119,7 +119,7 @@ class InfoTask extends React.Component {
       );
     }
 
-    const isOwner = (task.taskUserId === currentUser.id) || isPanelOwner;
+    const isOwner = (task.taskUserId === currentUser.id) || isPanelManager;
     const subtasksCount = subtasks.length;
     const subtasksCompletedCount = filter(subtasks, subtask => subtask.completed).length;
 

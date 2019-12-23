@@ -12,7 +12,7 @@ import { graphqlMutation } from 'aws-appsync-react';
 import { listMembersForPanel } from '../../../graphql/queries';
 import { updateMember, deleteMember } from '../../../graphql/mutations';
 
-import Swipeout from 'react-native-swipeout';
+import { connectActionSheet } from '@expo/react-native-action-sheet';
 
 import { each } from 'lodash';
 
@@ -26,7 +26,7 @@ import { getCurrentUserName, getUserName } from '../../../util';
 
 import { rowPanelStyles } from '../config/stylesheets';
 
-import { isPanelOwner, canAccessPanel, listMembersForPanelVariables } from '../util';
+import { isPanelManager, listMembersForPanelVariables } from '../util';
 
 class RowMember extends React.Component {
 
@@ -38,7 +38,9 @@ class RowMember extends React.Component {
     this.props.onPress && this.props.onPress(this.props.member);
   }
 
-  onDeletePress(member) {
+  onDeletePress() {
+    const { member } = this.props;
+
     const input = {
       id: member.id,
       expectedVersion: member.version,
@@ -47,75 +49,81 @@ class RowMember extends React.Component {
     this.props.deleteMember({...offline, input});
   }
 
-  onCanAccessPress(member, canAccess) {
+  onManagerPress() {
+    const { member } = this.props;
+
+    const manager = !isPanelManager(member);
+
     const input = {
       id: member.id,
       expectedVersion: member.version,
-      canAccess
+      manager
     };
-    const offline = Object.assign(member, {offline: true, canAccess, updatedAt: (new Date()).toISOString()});
+    const offline = Object.assign(member, {offline: true, manager, updatedAt: (new Date()).toISOString()});
     this.props.updateMember({...offline, input});
   }
+
+  onActionPress() {
+    const { member, myMember, contacts } = this.props;
+
+    const isManager = isPanelManager(myMember);
+    const isMemberManager = isPanelManager(member);
+
+    const options = ['Delete', isMemberManager ? 'Dismiss manager' : 'Make manager', 'Cancel'];
+    const destructiveButtonIndex = 0;
+    const cancelButtonIndex = 2;
+
+    if (member.id === myMember.id) {
+      return;
+    }
+
+    this.props.showActionSheetWithOptions(
+      {
+        options,
+        cancelButtonIndex,
+        destructiveButtonIndex,
+      },
+      buttonIndex => {
+        switch(buttonIndex) {
+          case 0: this.onDeletePress.bind(this)();
+                  break;
+          case 1: this.onManagerPress.bind(this)();
+                  break;
+          default: ;
+                  break;
+        }
+      },
+    );
+  };
 
   render() {
     const { member, myMember, contacts } = this.props;
 
-    const isOwner = isPanelOwner(myMember);
-    const canAccess = canAccessPanel(myMember);
-
-    const isMemberOwner = isPanelOwner(member);
-    const isMemberCanAccess = canAccessPanel(member);
-
-    const leftBtns = [
-      {
-        text: isMemberCanAccess ? 'Remove Access' : 'Add Access',
-        type: 'secondary',
-        onPress: () => this.onCanAccessPress(member, !isMemberCanAccess)
-      },
-    ]
-
-    const rightBtns = [
-      {
-        text: 'Delete',
-        type: 'primary',
-        backgroundColor: 'red',
-        onPress: () => this.onDeletePress(member)
-      }
-    ]
+    const isManager = isPanelManager(myMember);
+    const isMemberManager = isPanelManager(member);
 
     const name = (member.memberUserId === this.props.currentUser.id) ? getCurrentUserName() : getUserName(member.user, contacts);
 
     return (
-      <Swipeout
-        rowID={member.id}
-        disabled={!canAccess || isMemberOwner}
-        autoClose={true}
-        close={!(this.props.selected === member.id)}
-        onOpen={(sectionID, rowID) => this.props.onSelected(rowID)}
-        backgroundColor='#FFFFFF'
-        left={leftBtns}
-        right={rightBtns}
-        sensitivity={1}
-      >
-        <ListItem
-          containerStyle={rowPanelStyles.container}
-          titleStyle={rowPanelStyles.title}
-          title={name}
-          subtitle={(isMemberOwner && 'owner') || (isMemberCanAccess && 'can Access') || null}
-          leftAvatar={
-            <AvatarS3Image
-              imgKey={member.user.imgKey}
-              level='protected'
-              identityId={member.user.identityId}
-              name={name}
-              size='medium'
-              rounded={true}
-            />
-          }
-          disabled={member.offline}
-          disabledStyle={{backgroundColor: '#F0F8FF'}}
-        />
-      </Swipeout>
+      <ListItem
+        containerStyle={rowPanelStyles.container}
+        titleStyle={rowPanelStyles.title}
+        title={name}
+        subtitle={(isMemberManager && 'manager') || null}
+        leftAvatar={
+          <AvatarS3Image
+            imgKey={member.user.imgKey}
+            level='protected'
+            identityId={member.user.identityId}
+            name={name}
+            size='medium'
+            rounded={true}
+          />
+        }
+        onPress={isManager ? this.onActionPress.bind(this) : null}
+        disabled={member.offline}
+        disabledStyle={{backgroundColor: '#F0F8FF'}}
+      />
     )
   }
 };
@@ -123,4 +131,4 @@ class RowMember extends React.Component {
 export default compose(
   graphqlMutation(gql(updateMember), variables => ({query: gql(listMembersForPanel), variables: listMembersForPanelVariables(variables.memberPanelId)}), 'Member'),
   graphqlMutation(gql(deleteMember), variables => ({query: gql(listMembersForPanel), variables: listMembersForPanelVariables(variables.memberPanelId)}), 'Member')
-)(withCurrentUser(withContacts(RowMember)));
+)(withCurrentUser(withContacts(connectActionSheet(RowMember))));

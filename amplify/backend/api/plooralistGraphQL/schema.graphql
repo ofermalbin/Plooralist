@@ -45,8 +45,7 @@ type Member @model(subscriptions: null) @key(name: "gsi-PanelMembers", fields: [
   coupleUserId: ID
 	createdAt: String
 	updatedAt: String
-	isOwner: Boolean
-	canAccess: Boolean
+  manager: Boolean
 	block: Boolean
 	mute: Boolean
 	pin: Boolean
@@ -138,7 +137,7 @@ type Query {
 }
 
 type Mutation {
-  createPanelAndMembers(type: Int! name: String imgKey: String ownersIds: [ID!]! canAccessIds: [ID!] membersIds: [ID!]): Member
+  createPanelAndMembers(type: Int! name: String imgKey: String managersIds: [ID!] membersIds: [ID!]): Member
   createStreamMember(input: StreamMemberInput!): Member @aws_iam @aws_cognito_user_pools
   updateStreamMember(input: StreamMemberInput!): Member @aws_iam @aws_cognito_user_pools
   deleteStreamMember(input: StreamMemberInput!): Member @aws_iam @aws_cognito_user_pools

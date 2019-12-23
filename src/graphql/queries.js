@@ -611,8 +611,7 @@ export const getMember = `query GetMember($id: ID!) {
     coupleUserId
     createdAt
     updatedAt
-    isOwner
-    canAccess
+    manager
     block
     mute
     pin
@@ -658,8 +657,7 @@ export const listMembers = `query ListMembers(
       coupleUserId
       createdAt
       updatedAt
-      isOwner
-      canAccess
+      manager
       block
       mute
       pin
@@ -717,8 +715,7 @@ export const listMembersForPanel = `query ListMembersForPanel(
       coupleUserId
       createdAt
       updatedAt
-      isOwner
-      canAccess
+      manager
       block
       mute
       pin
@@ -776,8 +773,7 @@ export const listMembersForUser = `query ListMembersForUser(
       coupleUserId
       createdAt
       updatedAt
-      isOwner
-      canAccess
+      manager
       block
       mute
       pin

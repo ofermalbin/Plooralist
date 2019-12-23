@@ -25,7 +25,7 @@ import { infoAvatarStyles, infoListStyles, createByAtStyles } from '../config/st
 
 import { includes, find } from 'lodash';
 
-import { isPanelOwner, canAccessPanel } from '../../panels';
+import { isPanelManager } from '../../panels';
 
 import { TextNameUser } from '../../users';
 
@@ -122,8 +122,7 @@ class InfoTeamPanel extends React.Component {
 
     const { panel, member } = this.props;
 
-    const isOwner = isPanelOwner(member);
-    const canAccess = canAccessPanel(member);
+    const isManager = isPanelManager(member);
 
     return (
       <ScrollView>
@@ -136,7 +135,7 @@ class InfoTeamPanel extends React.Component {
           containerStyle={infoAvatarStyles.container}
           titleStyle={infoAvatarStyles.title}
           rounded={false}
-          showEditButton={isOwner}
+          showEditButton={isManager}
           editButton={{ size: 24 }}
           onEditPress={this.onEditAvatarPress.bind(this)}
         />
@@ -145,7 +144,7 @@ class InfoTeamPanel extends React.Component {
           bottomDivider={true}
           containerStyle={infoListStyles.container}
           titleStyle={infoListStyles.title}
-          chevron={isOwner}
+          chevron={isManager}
           title={__capitalize_Words(panel.name)}
           leftAvatar={
             <AvatarS3Image
@@ -155,7 +154,7 @@ class InfoTeamPanel extends React.Component {
               name={panel.name}
               size='medium'
               rounded={true} showEditButton={true}
-              showEditButton={isOwner}
+              showEditButton={isManager}
               passedEditButton={{ onPress: this.onEditAvatarPress.bind(this) }}
             />
           }
@@ -163,10 +162,10 @@ class InfoTeamPanel extends React.Component {
           disabled={panel.offline}
           disabledStyle={{backgroundColor: '#F0F8FF'}}
         />
-        <Members {...this.props} isOwner={isOwner} canAccess={canAccess} />
+        <Members {...this.props} isManager={isManager} />
         <MutePanel {...this.props} />
         <LeavePanel {...this.props} />
-        {isOwner && <DeletePanel {...this.props} />}
+        {isManager && <DeletePanel {...this.props} />}
         <View style={createByAtStyles.container}>
           <Text style={createByAtStyles.text}>{`${'created at '}${moment(panel.createdAt).locale('en').format('LL')}.`}</Text>
         </View>

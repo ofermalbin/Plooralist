@@ -9,8 +9,7 @@ module.exports = {
         coupleUserId
         createdAt
         updatedAt
-        isOwner
-        canAccess
+        manager
         block
         mute
         pin

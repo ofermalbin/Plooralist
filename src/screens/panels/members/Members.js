@@ -3,6 +3,8 @@ import { View } from 'react-native';
 
 import { ListItem } from 'react-native-elements';
 
+import { ActionSheetProvider, ActionSheetOptions } from '@expo/react-native-action-sheet';
+
 import { infoListStyles } from '../config/stylesheets';
 
 import ListMembers from './ListMembers';
@@ -19,8 +21,9 @@ class Members extends React.Component {
 
   render() {
 
-    const { isOwner, canAccess } = this.props;
+    const { isManager } = this.props;
     return (
+      <ActionSheetProvider>
       <View>
         <ListItem
           topDivider={true}
@@ -30,11 +33,12 @@ class Members extends React.Component {
           rightTitleStyle={infoListStyles.rightTitle}
           title='Members'
           leftIcon={{ name: 'group', iconStyle: infoListStyles.leftIcon }}
-          rightTitle={canAccess ? 'Add' : null}
-          onPress={canAccess ? this.onAddMembersPress.bind(this) : null}
+          rightTitle={isManager ? 'Add' : null}
+          onPress={isManager ? this.onAddMembersPress.bind(this) : null}
         />
         <ListMembers {...this.props} />
       </View>
+      </ActionSheetProvider>
     );
   }
 }

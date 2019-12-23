@@ -11,8 +11,7 @@ export const onCreateStreamMember = `subscription OnCreateStreamMember($memberUs
     coupleUserId
     createdAt
     updatedAt
-    isOwner
-    canAccess
+    manager
     block
     mute
     pin
@@ -53,8 +52,7 @@ export const onUpdateStreamMember = `subscription OnUpdateStreamMember($memberUs
     coupleUserId
     createdAt
     updatedAt
-    isOwner
-    canAccess
+    manager
     block
     mute
     pin
@@ -95,8 +93,7 @@ export const onDeleteStreamMember = `subscription OnDeleteStreamMember($memberUs
     coupleUserId
     createdAt
     updatedAt
-    isOwner
-    canAccess
+    manager
     block
     mute
     pin
@@ -137,8 +134,7 @@ export const onCreateMember = `subscription OnCreateMember($memberPanelId: Strin
     coupleUserId
     createdAt
     updatedAt
-    isOwner
-    canAccess
+    manager
     block
     mute
     pin
@@ -179,8 +175,7 @@ export const onUpdateMember = `subscription OnUpdateMember($memberPanelId: Strin
     coupleUserId
     createdAt
     updatedAt
-    isOwner
-    canAccess
+    manager
     block
     mute
     pin
@@ -221,8 +216,7 @@ export const onDeleteMember = `subscription OnDeleteMember($memberPanelId: Strin
     coupleUserId
     createdAt
     updatedAt
-    isOwner
-    canAccess
+    manager
     block
     mute
     pin

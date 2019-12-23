@@ -79,8 +79,7 @@ exports.handler = async (event, context) => {
           coupleUserId: null,
           createdAt: now.toISOString(),
           updatedAt: now.toISOString(),
-          isOwner: true,
-          canAccess: true,
+          manager: true,
           block: null,
           mute: null,
           pin: true

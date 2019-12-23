@@ -5,16 +5,14 @@ export const createPanelAndMembers = `mutation CreatePanelAndMembers(
   $type: Int!
   $name: String
   $imgKey: String
-  $ownersIds: [ID!]!
-  $canAccessIds: [ID!]
+  $managersIds: [ID!]
   $membersIds: [ID!]
 ) {
   createPanelAndMembers(
     type: $type
     name: $name
     imgKey: $imgKey
-    ownersIds: $ownersIds
-    canAccessIds: $canAccessIds
+    managersIds: $managersIds
     membersIds: $membersIds
   ) {
     id
@@ -25,8 +23,7 @@ export const createPanelAndMembers = `mutation CreatePanelAndMembers(
     coupleUserId
     createdAt
     updatedAt
-    isOwner
-    canAccess
+    manager
     block
     mute
     pin
@@ -67,8 +64,7 @@ export const createStreamMember = `mutation CreateStreamMember($input: StreamMem
     coupleUserId
     createdAt
     updatedAt
-    isOwner
-    canAccess
+    manager
     block
     mute
     pin
@@ -109,8 +105,7 @@ export const updateStreamMember = `mutation UpdateStreamMember($input: StreamMem
     coupleUserId
     createdAt
     updatedAt
-    isOwner
-    canAccess
+    manager
     block
     mute
     pin
@@ -151,8 +146,7 @@ export const deleteStreamMember = `mutation DeleteStreamMember($input: StreamMem
     coupleUserId
     createdAt
     updatedAt
-    isOwner
-    canAccess
+    manager
     block
     mute
     pin
@@ -304,8 +298,7 @@ export const createMember = `mutation CreateMember(
     coupleUserId
     createdAt
     updatedAt
-    isOwner
-    canAccess
+    manager
     block
     mute
     pin
@@ -349,8 +342,7 @@ export const updateMember = `mutation UpdateMember(
     coupleUserId
     createdAt
     updatedAt
-    isOwner
-    canAccess
+    manager
     block
     mute
     pin
@@ -394,8 +386,7 @@ export const deleteMember = `mutation DeleteMember(
     coupleUserId
     createdAt
     updatedAt
-    isOwner
-    canAccess
+    manager
     block
     mute
     pin

@@ -61,18 +61,16 @@ exports.handler = async (event, context) => {
         memberUserId: null,
         createdAt: now.toISOString(),
         updatedAt: now.toISOString(),
-        isOwner: null,
-        canAccess: null,
+        manager: null,
         block: null,
         mute: null,
         pin: null,
     };
 
-    const owners = event.arguments.ownersIds.map(userId => Object.assign({}, params, {id: uuidv4()}, {memberUserId: userId}, {isOwner: true, canAccess: true}));
-    const canAccess = event.arguments.canAccessIds.map(userId => Object.assign({}, params, {id: uuidv4()}, {memberUserId: userId}, {canAccess: true}));
+    const managers = event.arguments.managersIds.map(userId => Object.assign({}, params, {id: uuidv4()}, {memberUserId: userId}, {manager: true}));
     const members = event.arguments.membersIds.map(userId => Object.assign({}, params, {id: uuidv4()}, {memberUserId: userId}));
 
-    const items = _.concat(owners, canAccess, members);
+    const items = _.concat(managers, members);
 
     const itemsChunks = _.chunk(items, 25);
 

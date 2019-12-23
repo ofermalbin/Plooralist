@@ -25,8 +25,8 @@ class ListMembers extends React.Component {
   render() {
     return (
       <FlatList
-        data={orderBy(this.props.members, ['isOwner', 'canAccess', 'phoneNumber'], ['asc', 'desc', 'asc'])}
-        renderItem={({ item }) => <RowMember member={item} myMember={this.props.member} selected={this.state.selected} onSelected={this.onSelected.bind(this)} />}
+        data={orderBy(this.props.members, ['manager', 'phoneNumber'], ['desc', 'asc'])}
+        renderItem={({ item }) => <RowMember {...this.props} member={item} myMember={this.props.member} selected={this.state.selected} onSelected={this.onSelected.bind(this)} />}
         keyExtractor={item => item.id}
         ItemSeparatorComponent={() => <Divider/>}
       />

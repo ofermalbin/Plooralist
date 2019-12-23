@@ -5,8 +5,6 @@ import { StyleSheet, View, FlatList, Alert } from 'react-native';
 
 import { ListItem, Button, Divider, Input, colors } from 'react-native-elements';
 
-import { each } from 'lodash';
-
 import compose from 'lodash.flowright';
 import gql from 'graphql-tag';
 
@@ -66,9 +64,8 @@ class CreateTeamPanel extends React.Component {
       type: 3,
       name: name,
       imgKey: null,
-      ownersIds: [currentUser.id],
-      canAccessIds: users.map(user => user.id),
-      membersIds: []
+      managersIds: [currentUser.id],
+      membersIds: users.map(user => user.id),
     };
 
     const now = new Date();
@@ -82,8 +79,7 @@ class CreateTeamPanel extends React.Component {
       memberUserId: currentUser.id,
       coupleUserId: null,
       user: currentUser,
-      isOwner: true,
-      canAccess: true,
+      manager: true,
       block: false,
       mute: false,
       pin: false,

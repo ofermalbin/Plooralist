@@ -1,15 +1,8 @@
-export const isPanelOwner = (member) => {
+export const isPanelManager = (member) => {
   if (!member) {
     return null;
   }
-  return member.isOwner;
-}
-
-export const canAccessPanel = (member) => {
-  if (!member) {
-    return null;
-  }
-  return member.canAccess;
+  return member.manager;
 }
 
 export const isPanelBlock = (member) => {
