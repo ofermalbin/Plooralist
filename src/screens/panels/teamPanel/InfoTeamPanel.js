@@ -54,6 +54,8 @@ class InfoTeamPanel extends React.Component {
 
     this.state = {
       source: null,
+      onlyManagersCreateTask: null,
+      onlyManagersEditInfo: null,
     }
   }
 
@@ -118,6 +120,11 @@ class InfoTeamPanel extends React.Component {
     });
   }
 
+  onPermissionPress() {
+    const { panel } = this.props;
+    this.props.navigation.navigate('EditPanelPermission', {panel: panel});
+  };
+
   render() {
 
     const { panel, member } = this.props;
@@ -162,6 +169,16 @@ class InfoTeamPanel extends React.Component {
           disabled={panel.offline}
           disabledStyle={{backgroundColor: '#F0F8FF'}}
         />
+        {isManager && <ListItem
+          containerStyle={[infoListStyles.container, { marginTop: 22 }]}
+          titleStyle={infoListStyles.title}
+          topDivider={true}
+          bottomDivider={true}
+          chevron={true}
+          title='Permission'
+          leftIcon={{name: 'create', iconStyle: infoListStyles.leftIcon}}
+          onPress={this.onPermissionPress.bind(this)}
+        />}
         <Members {...this.props} isManager={isManager} />
         <MutePanel {...this.props} />
         <LeavePanel {...this.props} />

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button, Icon } from 'react-native-elements';
 
-import Panels, { InfoPanel, SelectPanel, CreateTeamPanel, EditPanelName, CreateMembers, AddMembers } from '../../screens/panels';
+import Panels, { InfoPanel, SelectPanel, CreateTeamPanel, EditPanelName, EditPanelPermission, CreateMembers, AddMembers } from '../../screens/panels';
 import Tasks, { InfoTask, UpdateTaskName, UpdateTaskDescription } from '../../screens/tasks';
 import { CreateTimeNotification, EditTimeNotification, EditTimeNotificationRecurrenceCustom } from '../../screens/timeNotifications';
 import { CreatePlaceNotification, EditPlaceNotification } from '../../screens/placeNotifications';
@@ -49,6 +49,9 @@ export default createStackNavigator({
   },
   EditPanelName: {
     screen: EditPanelName,
+  },
+  EditPanelPermission: {
+    screen: EditPanelPermission,
   },
   Tasks: {
     screen: Tasks,

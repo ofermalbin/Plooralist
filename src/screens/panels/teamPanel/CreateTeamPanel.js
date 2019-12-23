@@ -62,6 +62,8 @@ class CreateTeamPanel extends React.Component {
     const input = {
       id: uuid.v4(),
       type: 3,
+      onlyManagersCreateTask: false,
+      onlyManagersEditInfo: true,
       name: name,
       imgKey: null,
       managersIds: [currentUser.id],
@@ -151,7 +153,6 @@ class CreateTeamPanel extends React.Component {
         }
         leftAvatar={
           <AvatarS3Image
-            size='medium'
             source={this.state.source}
             name={this.state.name}
             rounded={true}

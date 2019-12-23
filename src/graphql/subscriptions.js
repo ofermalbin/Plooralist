@@ -36,6 +36,8 @@ export const onCreateStreamMember = `subscription OnCreateStreamMember($memberUs
       createdAt
       updatedAt
       type
+      onlyManagersCreateTask
+      onlyManagersEditInfo
       name
       imgKey
     }
@@ -77,6 +79,8 @@ export const onUpdateStreamMember = `subscription OnUpdateStreamMember($memberUs
       createdAt
       updatedAt
       type
+      onlyManagersCreateTask
+      onlyManagersEditInfo
       name
       imgKey
     }
@@ -118,6 +122,8 @@ export const onDeleteStreamMember = `subscription OnDeleteStreamMember($memberUs
       createdAt
       updatedAt
       type
+      onlyManagersCreateTask
+      onlyManagersEditInfo
       name
       imgKey
     }
@@ -159,6 +165,8 @@ export const onCreateMember = `subscription OnCreateMember($memberPanelId: Strin
       createdAt
       updatedAt
       type
+      onlyManagersCreateTask
+      onlyManagersEditInfo
       name
       imgKey
     }
@@ -200,6 +208,8 @@ export const onUpdateMember = `subscription OnUpdateMember($memberPanelId: Strin
       createdAt
       updatedAt
       type
+      onlyManagersCreateTask
+      onlyManagersEditInfo
       name
       imgKey
     }
@@ -241,6 +251,8 @@ export const onDeleteMember = `subscription OnDeleteMember($memberPanelId: Strin
       createdAt
       updatedAt
       type
+      onlyManagersCreateTask
+      onlyManagersEditInfo
       name
       imgKey
     }
@@ -255,6 +267,8 @@ export const onUpdatePanel = `subscription OnUpdatePanel($id: String!) {
     createdAt
     updatedAt
     type
+    onlyManagersCreateTask
+    onlyManagersEditInfo
     name
     imgKey
   }
@@ -268,6 +282,8 @@ export const onDeletePanel = `subscription OnDeletePanel($id: String!) {
     createdAt
     updatedAt
     type
+    onlyManagersCreateTask
+    onlyManagersEditInfo
     name
     imgKey
   }

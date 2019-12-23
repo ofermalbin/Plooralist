@@ -581,6 +581,8 @@ export const listPanels = `query ListPanels(
       createdAt
       updatedAt
       type
+      onlyManagersCreateTask
+      onlyManagersEditInfo
       name
       imgKey
     }
@@ -596,6 +598,8 @@ export const getPanel = `query GetPanel($id: ID!) {
     createdAt
     updatedAt
     type
+    onlyManagersCreateTask
+    onlyManagersEditInfo
     name
     imgKey
   }
@@ -636,6 +640,8 @@ export const getMember = `query GetMember($id: ID!) {
       createdAt
       updatedAt
       type
+      onlyManagersCreateTask
+      onlyManagersEditInfo
       name
       imgKey
     }
@@ -682,6 +688,8 @@ export const listMembers = `query ListMembers(
         createdAt
         updatedAt
         type
+        onlyManagersCreateTask
+        onlyManagersEditInfo
         name
         imgKey
       }
@@ -740,6 +748,8 @@ export const listMembersForPanel = `query ListMembersForPanel(
         createdAt
         updatedAt
         type
+        onlyManagersCreateTask
+        onlyManagersEditInfo
         name
         imgKey
       }
@@ -798,6 +808,8 @@ export const listMembersForUser = `query ListMembersForUser(
         createdAt
         updatedAt
         type
+        onlyManagersCreateTask
+        onlyManagersEditInfo
         name
         imgKey
       }

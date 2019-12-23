@@ -48,6 +48,8 @@ export const createPanelAndMembers = `mutation CreatePanelAndMembers(
       createdAt
       updatedAt
       type
+      onlyManagersCreateTask
+      onlyManagersEditInfo
       name
       imgKey
     }
@@ -89,6 +91,8 @@ export const createStreamMember = `mutation CreateStreamMember($input: StreamMem
       createdAt
       updatedAt
       type
+      onlyManagersCreateTask
+      onlyManagersEditInfo
       name
       imgKey
     }
@@ -130,6 +134,8 @@ export const updateStreamMember = `mutation UpdateStreamMember($input: StreamMem
       createdAt
       updatedAt
       type
+      onlyManagersCreateTask
+      onlyManagersEditInfo
       name
       imgKey
     }
@@ -171,6 +177,8 @@ export const deleteStreamMember = `mutation DeleteStreamMember($input: StreamMem
       createdAt
       updatedAt
       type
+      onlyManagersCreateTask
+      onlyManagersEditInfo
       name
       imgKey
     }
@@ -248,6 +256,8 @@ export const createPanel = `mutation CreatePanel(
     createdAt
     updatedAt
     type
+    onlyManagersCreateTask
+    onlyManagersEditInfo
     name
     imgKey
   }
@@ -264,6 +274,8 @@ export const updatePanel = `mutation UpdatePanel(
     createdAt
     updatedAt
     type
+    onlyManagersCreateTask
+    onlyManagersEditInfo
     name
     imgKey
   }
@@ -280,6 +292,8 @@ export const deletePanel = `mutation DeletePanel(
     createdAt
     updatedAt
     type
+    onlyManagersCreateTask
+    onlyManagersEditInfo
     name
     imgKey
   }
@@ -323,6 +337,8 @@ export const createMember = `mutation CreateMember(
       createdAt
       updatedAt
       type
+      onlyManagersCreateTask
+      onlyManagersEditInfo
       name
       imgKey
     }
@@ -367,6 +383,8 @@ export const updateMember = `mutation UpdateMember(
       createdAt
       updatedAt
       type
+      onlyManagersCreateTask
+      onlyManagersEditInfo
       name
       imgKey
     }
@@ -411,6 +429,8 @@ export const deleteMember = `mutation DeleteMember(
       createdAt
       updatedAt
       type
+      onlyManagersCreateTask
+      onlyManagersEditInfo
       name
       imgKey
     }

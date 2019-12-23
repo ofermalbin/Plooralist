@@ -41,7 +41,7 @@ class EditPanelName extends React.Component {
 
   onNameChange(name) {
     this.props.navigation.setParams({disabled: name.trim().length ? false : true, onSavePress: this.onSavePress.bind(this)});
-    this.setState({name: name});
+    this.setState({name});
   }
 
   render() {

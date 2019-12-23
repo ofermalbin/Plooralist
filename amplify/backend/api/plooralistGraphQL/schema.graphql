@@ -28,6 +28,8 @@ type Panel @model(subscriptions: null) @auth(
 	createdAt: String
 	updatedAt: String
 	type: Int!
+  onlyManagersCreateTask: Boolean
+  onlyManagersEditInfo: Boolean
 	name: String
 	imgKey: String
 }
