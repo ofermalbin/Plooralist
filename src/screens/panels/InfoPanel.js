@@ -8,7 +8,10 @@ import compose from 'lodash.flowright';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
+import { buildSubscription } from 'aws-appsync';
+
 import { getPanel, getMember } from '../../graphql/queries';
+import { onUpdatePanel, onDeletePanel } from '../../graphql/subscriptions';
 
 import Loading from '../../components/Loading';
 

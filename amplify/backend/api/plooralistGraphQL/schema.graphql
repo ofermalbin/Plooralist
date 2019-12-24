@@ -180,8 +180,7 @@ input StreamMemberInput {
   coupleUserId: ID
   createdAt: String
   updatedAt: String
-  isOwner: Boolean
-  canAccess: Boolean
+  manager: Boolean
   block: Boolean
   mute: Boolean
   pin: Boolean

@@ -15,7 +15,7 @@ class ListHorizontalMembersNames extends React.Component {
   }
 
   render() {
-    const { member, members } = this.props;
+    const { members } = this.props;
 
     return (
       <FlatList

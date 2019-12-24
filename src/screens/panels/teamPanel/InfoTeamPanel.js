@@ -41,7 +41,7 @@ import uuid from 'react-native-uuid';
 
 import { storeFileInS3 } from '../../../lib/s3';
 
-import { listMembersForPanelVariables } from '../util';
+import { listMembersForPanelVariables, isOnlyManagersEditInfo } from '../util';
 
 const __capitalize_Words = function(str) {
   return str && str.replace (/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -61,19 +61,19 @@ class InfoTeamPanel extends React.Component {
 
   componentDidMount() {
     const { memberPanelId } = this.props.member;
-    this.props.data.subscribeToMore(
+    this.props.membersData.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateMember), variables: {memberPanelId: memberPanelId}},
         {query: gql(listMembersForPanel), variables: listMembersForPanelVariables(memberPanelId)}
       )
     );
-    this.props.data.subscribeToMore(
+    this.props.membersData.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateMember), variables: {memberPanelId: memberPanelId}},
         {query: gql(listMembersForPanel), variables: listMembersForPanelVariables(memberPanelId)}
       )
     );
-    this.props.data.subscribeToMore(
+    this.props.membersData.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteMember), variables: {memberPanelId: memberPanelId}},
         {query: gql(listMembersForPanel), variables: listMembersForPanelVariables(memberPanelId)}
@@ -131,6 +131,8 @@ class InfoTeamPanel extends React.Component {
 
     const isManager = isMemberManager(member);
 
+    const canEditInfo = !isOnlyManagersEditInfo(panel) || isManager
+
     return (
       <ScrollView>
       <View>
@@ -142,7 +144,7 @@ class InfoTeamPanel extends React.Component {
           containerStyle={infoAvatarStyles.container}
           titleStyle={infoAvatarStyles.title}
           rounded={false}
-          showEditButton={isManager}
+          showEditButton={canEditInfo}
           editButton={{ size: 24 }}
           onEditPress={this.onEditAvatarPress.bind(this)}
         />
@@ -151,7 +153,7 @@ class InfoTeamPanel extends React.Component {
           bottomDivider={true}
           containerStyle={infoListStyles.container}
           titleStyle={infoListStyles.title}
-          chevron={isManager}
+          chevron={canEditInfo}
           title={__capitalize_Words(panel.name)}
           leftAvatar={
             <AvatarS3Image
@@ -161,11 +163,11 @@ class InfoTeamPanel extends React.Component {
               name={panel.name}
               size='medium'
               rounded={true} showEditButton={true}
-              showEditButton={isManager}
+              showEditButton={canEditInfo}
               passedEditButton={{ onPress: this.onEditAvatarPress.bind(this) }}
             />
           }
-          onPress={this.onEditNamePress.bind(this)}
+          onPress={canEditInfo ? this.onEditNamePress.bind(this) : null}
           disabled={panel.offline}
           disabledStyle={{backgroundColor: '#F0F8FF'}}
         />
@@ -200,7 +202,7 @@ export default compose(
     }),
     props: props => ({
       members: props.data.listMembersForPanel ? props.data.listMembersForPanel.items : [],
-      data: props.data
+      membersData: props.data
     }),
   }),
   graphqlMutation(gql(updatePanel), gql(getPanel), 'Panel')

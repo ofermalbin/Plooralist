@@ -21,7 +21,7 @@ class InfoSinglePanel extends React.Component {
   }
 
   render() {
-    const { member, currentUser } = this.props;
+    const { member, panel, currentUser } = this.props;
     const name = 'Me';
     const imgKey = currentUser.imgKey;
 
@@ -57,7 +57,7 @@ class InfoSinglePanel extends React.Component {
         />
         <MutePanel {...this.props} />
         <View style={createByAtStyles.container}>
-          <Text style={createByAtStyles.text}>{`${'created at '}${moment(member.panel.createdAt).locale('en').format('LL')}.`}</Text>
+          <Text style={createByAtStyles.text}>{`${'created at '}${moment(panel.createdAt).locale('en').format('LL')}.`}</Text>
         </View>
       </View>
       </ScrollView>

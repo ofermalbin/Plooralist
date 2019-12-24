@@ -62,19 +62,16 @@ export const titlePanelStyles = StyleSheet.create({
     color: colors.grey1,
   },
   teamNameText: {
-    height: 14,
-    fontSize: normalize(14.1),
+    fontSize: normalize(14),
     fontWeight: "bold",
     color: "#4f4f4f"
   },
   memberNameText: {
-    height: 13,
-    fontSize: normalize(12.7),
+    fontSize: normalize(8),
     color: "#4f4f4f",
   },
   memberCommaText: {
-    height: 13,
-    fontSize: normalize(12.7),
+    fontSize: normalize(8),
     color: "#4f4f4f",
     marginRight: 2,
   },

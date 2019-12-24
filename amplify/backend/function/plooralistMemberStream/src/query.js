@@ -34,6 +34,8 @@ module.exports = {
         createdAt
         updatedAt
         type
+        onlyManagersCreateTask
+        onlyManagersEditInfo
         name
         imgKey
       }
@@ -75,6 +77,8 @@ module.exports = {
         createdAt
         updatedAt
         type
+        onlyManagersCreateTask
+        onlyManagersEditInfo
         name
         imgKey
       }
@@ -116,6 +120,8 @@ module.exports = {
         createdAt
         updatedAt
         type
+        onlyManagersCreateTask
+        onlyManagersEditInfo
         name
         imgKey
       }

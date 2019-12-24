@@ -61,7 +61,7 @@ class InfoCouplePanel extends React.Component {
   }
 
   render() {
-    const { member, members, contacts } = this.props;
+    const { member, panel, members, contacts } = this.props;
     const couple = find(members, couple => couple.memberUserId != member.memberUserId);
 
     const name = getUserName(couple.user, contacts);
@@ -99,7 +99,7 @@ class InfoCouplePanel extends React.Component {
         <MutePanel {...this.props} />
         <BlockPanel {...this.props} />
         <View style={createByAtStyles.container}>
-          <Text style={createByAtStyles.text}>{`${'created at '}${moment(member.panel.createdAt).locale('en').format('LL')}.`}</Text>
+          <Text style={createByAtStyles.text}>{`${'created at '}${moment(panel.createdAt).locale('en').format('LL')}.`}</Text>
         </View>
       </View>
       </ScrollView>
