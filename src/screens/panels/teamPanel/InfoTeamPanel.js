@@ -25,7 +25,7 @@ import { infoAvatarStyles, infoListStyles, createByAtStyles } from '../config/st
 
 import { includes, find } from 'lodash';
 
-import { isPanelManager } from '../../panels';
+import { isMemberManager } from '../../panels';
 
 import { TextNameUser } from '../../users';
 
@@ -129,7 +129,7 @@ class InfoTeamPanel extends React.Component {
 
     const { panel, member } = this.props;
 
-    const isManager = isPanelManager(member);
+    const isManager = isMemberManager(member);
 
     return (
       <ScrollView>

@@ -16,7 +16,7 @@ import { AvatarS3Image } from '../../components';
 
 import { rowPanelStyles } from './config/stylesheets';
 
-import { isPanelBlock, unblockBottomSheet, listMembersForUserVariables } from './util';
+import { isMemberBlock, unblockBottomSheet, listMembersForUserVariables } from './util';
 
 import BottomSheet from 'react-native-bottomsheet';
 
@@ -45,7 +45,7 @@ class _RowPanel extends React.Component {
   render() {
     const { member, panel, name, imgKey, level, identityId } = this.props;
 
-    const isBlock = isPanelBlock(member);
+    const isBlock = isMemberBlock(member);
 
     return (
       <ListItem

@@ -14,7 +14,7 @@ import { ListItem } from 'react-native-elements';
 
 import { includes } from 'lodash';
 
-import { isPanelBlock } from './util';
+import { isMemberBlock } from './util';
 import { listMembersForPanelVariables } from './util';
 
 import { infoListStyles } from './config/stylesheets';
@@ -25,7 +25,7 @@ class BlockPanel extends React.Component {
     super(props);
 
     const { member } = props;
-    const isBlock = isPanelBlock(member);
+    const isBlock = isMemberBlock(member);
 
     this.state = {
       isBlock: isBlock,
@@ -34,7 +34,7 @@ class BlockPanel extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { member } = nextProps;
-    const isBlock = isPanelBlock(member);
+    const isBlock = isMemberBlock(member);
     this.setState({
       isBlock: isBlock,
     })

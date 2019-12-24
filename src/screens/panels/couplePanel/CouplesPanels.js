@@ -18,7 +18,7 @@ import Loading from '../../../components/Loading';
 
 import ListPanels from '../ListPanels';
 
-import { isPanelBlock, unblockBottomSheet, listMembersForUserVariables } from '../util';
+import { listMembersForUserVariables } from '../util';
 
 class CouplesPanels extends React.Component {
 

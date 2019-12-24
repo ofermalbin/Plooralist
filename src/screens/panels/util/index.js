@@ -1,6 +1,7 @@
-import { isPanelManager, isPanelBlock, isPanelMute, isPanelPin } from './getMemberPermission';
+import { isMemberManager, isMemberBlock, isMemberMute, isMemberPin } from './getMemberPermission';
+import { isOnlyManagersCreateTask, isOnlyManagersEditInfo } from './getPanelPermission';
 import unblockBottomSheet from './unblockBottomSheet';
 import listMembersForUserVariables from './listMembersForUserVariables';
 import listMembersForPanelVariables from './listMembersForPanelVariables';
 
-export { isPanelManager, isPanelBlock, isPanelMute, isPanelPin, unblockBottomSheet, listMembersForUserVariables, listMembersForPanelVariables };
+export { isMemberManager, isMemberBlock, isMemberMute, isMemberPin, isOnlyManagersCreateTask, isOnlyManagersEditInfo, unblockBottomSheet, listMembersForUserVariables, listMembersForPanelVariables };

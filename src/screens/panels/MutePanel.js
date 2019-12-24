@@ -14,7 +14,7 @@ import { ListItem } from 'react-native-elements';
 
 import { includes } from 'lodash';
 
-import { isPanelMute, listMembersForUserVariables } from './util';
+import { isMemberMute, listMembersForUserVariables } from './util';
 
 import { infoListStyles } from './config/stylesheets';
 
@@ -24,7 +24,7 @@ class MutePanel extends React.Component {
     super(props);
 
     const { member } = props;
-    const isMute = isPanelMute(member);
+    const isMute = isMemberMute(member);
 
     this.state = {
       isMute: isMute,
@@ -33,7 +33,7 @@ class MutePanel extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { member } = nextProps;
-    const isMute = isPanelMute(member);
+    const isMute = isMemberMute(member);
     this.setState({
       isMute: isMute,
     })

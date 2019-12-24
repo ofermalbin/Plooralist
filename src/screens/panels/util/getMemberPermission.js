@@ -1,25 +1,25 @@
-export const isPanelManager = (member) => {
+export const isMemberManager = (member) => {
   if (!member) {
     return null;
   }
   return member.manager;
 }
 
-export const isPanelBlock = (member) => {
+export const isMemberBlock = (member) => {
   if (!member) {
     return null;
   }
   return member.block;
 }
 
-export const isPanelMute = (member) => {
+export const isMemberMute = (member) => {
   if (!member) {
     return null;
   }
   return member.mute;
 }
 
-export const isPanelPin = (member) => {
+export const isMemberPin = (member) => {
   if (!member) {
     return null;
   }

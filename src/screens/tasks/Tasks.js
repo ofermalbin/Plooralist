@@ -16,7 +16,7 @@ import Loading from '../../components/Loading';
 import { TitlePanel } from '../panels';
 import ListTasks from './ListTasks';
 
-import { isPanelBlock } from '../panels';
+import { isMemberBlock } from '../panels';
 
 import { listTasksForPanelVariables } from './util';
 
@@ -28,19 +28,19 @@ class Tasks extends React.Component {
 
   componentDidMount() {
     const { panelId } = this.props.navigation.state.params;
-    this.props.data.subscribeToMore(
+    this.props.tasksData.subscribeToMore(
       buildSubscription(
         {query: gql(onCreateTask), variables: {taskPanelId: panelId}},
         {query: gql(listTasksForPanel), variables: listTasksForPanelVariables(panelId)}
       )
     );
-    this.props.data.subscribeToMore(
+    this.props.tasksData.subscribeToMore(
       buildSubscription(
         {query: gql(onUpdateTask), variables: {taskPanelId: panelId}},
         {query: gql(listTasksForPanel), variables: listTasksForPanelVariables(panelId)}
       )
     );
-    this.props.data.subscribeToMore(
+    this.props.tasksData.subscribeToMore(
       buildSubscription(
         {query: gql(onDeleteTask), variables: {taskPanelId: panelId}},
         {query: gql(listTasksForPanel), variables: listTasksForPanelVariables(panelId)}
@@ -53,9 +53,8 @@ class Tasks extends React.Component {
     const { panelId, memberId } = this.props.navigation.state.params;
 
     const { member } = this.props;
-    const isBlock = isPanelBlock(member);
 
-    if (isBlock) {
+    if (!member || isMemberBlock(member)) {
       return <Loading />;
     }
     return (
@@ -89,7 +88,7 @@ const enhance = compose(
     },
     props: props => ({
       tasks: props.data.listTasksForPanel ? props.data.listTasksForPanel.items : [],
-      data: props.data
+      tasksData: props.data
     }),
   }),
 ) (Tasks);

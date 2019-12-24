@@ -34,7 +34,7 @@ class RowTask extends React.Component {
   }
 
   onPress() {
-    this.props.navigation.navigate('InfoTask', {taskId: this.props.task.id, isPanelManager: this.props.isPanelManager});
+    this.props.navigation.navigate('InfoTask', {taskId: this.props.task.id, isMemberManager: this.props.isMemberManager});
   }
 
   onCompletedPress() {
