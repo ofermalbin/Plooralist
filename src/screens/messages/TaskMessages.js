@@ -20,6 +20,7 @@ import { onCreateTaskMessage, onUpdateTaskMessage, onDeleteTaskMessage } from '.
 import uuid from 'react-native-uuid';
 
 import { storeFileInS3 } from '../../lib/s3';
+import { sleep } from '../../lib/sleep';
 
 import { withCurrentUser } from '../../contexts';
 
@@ -122,8 +123,9 @@ class TaskMessages extends React.Component {
     const awsKey = `${uuid.v1()}.jpeg`;
     const result = await storeFileInS3(fileUri, awsKey, "public");
     const uri = `https://${aws_exports.aws_user_files_s3_bucket}.s3.amazonaws.com/public/${result.key}`;
-    FastImage.preload([{uri}])
-    setTimeout(() => this.createMessage({imgKey: result.key}), 1000);
+    FastImage.preload([{uri}]);
+    await sleep(1000);
+    this.createMessage({imgKey: result.key});
   }
 
   onSend(message) {
