@@ -25,8 +25,6 @@ import { infoAvatarStyles, infoListStyles, createByAtStyles } from '../config/st
 
 import { includes, find } from 'lodash';
 
-import { isMemberManager } from '../../panels';
-
 import { TextNameUser } from '../../users';
 
 import { PhotoEdit } from '../../photos';
@@ -42,7 +40,7 @@ import uuid from 'react-native-uuid';
 import { storeFileInS3 } from '../../../lib/s3';
 import { sleep } from '../../../lib/sleep';
 
-import { listMembersForPanelVariables, isOnlyManagersEditInfo } from '../util';
+import { listMembersForPanelVariables, isMemberOwner, isMemberManager, isOnlyManagersEditInfo, isOnlyManagersEditMembers } from '../util';
 
 const __capitalize_Words = function(str) {
   return str && str.replace (/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -57,6 +55,7 @@ class InfoTeamPanel extends React.Component {
       source: null,
       onlyManagersCreateTask: null,
       onlyManagersEditInfo: null,
+      onlyManagersEditMembers: null
     }
   }
 
@@ -129,9 +128,10 @@ class InfoTeamPanel extends React.Component {
 
     const { panel, member } = this.props;
 
+    const isOwner = isMemberOwner(member);
     const isManager = isMemberManager(member);
-
-    const canEditInfo = !isOnlyManagersEditInfo(panel) || isManager
+    const canEditInfo = !isOnlyManagersEditInfo(panel) || isManager;
+    const canEditMembers = !isOnlyManagersEditMembers(panel) || isManager;
 
     return (
       <ScrollView>
@@ -171,7 +171,7 @@ class InfoTeamPanel extends React.Component {
           disabled={panel.offline}
           disabledStyle={{backgroundColor: '#F0F8FF'}}
         />
-        {isManager && <ListItem
+        {isOwner && <ListItem
           containerStyle={[infoListStyles.container, { marginTop: 22 }]}
           titleStyle={infoListStyles.title}
           topDivider={true}
@@ -181,10 +181,10 @@ class InfoTeamPanel extends React.Component {
           leftIcon={{name: 'create', iconStyle: infoListStyles.leftIcon}}
           onPress={this.onPermissionPress.bind(this)}
         />}
-        <Members {...this.props} isManager={isManager} />
+        <Members {...this.props} canEditMembers={canEditMembers} />
         <MutePanel {...this.props} />
         <LeavePanel {...this.props} />
-        {isManager && <DeletePanel {...this.props} />}
+        {isOwner && <DeletePanel {...this.props} />}
         <View style={createByAtStyles.container}>
           <Text style={createByAtStyles.text}>{`${'created at '}${moment(panel.createdAt).locale('en').format('LL')}.`}</Text>
         </View>

@@ -43,7 +43,6 @@ class CreateTask extends React.Component {
       createdAt: now.toISOString(),
       updatedAt: now.toISOString(),
       description: null,
-      membersAreMute: null,
       user: currentUser,
     };
     this.props.createTask({...offline, input});

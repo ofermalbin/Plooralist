@@ -9,6 +9,7 @@ module.exports = {
         coupleUserId
         createdAt
         updatedAt
+        owner
         manager
         block
         mute

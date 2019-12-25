@@ -9,6 +9,7 @@ module.exports = {
       coupleUserId
       createdAt
       updatedAt
+      owner
       manager
       block
       mute
@@ -52,6 +53,7 @@ module.exports = {
       coupleUserId
       createdAt
       updatedAt
+      owner
       manager
       block
       mute
@@ -95,6 +97,7 @@ module.exports = {
       coupleUserId
       createdAt
       updatedAt
+      owner
       manager
       block
       mute

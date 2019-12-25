@@ -5,14 +5,14 @@ export const createPanelAndMembers = `mutation CreatePanelAndMembers(
   $type: Int!
   $name: String
   $imgKey: String
-  $managersIds: [ID!]
+  $ownerId: ID!
   $membersIds: [ID!]
 ) {
   createPanelAndMembers(
     type: $type
     name: $name
     imgKey: $imgKey
-    managersIds: $managersIds
+    ownerId: $ownerId
     membersIds: $membersIds
   ) {
     id
@@ -23,6 +23,7 @@ export const createPanelAndMembers = `mutation CreatePanelAndMembers(
     coupleUserId
     createdAt
     updatedAt
+    owner
     manager
     block
     mute
@@ -50,6 +51,7 @@ export const createPanelAndMembers = `mutation CreatePanelAndMembers(
       type
       onlyManagersCreateTask
       onlyManagersEditInfo
+      onlyManagersEditMembers
       name
       imgKey
     }
@@ -66,6 +68,7 @@ export const createStreamMember = `mutation CreateStreamMember($input: StreamMem
     coupleUserId
     createdAt
     updatedAt
+    owner
     manager
     block
     mute
@@ -93,6 +96,7 @@ export const createStreamMember = `mutation CreateStreamMember($input: StreamMem
       type
       onlyManagersCreateTask
       onlyManagersEditInfo
+      onlyManagersEditMembers
       name
       imgKey
     }
@@ -109,6 +113,7 @@ export const updateStreamMember = `mutation UpdateStreamMember($input: StreamMem
     coupleUserId
     createdAt
     updatedAt
+    owner
     manager
     block
     mute
@@ -136,6 +141,7 @@ export const updateStreamMember = `mutation UpdateStreamMember($input: StreamMem
       type
       onlyManagersCreateTask
       onlyManagersEditInfo
+      onlyManagersEditMembers
       name
       imgKey
     }
@@ -152,6 +158,7 @@ export const deleteStreamMember = `mutation DeleteStreamMember($input: StreamMem
     coupleUserId
     createdAt
     updatedAt
+    owner
     manager
     block
     mute
@@ -179,6 +186,7 @@ export const deleteStreamMember = `mutation DeleteStreamMember($input: StreamMem
       type
       onlyManagersCreateTask
       onlyManagersEditInfo
+      onlyManagersEditMembers
       name
       imgKey
     }
@@ -258,6 +266,7 @@ export const createPanel = `mutation CreatePanel(
     type
     onlyManagersCreateTask
     onlyManagersEditInfo
+    onlyManagersEditMembers
     name
     imgKey
   }
@@ -276,6 +285,7 @@ export const updatePanel = `mutation UpdatePanel(
     type
     onlyManagersCreateTask
     onlyManagersEditInfo
+    onlyManagersEditMembers
     name
     imgKey
   }
@@ -294,6 +304,7 @@ export const deletePanel = `mutation DeletePanel(
     type
     onlyManagersCreateTask
     onlyManagersEditInfo
+    onlyManagersEditMembers
     name
     imgKey
   }
@@ -312,6 +323,7 @@ export const createMember = `mutation CreateMember(
     coupleUserId
     createdAt
     updatedAt
+    owner
     manager
     block
     mute
@@ -339,6 +351,7 @@ export const createMember = `mutation CreateMember(
       type
       onlyManagersCreateTask
       onlyManagersEditInfo
+      onlyManagersEditMembers
       name
       imgKey
     }
@@ -358,6 +371,7 @@ export const updateMember = `mutation UpdateMember(
     coupleUserId
     createdAt
     updatedAt
+    owner
     manager
     block
     mute
@@ -385,6 +399,7 @@ export const updateMember = `mutation UpdateMember(
       type
       onlyManagersCreateTask
       onlyManagersEditInfo
+      onlyManagersEditMembers
       name
       imgKey
     }
@@ -404,6 +419,7 @@ export const deleteMember = `mutation DeleteMember(
     coupleUserId
     createdAt
     updatedAt
+    owner
     manager
     block
     mute
@@ -431,6 +447,7 @@ export const deleteMember = `mutation DeleteMember(
       type
       onlyManagersCreateTask
       onlyManagersEditInfo
+      onlyManagersEditMembers
       name
       imgKey
     }
@@ -448,7 +465,6 @@ export const createTask = `mutation CreateTask(
     createdAt
     updatedAt
     updatedBy
-    membersAreMute
     name
     description
     completed
@@ -482,7 +498,6 @@ export const updateTask = `mutation UpdateTask(
     createdAt
     updatedAt
     updatedBy
-    membersAreMute
     name
     description
     completed
@@ -516,7 +531,6 @@ export const deleteTask = `mutation DeleteTask(
     createdAt
     updatedAt
     updatedBy
-    membersAreMute
     name
     description
     completed

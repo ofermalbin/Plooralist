@@ -30,6 +30,7 @@ type Panel @model(subscriptions: null) @auth(
 	type: Int!
   onlyManagersCreateTask: Boolean
   onlyManagersEditInfo: Boolean
+  onlyManagersEditMembers: Boolean
 	name: String
 	imgKey: String
 }
@@ -47,6 +48,7 @@ type Member @model(subscriptions: null) @key(name: "gsi-PanelMembers", fields: [
   coupleUserId: ID
 	createdAt: String
 	updatedAt: String
+  owner: Boolean
   manager: Boolean
 	block: Boolean
 	mute: Boolean
@@ -62,7 +64,6 @@ type Task @model(subscriptions: null) @key(name: "gsi-PanelTasks", fields: ["tas
 	createdAt: String
   updatedAt: String
   updatedBy: String
-	membersAreMute: [String]
 	name: String!
 	description: String
 	completed: Boolean!
@@ -139,7 +140,7 @@ type Query {
 }
 
 type Mutation {
-  createPanelAndMembers(type: Int! name: String imgKey: String managersIds: [ID!] membersIds: [ID!]): Member
+  createPanelAndMembers(type: Int! name: String imgKey: String ownerId: ID! membersIds: [ID!]): Member
   createStreamMember(input: StreamMemberInput!): Member @aws_iam @aws_cognito_user_pools
   updateStreamMember(input: StreamMemberInput!): Member @aws_iam @aws_cognito_user_pools
   deleteStreamMember(input: StreamMemberInput!): Member @aws_iam @aws_cognito_user_pools
@@ -180,6 +181,7 @@ input StreamMemberInput {
   coupleUserId: ID
   createdAt: String
   updatedAt: String
+  owner: Boolean
   manager: Boolean
   block: Boolean
   mute: Boolean

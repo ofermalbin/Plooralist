@@ -33,6 +33,9 @@ exports.handler = async (event, context) => {
         createdAt: now.toISOString(),
         updatedAt: now.toISOString(),
         type: event.arguments.type,
+        onlyManagersCreateTask: true,
+        onlyManagersEditInfo: true,
+        onlyManagersEditMembers: true,
         name: event.arguments.name || null,
         imgKey: event.arguments.imgKey || null
     };
@@ -67,10 +70,11 @@ exports.handler = async (event, context) => {
         pin: null,
     };
 
-    const managers = event.arguments.managersIds.map(userId => Object.assign({}, params, {id: uuidv4()}, {memberUserId: userId}, {manager: true}));
+    const ownerId = event.arguments.ownerId;
+    const owner = Object.assign({}, params, {id: uuidv4()}, {memberUserId: ownerId}, {owner: true, manager: true});
     const members = event.arguments.membersIds.map(userId => Object.assign({}, params, {id: uuidv4()}, {memberUserId: userId}));
 
-    const items = _.concat(managers, members);
+    const items = _.concat([owner], members);
 
     const itemsChunks = _.chunk(items, 25);
 

@@ -11,3 +11,10 @@ export const isOnlyManagersEditInfo = (panel) => {
   }
   return panel.onlyManagersEditInfo;
 }
+
+export const isOnlyManagersEditMembers = (panel) => {
+  if (!panel) {
+    return null;
+  }
+  return panel.onlyManagersEditMembers;
+}

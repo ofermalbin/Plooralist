@@ -11,6 +11,7 @@ export const onCreateStreamMember = `subscription OnCreateStreamMember($memberUs
     coupleUserId
     createdAt
     updatedAt
+    owner
     manager
     block
     mute
@@ -38,6 +39,7 @@ export const onCreateStreamMember = `subscription OnCreateStreamMember($memberUs
       type
       onlyManagersCreateTask
       onlyManagersEditInfo
+      onlyManagersEditMembers
       name
       imgKey
     }
@@ -54,6 +56,7 @@ export const onUpdateStreamMember = `subscription OnUpdateStreamMember($memberUs
     coupleUserId
     createdAt
     updatedAt
+    owner
     manager
     block
     mute
@@ -81,6 +84,7 @@ export const onUpdateStreamMember = `subscription OnUpdateStreamMember($memberUs
       type
       onlyManagersCreateTask
       onlyManagersEditInfo
+      onlyManagersEditMembers
       name
       imgKey
     }
@@ -97,6 +101,7 @@ export const onDeleteStreamMember = `subscription OnDeleteStreamMember($memberUs
     coupleUserId
     createdAt
     updatedAt
+    owner
     manager
     block
     mute
@@ -124,6 +129,7 @@ export const onDeleteStreamMember = `subscription OnDeleteStreamMember($memberUs
       type
       onlyManagersCreateTask
       onlyManagersEditInfo
+      onlyManagersEditMembers
       name
       imgKey
     }
@@ -140,6 +146,7 @@ export const onCreateMember = `subscription OnCreateMember($memberPanelId: Strin
     coupleUserId
     createdAt
     updatedAt
+    owner
     manager
     block
     mute
@@ -167,6 +174,7 @@ export const onCreateMember = `subscription OnCreateMember($memberPanelId: Strin
       type
       onlyManagersCreateTask
       onlyManagersEditInfo
+      onlyManagersEditMembers
       name
       imgKey
     }
@@ -183,6 +191,7 @@ export const onUpdateMember = `subscription OnUpdateMember($memberPanelId: Strin
     coupleUserId
     createdAt
     updatedAt
+    owner
     manager
     block
     mute
@@ -210,6 +219,7 @@ export const onUpdateMember = `subscription OnUpdateMember($memberPanelId: Strin
       type
       onlyManagersCreateTask
       onlyManagersEditInfo
+      onlyManagersEditMembers
       name
       imgKey
     }
@@ -226,6 +236,7 @@ export const onDeleteMember = `subscription OnDeleteMember($memberPanelId: Strin
     coupleUserId
     createdAt
     updatedAt
+    owner
     manager
     block
     mute
@@ -253,6 +264,7 @@ export const onDeleteMember = `subscription OnDeleteMember($memberPanelId: Strin
       type
       onlyManagersCreateTask
       onlyManagersEditInfo
+      onlyManagersEditMembers
       name
       imgKey
     }
@@ -269,6 +281,7 @@ export const onUpdatePanel = `subscription OnUpdatePanel($id: String!) {
     type
     onlyManagersCreateTask
     onlyManagersEditInfo
+    onlyManagersEditMembers
     name
     imgKey
   }
@@ -284,6 +297,7 @@ export const onDeletePanel = `subscription OnDeletePanel($id: String!) {
     type
     onlyManagersCreateTask
     onlyManagersEditInfo
+    onlyManagersEditMembers
     name
     imgKey
   }
@@ -297,7 +311,6 @@ export const onCreateTask = `subscription OnCreateTask($taskPanelId: String!) {
     createdAt
     updatedAt
     updatedBy
-    membersAreMute
     name
     description
     completed
@@ -328,7 +341,6 @@ export const onUpdateTask = `subscription OnUpdateTask($taskPanelId: String!) {
     createdAt
     updatedAt
     updatedBy
-    membersAreMute
     name
     description
     completed
@@ -359,7 +371,6 @@ export const onDeleteTask = `subscription OnDeleteTask($taskPanelId: String!) {
     createdAt
     updatedAt
     updatedBy
-    membersAreMute
     name
     description
     completed

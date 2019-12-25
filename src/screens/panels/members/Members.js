@@ -21,7 +21,7 @@ class Members extends React.Component {
 
   render() {
 
-    const { isManager } = this.props;
+    const { canEditMembers } = this.props;
     return (
       <ActionSheetProvider>
       <View>
@@ -33,8 +33,8 @@ class Members extends React.Component {
           rightTitleStyle={infoListStyles.rightTitle}
           title='Members'
           leftIcon={{ name: 'group', iconStyle: infoListStyles.leftIcon }}
-          rightTitle={isManager ? 'Add' : null}
-          onPress={isManager ? this.onAddMembersPress.bind(this) : null}
+          rightTitle={canEditMembers ? 'Add' : null}
+          onPress={canEditMembers ? this.onAddMembersPress.bind(this) : null}
         />
         <ListMembers {...this.props} />
       </View>

@@ -1,3 +1,10 @@
+export const isMemberOwner = (member) => {
+  if (!member) {
+    return null;
+  }
+  return member.owner;
+}
+
 export const isMemberManager = (member) => {
   if (!member) {
     return null;

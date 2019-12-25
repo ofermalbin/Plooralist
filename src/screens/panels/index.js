@@ -6,7 +6,7 @@ import { SinglesPanels } from './singlePanel';
 import { CouplesPanels } from './couplePanel';
 import { CreateTeamPanel, EditPanelName, EditPanelPermission } from './teamPanel';
 import { CreateMembers, AddMembers } from './members';
-import { isMemberManager, isMemberBlock, isMemberMute, isMemberPin, isOnlyManagersCreateTask, isOnlyManagersEditInfo, unblockBottomSheet } from './util';
+import { isMemberOwner, isMemberManager, isMemberBlock, isMemberMute, isMemberPin, isOnlyManagersCreateTask, isOnlyManagersEditInfo, isOnlyManagersEditMembers, unblockBottomSheet } from './util';
 
-export { InfoPanel, TitlePanel, SelectPanel, SinglesPanels, CouplesPanels, CreateTeamPanel, EditPanelName, EditPanelPermission, CreateMembers, AddMembers, isMemberManager, isMemberBlock, isMemberMute, isMemberPin, isOnlyManagersCreateTask, isOnlyManagersEditInfo, unblockBottomSheet };
+export { InfoPanel, TitlePanel, SelectPanel, SinglesPanels, CouplesPanels, CreateTeamPanel, EditPanelName, EditPanelPermission, CreateMembers, AddMembers, isMemberOwner, isMemberManager, isMemberBlock, isMemberMute, isMemberPin, isOnlyManagersCreateTask, isOnlyManagersEditInfo, isOnlyManagersEditMembers, unblockBottomSheet };
 export default Panels;

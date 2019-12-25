@@ -67,6 +67,9 @@ exports.handler = async (event, context) => {
           createdAt: now.toISOString(),
           updatedAt: now.toISOString(),
           type: 2,
+          onlyManagersCreateTask: null,
+          onlyManagersEditInfo: null,
+          onlyManagersEditMembers: null,
           name: null,
           imgKey: null
       };
@@ -81,6 +84,7 @@ exports.handler = async (event, context) => {
           createdAt: now.toISOString(),
           updatedAt: now.toISOString(),
           manager: true,
+          owner: true,
           block: null,
           mute: null,
           pin: null

@@ -23,6 +23,7 @@ class EditPanelPermission extends React.Component {
     this.state = {
       onlyManagersCreateTask: panel.onlyManagersCreateTask,
       onlyManagersEditInfo: panel.onlyManagersEditInfo,
+      onlyManagersEditMembers: panel.onlyManagersEditMembers
     }
     props.navigation.setParams({onSavePress: this.onSavePress.bind(this)});
   }
@@ -31,13 +32,15 @@ class EditPanelPermission extends React.Component {
     const { panel } = this.props.navigation.state.params;
     const onlyManagersCreateTask = this.state.onlyManagersCreateTask;
     const onlyManagersEditInfo = this.state.onlyManagersEditInfo;
+    const onlyManagersEditMembers = this.state.onlyManagersEditMembers;
     const input = {
       id: panel.id,
       expectedVersion: panel.version,
       onlyManagersCreateTask,
-      onlyManagersEditInfo
+      onlyManagersEditInfo,
+      onlyManagersEditMembers
     };
-    const offline = Object.assign(panel, {offline: true, onlyManagersCreateTask, onlyManagersEditInfo, updatedAt: (new Date()).toISOString()});
+    const offline = Object.assign(panel, {offline: true, onlyManagersCreateTask, onlyManagersEditInfo, onlyManagersEditMembers, updatedAt: (new Date()).toISOString()});
     this.props.updatePanel({...offline, input});
     this.props.navigation.goBack();
   }
@@ -50,6 +53,11 @@ class EditPanelPermission extends React.Component {
   onEditInfoPermissionChange(onlyManagersEditInfo) {
     this.props.navigation.setParams({onSavePress: this.onSavePress.bind(this)});
     this.setState({onlyManagersEditInfo});
+  }
+
+  onEditMembersPermissionChange(onlyManagersEditMembers) {
+    this.props.navigation.setParams({onSavePress: this.onSavePress.bind(this)});
+    this.setState({onlyManagersEditMembers});
   }
 
   render() {
@@ -65,11 +73,19 @@ class EditPanelPermission extends React.Component {
         />
         <ListItem
           topDivider={true}
-          bottomDivider={true}
           title='Only managers edit info'
           switch={{
             value: this.state.onlyManagersEditInfo,
             onValueChange: this.onEditInfoPermissionChange.bind(this),
+          }}
+        />
+        <ListItem
+          topDivider={true}
+          bottomDivider={true}
+          title='Only managers edit members'
+          switch={{
+            value: this.state.onlyManagersEditMembers,
+            onValueChange: this.onEditMembersPermissionChange.bind(this),
           }}
         />
       </View>

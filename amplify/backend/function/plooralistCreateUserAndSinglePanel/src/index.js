@@ -65,6 +65,9 @@ exports.handler = async (event, context) => {
           createdAt: now.toISOString(),
           updatedAt: now.toISOString(),
           type: 1,
+          onlyManagersCreateTask: null,
+          onlyManagersEditInfo: null,
+          onlyManagersEditMembers: null,
           name: null,
           imgKey: null
       };
@@ -79,6 +82,7 @@ exports.handler = async (event, context) => {
           coupleUserId: null,
           createdAt: now.toISOString(),
           updatedAt: now.toISOString(),
+          owner: true,
           manager: true,
           block: null,
           mute: null,

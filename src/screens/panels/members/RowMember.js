@@ -26,7 +26,7 @@ import { getCurrentUserName, getUserName } from '../../../util';
 
 import { rowPanelStyles } from '../config/stylesheets';
 
-import { isMemberManager, listMembersForPanelVariables } from '../util';
+import { isMemberOwner, isMemberManager, listMembersForPanelVariables } from '../util';
 
 class RowMember extends React.Component {
 
@@ -64,13 +64,21 @@ class RowMember extends React.Component {
   }
 
   onActionPress() {
-    const { member, myMember, contacts } = this.props;
+    const { member, myMember, canEditMembers, contacts } = this.props;
 
     const options = ['Delete', isMemberManager(member) ? 'Dismiss manager' : 'Make manager', 'Cancel'];
     const destructiveButtonIndex = 0;
     const cancelButtonIndex = 2;
 
     if (member.id === myMember.id) {
+      return;
+    }
+
+    if (isMemberOwner(member)) {
+      return;
+    }
+
+    if (!canEditMembers) {
       return;
     }
 
@@ -102,7 +110,7 @@ class RowMember extends React.Component {
         containerStyle={rowPanelStyles.container}
         titleStyle={rowPanelStyles.title}
         title={name}
-        subtitle={(isMemberManager(member) && 'manager') || null}
+        subtitle={(isMemberOwner(member) && 'owner') || (isMemberManager(member) && 'manager') || null}
         leftAvatar={
           <AvatarS3Image
             imgKey={member.user.imgKey}
@@ -113,7 +121,7 @@ class RowMember extends React.Component {
             rounded={true}
           />
         }
-        onPress={isMemberManager(myMember) ? this.onActionPress.bind(this) : null}
+        onPress={this.onActionPress.bind(this)}
         disabled={member.offline}
         disabledStyle={{backgroundColor: '#F0F8FF'}}
       />

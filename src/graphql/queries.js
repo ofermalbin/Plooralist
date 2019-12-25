@@ -30,7 +30,6 @@ export const getTask = `query GetTask($id: ID!) {
     createdAt
     updatedAt
     updatedBy
-    membersAreMute
     name
     description
     completed
@@ -66,7 +65,6 @@ export const listTasks = `query ListTasks(
       createdAt
       updatedAt
       updatedBy
-      membersAreMute
       name
       description
       completed
@@ -338,7 +336,6 @@ export const listTasksForPanel = `query ListTasksForPanel(
       createdAt
       updatedAt
       updatedBy
-      membersAreMute
       name
       description
       completed
@@ -583,6 +580,7 @@ export const listPanels = `query ListPanels(
       type
       onlyManagersCreateTask
       onlyManagersEditInfo
+      onlyManagersEditMembers
       name
       imgKey
     }
@@ -600,6 +598,7 @@ export const getPanel = `query GetPanel($id: ID!) {
     type
     onlyManagersCreateTask
     onlyManagersEditInfo
+    onlyManagersEditMembers
     name
     imgKey
   }
@@ -615,6 +614,7 @@ export const getMember = `query GetMember($id: ID!) {
     coupleUserId
     createdAt
     updatedAt
+    owner
     manager
     block
     mute
@@ -642,6 +642,7 @@ export const getMember = `query GetMember($id: ID!) {
       type
       onlyManagersCreateTask
       onlyManagersEditInfo
+      onlyManagersEditMembers
       name
       imgKey
     }
@@ -663,6 +664,7 @@ export const listMembers = `query ListMembers(
       coupleUserId
       createdAt
       updatedAt
+      owner
       manager
       block
       mute
@@ -690,6 +692,7 @@ export const listMembers = `query ListMembers(
         type
         onlyManagersCreateTask
         onlyManagersEditInfo
+        onlyManagersEditMembers
         name
         imgKey
       }
@@ -723,6 +726,7 @@ export const listMembersForPanel = `query ListMembersForPanel(
       coupleUserId
       createdAt
       updatedAt
+      owner
       manager
       block
       mute
@@ -750,6 +754,7 @@ export const listMembersForPanel = `query ListMembersForPanel(
         type
         onlyManagersCreateTask
         onlyManagersEditInfo
+        onlyManagersEditMembers
         name
         imgKey
       }
@@ -783,6 +788,7 @@ export const listMembersForUser = `query ListMembersForUser(
       coupleUserId
       createdAt
       updatedAt
+      owner
       manager
       block
       mute
@@ -810,6 +816,7 @@ export const listMembersForUser = `query ListMembersForUser(
         type
         onlyManagersCreateTask
         onlyManagersEditInfo
+        onlyManagersEditMembers
         name
         imgKey
       }
