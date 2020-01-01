@@ -48,7 +48,7 @@ class EditPlaceNotification extends React.Component {
     };
 
     const now = new Date();
-    const offline = Object.assign(placeNotification, {offline: true, updatedAt: (new Date()).toISOString()});
+    const offline = Object.assign(placeNotification, {offline: true, ...pick(this.state.place, ['placeID', 'name', 'latitude', 'longitude', 'when', 'radius']), updatedAt: (new Date()).toISOString()});
 
     this.props.updatePlaceNotification({...offline, input});
     this.props.navigation.goBack();

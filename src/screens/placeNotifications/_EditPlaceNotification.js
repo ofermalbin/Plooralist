@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Alert, ScrollView } from 'react-native';
 import { ListItem, Icon, ButtonGroup } from 'react-native-elements';
 
-import MapView from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE }  from 'react-native-maps';
 
 import { getBoundsOfDistance, getDistance, computeDestinationPoint } from 'geolib';
 
@@ -185,6 +185,7 @@ class _EditPlaceNotification extends React.Component {
         </View>
         <View style={placeNotificationStyles.map_container}>
           <MapView
+            //provider={PROVIDER_GOOGLE}
             style={placeNotificationStyles.map}
             onLongPress={this.onLongPress.bind(this)}
             region={this.state.region.mapRegion}
@@ -212,7 +213,7 @@ class _EditPlaceNotification extends React.Component {
               image={require('./blue-circle.png')}
               draggable
               onPress={(e) => {}}
-              onDrag={this.onRadiusChange.bind(this)}
+              onDragEnd={this.onRadiusChange.bind(this)}
             />}
             {this.state.place.placeID && this.state.region.mapRegion && this.state.region.mapRegion.latitude &&
             <MapView.Circle

@@ -4,7 +4,6 @@ import { Alert } from 'react-native';
 import { ListItem } from 'react-native-elements';
 
 import compose from 'lodash.flowright';
-import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { graphqlMutation } from 'aws-appsync-react';
@@ -66,24 +65,28 @@ class RowMember extends React.Component {
   onActionPress() {
     const { member, myMember, canEditMembers, contacts } = this.props;
 
-    const options = ['Delete', isMemberManager(member) ? 'Dismiss manager' : 'Make manager', 'Cancel'];
-    const destructiveButtonIndex = 0;
-    const cancelButtonIndex = 2;
-
     if (member.id === myMember.id) {
       return;
     }
 
-    if (isMemberOwner(member)) {
+    if (isMemberOwner(member) || !canEditMembers) {
       return;
     }
 
-    if (!canEditMembers) {
-      return;
-    }
+    const name = (member.memberUserId === this.props.currentUser.id) ? getCurrentUserName() : getUserName(member.user, contacts);
+
+    const title = name;
+    const options = [
+      'Delete from team',
+      isMemberManager(member) ? 'Dismiss from team manager' : 'Make team manager',
+      'Cancel'
+    ];
+    const destructiveButtonIndex = 0;
+    const cancelButtonIndex = 2;
 
     this.props.showActionSheetWithOptions(
       {
+        title,
         options,
         cancelButtonIndex,
         destructiveButtonIndex,

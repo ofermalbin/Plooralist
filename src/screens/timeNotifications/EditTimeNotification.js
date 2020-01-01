@@ -61,7 +61,13 @@ class EditTimeNotification extends React.Component {
       expectedVersion: timeNotification.version
     };
 
-    const offline = Object.assign(timeNotification, {offline: true, updatedAt: (new Date()).toISOString()});
+    const offline = Object.assign(timeNotification, {
+      offline: true,
+      nextSend: nextSend ? nextSend.toISOString() : null,
+      dtstart: this.state.dtstart,
+      ...this.state.recurrence,
+      updatedAt: (new Date()).toISOString()
+    });
 
     this.props.updateTimeNotification({...offline, input});
     this.props.navigation.goBack();

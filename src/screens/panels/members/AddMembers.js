@@ -32,7 +32,6 @@ class AddMembers extends React.Component {
     const input = {
       memberPanelId: panelId,
       memberUserId: null,
-      manager: null,
     };
 
     const now = new Date();
@@ -45,7 +44,8 @@ class AddMembers extends React.Component {
       memberUserId: null,
       coupleUserId: null,
       user: null,
-      manager: null,
+      owner: false,
+      manager: false,
       block: false,
       mute: false,
       pin: false,
@@ -55,6 +55,9 @@ class AddMembers extends React.Component {
         offline: true,
         version: null,
         type: 3,
+        onlyManagersCreateTask: null,
+        onlyManagersEditInfo: null,
+        onlyManagersEditMembers: null,
         createdAt: now.toISOString(),
         updatedAt: now.toISOString(),
         name: null,
