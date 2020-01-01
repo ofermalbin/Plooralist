@@ -25,22 +25,17 @@ class CurrentUserProvider extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      currentUser: null,
+    }
+
+    this.updateCurrentUser = this.updateCurrentUser.bind(this);
   }
 
   async componentDidMount() {
     const { currentUser, currentAuth } = this.props;
-    if (currentUser && currentAuth) {
-      if (!currentUser.identityId) {
-        const currentCredentials = await Auth.currentCredentials();
-        const input = {
-          id: currentUser.id,
-          expectedVersion: currentUser.version,
-          identityId: currentCredentials.identityId,
-        };
-        this.props.updateUser({input});
-      }
-      await updateEndpoint(currentUser.id, aws_exports.aws_mobile_analytics_app_id);
-    }
+    currentUser && currentAuth && await this.updateCurrentUser(currentUser);
   }
 
   async componentWillReceiveProps(nextProps, nextState) {
@@ -48,23 +43,27 @@ class CurrentUserProvider extends React.Component {
     if (this.props.currentUser && this.props.currentAuth) {
       return;
     }
-    if (currentUser && currentAuth) {
-      if (!currentUser.identityId) {
-        const currentCredentials = await Auth.currentCredentials();
-        const input = {
-          id: currentUser.id,
-          expectedVersion: currentUser.version,
-          identityId: currentCredentials.identityId,
-        };
-        const offline = Object.assign(currentUser, {offline: true, updatedAt: (new Date()).toISOString()});
-        this.props.updateUser({...offline, input});
-      }
+    currentUser && currentAuth && await this.updateCurrentUser(currentUser);
+  }
+
+  async updateCurrentUser(currentUser) {
+    this.setState({ currentUser });
+    if (!currentUser.identityId) {
+      const currentCredentials = await Auth.currentCredentials();
+      const input = {
+        id: currentUser.id,
+        expectedVersion: currentUser.version,
+        identityId: currentCredentials.identityId,
+      };
+      const offline = Object.assign(currentUser, {offline: true, updatedAt: (new Date()).toISOString()});
+      this.props.updateUser({...offline, input});
     }
+    await updateEndpoint(currentUser.id, aws_exports.aws_mobile_analytics_app_id);
   }
 
   render() {
     return (
-      <CurrentUserContext.Provider value={{currentUser: this.props.currentUser}}>
+      <CurrentUserContext.Provider value={{currentUser: this.state.currentUser}}>
         {this.props.children}
       </CurrentUserContext.Provider>
     )
