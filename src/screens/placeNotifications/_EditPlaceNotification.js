@@ -53,7 +53,7 @@ class _EditPlaceNotification extends React.Component {
             latitudeNE: boundsOfDistance[1].latitude,
             longitudeNE: boundsOfDistance[1].longitude,
         }
-      })
+      }, ['placeID', 'location', 'name'])
     .then((results) => {
       const place = Object.assign({}, this.state.place, results, results.location);
       this.onPlaceChange(place);
@@ -63,7 +63,7 @@ class _EditPlaceNotification extends React.Component {
 
   componentDidMount() {
     if (this.props.place) {
-      RNGooglePlaces.lookUpPlaceByID(this.props.place.placeID)
+      RNGooglePlaces.lookUpPlaceByID(this.props.place.placeID, ['placeID', 'location', 'name'])
         .then((results) => {
           const place = Object.assign({}, this.props.place, results);
           this.onPlaceChange(place);
@@ -116,7 +116,7 @@ class _EditPlaceNotification extends React.Component {
   }
 
   openSearchModal() {
-    RNGooglePlaces.openAutocompleteModal()
+    RNGooglePlaces.openAutocompleteModal({}, ['placeID', 'location', 'name'])
       .then((results) => {
         const place = Object.assign({}, this.state.place, results, results.location);
         this.onPlaceChange(place);
@@ -134,7 +134,7 @@ class _EditPlaceNotification extends React.Component {
 
   openCurrentPlaceModal() {
     if (this.state.place.placeID) {
-      RNGooglePlaces.lookUpPlaceByID(this.state.place.placeID)
+      RNGooglePlaces.lookUpPlaceByID(this.state.place.placeID, ['placeID', 'location', 'name'])
         .then((results) => {
           this.openPlaceModal( {latitude: this.state.place.latitude, longitude: this.state.place.longitude, radius: 0.01} );
         })
@@ -152,37 +152,7 @@ class _EditPlaceNotification extends React.Component {
 
     return (
       <ScrollView>
-        <View style={{ marginTop: 22, backgroundColor: '#FFFFFF', flex:1 }}>
         <View>
-          <ListItem
-            topDivider={true}
-            bottomDivider={true}
-            containerStyle={placeNotificationStyles.container}
-            titleStyle={placeNotificationStyles.title}
-            rightTitleStyle={placeNotificationStyles.rightTitle}
-            subtitleStyle={placeNotificationStyles.subtitle}
-            chevron={true}
-            title='Place'
-            rightTitle={this.state.place.name ? this.state.place.name : 'Add'}
-            onPress={this.state.place.name ? this.openCurrentPlaceModal.bind(this) : this.openUserLocationPlaceModal.bind(this)}
-          />
-          <ListItem
-            bottomDivider={true}
-            containerStyle={placeNotificationStyles.container}
-            titleStyle={placeNotificationStyles.title}
-            rightTitleStyle={placeNotificationStyles.rightTitle}
-            chevron={false}
-            title='Radius'
-            rightTitle={this.state.place.radius.toString()}
-          />
-          <ListItem
-            buttonGroup={{
-              onPress: this.indexUpdate.bind(this),
-              selectedIndex: this.state.place.when,
-              buttons: buttons,
-            }}
-          />
-        </View>
         <View style={placeNotificationStyles.map_container}>
           <MapView
             //provider={PROVIDER_GOOGLE}
@@ -227,12 +197,42 @@ class _EditPlaceNotification extends React.Component {
               fillColor = {'rgba(230,238,255,0.5)'}
             />}
           </MapView>
+          <View style={placeNotificationStyles.map_icons_container}>
+            {this.props.place && <Icon name='delete' color='red' containerStyle={{paddingLeft: 10, paddingRight: 80, paddingTop: 10, paddingBottom: 30}} onPress={this.props.onDeletePress.bind(this)} />}
+            <Icon name='my-location' containerStyle={{padding: 10}} onPress={this.openUserLocationPlaceModal.bind(this)} />
+            {this.state.place && this.state.place.placeID && <Icon name='edit-location' containerStyle={{padding: 10}} onPress={this.openCurrentPlaceModal.bind(this)} />}
+            <Icon name='search' containerStyle={{padding: 10}} onPress={this.openSearchModal.bind(this)} />
+          </View>
         </View>
-        <View style={placeNotificationStyles.map_icons_container}>
-          {this.props.place && <Icon name='delete' color='red' containerStyle={{paddingLeft: 10, paddingRight: 80, paddingTop: 10, paddingBottom: 30}} onPress={this.props.onDeletePress.bind(this)} />}
-          <Icon name='my-location' containerStyle={{padding: 10}} onPress={this.openUserLocationPlaceModal.bind(this)} />
-          {this.state.place && this.state.place.placeID && <Icon name='edit-location' containerStyle={{padding: 10}} onPress={this.openCurrentPlaceModal.bind(this)} />}
-          <Icon name='search' containerStyle={{padding: 10}} onPress={this.openSearchModal.bind(this)} />
+        <View style={{ marginTop: 22 }}>
+          <ListItem
+            topDivider={true}
+            bottomDivider={true}
+            containerStyle={placeNotificationStyles.container}
+            titleStyle={placeNotificationStyles.title}
+            rightTitleStyle={placeNotificationStyles.rightTitle}
+            subtitleStyle={placeNotificationStyles.subtitle}
+            chevron={true}
+            title='Place'
+            rightTitle={this.state.place.name ? this.state.place.name : 'Add'}
+            onPress={this.state.place.name ? this.openCurrentPlaceModal.bind(this) : this.openUserLocationPlaceModal.bind(this)}
+          />
+          <ListItem
+            bottomDivider={true}
+            containerStyle={placeNotificationStyles.container}
+            titleStyle={placeNotificationStyles.title}
+            rightTitleStyle={placeNotificationStyles.rightTitle}
+            chevron={false}
+            title='Radius'
+            rightTitle={this.state.place.radius.toString()}
+          />
+          <ListItem
+            buttonGroup={{
+              onPress: this.indexUpdate.bind(this),
+              selectedIndex: this.state.place.when,
+              buttons: buttons,
+            }}
+          />
         </View>
       </View>
       </ScrollView>
