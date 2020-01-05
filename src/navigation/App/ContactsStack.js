@@ -15,7 +15,7 @@ export default createStackNavigator({
       headerLeftContainerStyle: {
         backgroundColor: 'white',
       },
-      headerRight: <Button
+      headerRight: () => <Button
         type="clear"
         icon={{
           name: 'search',
@@ -30,7 +30,7 @@ export default createStackNavigator({
     screen: InviteFriends,
     navigationOptions: ({ navigation }) => ({
       title: 'Invite Friends',
-      headerRight: <Button
+      headerRight: () => <Button
         type="clear"
         icon={{
           name: 'search',

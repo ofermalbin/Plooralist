@@ -80,8 +80,8 @@ enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
       headerTitle: "Description",
-      headerRight: <Button type="clear" title="Update" titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onSavePress()} />,
-      headerLeft: <Button type="clear" title="Cancel" titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+      headerRight: () => <Button type="clear" title="Update" titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onSavePress()} />,
+      headerLeft: () => <Button type="clear" title="Cancel" titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
     };
 }
 

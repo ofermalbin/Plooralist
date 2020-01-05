@@ -189,8 +189,8 @@ enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
       headerTitle: "New Team",
-      headerRight: <Button type="clear" title="Create" titleStyle={{color: '#5fb8f6'}} disabled={!params.name} onPress={() => params.onCreatePress()} />,
-      headerLeft: <Button type="clear" title="Cancel" titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+      headerRight: () => <Button type="clear" title="Create" titleStyle={{color: '#5fb8f6'}} disabled={!params.name} onPress={() => params.onCreatePress()} />,
+      headerLeft: () => <Button type="clear" title="Cancel" titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
     };
 }
 

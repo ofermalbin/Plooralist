@@ -115,7 +115,7 @@ enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
       headerTitle: "Plooralist",
-      headerLeft: <Button
+      headerLeft: () => <Button
         type="clear"
         icon={{
           name: 'search',
@@ -124,7 +124,7 @@ enhance.navigationOptions = ({ navigation }) => {
         title=''
         onPress={() => navigation.navigate('Search')}
       />,
-      headerRight: <Button
+      headerRight: () => <Button
         type="clear"
         icon={{
           name: 'edit',

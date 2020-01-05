@@ -16,7 +16,7 @@ class TimeNotificationDtStartEdit extends React.Component {
   static navigationOptions = ({ navigation }) => {
       const { params = {} } = navigation.state;
       return {
-          headerRight: <Button clear title="Save" titleStyle={{color: 'blue'}} onPress={() => params.onSavePress()} />
+          headerRight: () => <Button clear title="Save" titleStyle={{color: 'blue'}} onPress={() => params.onSavePress()} />
       };
   };
 

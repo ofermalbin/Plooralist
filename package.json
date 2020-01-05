@@ -51,19 +51,21 @@
     "react-native-vector-icons": "^6.6.0",
     "react-native-voice": "^0.3.0",
     "react-navigation": "^4.0.10",
-    "react-navigation-stack": "^1.10.3",
-    "react-navigation-tabs": "^2.6.2",
+    "react-navigation-stack": "^2.0.5",
+    "react-navigation-tabs": "^2.7.0",
     "rrule": "^2.6.4",
     "tcomb-form-native": "^0.6.20"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
     "@babel/runtime": "^7.7.7",
-    "@react-native-community/eslint-config": "^0.0.5",
-    "@react-native-community/netinfo": "4.6.1",
+    "@react-native-community/eslint-config": "^0.0.6",
+    "@react-native-community/masked-view": "^0.1.5",
+    "@react-native-community/netinfo": "4.7.0",
     "babel-jest": "^24.9.0",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.57.0",
+    "react-native-safe-area-context": "^0.6.2",
     "react-test-renderer": "^16.12.0"
   },
   "jest": {

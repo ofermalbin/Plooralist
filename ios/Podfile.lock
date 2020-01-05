@@ -242,10 +242,12 @@ PODS:
     - React
   - react-native-maps (0.26.1):
     - React
-  - react-native-netinfo (4.6.1):
+  - react-native-netinfo (4.7.0):
     - React
   - react-native-radar (2.1.9):
     - RadarSDK (~> 2.1.6)
+    - React
+  - react-native-safe-area-context (0.6.2):
     - React
   - react-native-splash-screen (3.2.0):
     - React
@@ -290,6 +292,8 @@ PODS:
     - JKBigInteger2 (= 0.0.5)
     - React
   - RNCAsyncStorage (1.7.1):
+    - React
+  - RNCMaskedView (0.1.5):
     - React
   - RNCPushNotificationIOS (1.0.3):
     - React
@@ -346,6 +350,7 @@ DEPENDENCIES:
   - react-native-maps (from `../node_modules/react-native-maps`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-radar (from `../node_modules/react-native-radar`)
+  - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - react-native-voice (from `../node_modules/react-native-voice`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -361,6 +366,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNAWSCognito (from `../node_modules/amazon-cognito-identity-js`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
+  - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - "RNCPushNotificationIOS (from `../node_modules/@react-native-community/push-notification-ios`)"
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
   - RNFastImage (from `../node_modules/react-native-fast-image`)
@@ -434,6 +440,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-radar:
     :path: "../node_modules/react-native-radar"
+  react-native-safe-area-context:
+    :path: "../node_modules/react-native-safe-area-context"
   react-native-splash-screen:
     :path: "../node_modules/react-native-splash-screen"
   react-native-voice:
@@ -462,6 +470,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/amazon-cognito-identity-js"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
+  RNCMaskedView:
+    :path: "../node_modules/@react-native-community/masked-view"
   RNCPushNotificationIOS:
     :path: "../node_modules/@react-native-community/push-notification-ios"
   RNDateTimePicker:
@@ -511,8 +521,9 @@ SPEC CHECKSUMS:
   react-native-google-places: c36ef927c7743c7a91ed401363a31b3eca72e15a
   react-native-image-picker: 7a85cf7b0a53845f03ae52fb4592a2748ded069b
   react-native-maps: 6e499eee4eabf422ba8b6f94e993cc768bf35153
-  react-native-netinfo: a59d8426a8484f739fe3a95dd6ad5af1435db05f
+  react-native-netinfo: ddaca8bbb9e6e914b1a23787ccb879bc642931c9
   react-native-radar: 0d0d6ffbf4038bb221f694da7fc2b651805c124d
+  react-native-safe-area-context: 25260c5d0b9c53fd7aa88e569e2edae72af1f6a3
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-voice: 9829ac5dc9300687c5f215bddf6c9645e82923fc
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
@@ -527,6 +538,7 @@ SPEC CHECKSUMS:
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
   RNAWSCognito: 5c0df55a382a2f23ae81ec6e717975880002dd63
   RNCAsyncStorage: 44395cb9c7c1523104c2b499eb426ef7aff82bca
+  RNCMaskedView: dd13f9f7b146a9ad82f9b7eb6c9b5548fcf6e990
   RNCPushNotificationIOS: 83ec11fe19d4ea9e32cc339d8e7d2cc3c88f543e
   RNDateTimePicker: 9db00606d689f5653f08aa601c81b9d3266a0a19
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2

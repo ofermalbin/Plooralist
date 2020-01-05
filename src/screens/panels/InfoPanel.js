@@ -95,7 +95,7 @@ const enhance = compose(
 enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerLeft: <HeaderBackButton onPress={() => {navigation.goBack(null);}} />,
+      headerLeft: () => <HeaderBackButton onPress={() => {navigation.goBack(null);}} />,
       headerTitle: "Info",
     };
 }

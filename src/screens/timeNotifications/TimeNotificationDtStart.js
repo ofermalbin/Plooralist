@@ -17,8 +17,8 @@ class TimeNotificationDtStart extends React.Component {
       const { params = {} } = navigation.state;
       return {
         headerTitle: "Time Nonification",
-        headerRight: <Button clear title="Add" titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onAddPress()} />,
-        headerLeft: <Button clear title="Cancel" titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+        headerRight: () => <Button clear title="Add" titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onAddPress()} />,
+        headerLeft: () => <Button clear title="Cancel" titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
       };
   };
 

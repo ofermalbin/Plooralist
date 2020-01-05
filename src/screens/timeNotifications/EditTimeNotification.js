@@ -142,8 +142,8 @@ enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
       headerTitle: "Time Nonification",
-      headerRight: <Button type="clear" title="Save" titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
-      headerLeft: <Button type="clear" title="Cancel" titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+      headerRight: () => <Button type="clear" title="Save" titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
+      headerLeft: () => <Button type="clear" title="Cancel" titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
     };
 }
 

@@ -125,8 +125,8 @@ class EditTimeNotificationRecurrenceCustom extends React.Component {
       const { params = {} } = navigation.state;
       return {
         headerTitle: "Time Nonification",
-        headerRight: <Button type="clear" title="Done" titleStyle={{color: '#5fb8f6'}} onPress={() => params.onDonePress()} />,
-        headerLeft: <Button type="clear" title="Cancel" titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+        headerRight: () => <Button type="clear" title="Done" titleStyle={{color: '#5fb8f6'}} onPress={() => params.onDonePress()} />,
+        headerLeft: () => <Button type="clear" title="Cancel" titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
       };
   };
 
