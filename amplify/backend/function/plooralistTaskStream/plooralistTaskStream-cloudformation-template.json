@@ -91,7 +91,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-plooralist-dev-145928-deployment",
-					"S3Key": "amplify-builds/plooralistTaskStream-5a744e49495731534f37-build.zip"
+					"S3Key": "amplify-builds/plooralistTaskStream-6c484f734c6e35585373-build.zip"
 				}
 			}
 		},

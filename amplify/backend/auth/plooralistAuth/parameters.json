@@ -1,6 +1,6 @@
 {
     "identityPoolName": "plooralistIdentityPool",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "ploora86b7bfcb",
     "userPoolName": "plooralistUserPool",
     "autoVerifiedAttributes": [

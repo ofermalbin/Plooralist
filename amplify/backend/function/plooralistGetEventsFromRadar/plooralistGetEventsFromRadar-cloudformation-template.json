@@ -91,7 +91,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-plooralist-dev-145928-deployment",
-					"S3Key": "amplify-builds/plooralistGetEventsFromRadar-61685276787a3446534f-build.zip"
+					"S3Key": "amplify-builds/plooralistGetEventsFromRadar-4b4a4f70567378443033-build.zip"
 				}
 			}
 		},
@@ -168,6 +168,25 @@
 										},
 										"lambda": {
 											"Ref": "LambdaFunction"
+										}
+									}
+								]
+							}
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"dynamodb:*"
+							],
+							"Resource": {
+								"Fn::Sub": [
+									"arn:aws:dynamodb:${region}:${account}:table/*",
+									{
+										"region": {
+											"Ref": "AWS::Region"
+										},
+										"account": {
+											"Ref": "AWS::AccountId"
 										}
 									}
 								]
