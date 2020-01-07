@@ -214,6 +214,12 @@
             "providerPlugin": "awscloudformation"
         }
     },
+    "storage": {
+        "plooralistS3": {
+            "service": "S3",
+            "providerPlugin": "awscloudformation"
+        }
+    },
     "notifications": {
         "plooralistPinpoint": {
             "service": "Pinpoint",
@@ -221,12 +227,6 @@
                 "APNS",
                 "FCM"
             ]
-        }
-    },
-    "storage": {
-        "plooralistS3": {
-            "service": "S3",
-            "providerPlugin": "awscloudformation"
         }
     }
 }
