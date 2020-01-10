@@ -13,7 +13,9 @@ import { buildSubscription } from 'aws-appsync';
 import { getPanel, getMember } from '../../graphql/queries';
 import { onUpdatePanel, onDeletePanel } from '../../graphql/subscriptions';
 
-import Loading from '../../components/Loading';
+import { Loading } from '../../components';
+
+import translations from '../../translations';
 
 import { InfoSinglePanel } from './singlePanel';
 import { InfoCouplePanel } from './couplePanel';
@@ -96,7 +98,7 @@ enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
       headerLeft: () => <HeaderBackButton onPress={() => {navigation.goBack(null);}} />,
-      headerTitle: "Info",
+      headerTitle: translations("Panel.info"),
     };
 }
 

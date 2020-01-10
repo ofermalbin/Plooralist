@@ -7,17 +7,14 @@ import RNRestart from 'react-native-restart';
 import { CognitoUser } from "amazon-cognito-identity-js";
 import { Auth } from 'aws-amplify';
 
-import moment from 'moment/min/moment-with-locales.js';
-
 import { ListItem, Icon } from 'react-native-elements';
 
-import { normalize, colors } from  "react-native-elements";
+import { AvatarS3Image, Chevron } from '../../components';
 
-import { AvatarS3Image } from '../../components';
 import FastImage from 'react-native-fast-image';
 import aws_exports from '../../aws-exports';
 
-import Loading from '../../components/Loading';
+import { Loading, CreatedAtText } from '../../components';
 
 import { withCurrentUser } from '../../contexts';
 
@@ -39,10 +36,7 @@ import { sleep } from '../../lib/sleep';
 
 import uuid from 'react-native-uuid';
 
-const Locales = {
-  en: 'English',
-  he: 'Hebrew',
-};
+import translations from '../../translations';
 
 const styles = StyleSheet.create({
   removeText: {
@@ -133,11 +127,11 @@ class CurrentUserInfo extends React.Component {
   onLogoutPress() {
     const { currentUser } = this.props;
     Alert.alert(
-      'Logout Account',
-      'Are you sure?',
+      translations("CurrentUser.logout"),
+      translations("Common.Alert.are you sure?"),
       [
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-        {text: 'OK', onPress: () => {
+        {text: translations("Common.Button.cancel")},
+        {text: translations("Common.Button.ok"), onPress: () => {
           Auth.signOut()
             .then(() => RNRestart.Restart())
             .catch(err => alert(JSON.stringify(err)));
@@ -149,11 +143,11 @@ class CurrentUserInfo extends React.Component {
   onDeleteAccountPress() {
     const { currentUser } = this.props;
     Alert.alert(
-      'Delete Account',
-      'Are you sure?',
+      translations("CurrentUser.delete account"),
+      translations("Common.Alert.are you sure?"),
       [
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-        {text: 'OK', onPress: () => {
+        {text: translations("Common.Button.cancel")},
+        {text: translations("Common.Button.ok"), onPress: () => {
           const input = {
             id: currentUser.id,
             expectedVersion: currentUser.version,
@@ -200,7 +194,7 @@ class CurrentUserInfo extends React.Component {
           containerStyle={currentUserStyles.container}
           titleStyle={currentUserStyles.title}
           subtitleStyle={currentUserStyles.subtitle}
-          chevron={true}
+          chevron={<Chevron />}
           title={__capitalize_Words(currentUser.name)}
           subtitle={currentUser.phoneNumber}
           leftAvatar={
@@ -220,43 +214,30 @@ class CurrentUserInfo extends React.Component {
         />
         <View style={{ marginTop: 22 }}>
           <ListItem
-            bottomDivider={true}
             containerStyle={currentUserStyles.container}
             titleStyle={currentUserStyles.title}
             rightTitleStyle={currentUserStyles.rightTitle}
-            chevron={true}
-            title='Locale'
-            rightTitle={currentUser.locale ? Locales[currentUser.locale] : 'add'}
-            leftIcon={{name: 'language', iconStyle: currentUserStyles.leftIcon}}
-            onPress={this.onLocalePress.bind(this)}
-          />
-          <ListItem
-            containerStyle={currentUserStyles.container}
-            titleStyle={currentUserStyles.title}
-            rightTitleStyle={currentUserStyles.rightTitle}
-            chevron={true}
-            title='Email'
-            rightTitle={currentUser.email ? currentUser.email : 'add'}
+            chevron={<Chevron />}
+            title={translations("CurrentUser.email")}
+            rightTitle={currentUser.email ? currentUser.email : translations("Common.Button.add")}
             leftIcon={{name: 'mail', iconStyle: currentUserStyles.leftIcon}}
             onPress={this.onEmailPress.bind(this)}
           />
         </View>
         <View style={{ marginTop: 22 }}>
           <ListItem
-            chevron={false}
-            title='Logout'
+            title={translations("CurrentUser.logout")}
             titleStyle={[currentUserStyles.title, styles.removeText]}
             onPress={this.onLogoutPress.bind(this)}
           />
           <ListItem
-            chevron={false}
-            title='Delete Account'
+            title={translations("CurrentUser.delete account")}
             titleStyle={[currentUserStyles.title, styles.removeText]}
             onPress={this.onDeleteAccountPress.bind(this)}
           />
         </View>
         <View style={createByAtStyles.container}>
-          <Text style={createByAtStyles.text}>{`${'created at '}${moment(currentUser.createdAt).locale('en').format('LL')}.`}</Text>
+          <CreatedAtText createdAt={currentUser.createdAt} />
         </View>
       </View>
       </ScrollView>

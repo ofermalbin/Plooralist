@@ -11,7 +11,7 @@ import { buildSubscription } from 'aws-appsync';
 import { getMember, listTasksForPanel } from '../../graphql/queries';
 import { onCreateTask, onUpdateTask, onDeleteTask } from '../../graphql/subscriptions';
 
-import Loading from '../../components/Loading';
+import { Loading } from '../../components';
 
 import { TitlePanel } from '../panels';
 import ListTasks from './ListTasks';

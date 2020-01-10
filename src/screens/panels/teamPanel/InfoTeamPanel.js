@@ -6,7 +6,8 @@ import moment from 'moment/min/moment-with-locales.js';
 
 import { ListItem, Icon } from 'react-native-elements';
 
-import { AvatarS3Image } from '../../../components';
+import { AvatarS3Image, CreatedAtText, Chevron } from '../../../components';
+
 import FastImage from 'react-native-fast-image';
 import aws_exports from '../../../aws-exports';
 
@@ -41,6 +42,8 @@ import { storeFileInS3 } from '../../../lib/s3';
 import { sleep } from '../../../lib/sleep';
 
 import { listMembersForPanelVariables, isMemberOwner, isMemberManager, isOnlyManagersEditInfo, isOnlyManagersEditMembers } from '../util';
+
+import translations from '../../../translations';
 
 const __capitalize_Words = function(str) {
   return str && str.replace (/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -176,8 +179,8 @@ class InfoTeamPanel extends React.Component {
           titleStyle={infoListStyles.title}
           topDivider={true}
           bottomDivider={true}
-          chevron={true}
-          title='Permission'
+          chevron={<Chevron />}
+          title={translations("Members.permission")}
           leftIcon={{name: 'create', iconStyle: infoListStyles.leftIcon}}
           onPress={this.onPermissionPress.bind(this)}
         />}
@@ -186,7 +189,7 @@ class InfoTeamPanel extends React.Component {
         <LeavePanel {...this.props} />
         {isOwner && <DeletePanel {...this.props} />}
         <View style={createByAtStyles.container}>
-          <Text style={createByAtStyles.text}>{`${'created at '}${moment(panel.createdAt).locale('en').format('LL')}.`}</Text>
+          <CreatedAtText createdAt={panel.createdAt} />
         </View>
       </View>
       </ScrollView>

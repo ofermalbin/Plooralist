@@ -23,9 +23,6 @@ export const listStyles = StyleSheet.create({
   title: {
     fontSize: normalize(14.7),
     fontWeight: "bold",
-    fontStyle: "normal",
-    lineHeight: normalize(15),
-    letterSpacing: 0,
     textAlign: "left",
     color: "#4f4f4f",
   },
@@ -37,9 +34,6 @@ export const listStyles = StyleSheet.create({
   rightTitle: {
     fontSize: normalize(15),
     fontWeight: "bold",
-    fontStyle: "normal",
-    lineHeight: normalize(15.8),
-    letterSpacing: 0,
     textAlign: "left",
     color: "#5fb8f6"
   },
@@ -59,9 +53,6 @@ export const actionListStyles = StyleSheet.create({
   title: {
     fontSize: normalize(14.7),
     fontWeight: "bold",
-    fontStyle: "normal",
-    lineHeight: normalize(15),
-    letterSpacing: 0,
     textAlign: "left",
     color: "#4f4f4f",
   },

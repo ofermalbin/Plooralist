@@ -85,10 +85,10 @@ class EditTimeNotification extends React.Component {
 
     Alert.alert(
       'Delete Time Notification',
-      'Are you sure?',
+      translations("Common.Alert.are you sure?"),
       [
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-        {text: 'OK', onPress: () => {
+        {text: translations("Common.Button.cancel")},
+        {text: translations("Common.Button.ok"), onPress: () => {
           const { timeNotification } = this.props.navigation.state.params;
           const input = {
             id: timeNotification.id,
@@ -121,7 +121,6 @@ class EditTimeNotification extends React.Component {
           bottomDivider={true}
           containerStyle={[timeNotificationStyles.container, { marginTop:22 }]}
           titleStyle={[timeNotificationStyles.title, timeNotificationStyles.removeText]}
-          chevron={false}
           title='Delete'
           onPress={this.onDeletePress.bind(this)}
         />
@@ -143,7 +142,7 @@ enhance.navigationOptions = ({ navigation }) => {
     return {
       headerTitle: "Time Nonification",
       headerRight: () => <Button type="clear" title="Save" titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
-      headerLeft: () => <Button type="clear" title="Cancel" titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+      headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
     };
 }
 

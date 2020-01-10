@@ -677,7 +677,7 @@
 				DEVELOPMENT_TEAM = LCNLHU9567;
 				INFOPLIST_FILE = Plooralist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.88;
+				MARKETING_VERSION = 1.0.89;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -699,7 +699,7 @@
 				DEVELOPMENT_TEAM = LCNLHU9567;
 				INFOPLIST_FILE = Plooralist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.88;
+				MARKETING_VERSION = 1.0.89;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

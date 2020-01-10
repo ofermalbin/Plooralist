@@ -13,24 +13,28 @@ export const timeNotificationStyles = StyleSheet.create({
     minHeight: normalize(55),
   },
   title: {
-    fontSize: normalize(15),
+    fontSize: normalize(12),
     fontWeight: "bold",
-    color: "#4f4f4f"
+    color: "#4f4f4f",
+    textAlign: 'left'
   },
   subtitle: {
-    fontSize: normalize(14),
-    fontWeight: "bold",
-    color: "#5fb8f6",
+    fontSize: normalize(12),
+    //fontWeight: "bold",
+    color: "#b0b5b8",
+    textAlign: 'left'
   },
   notificationText: {
     fontSize: normalize(12),
     fontWeight: "bold",
-    color: "#4f4f4f"
+    color: "#4f4f4f",
+    textAlign: 'left'
   },
   sendText: {
     fontSize: normalize(12),
     color: "#b0b5b8",
     marginTop: normalize(4),
+    textAlign: 'left'
   },
   recurrenceText: {
     fontSize: normalize(12),

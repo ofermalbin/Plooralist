@@ -13,11 +13,12 @@ import { buildSubscription } from 'aws-appsync';
 import { listMembersForPanel } from '../../../graphql/queries';
 import { onCreateMember, onUpdateMember, onDeleteMember } from '../../../graphql/subscriptions';
 
-import Loading from '../../../components/Loading';
+import { Loading } from '../../../components';
 
 import moment from 'moment/min/moment-with-locales.js';
 
-import { AvatarS3Image } from '../../../components';
+import { AvatarS3Image, CreatedAtText } from '../../../components';
+
 
 import { withContacts } from '../../../contexts';
 
@@ -99,7 +100,7 @@ class InfoCouplePanel extends React.Component {
         <MutePanel {...this.props} />
         <BlockPanel {...this.props} />
         <View style={createByAtStyles.container}>
-          <Text style={createByAtStyles.text}>{`${'created at '}${moment(panel.createdAt).locale('en').format('LL')}.`}</Text>
+          <CreatedAtText createdAt={panel.createdAt} />
         </View>
       </View>
       </ScrollView>

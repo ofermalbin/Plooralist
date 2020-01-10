@@ -27,9 +27,8 @@
   [GMSPlacesClient provideAPIKey:@"AIzaSyDqJK-215Iu3ZL10O9b7oeGezlZjAG3g7E"];
   [GMSServices provideAPIKey:@"AIzaSyDqJK-215Iu3ZL10O9b7oeGezlZjAG3g7E"];
 
-  [[RCTI18nUtil sharedInstance] allowRTL:NO];
-  [[RCTI18nUtil sharedInstance] forceRTL:NO];
-
+  [[RCTI18nUtil sharedInstance] allowRTL:YES];
+  
   [Radar initializeWithPublishableKey:@"org_test_pk_2adbb72f75f0e8f24731bbd1b1fe3e112706303d"];
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];

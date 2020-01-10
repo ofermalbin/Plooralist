@@ -20,7 +20,7 @@ import { withCurrentUser } from '../../../contexts';
 import { RowViewPotentialUser } from '../members';
 
 import { AvatarS3Image } from '../../../components';
-import Loading from '../../../components/Loading';
+import { Loading } from '../../../components';
 
 import { PhotoEdit } from '../../photos';
 
@@ -29,6 +29,8 @@ import { listMembersForUserVariables } from '../util';
 import { infoAvatarStyles, inputStyles, infoListStyles } from '../config/stylesheets';
 
 import { storeFileInS3 } from '../../../lib/s3';
+
+import translations from '../../../translations';
 
 class CreateTeamPanel extends React.Component {
 
@@ -152,7 +154,7 @@ class CreateTeamPanel extends React.Component {
             inputStyle={inputStyles.input}
             value={this.state.name}
             autoFocus={true}
-            placeholder="Team Name"
+            placeholder={translations("Panel.team name")}
             onChangeText={this.onNameChangeText.bind(this)}
           />
         }
@@ -188,9 +190,9 @@ const enhance = compose(
 enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerTitle: "New Team",
-      headerRight: () => <Button type="clear" title="Create" titleStyle={{color: '#5fb8f6'}} disabled={!params.name} onPress={() => params.onCreatePress()} />,
-      headerLeft: () => <Button type="clear" title="Cancel" titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+      headerTitle: translations("Panel.new team"),
+      headerRight: () => <Button type="clear" title={translations("Common.Button.create")} titleStyle={{color: '#5fb8f6'}} disabled={!params.name} onPress={() => params.onCreatePress()} />,
+      headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
     };
 }
 

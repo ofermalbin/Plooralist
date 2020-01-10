@@ -5,6 +5,8 @@ import { AvatarS3Image } from '../../../components';
 
 import { withCurrentUser } from '../../../contexts';
 
+import { getCurrentUserName } from '../../../util';
+
 import { titlePanelStyles } from '../config/stylesheets';
 
 class TitleSinglePanel extends React.Component {
@@ -15,7 +17,7 @@ class TitleSinglePanel extends React.Component {
 
   render() {
     const { currentUser, onPress } = this.props;
-    const name = 'Me';
+    const name = getCurrentUserName();
     const imgKey = currentUser.imgKey;
     return (
       <TouchableOpacity onPress={onPress}>

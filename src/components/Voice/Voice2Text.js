@@ -9,6 +9,8 @@ import Voice from 'react-native-voice';
 
 import * as Animatable from 'react-native-animatable';
 
+import translates, { getI18nConfig } from '../../translations';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -54,8 +56,9 @@ class Voice2Text extends React.Component {
   }
 
   async _startRecognizing(e) {
+    const { languageTag } = getI18nConfig();
     try {
-      await Voice.start('he-IL');
+      await Voice.start(languageTag);
     } catch (e) {
       console.error(e);
     }
@@ -92,8 +95,8 @@ class Voice2Text extends React.Component {
       <View style={styles.container}>
         <View style={{flex:0.8}}>
         <ListItem
-          titleStyle={{fontWeight: '300', fontSize: normalize(20)}}
-          title={this.state.partialResults.join(' ') || 'Speech...'}
+          titleStyle={{fontWeight: '300', fontSize: normalize(20), textAlign: "left"}}
+          title={this.state.partialResults.join(' ') || translates("Common.Input.speech")}
         />
         </View>
         <View style={{flex:0.2}}>

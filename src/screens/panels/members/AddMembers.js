@@ -90,8 +90,8 @@ enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
       headerTitle: "Add Members",
-      headerRight: () => <Button type="clear" title="Add" titleStyle={{color: '#5fb8f6'}} disabled={!params.potentialsUsersChecked} onPress={() => params.onAddPress()} />,
-      headerLeft: () => <Button type="clear" title="Cancel" titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+      headerRight: () => <Button type="clear" title={translations("Common.Button.add")} titleStyle={{color: '#5fb8f6'}} disabled={!params.potentialsUsersChecked} onPress={() => params.onAddPress()} />,
+      headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
     };
 }
 

@@ -25,10 +25,10 @@ class DeleteTask extends React.Component {
   onDeletePress() {
     Alert.alert(
       'Delete Task',
-      'Are you sure?',
+      translations("Common.Alert.are you sure?"),
       [
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-        {text: 'OK', onPress: () => {
+        {text: translations("Common.Button.cancel")},
+        {text: translations("Common.Button.ok"), onPress: () => {
           const { task } = this.props;
           const input = {
             id: task.id,
@@ -49,7 +49,6 @@ class DeleteTask extends React.Component {
         bottomDivider={true}
         containerStyle={[infoListStyles.container, {marginTop:22}]}
         titleStyle={[infoListStyles.title, infoListStyles.removeText]}
-        chevron={false}
         title='Delete'
         onPress={this.onDeletePress.bind(this)}
       />

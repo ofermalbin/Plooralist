@@ -57,8 +57,7 @@ public class MainApplication extends Application implements ReactApplication {
     initializeFlipper(this); // Remove this line if you don't want Flipper enabled
 
     I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();
-    sharedI18nUtilInstance.forceRTL(this, false);
-    sharedI18nUtilInstance.allowRTL(this, false);
+    sharedI18nUtilInstance.allowRTL(this, true);
     Radar.initialize("org_test_pk_2adbb72f75f0e8f24731bbd1b1fe3e112706303d");
   }
 

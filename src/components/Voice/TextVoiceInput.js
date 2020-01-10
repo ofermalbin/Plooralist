@@ -9,7 +9,10 @@ import Voice from 'react-native-voice';
 
 import { cloneDeep } from 'lodash';
 
+import translates, { getI18nConfig } from '../../translations';
+
 import { textVoiceInputStyles } from './config/stylesheets';
+
 import colors from '../../config/colors';
 
 class TextVoiceInput extends React.Component {
@@ -57,7 +60,7 @@ class TextVoiceInput extends React.Component {
           <Input
             inputStyle={textVoiceInputStyles.input}
             inputContainerStyle={textVoiceInputStyles.inputContainer}
-            placeholder="Say something..."
+            placeholder={translates("Common.Input.placeholder")}
             clearButtonMode="always"
             value={value}
             //onBlur={() => this.setState({value: ''})}

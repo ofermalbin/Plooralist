@@ -16,6 +16,10 @@ import { includes } from 'lodash';
 
 import { isMemberMute, listMembersForUserVariables } from './util';
 
+import { Chevron } from '../../components';
+
+import translations from '../../translations';
+
 import { infoListStyles } from './config/stylesheets';
 
 class MutePanel extends React.Component {
@@ -43,11 +47,11 @@ class MutePanel extends React.Component {
     const { member } = this.props;
     const isMute = this.state.isMute;
     Alert.alert(
-      isMute ? 'Unmute' : 'Mute',
-      'Are you sure?',
+      translations(isMute ? "Panel.cancel mute" : "Panel.mute"),
+      translations("Common.Alert.are you sure?"),
       [
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-        {text: 'OK', onPress: () => {
+        {text: translations("Common.Button.cancel")},
+        {text: translations("Common.Button.ok"), onPress: () => {
           const input = {
             id: member.id,
             expectedVersion: member.version,
@@ -70,10 +74,10 @@ class MutePanel extends React.Component {
         rightTitleStyle={infoListStyles.rightTitle}
         topDivider={true}
         bottomDivider={true}
-        chevron={true}
-        title={this.state.isMute ? 'Unmute' : 'Mute'}
+        chevron={<Chevron />}
+        title={translations(this.state.isMute ? "Panel.unmute" : "Panel.mute")}
         leftIcon={{name: this.state.isMute ? 'volume-off' : 'volume-up', iconStyle: infoListStyles.leftIcon}}
-        rightTitle={this.state.isMute ? 'On' : 'Off'}
+        rightTitle={translations(this.state.isMute ? "Common.Status.yes" : "Common.Status.no")}
         onPress={this.onMutePress.bind(this)}
         disabled={member.offline}
         disabledStyle={{backgroundColor: '#F0F8FF'}}

@@ -14,13 +14,15 @@ import { onCreateStreamMember, onUpdateStreamMember, onDeleteStreamMember } from
 
 import { withCurrentUser, withUsersAreContacts } from '../../contexts';
 
-import Loading from '../../components/Loading';
+import { Loading } from '../../components';
 
 import ListPanels from './ListPanels';
 
 import { listMembersForUserVariables } from './util';
 
 import colors from '../../config/colors';
+
+import translations from '../../translations'
 
 class Panels extends React.Component {
 
@@ -114,7 +116,7 @@ const enhance = withCurrentUser(withUsersAreContacts(compose(
 enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerTitle: "Plooralist",
+      headerTitle: translations("General.plooralist"),
       headerLeft: () => <Button
         type="clear"
         icon={{

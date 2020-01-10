@@ -14,6 +14,8 @@ import PhotoMax from '../../screens/photos';
 
 import { createStackNavigator } from "react-navigation-stack";
 
+import translations from '../../translations';
+
 export default createStackNavigator({
   Panels: {
     screen: Panels,
@@ -22,7 +24,7 @@ export default createStackNavigator({
     screen: SelectPanel,
     navigationOptions: ({ navigation, screenProps }) => {
       return {
-        title: 'Select Panel',
+        title: translations("Panel.select panel")
       };
     }
   },

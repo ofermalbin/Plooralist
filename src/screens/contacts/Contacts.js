@@ -6,6 +6,8 @@ import { actionListStyles } from './config/stylesheets';
 
 import { CouplesPanels } from '../panels';
 
+import translations from '../../translations';
+
 class Contacts extends React.Component {
 
   constructor(props) {
@@ -24,7 +26,6 @@ class Contacts extends React.Component {
             bottomDivider={true}
             containerStyle={actionListStyles.container}
             titleStyle={actionListStyles.title}
-            chevron={false}
             leftIcon={
               <Avatar
                 containerStyle={actionListStyles.leftIconAvatarContainer}
@@ -33,7 +34,7 @@ class Contacts extends React.Component {
                 placeholderStyle={actionListStyles.leftIconAvatarPlaceholder}
               />
             }
-            title='Invite Friends'
+            title={translations("InviteFriend.invite friends")}
             onPress={this.onInviteFriendsPress.bind(this)}
           />
           <CouplesPanels navigation={this.props.navigation} />

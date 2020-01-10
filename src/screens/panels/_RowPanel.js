@@ -12,7 +12,7 @@ import { graphqlMutation } from 'aws-appsync-react';
 import { updateMember } from '../../graphql/mutations';
 import { listMembersForUser } from '../../graphql/queries';
 
-import { AvatarS3Image } from '../../components';
+import { AvatarS3Image, Chevron } from '../../components';
 
 import { rowPanelStyles } from './config/stylesheets';
 
@@ -51,7 +51,7 @@ class _RowPanel extends React.Component {
       <ListItem
         containerStyle={rowPanelStyles.container}
         titleStyle={rowPanelStyles.title}
-        chevron={true}
+        chevron={<Chevron />}
         title={name}
         leftAvatar={
           <AvatarS3Image

@@ -11,6 +11,8 @@ import RNGooglePlaces from 'react-native-google-places';
 
 import Geolocation from '@react-native-community/geolocation';
 
+import { Chevron } from '../../components';
+
 import { placeNotificationStyles } from './config/stylesheets';
 
 class _EditPlaceNotification extends React.Component {
@@ -212,7 +214,7 @@ class _EditPlaceNotification extends React.Component {
             titleStyle={placeNotificationStyles.title}
             rightTitleStyle={placeNotificationStyles.rightTitle}
             subtitleStyle={placeNotificationStyles.subtitle}
-            chevron={true}
+            chevron={<Chevron />}
             title='Place'
             rightTitle={this.state.place.name ? this.state.place.name : 'Add'}
             onPress={this.state.place.name ? this.openCurrentPlaceModal.bind(this) : this.openUserLocationPlaceModal.bind(this)}
@@ -222,7 +224,6 @@ class _EditPlaceNotification extends React.Component {
             containerStyle={placeNotificationStyles.container}
             titleStyle={placeNotificationStyles.title}
             rightTitleStyle={placeNotificationStyles.rightTitle}
-            chevron={false}
             title='Radius'
             rightTitle={this.state.place.radius.toString()}
           />

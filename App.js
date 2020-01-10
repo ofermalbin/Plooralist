@@ -20,14 +20,12 @@ import React from 'react';
 import { Platform, SafeAreaView, View, Text, Alert } from 'react-native';
 import { YellowBox } from 'react-native';
 
-//import { AsyncStorage } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import Amplify, { Analytics, Auth } from 'aws-amplify';
 import { AmplifyTheme } from 'aws-amplify-react-native';
 import { Loading, SignIn, RequireNewPassword } from 'aws-amplify-react-native';
 
-//import { PushNotificationIOS } from 'react-native';
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
 
 import PushNotification from '@aws-amplify/pushnotification';
@@ -53,12 +51,12 @@ import SplashScreen from 'react-native-splash-screen';
 
 import codePush from 'react-native-code-push';
 
-//import { MemoryStorageNew } from './AmplifyAuthStorage';
+import * as RNLocalize from 'react-native-localize';
+import { setI18nConfig } from './src/translations'
 
 import { onRegister } from './src/lib/pushNotification';
 
 Amplify.configure(aws_exports);
-//Auth.configure({storage: MemoryStorageNew});
 Analytics.configure(aws_exports);
 PushNotification.configure(aws_exports);
 
@@ -88,9 +86,14 @@ const client = new AWSAppSyncClient({
   offlineConfig: {
     callback: (err, succ) => {
       if(err) {
-        const { mutation, variables } = err;
+        const { mutation, variables, error } = err;
         //alert(`ERROR for ${mutation} ${err}`);
-        alert(`graphQL-> ${mutation} ${err.error.message}`);
+        if (err.error.graphQLErrors[0].errorType === 'DynamoDB:ConditionalCheckFailedException') {
+          Alert.alert(mutation, 'Refresh and try again');
+        }
+        else {
+          Alert.alert(`graphQL-> ${mutation}`, err.error.graphQLErrors[0].errorType);
+        }
       }
     },
   },
@@ -107,6 +110,7 @@ class AppWithProvider extends React.Component {
   }
 
   componentDidMount(){
+    RNLocalize.addEventListener('change', this.handleLocalizationChange);
     SplashScreen.hide();
 
     if( receivePushNotificationResult )  {
@@ -139,7 +143,19 @@ class AppWithProvider extends React.Component {
     });
   }
 
-  render() {
+ componentWillUnmount() {
+   RNLocalize.removeEventListener('change', this.handleLocalizationChange)
+ }
+
+ handleLocalizationChange() {
+   setI18nConfig()
+   .then(() => this.forceUpdate())
+   .catch(error => {
+   console.error(error)
+   })
+ }
+
+ render() {
 
     return (
       <ApolloProvider client={client}>
@@ -191,6 +207,7 @@ class AppWithAuth extends React.Component {
       'componentWillReceiveProps has been renamed', // TODO: Remove when fixed
       'componentWillUpdate has been renamed', // TODO: Remove when fixed
       'VirtualizedLists should never be nested', // TODO: Remove when fixed
+      'Setting a timer', // supress settimeout warning on Android TODO: Remove when fixed
     ]);
   }
 

@@ -5,6 +5,8 @@ import { ListItem } from 'react-native-elements';
 
 import { ActionSheetProvider, ActionSheetOptions } from '@expo/react-native-action-sheet';
 
+import translations from '../../../translations';
+
 import { infoListStyles } from '../config/stylesheets';
 
 import ListMembers from './ListMembers';
@@ -31,9 +33,9 @@ class Members extends React.Component {
           containerStyle={[infoListStyles.container, {marginTop:22}]}
           titleStyle={infoListStyles.title}
           rightTitleStyle={infoListStyles.rightTitle}
-          title='Members'
+          title={translations("Members.members")}
           leftIcon={{ name: 'group', iconStyle: infoListStyles.leftIcon }}
-          rightTitle={canEditMembers ? 'Add' : null}
+          rightTitle={canEditMembers ? translations("Common.Button.add") : null}
           onPress={canEditMembers ? this.onAddMembersPress.bind(this) : null}
         />
         <ListMembers {...this.props} />

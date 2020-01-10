@@ -29,7 +29,7 @@ import { infoTaskStyles, createByAtStyles } from './config/stylesheets';
 
 import { TextNameUser } from '../users';
 
-import Loading from '../../components/Loading';
+import { Loading, AvatarS3Image, Chevron } from '../../components';
 
 import TimeNotifications from '../timeNotifications';
 import PlaceNotifications from '../placeNotifications';
@@ -37,6 +37,8 @@ import DeleteTask from './DeleteTask';
 
 import { listTasksForPanelVariables } from './util';
 import { listSubtasksForTaskVariables } from '../subtasks/util';
+
+import translations from '../../translations';
 
 class InfoTask extends React.Component {
 
@@ -135,7 +137,7 @@ class InfoTask extends React.Component {
             { textDecorationLine: this.state.completed ? 'line-through' : 'none' },
             { color: this.state.completed ? colors.checkedIcon : null }
           ]}
-          chevron={isOwner}
+          chevron={isOwner && <Chevron />}
           title={task.name}
           checkBox={{
             size: infoTaskStyles.checkboxContainer.width,
@@ -154,7 +156,7 @@ class InfoTask extends React.Component {
           bottomDivider={true}
           containerStyle={infoTaskStyles.container}
           titleStyle={task.description ? infoTaskStyles.title : infoTaskStyles.lightTitle}
-          chevron={isOwner}
+          chevron={isOwner && <Chevron />}
           title={task.description ? task.description : 'Description'}
           onPress={isOwner ? this.onUpdateDescriptionPress.bind(this) : null}
           disabled={task.offline}
@@ -167,7 +169,7 @@ class InfoTask extends React.Component {
           titleStyle={infoTaskStyles.title}
           subtitleStyle={infoTaskStyles.subtitle}
           rightTitleStyle={infoTaskStyles.rightTitle}
-          chevron={true}
+          chevron={<Chevron />}
           title='Subtasks'
           subtitle={(subtasksCount || null) && `${subtasksCount}${' subtasks '}${subtasksCompletedCount}${' completed'}`}
           rightTitle={(!subtasksCount || null) && 'Add'}
@@ -183,7 +185,7 @@ class InfoTask extends React.Component {
           titleStyle={infoTaskStyles.title}
           subtitleStyle={infoTaskStyles.subtitle}
           rightTitleStyle={infoTaskStyles.rightTitle}
-          chevron={true}
+          chevron={<Chevron />}
           title='Chat'
           leftIcon={{ type: 'material', name: 'attach-file', iconStyle: infoTaskStyles.leftIcon }}
           onPress={this.onMessagesPress.bind(this)}

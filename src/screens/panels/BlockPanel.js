@@ -45,10 +45,10 @@ class BlockPanel extends React.Component {
     const isBlock = this.state.isBlock;
     Alert.alert(
       isBlock ? 'Unblock' : 'Block',
-      'Are you sure?',
+      translations("Common.Alert.are you sure?"),
       [
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-        {text: 'OK', onPress: () => {
+        {text: translations("Common.Button.cancel")},
+        {text: translations("Common.Button.ok"), onPress: () => {
             const input = {
               id: member.id,
               expectedVersion: member.version,
@@ -69,7 +69,6 @@ class BlockPanel extends React.Component {
         titleStyle={[infoListStyles.title, infoListStyles.removeText]}
         topDivider={true}
         bottomDivider={true}
-        chevron={false}
         title={this.state.isBlock ? 'Unblock' : 'Block'}
         onPress={this.onBlockPress.bind(this)}
       />

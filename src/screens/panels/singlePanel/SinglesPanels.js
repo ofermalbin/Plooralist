@@ -14,7 +14,7 @@ import { onCreateStreamMember, onUpdateStreamMember, onDeleteStreamMember } from
 
 import { withCurrentUser } from '../../../contexts';
 
-import Loading from '../../../components/Loading';
+import { Loading } from '../../../components';
 
 import ListPanels from '../ListPanels';
 

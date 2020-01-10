@@ -54,10 +54,10 @@ class RowSubtask extends React.Component {
   onDeletePress() {
     Alert.alert(
       'Delete Subtask',
-      'Are you sure?',
+      translations("Common.Alert.are you sure?"),
       [
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-        {text: 'OK', onPress: () => {
+        {text: translations("Common.Button.cancel")},
+        {text: translations("Common.Button.ok"), onPress: () => {
           const { subtask } = this.props;
           const input = {
             id: subtask.id,
@@ -118,7 +118,6 @@ class RowSubtask extends React.Component {
             { color: this.state.completed ? colors.checkedIcon : null }
           ]}
           subtitleStyle={rowSubtaskStyles.subtitle}
-          chevron={false}
           title={subtask.name}
           subtitle={subtask.description}
           checkBox={{

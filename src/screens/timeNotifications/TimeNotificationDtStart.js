@@ -9,6 +9,8 @@ import { timeNotificationStyles } from './config/stylesheets';
 
 import moment from 'moment/min/moment-with-locales.js';
 
+import { Chevron } from '../../components';
+
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 class TimeNotificationDtStart extends React.Component {
@@ -17,8 +19,8 @@ class TimeNotificationDtStart extends React.Component {
       const { params = {} } = navigation.state;
       return {
         headerTitle: "Time Nonification",
-        headerRight: () => <Button clear title="Add" titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onAddPress()} />,
-        headerLeft: () => <Button clear title="Cancel" titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+        headerRight: () => <Button clear title={translations("Common.Button.add")} titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onAddPress()} />,
+        headerLeft: () => <Button clear title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
       };
   };
 
@@ -72,7 +74,7 @@ class TimeNotificationDtStart extends React.Component {
           containerStyle={timeNotificationStyles.container}
           titleStyle={timeNotificationStyles.title}
           subtitleStyle={timeNotificationStyles.subtitle}
-          chevron={true}
+          chevron={<Chevron />}
           title='Start'
           subtitle={moment(dtstart).locale(locale).format('LLLL')}
           onPress={() => this.setState({show: !this.state.show})}

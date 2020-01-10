@@ -23,11 +23,13 @@ export const rowRowContactIsNotUserStyles = StyleSheet.create({
     fontSize: normalize(14.7),
     fontWeight: "bold",
     color: "#4f4f4f",
+    textAlign: 'left'
   },
   subtitle: {
     fontSize: normalize(12.7),
     fontWeight: '400',
     color: colors.grey3,
+    textAlign: 'left'
   },
   rightTitle: {
     fontSize: normalize(15),

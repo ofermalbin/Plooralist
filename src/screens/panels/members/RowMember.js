@@ -23,6 +23,8 @@ import { AvatarS3Image } from '../../../components';
 
 import { getCurrentUserName, getUserName } from '../../../util';
 
+import translations from '../../../translations';
+
 import { rowPanelStyles } from '../config/stylesheets';
 
 import { isMemberOwner, isMemberManager, listMembersForPanelVariables } from '../util';
@@ -112,8 +114,9 @@ class RowMember extends React.Component {
       <ListItem
         containerStyle={rowPanelStyles.container}
         titleStyle={rowPanelStyles.title}
+        subtitleStyle={rowPanelStyles.subtitle}
         title={name}
-        subtitle={(isMemberOwner(member) && 'owner') || (isMemberManager(member) && 'manager') || null}
+        subtitle={(isMemberOwner(member) && translations("Members.owner")) || (isMemberManager(member) && translations("Members.manager")) || null}
         leftAvatar={
           <AvatarS3Image
             imgKey={member.user.imgKey}

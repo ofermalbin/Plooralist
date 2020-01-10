@@ -63,10 +63,10 @@ class EditPlaceNotification extends React.Component {
 
     Alert.alert(
       'Delete Place Notification',
-      'Are you sure?',
+      translations("Common.Alert.are you sure?"),
       [
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-        {text: 'OK', onPress: () => {
+        {text: translations("Common.Button.cancel")},
+        {text: translations("Common.Button.ok"), onPress: () => {
           const { placeNotification } = this.props.navigation.state.params;
           const input = {
             id: placeNotification.id,
@@ -100,7 +100,7 @@ enhance.navigationOptions = ({ navigation }) => {
     return {
       headerTitle: "Place Nonification",
       headerRight: () => <Button type="clear" title="Save" titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
-      headerLeft: () => <Button type="clear" title="Cancel" titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+      headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
     };
 }
 

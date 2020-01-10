@@ -7,11 +7,13 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
 import { withContacts } from '../../contexts';
 
-import { AvatarS3Image } from '../../components';
+import { AvatarS3Image, Chevron } from '../../components';
 
 import { getContactByUsername, getContactName } from '../../util';
 
 import { rowRowContactIsNotUserStyles } from './config/stylesheets';
+
+import translations from '../../translations';
 
 class RowContactIsNotUser extends React.Component {
 
@@ -21,7 +23,7 @@ class RowContactIsNotUser extends React.Component {
 
   onPress() {
     const name = getContactName(this.props);
-    Alert.alert('Invite Friend', name);
+    Alert.alert(translations("InviteFriend.invite friend"), name);
   }
 
   render() {
@@ -30,7 +32,7 @@ class RowContactIsNotUser extends React.Component {
       <ListItem
         containerStyle={rowRowContactIsNotUserStyles.container}
         titleStyle={rowRowContactIsNotUserStyles.title}
-        chevron={true}
+        chevron={<Chevron />}
         title={name}
         leftAvatar={<AvatarS3Image
           name={name}

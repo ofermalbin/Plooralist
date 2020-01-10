@@ -1,0 +1,73 @@
+{
+  "General": {
+    "plooralist": "Plooralist",
+  },
+  "Common" : {
+    "Input": {
+      "placeholder": "Write something...",
+      "speech": "Speech...",
+    },
+    "Button": {
+      "next": "Next",
+      "cancel": "Cancel",
+      "ok": "Ok",
+      "add": "Add",
+      "create": "Create",
+      "update": "Update",
+      "delete": "Delete",
+    },
+    "Status": {
+      "yes": "yes",
+      "no": "no",
+      "on": "On",
+      "off": "Off",
+    },
+    "Message": {
+      "created at": "created at",
+    },
+    "Alert": {
+      "are you sure?": "Are you sure?",
+    },
+  },
+  "Panel": {
+    "panel": "Panel",
+    "panels": "Panels",
+    "select panel": "Select Panel",
+    "new team": "New Team",
+    "team name": "team name",
+    "info": "Info",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "cancel mute": "Cancel mute",
+  },
+  "Members": {
+    "members": "Members",
+    "member": "Member",
+    "permission": "Permission",
+    "owner": "owner",
+    "manager": "manager",
+  },
+  "Task": {
+    "task": "Task",
+    "tasks": "Tasks",
+  },
+  "CurrentUser": {
+    "me": "Me",
+    "email": "Email",
+    "locale": "Locale",
+    "logout": "Logout",
+    "delete account": "Delete Account",
+  },
+  "Contact": {
+    "contact": "Contact",
+    "contacts": "Contacts",
+  },
+  "InviteFriend": {
+    "invite friends": "invite friends",
+    "invite friend": "invite friend",
+  },
+  "Setting": {
+    "setting": "Setting",
+    "settings": "Settings",
+  },
+}

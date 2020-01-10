@@ -29,14 +29,16 @@ export const placeNotificationStyles = StyleSheet.create({
     minHeight: normalize(55),
   },
   title: {
-    fontSize: normalize(15),
+    fontSize: normalize(12),
     fontWeight: "bold",
-    color: "#4f4f4f"
+    color: "#4f4f4f",
+    textAlign: 'left'
   },
   subtitle: {
-    fontSize: normalize(14),
-    fontWeight: "bold",
-    color: "#5fb8f6",
+    fontSize: normalize(12),
+    //fontWeight: "bold",
+    color: "#b0b5b8",
+    textAlign: 'left'
   },
   rightTitle: {
     fontSize: normalize(15),
@@ -46,7 +48,8 @@ export const placeNotificationStyles = StyleSheet.create({
   notificationText: {
     fontSize: normalize(12),
     fontWeight: "bold",
-    color: "#4f4f4f"
+    color: "#4f4f4f",
+    textAlign: 'left'
   },
   removeText: {
     color: 'red',

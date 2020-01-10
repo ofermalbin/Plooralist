@@ -12,7 +12,7 @@ import { onCreateMember, onUpdateMember, onDeleteMember } from '../../../graphql
 
 import { AvatarS3Image } from '../../../components';
 
-import Loading from '../../../components/Loading';
+import { Loading } from '../../../components';
 
 import { withContacts } from '../../../contexts';
 

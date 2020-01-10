@@ -26,10 +26,10 @@ class LeavePanel extends React.Component {
     const { member } = this.props;
     Alert.alert(
       'Leave',
-      'Are you sure?',
+      translations("Common.Alert.are you sure?"),
       [
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-        {text: 'OK', onPress: () => {
+        {text: translations("Common.Button.cancel")},
+        {text: translations("Common.Button.ok"), onPress: () => {
           const input = {
             id: member.id,
             expectedVersion: member.version,
@@ -49,7 +49,6 @@ class LeavePanel extends React.Component {
         bottomDivider={true}
         containerStyle={[infoListStyles.container, {marginTop:22}]}
         titleStyle={[infoListStyles.title, infoListStyles.removeText]}
-        chevron={false}
         title='Leave'
         onPress={this.onLeavePress.bind(this)}
       />

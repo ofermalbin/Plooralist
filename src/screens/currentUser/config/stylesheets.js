@@ -23,11 +23,13 @@ export const rowCurrentUserStyles = StyleSheet.create({
     fontSize: normalize(14.7),
     fontWeight: "bold",
     color: "#4f4f4f",
+    textAlign: 'left'
   },
   subtitle: {
     fontSize: normalize(12.7),
     fontWeight: '400',
     color: colors.grey3,
+    textAlign: 'left'
   },
   rightTitle: {
     fontSize: normalize(15),
@@ -53,12 +55,14 @@ export const currentUserStyles = StyleSheet.create({
   title: {
     fontSize: normalize(15),
     fontWeight: "bold",
-    color: "#4f4f4f"
+    color: "#4f4f4f",
+    textAlign: 'left'
   },
   subtitle: {
     fontSize: normalize(12.7),
     fontWeight: '400',
     color: colors.grey3,
+    textAlign: 'left'
   },
   rightTitle: {
     fontSize: normalize(15),

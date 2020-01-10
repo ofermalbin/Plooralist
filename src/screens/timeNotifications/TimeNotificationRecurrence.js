@@ -12,6 +12,8 @@ import { find } from 'lodash';
 import TimeNotificationRecurrenceText from './TimeNotificationRecurrenceText';
 import TimeNotificationDtSendText from './TimeNotificationDtSendText';
 
+import { Chevron } from '../../components';
+
 import { timeNotificationStyles } from './config/stylesheets';
 
 const Freqs = [
@@ -126,7 +128,7 @@ class TimeNotificationRecurrence extends React.Component {
           bottomDivider={true}
           containerStyle={timeNotificationStyles.container}
           titleStyle={timeNotificationStyles.title}
-          chevron={true}
+          chevron={<Chevron />}
           title='Recurrence'
           subtitle={<TimeNotificationRecurrenceText recurrence={this.state.recurrence} dtstart={this.state.dtstart} style={timeNotificationStyles.subtitle} />}
           onPress={() => this.setState({show: !this.state.show})}
@@ -142,7 +144,7 @@ class TimeNotificationRecurrence extends React.Component {
         {show && !value && <ListItem
             topDivider={true}
             bottomDivider={true}
-            chevron={true}
+            chevron={<Chevron />}
             title='Custom Edit'
             onPress={this.onRecurrenceCustomPress.bind(this)}
           />

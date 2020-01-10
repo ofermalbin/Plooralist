@@ -5,7 +5,7 @@ import { View, Text, Alert } from 'react-native';
 
 import { pick } from 'lodash';
 
-import Loading from '../../components/Loading';
+import { Loading, Chevron } from '../../components';
 
 import { ListItem, Button, Icon, Divider } from 'react-native-elements';
 
@@ -43,12 +43,12 @@ class TimeNotification extends React.Component {
       <ListItem
         bottomDivider={true}
         containerStyle={timeNotificationStyles.container}
-        titleStyle={timeNotificationStyles.notificationText}
-        subtitleStyle={timeNotificationStyles.notificationText}
-        chevron={isTaskOwner}
+        titleStyle={timeNotificationStyles.title}
+        subtitleStyle={timeNotificationStyles.subtitle}
+        chevron={isTaskOwner && <Chevron />}
         bottomDivider={true}
         containerStyle={timeNotificationStyles.container}
-        title=<TimeNotificationDtStartText {...timeNotification} style={timeNotificationStyles.notificationText} />
+        title=<TimeNotificationDtStartText {...timeNotification} style={timeNotificationStyles.title} />
         subtitle=
           <View>
             <TimeNotificationRecurrenceText recurrence={pick(timeNotification, ['freq', 'interval', 'count', 'byweekday', 'bymonth'])} dtstart={new Date(timeNotification.dtstart)} style={timeNotificationStyles.notificationText} />

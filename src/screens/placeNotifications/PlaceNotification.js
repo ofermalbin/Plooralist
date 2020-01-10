@@ -7,7 +7,7 @@ import { pick } from 'lodash';
 
 import Radar from 'react-native-radar';
 
-import Loading from '../../components/Loading';
+import { Loading, Chevron } from '../../components';
 
 import { ListItem, Button, Icon, Divider } from 'react-native-elements';
 
@@ -52,12 +52,11 @@ class PlaceNotification extends React.Component {
       <ListItem
         bottomDivider={true}
         containerStyle={placeNotificationStyles.container}
-        titleStyle={placeNotificationStyles.notificationText}
-        subtitleStyle={placeNotificationStyles.notificationText}
-        chevron={isTaskOwner}
-        //key={placeNotification.id}
+        titleStyle={placeNotificationStyles.title}
+        subtitleStyle={placeNotificationStyles.subtitle}
+        chevron={isTaskOwner && <Chevron />}
         title={placeNotification.name}
-        subtitle={`${when[placeNotification.when]}  ${placeNotification.radius} meters`}
+        subtitle={`${when[placeNotification.when]} ${placeNotification.radius} meters`}
         onLongPress={isTaskOwner ? this.onTestPress.bind(this, placeNotification) : null}
         onPress={isTaskOwner ? this.onPlaceNotificationPress.bind(this, placeNotification) : null}
         disabled={placeNotification.offline}

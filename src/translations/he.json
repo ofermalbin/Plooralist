@@ -1,0 +1,73 @@
+{
+  "General": {
+    "plooralist": "רשימות",
+  },
+  "Common" : {
+    "Input": {
+      "placeholder": "כתוב משהו...",
+      "speech": "דבר...",
+    },
+    "Button": {
+      "next": "הבא",
+      "cancel": "בטל",
+      "ok": "אשר",
+      "add": "הוסף",
+      "create": "צור",
+      "update": "עדכן",
+      "delete": "מחק",
+    },
+    "Status": {
+      "yes": "כן",
+      "no": "לא",
+      "on": "מופעל",
+      "off": "לא מופעל",
+    },
+    "Message": {
+      "created at": "נוצר ב",
+    },
+    "Alert": {
+      "are you sure?": "האם אתה בטוח?",
+    },
+  },
+  "Panel": {
+    "panel": "לוח",
+    "panels": "לוחות",
+    "select panel": "בחר לוח",
+    "new team": "קבוצה חדשה",
+    "team name": "שם קבוצה",
+    "info": "מידע",
+    "mute": "השתק",
+    "unmute": "מושתק",
+    "cancel mute": "בטל השתקה",
+  },
+  "Members": {
+    "members": "חברים",
+    "member": "חבר",
+    "permission": "הרשאה",
+    "owner": "מנהל ראשי",
+    "manager": "מנהל",
+  },
+  "Task": {
+    "task": "משימה",
+    "tasks": "משימות",
+  },
+  "CurrentUser": {
+    "me": "אני",
+    "email": "דואר אלקטרוני",
+    "locale": "שפה",
+    "logout": "התנתק",
+    "delete account": "מחק חשבון",
+  },
+  "Contact": {
+    "contact": "איש קשר",
+    "contacts": "אנשי קשר",
+  },
+  "InviteFriend": {
+    "invite friends": "הזמן חברים",
+    "invite friend": "הזמן חבר",
+  },
+  "Setting": {
+    "setting": "הגדרה",
+    "settings": "הגדרות",
+  },
+}

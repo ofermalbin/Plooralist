@@ -4,6 +4,8 @@ import { withCurrentUser } from '../../../contexts';
 
 import _RowPanel from '../_RowPanel';
 
+import { getCurrentUserName } from '../../../util';
+
 class RowSinglePanel extends React.Component {
 
   constructor(props) {
@@ -14,7 +16,7 @@ class RowSinglePanel extends React.Component {
     const { member, currentUser } = this.props;
 
     return (
-      <_RowPanel {...this.props} name={'Me'} imgKey={currentUser.imgKey} level='protected' identityId={currentUser.identityId} />
+      <_RowPanel {...this.props} name={getCurrentUserName()} imgKey={currentUser.imgKey} level='protected' identityId={currentUser.identityId} />
     )
   }
 };

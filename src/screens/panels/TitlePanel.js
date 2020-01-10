@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 
 import { getPanel, getMember } from '../../graphql/queries';
 
-import Loading from '../../components/Loading';
+import { Loading } from '../../components';
 
 import { TitleSinglePanel } from './singlePanel';
 import { TitleCouplePanel } from './couplePanel';

@@ -7,7 +7,7 @@ import gql from 'graphql-tag';
 
 import { getTask } from '../../graphql/queries';
 
-import Loading from '../../components/Loading';
+import { Loading } from '../../components';
 
 import { titleTaskStyles } from './config/stylesheets';
 

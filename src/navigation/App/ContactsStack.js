@@ -5,16 +5,15 @@ import { Button, Icon } from 'react-native-elements';
 import Contacts from '../../screens/contacts/Contacts';
 import InviteFriends from '../../screens/inviteFriends/InviteFriends';
 
+import translations from '../../translations';
+
 import { createStackNavigator } from "react-navigation-stack";
 
 export default createStackNavigator({
   Contacts: {
     screen: Contacts,
     navigationOptions: ({ navigation }) => ({
-      title: 'Contacts',
-      headerLeftContainerStyle: {
-        backgroundColor: 'white',
-      },
+      title: translations("Contact.contacts"),
       headerRight: () => <Button
         type="clear"
         icon={{
@@ -29,7 +28,7 @@ export default createStackNavigator({
   InviteFriends: {
     screen: InviteFriends,
     navigationOptions: ({ navigation }) => ({
-      title: 'Invite Friends',
+      title: translations("InviteFriend.invite friends"),
       headerRight: () => <Button
         type="clear"
         icon={{

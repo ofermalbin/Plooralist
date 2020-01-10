@@ -11,6 +11,8 @@ import { SinglesPanels, CouplesPanels } from '../panels';
 
 import ContactsAreNotUsers from '../contactsAreNotUsers';
 
+import translations from '../../translations';
+
 class SelectPanel extends React.Component {
 
   constructor(props) {
@@ -29,7 +31,6 @@ class SelectPanel extends React.Component {
           bottomDivider={true}
           containerStyle={actionListStyles.container}
           titleStyle={actionListStyles.title}
-          chevron={false}
           leftIcon={
             <Avatar
               containerStyle={actionListStyles.leftIconAvatarContainer}
@@ -38,7 +39,7 @@ class SelectPanel extends React.Component {
               placeholderStyle={actionListStyles.leftIconAvatarPlaceholder}
             />
           }
-          title='New Team'
+          title={translations("Panel.new team")}
           onPress={this.onTeamPress.bind(this)}
         />
         <SinglesPanels navigation={this.props.navigation} />

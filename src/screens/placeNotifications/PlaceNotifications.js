@@ -11,7 +11,7 @@ import { buildSubscription } from 'aws-appsync';
 import { listPlaceNotificationsForTask } from '../../graphql/queries';
 import { onCreatePlaceNotification, onUpdatePlaceNotification , onDeletePlaceNotification } from '../../graphql/subscriptions';
 
-import Loading from '../../components/Loading';
+import { Loading, Chevron } from '../../components';
 
 import { ListItem, Button, Icon, Divider } from 'react-native-elements';
 
@@ -71,7 +71,7 @@ class PlaceNotifications extends React.Component {
             rightTitleStyle={infoListStyles.rightTitle}
             leftIcon={{ name: 'place', iconStyle: infoListStyles.leftIcon }}
             title='Place Notification'
-            chevron={isOwner}
+            chevron={isOwner && <Chevron />}
             rightTitle={(isOwner || null) && 'Add'}
             onPress={(isOwner || null) && this.onPlaceNotificationAddPress.bind(this) }
         />

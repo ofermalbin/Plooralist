@@ -11,7 +11,7 @@ import { buildSubscription } from 'aws-appsync';
 import { listTimeNotificationsForTask } from '../../graphql/queries';
 import { onCreateTimeNotification, onUpdateTimeNotification , onDeleteTimeNotification } from '../../graphql/subscriptions';
 
-import Loading from '../../components/Loading';
+import { Loading, Chevron } from '../../components';
 
 import { ListItem, Button, Icon, Divider } from 'react-native-elements';
 
@@ -71,7 +71,7 @@ class TimeNotifications extends React.Component {
             rightTitleStyle={infoListStyles.rightTitle}
             leftIcon={{ name: 'alarm', iconStyle: infoListStyles.leftIcon }}
             title='Time Notification'
-            chevron={isOwner}
+            chevron={isOwner && <Chevron />}
             rightTitle={(isOwner || null) && 'Add'}
             onPress={(isOwner || null) && this.onTimeNotificationAddPress.bind(this) }
         />

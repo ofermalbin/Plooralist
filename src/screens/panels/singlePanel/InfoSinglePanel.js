@@ -6,9 +6,11 @@ import moment from 'moment/min/moment-with-locales.js';
 
 import { ListItem, Icon } from 'react-native-elements';
 
-import { AvatarS3Image } from '../../../components';
+import { AvatarS3Image, CreatedAtText } from '../../../components';
 
 import { withCurrentUser } from '../../../contexts';
+
+import { getCurrentUserName } from '../../../util';
 
 import { infoAvatarStyles, infoListStyles, createByAtStyles } from '../config/stylesheets';
 
@@ -22,7 +24,7 @@ class InfoSinglePanel extends React.Component {
 
   render() {
     const { member, panel, currentUser } = this.props;
-    const name = 'Me';
+    const name = getCurrentUserName();
     const imgKey = currentUser.imgKey;
 
     return (
@@ -57,7 +59,7 @@ class InfoSinglePanel extends React.Component {
         />
         <MutePanel {...this.props} />
         <View style={createByAtStyles.container}>
-          <Text style={createByAtStyles.text}>{`${'created at '}${moment(panel.createdAt).locale('en').format('LL')}.`}</Text>
+          <CreatedAtText createdAt={panel.createdAt} />
         </View>
       </View>
       </ScrollView>

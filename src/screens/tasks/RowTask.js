@@ -19,6 +19,8 @@ import colors from '../../config/colors';
 
 import { TextNameUser } from '../users';
 
+import translations from '../../translations';
+
 class RowTask extends React.Component {
 
   constructor(props) {
@@ -64,7 +66,6 @@ class RowTask extends React.Component {
           { textDecorationLine: this.state.completed ? 'line-through' : 'none' },
           { color: this.state.completed ? colors.checkedIcon : null }
         ]}
-        chevron={false}
         title={task.name}
         subtitle={<TextNameUser style={rowTaskStyles.subtitle} user={task.user} />}
         checkBox={{
