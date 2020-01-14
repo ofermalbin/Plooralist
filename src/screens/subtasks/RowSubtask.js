@@ -3,8 +3,6 @@ import { Alert } from 'react-native';
 
 import { ListItem } from 'react-native-elements';
 
-import Swipeout from 'react-native-swipeout';
-
 import compose from 'lodash.flowright';
 import gql from 'graphql-tag';
 
@@ -13,9 +11,13 @@ import { graphqlMutation } from 'aws-appsync-react';
 import { listSubtasksForTask } from '../../graphql/queries';
 import { updateSubtask, deleteSubtask } from '../../graphql/mutations';
 
+import { connectActionSheet } from '@expo/react-native-action-sheet';
+
 import { withCurrentUser } from '../../contexts';
 
 import { listSubtasksForTaskVariables } from './util';
+
+import translations from '../../translations';
 
 import { rowSubtaskStyles } from './config/stylesheets';
 import colors from '../../config/colors';
@@ -32,10 +34,6 @@ class RowSubtask extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     (nextProps.subtask.completed != this.props.subtask.completed) && this.setState({completed: nextProps.subtask.completed});
-  }
-
-  onPress() {
-    //this.props.navigation.navigate('InfoSubtask', {subtaskId: this.props.subtask.id});
   }
 
   onCompletedPress() {
@@ -65,74 +63,79 @@ class RowSubtask extends React.Component {
           };
           const offline = Object.assign(subtask, {offline: true});
           this.props.deleteSubtask({...offline, input});
-          //this.props.navigation.goBack();
         }},
       ]
     )
   }
 
-  onEditNameDescriptionPress() {
+  onEditPress() {
     this.props.navigation.navigate('EditSubtaskNameDescription', {subtask: this.props.subtask});
+  };
+
+  onActionPress() {
+    const { currentUser, isTaskOwner, subtask } = this.props;
+    const isOwner = (subtask.owner === currentUser.id) || isTaskOwner;
+
+    /*if (!isOwner) {
+      return;
+    }*/
+
+    const title = subtask.name;
+    const options = [
+      translations("Subtask.delete subtask"),
+      translations("Subtask.edit subtask"),
+      translations("Common.Button.cancel")
+    ];
+    const destructiveButtonIndex = 0;
+    const cancelButtonIndex = 2;
+
+    this.props.showActionSheetWithOptions(
+      {
+        title,
+        options,
+        cancelButtonIndex,
+        destructiveButtonIndex,
+      },
+      buttonIndex => {
+        switch(buttonIndex) {
+          case 0: this.onDeletePress.bind(this)();
+                  break;
+          case 1: this.onEditPress.bind(this)();
+                  break;
+          default: ;
+                  break;
+        }
+      },
+    );
   };
 
   render() {
 
-    const { currentUser, isTaskOwner, subtask } = this.props;
-    const isOwner = (subtask.owner === currentUser.id) || isTaskOwner;
-
-    const leftBtns = [
-      {
-        text: 'Edit',
-        type: 'primary',
-        backgroundColor: 'blue',
-        onPress: this.onEditNameDescriptionPress.bind(this)
-      },
-    ];
-
-    const rightBtns = [
-      {
-        text: 'Delete',
-        type: 'primary',
-        backgroundColor: 'red',
-        onPress: this.onDeletePress.bind(this)
-      }
-    ];
+    const { subtask } = this.props;
 
     return (
-      <Swipeout
-        rowID={subtask.id}
-        disabled={!isOwner}
-        autoClose={true}
-        close={!(this.props.selected === subtask.id)}
-        onOpen={(sectionID, rowID) => this.props.onSelected(rowID)}
-        backgroundColor='#FFFFFF'
-        left={leftBtns}
-        right={rightBtns}
-        sensitivity={1}
-      >
-        <ListItem
-          containerStyle={rowSubtaskStyles.container}
-          titleStyle={[
-            rowSubtaskStyles.title,
-            { textDecorationLine: this.state.completed ? 'line-through' : 'none' },
-            { color: this.state.completed ? colors.checkedIcon : null }
-          ]}
-          subtitleStyle={rowSubtaskStyles.subtitle}
-          title={subtask.name}
-          subtitle={subtask.description}
-          checkBox={{
-            size: rowSubtaskStyles.checkboxContainer.width,
-            checked: this.state.completed,
-            checkedColor: colors.checkedIcon,
-            uncheckedColor: colors.uncheckedIcon,
-            onPress: this.onCompletedPress.bind(this),
-            disabled: subtask.offline
-          }}
-          onPress={this.onPress.bind(this)}
-          disabled={subtask.offline}
-          disabledStyle={{backgroundColor: '#F0F8FF'}}
-        />
-      </Swipeout>
+      <ListItem
+        containerStyle={rowSubtaskStyles.container}
+        titleStyle={[
+          rowSubtaskStyles.title,
+          { textDecorationLine: this.state.completed ? 'line-through' : 'none' },
+          { color: this.state.completed ? colors.checkedIcon : null }
+        ]}
+        subtitleStyle={rowSubtaskStyles.subtitle}
+        title={subtask.name}
+        subtitle={subtask.description}
+        checkBox={{
+          size: rowSubtaskStyles.checkboxContainer.width,
+          checked: this.state.completed,
+          checkedColor: colors.checkedIcon,
+          uncheckedColor: colors.uncheckedIcon,
+          onPress: this.onCompletedPress.bind(this),
+          disabled: subtask.offline
+        }}
+        onPress={this.onActionPress.bind(this)}
+        disabled={subtask.offline}
+        disabledStyle={{backgroundColor: '#F0F8FF'}}
+      />
     )
   }
 };
@@ -140,4 +143,4 @@ class RowSubtask extends React.Component {
 export default compose(
   graphqlMutation(gql(updateSubtask), variables => ({ query: gql(listSubtasksForTask), variables: listSubtasksForTaskVariables(variables.subtaskTaskId)}), 'Subtask'),
   graphqlMutation(gql(deleteSubtask), variables => ({ query: gql(listSubtasksForTask), variables: listSubtasksForTaskVariables(variables.subtaskTaskId)}), 'Subtask')
-)(withCurrentUser(RowSubtask));
+)(withCurrentUser(connectActionSheet(RowSubtask)));

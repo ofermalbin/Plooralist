@@ -16,6 +16,8 @@ import { withCurrentUser } from '../../contexts';
 
 import { listTasksForPanelVariables } from './util';
 
+import translations from '../../translations';
+
 import { inputStyles } from './config/stylesheets';
 
 class UpdateTaskDescription extends React.Component {
@@ -61,7 +63,7 @@ class UpdateTaskDescription extends React.Component {
             inputStyle={inputStyles.input}
             value={this.state.description}
             autoFocus={true}
-            placeholder="Description"
+            placeholder={translations("Task.task description")}
             onChangeText={this.onDescriptionChange.bind(this)}
           />
         }
@@ -79,7 +81,7 @@ const enhance = compose(
 enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerTitle: "Description",
+      headerTitle: translations("Task.task description"),
       headerRight: () => <Button type="clear" title={translations("Common.Button.update")} titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onSavePress()} />,
       headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
     };

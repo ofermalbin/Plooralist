@@ -12,6 +12,8 @@ import { deletePanel } from '../../graphql/mutations';
 
 import { ListItem } from 'react-native-elements';
 
+import translations from '../../translations';
+
 import { infoListStyles } from './config/stylesheets';
 
 class DeletePanel extends React.Component {
@@ -47,7 +49,7 @@ class DeletePanel extends React.Component {
         bottomDivider={true}
         containerStyle={[infoListStyles.container, {marginTop:22}]}
         titleStyle={[infoListStyles.title, infoListStyles.removeText]}
-        title='Delete'
+        title={translations("Panel.delete team")}
         onPress={this.onDeletePress.bind(this)}
       />
     )

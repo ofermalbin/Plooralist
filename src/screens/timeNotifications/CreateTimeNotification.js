@@ -22,6 +22,8 @@ import TimeNotificationRecurrence from './TimeNotificationRecurrence';
 
 import { listTimeNotificationsForTaskVariables } from './util';
 
+import translations from '../../translations';
+
 import { timeNotificationStyles } from './config/stylesheets';
 
 class CreateTimeNotification extends React.Component {
@@ -118,7 +120,7 @@ const enhance = compose(
 enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerTitle: "Time Nonification",
+      headerTitle: translations("TimeNotification.time notification"),
       headerRight: () => <Button type="clear" title={translations("Common.Button.add")} titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onAddPress()} />,
       headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
     };

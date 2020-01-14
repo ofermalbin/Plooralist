@@ -50,6 +50,12 @@ export const infoTaskStyles = StyleSheet.create({
     color: "#4f4f4f",
     textAlign: 'left'
   },
+  subtitle: {
+    fontSize: normalize(12.7),
+    fontWeight: '400',
+    color: colors.grey3,
+    textAlign: 'left'
+  },
   lightTitle: {
     fontSize: normalize(15),
     fontWeight: "bold",

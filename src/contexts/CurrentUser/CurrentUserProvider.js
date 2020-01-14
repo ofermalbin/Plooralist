@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Platform, Alert } from 'react-native';
 
-import { Auth } from 'aws-amplify';
+import { Auth, Analytics } from 'aws-amplify';
 
 import compose from 'lodash.flowright';
 import { graphql } from 'react-apollo';
@@ -58,6 +58,7 @@ class CurrentUserProvider extends React.Component {
       const offline = Object.assign(currentUser, {offline: true, updatedAt: (new Date()).toISOString()});
       this.props.updateUser({...offline, input});
     }
+    //alert(Analytics.getPluggable('AWSPinpoint')._config.endpointId);
     await updateEndpoint(currentUser.id, aws_exports.aws_mobile_analytics_app_id);
   }
 

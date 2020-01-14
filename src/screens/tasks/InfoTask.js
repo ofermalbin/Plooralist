@@ -27,9 +27,7 @@ import { withCurrentUser, withContacts } from '../../contexts';
 import colors from '../../config/colors';
 import { infoTaskStyles, createByAtStyles } from './config/stylesheets';
 
-import { TextNameUser } from '../users';
-
-import { Loading, AvatarS3Image, Chevron } from '../../components';
+import { Loading, AvatarS3Image, Chevron, CreatedByText, CreatedAtText } from '../../components';
 
 import TimeNotifications from '../timeNotifications';
 import PlaceNotifications from '../placeNotifications';
@@ -157,7 +155,7 @@ class InfoTask extends React.Component {
           containerStyle={infoTaskStyles.container}
           titleStyle={task.description ? infoTaskStyles.title : infoTaskStyles.lightTitle}
           chevron={isOwner && <Chevron />}
-          title={task.description ? task.description : 'Description'}
+          title={task.description ? task.description : translations("Task.task description")}
           onPress={isOwner ? this.onUpdateDescriptionPress.bind(this) : null}
           disabled={task.offline}
           disabledStyle={{backgroundColor: '#F0F8FF'}}
@@ -170,9 +168,9 @@ class InfoTask extends React.Component {
           subtitleStyle={infoTaskStyles.subtitle}
           rightTitleStyle={infoTaskStyles.rightTitle}
           chevron={<Chevron />}
-          title='Subtasks'
+          title={translations("Subtask.subtasks")}
           subtitle={(subtasksCount || null) && `${subtasksCount}${' subtasks '}${subtasksCompletedCount}${' completed'}`}
-          rightTitle={(!subtasksCount || null) && 'Add'}
+          rightTitle={(!subtasksCount || null) && translations("Common.Button.add")}
           leftIcon={{ name: 'playlist-add-check', iconStyle: infoTaskStyles.leftIcon }}
           onPress={this.onSubtasksPress.bind(this)}
         />}
@@ -186,20 +184,14 @@ class InfoTask extends React.Component {
           subtitleStyle={infoTaskStyles.subtitle}
           rightTitleStyle={infoTaskStyles.rightTitle}
           chevron={<Chevron />}
-          title='Chat'
+          title={translations("Message.chat")}
           leftIcon={{ type: 'material', name: 'attach-file', iconStyle: infoTaskStyles.leftIcon }}
           onPress={this.onMessagesPress.bind(this)}
         />
         {isOwner && <DeleteTask {...this.props} />}
-        <View style={[createByAtStyles.container, {flexDirection: 'row'}]}>
-          <Text style={createByAtStyles.text}>{`${'created by '}`}</Text>
-          <TextNameUser style={createByAtStyles.text} user={task.user} />
-          <Text style={createByAtStyles.text}>{`${'.'}`}</Text>
-        </View>
-        <View style={createByAtStyles.container}>
-          <Text style={createByAtStyles.text}>{`${'created at '}${moment(task.createdAt).locale('en').format('LL')}.`}</Text>
-        </View>
-        </View>
+        <CreatedByText user={task.user} />
+        <CreatedAtText createdAt={task.createdAt} />
+      </View>
       </ScrollView>
     )
   }
@@ -240,7 +232,7 @@ enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
       headerLeft: () => <HeaderBackButton onPress={() => {navigation.goBack(null);}} />,
-      headerTitle: "Task Info",
+      headerTitle: translations("Task.task info"),
     };
 }
 

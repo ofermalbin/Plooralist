@@ -23,6 +23,8 @@ import { pick } from 'lodash';
 
 import { listPlaceNotificationsForTaskVariables } from './util';
 
+import translations from '../../translations';
+
 import { placeNotificationStyles } from './config/stylesheets';
 
 class CreatePlaceNotification extends React.Component {
@@ -30,7 +32,7 @@ class CreatePlaceNotification extends React.Component {
   static navigationOptions = ({ navigation }) => {
       const { params = {} } = navigation.state;
       return {
-        headerTitle: "Place Nonification",
+        headerTitle: translations("PlaceNotification.place notification"),
         headerRight: () => <Button type="clear" title={translations("Common.Button.add")} titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onAddPress()} />,
         headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
       };
@@ -87,7 +89,7 @@ const enhance = compose(
 enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerTitle: "Place Nonification",
+      headerTitle: translations("PlaceNotification.place notification"),
       headerRight: () => <Button type="clear" title={translations("Common.Button.add")} titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onAddPress()} />,
       headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
     };

@@ -17,11 +17,13 @@ import { listPlaceNotificationsForTask } from '../../graphql/queries';
 
 import { pick } from 'lodash';
 
+import _EditPlaceNotification from './_EditPlaceNotification';
+
 import { listPlaceNotificationsForTaskVariables } from './util';
 
-import { placeNotificationStyles } from './config/stylesheets';
+import translations from '../../translations';
 
-import _EditPlaceNotification from './_EditPlaceNotification';
+import { placeNotificationStyles } from './config/stylesheets';
 
 class EditPlaceNotification extends React.Component {
 
@@ -98,8 +100,8 @@ const enhance = compose(
 enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerTitle: "Place Nonification",
-      headerRight: () => <Button type="clear" title="Save" titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
+      headerTitle: translations("PlaceNotification.place notification"),
+      headerRight: () => <Button type="clear" title={translations("Common.Button.save")} titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
       headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
     };
 }

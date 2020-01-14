@@ -5,6 +5,8 @@ import { Button } from 'react-native-elements';
 
 import moment from 'moment/min/moment-with-locales.js';
 
+import translations from '../../translations';
+
 import { defaultOptions } from '../../lib/tcombForm';
 
 import t from 'tcomb-form-native';
@@ -71,20 +73,22 @@ var listTransformer = {
 let options = Object.assign({}, defaultOptions, {
   fields: {
     freq: {
+      label: translations("TimeNotification.Frequency.frequency"),
       nullOption: false,
       transformer: {
         format: value => (value ? String(value) : '3'),
         parse: value => (value ? Number(value) : 3),
       },
     },
-    /*interval: {
-      transformer: {
+    interval: {
+      label: translations("TimeNotification.interval"),
+      /*transformer: {
         format: value => (value ? String(value) : '1'),
         parse: value => (value ? Number(value) : 1),
-      },
-    },*/
+      },*/
+    },
     byweekday: {
-      label: 'Week Days',
+      label: translations("TimeNotification.WeekDays.week days"),
       factory: TcombMultiSelect,
       options: [
         { value: 6, text: 'SU' },
@@ -97,7 +101,7 @@ let options = Object.assign({}, defaultOptions, {
       ],
     },
     bymonth: {
-      label: 'Months',
+      label: translations("TimeNotification.Months.months"),
       factory: TcombMultiSelect,
       options: [
         { value: 1, text: 'Jan' },
@@ -124,8 +128,8 @@ class EditTimeNotificationRecurrenceCustom extends React.Component {
   static navigationOptions = ({ navigation }) => {
       const { params = {} } = navigation.state;
       return {
-        headerTitle: "Time Nonification",
-        headerRight: () => <Button type="clear" title="Done" titleStyle={{color: '#5fb8f6'}} onPress={() => params.onDonePress()} />,
+        headerTitle: translations("TimeNotification.time notification"),
+        headerRight: () => <Button type="clear" title={translations("Common.Button.save")} titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
         headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
       };
   };
@@ -144,10 +148,10 @@ class EditTimeNotificationRecurrenceCustom extends React.Component {
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({ onDonePress: this.onDonePress.bind(this) });
+    this.props.navigation.setParams({ onSavePress: this.onSavePress.bind(this) });
   }
 
-  onDonePress() {
+  onSavePress() {
     const value = this.refs['form'].getValue();
     if (value) {
       const { onRecurrenceChange } = this.props.navigation.state.params;

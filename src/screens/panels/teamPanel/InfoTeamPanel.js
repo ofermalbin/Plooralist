@@ -180,7 +180,7 @@ class InfoTeamPanel extends React.Component {
           topDivider={true}
           bottomDivider={true}
           chevron={<Chevron />}
-          title={translations("Members.permission")}
+          title={translations("Member.permission")}
           leftIcon={{name: 'create', iconStyle: infoListStyles.leftIcon}}
           onPress={this.onPermissionPress.bind(this)}
         />}
@@ -188,9 +188,7 @@ class InfoTeamPanel extends React.Component {
         <MutePanel {...this.props} />
         <LeavePanel {...this.props} />
         {isOwner && <DeletePanel {...this.props} />}
-        <View style={createByAtStyles.container}>
-          <CreatedAtText createdAt={panel.createdAt} />
-        </View>
+        <CreatedAtText createdAt={panel.createdAt} />
       </View>
       </ScrollView>
     )

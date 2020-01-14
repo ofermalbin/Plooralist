@@ -13,6 +13,8 @@ import Geolocation from '@react-native-community/geolocation';
 
 import { Chevron } from '../../components';
 
+import translations from '../../translations';
+
 import { placeNotificationStyles } from './config/stylesheets';
 
 class _EditPlaceNotification extends React.Component {
@@ -150,7 +152,7 @@ class _EditPlaceNotification extends React.Component {
   }
 
   render() {
-    const buttons = ['Enter', 'Exit'];
+    const buttons = [translations("PlaceNotification.enter"), translations("PlaceNotification.exit")];
 
     return (
       <ScrollView>
@@ -215,8 +217,8 @@ class _EditPlaceNotification extends React.Component {
             rightTitleStyle={placeNotificationStyles.rightTitle}
             subtitleStyle={placeNotificationStyles.subtitle}
             chevron={<Chevron />}
-            title='Place'
-            rightTitle={this.state.place.name ? this.state.place.name : 'Add'}
+            title={translations("PlaceNotification.place")}
+            rightTitle={this.state.place.name ? this.state.place.name : translations("Common.Button.add")}
             onPress={this.state.place.name ? this.openCurrentPlaceModal.bind(this) : this.openUserLocationPlaceModal.bind(this)}
           />
           <ListItem
@@ -224,7 +226,8 @@ class _EditPlaceNotification extends React.Component {
             containerStyle={placeNotificationStyles.container}
             titleStyle={placeNotificationStyles.title}
             rightTitleStyle={placeNotificationStyles.rightTitle}
-            title='Radius'
+            chevron={<Chevron />}
+            title={translations("PlaceNotification.radius")}
             rightTitle={this.state.place.radius.toString()}
           />
           <ListItem

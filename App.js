@@ -22,6 +22,8 @@ import { YellowBox } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
+
 import Amplify, { Analytics, Auth } from 'aws-amplify';
 import { AmplifyTheme } from 'aws-amplify-react-native';
 import { Loading, SignIn, RequireNewPassword } from 'aws-amplify-react-native';
@@ -166,7 +168,9 @@ class AppWithProvider extends React.Component {
       <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1}}>
         <Rehydrated>
-          <App/>
+          <ActionSheetProvider>
+            <App/>
+          </ActionSheetProvider>
         </Rehydrated>
       </View>
       </SafeAreaView>

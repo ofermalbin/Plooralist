@@ -14,53 +14,55 @@ import TimeNotificationDtSendText from './TimeNotificationDtSendText';
 
 import { Chevron } from '../../components';
 
+import translations from '../../translations';
+
 import { timeNotificationStyles } from './config/stylesheets';
 
 const Freqs = [
   {
     value: 1,
     recurrence: {freq: 3, interval: 1, count: 1, byweekday: null, bymonth: null},
-    label: 'One Time'
+    label: translations("TimeNotification.Recurrence.one time")
   },
   {
     value: 2,
     recurrence: {freq: 4, interval: 1, count: null, byweekday: null, bymonth: null},
-    label: 'Every Hour'
+    label: translations("TimeNotification.Recurrence.every hour")
   },
   {
     value: 3,
     recurrence: {freq: 4, interval: 2, count: null, byweekday: null, bymonth: null},
-    label: 'Every 2 Hours'
+    label: translations("TimeNotification.Recurrence.every 2 hours")
   },
   {
     value: 4,
     recurrence: {freq: 3, interval: 1, count: null, byweekday: null, bymonth: null},
-    label: 'Every Day'
+    label: translations("TimeNotification.Recurrence.every day")
   },
   {
     value: 5,
     recurrence: {freq: 2, interval: 1, count: null, byweekday: null, bymonth: null},
-    label: 'Every Week'
+    label: translations("TimeNotification.Recurrence.every week")
   },
   {
     value: 6,
     recurrence: {freq: 2, interval: 2, count: null, byweekday: null, bymonth: null},
-    label: 'Every 2 Weeks'
+    label: translations("TimeNotification.Recurrence.every 2 weeks")
   },
   {
     value: 7,
     recurrence: {freq: 1, interval: 1, count: null, byweekday: null, bymonth: null},
-    label: 'Every Month'
+    label: translations("TimeNotification.Recurrence.every month")
   },
   {
     value: 8,
     recurrence: {freq: 0, interval: 1, count: null, byweekday: null, bymonth: null},
-    label: 'Every Year'
+    label: translations("TimeNotification.Recurrence.every year")
   },
   {
     value: 0,
     recurrence: null,
-    label: 'Custom'
+    label: translations("TimeNotification.Recurrence.custom")
   },
 ];
 
@@ -129,7 +131,7 @@ class TimeNotificationRecurrence extends React.Component {
           containerStyle={timeNotificationStyles.container}
           titleStyle={timeNotificationStyles.title}
           chevron={<Chevron />}
-          title='Recurrence'
+          title={translations("TimeNotification.Recurrence.recurrence")}
           subtitle={<TimeNotificationRecurrenceText recurrence={this.state.recurrence} dtstart={this.state.dtstart} style={timeNotificationStyles.subtitle} />}
           onPress={() => this.setState({show: !this.state.show})}
         />
@@ -145,7 +147,7 @@ class TimeNotificationRecurrence extends React.Component {
             topDivider={true}
             bottomDivider={true}
             chevron={<Chevron />}
-            title='Custom Edit'
+            title={translations("TimeNotification.Recurrence.custom edit")}
             onPress={this.onRecurrenceCustomPress.bind(this)}
           />
         }

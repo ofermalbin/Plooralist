@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import { Text, Alert } from 'react-native';
+
+import { ListItem, Button, Icon, Divider } from 'react-native-elements';
 
 import { pick } from 'lodash';
 
@@ -9,7 +9,7 @@ import Radar from 'react-native-radar';
 
 import { Loading, Chevron } from '../../components';
 
-import { ListItem, Button, Icon, Divider } from 'react-native-elements';
+import translations from '../../translations';
 
 import { placeNotificationStyles } from './config/stylesheets';
 

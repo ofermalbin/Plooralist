@@ -13,12 +13,9 @@ import { buildSubscription } from 'aws-appsync';
 import { listMembersForPanel } from '../../../graphql/queries';
 import { onCreateMember, onUpdateMember, onDeleteMember } from '../../../graphql/subscriptions';
 
-import { Loading } from '../../../components';
-
 import moment from 'moment/min/moment-with-locales.js';
 
-import { AvatarS3Image, CreatedAtText } from '../../../components';
-
+import { Loading, AvatarS3Image, CreatedAtText } from '../../../components';
 
 import { withContacts } from '../../../contexts';
 
@@ -99,9 +96,7 @@ class InfoCouplePanel extends React.Component {
         />
         <MutePanel {...this.props} />
         <BlockPanel {...this.props} />
-        <View style={createByAtStyles.container}>
-          <CreatedAtText createdAt={panel.createdAt} />
-        </View>
+        <CreatedAtText createdAt={panel.createdAt} />
       </View>
       </ScrollView>
     )

@@ -79,9 +79,9 @@ class RowMember extends React.Component {
 
     const title = name;
     const options = [
-      'Delete from team',
-      isMemberManager(member) ? 'Dismiss from team manager' : 'Make team manager',
-      'Cancel'
+      translations("Panel.delete from team"),
+      isMemberManager(member) ? translations("Panel.dismiss from team manager") : translations("Panel.make team manager"),
+      translations("Common.Button.cancel")
     ];
     const destructiveButtonIndex = 0;
     const cancelButtonIndex = 2;
@@ -116,7 +116,7 @@ class RowMember extends React.Component {
         titleStyle={rowPanelStyles.title}
         subtitleStyle={rowPanelStyles.subtitle}
         title={name}
-        subtitle={(isMemberOwner(member) && translations("Members.owner")) || (isMemberManager(member) && translations("Members.manager")) || null}
+        subtitle={(isMemberOwner(member) && translations("Member.owner")) || (isMemberManager(member) && translations("Member.manager")) || null}
         leftAvatar={
           <AvatarS3Image
             imgKey={member.user.imgKey}

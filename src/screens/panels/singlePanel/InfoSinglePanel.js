@@ -58,9 +58,7 @@ class InfoSinglePanel extends React.Component {
           }
         />
         <MutePanel {...this.props} />
-        <View style={createByAtStyles.container}>
-          <CreatedAtText createdAt={panel.createdAt} />
-        </View>
+        <CreatedAtText createdAt={panel.createdAt} />
       </View>
       </ScrollView>
     )

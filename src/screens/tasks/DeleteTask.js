@@ -14,6 +14,8 @@ import { ListItem } from 'react-native-elements';
 
 import { listTasksForPanelVariables } from './util';
 
+import translations from '../../translations';
+
 import { infoListStyles } from './config/stylesheets';
 
 class DeleteTask extends React.Component {
@@ -49,7 +51,7 @@ class DeleteTask extends React.Component {
         bottomDivider={true}
         containerStyle={[infoListStyles.container, {marginTop:22}]}
         titleStyle={[infoListStyles.title, infoListStyles.removeText]}
-        title='Delete'
+        title={translations("Task.delete task")}
         onPress={this.onDeletePress.bind(this)}
       />
     )

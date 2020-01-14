@@ -236,9 +236,7 @@ class CurrentUserInfo extends React.Component {
             onPress={this.onDeleteAccountPress.bind(this)}
           />
         </View>
-        <View style={createByAtStyles.container}>
-          <CreatedAtText createdAt={currentUser.createdAt} />
-        </View>
+        <CreatedAtText createdAt={currentUser.createdAt} />
       </View>
       </ScrollView>
     )

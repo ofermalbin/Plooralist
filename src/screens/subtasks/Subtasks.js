@@ -11,7 +11,6 @@ import { buildSubscription } from 'aws-appsync';
 import { getTask, listSubtasksForTask } from '../../graphql/queries';
 import { onCreateSubtask, onUpdateSubtask, onDeleteSubtask } from '../../graphql/subscriptions';
 
-
 import { TitleTask } from '../tasks';
 import ListSubtasks from './ListSubtasks';
 

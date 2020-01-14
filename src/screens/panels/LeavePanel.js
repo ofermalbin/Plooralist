@@ -14,6 +14,8 @@ import { ListItem } from 'react-native-elements';
 
 import { listMembersForPanelVariables } from './util';
 
+import translations from '../../translations';
+
 import { infoListStyles } from './config/stylesheets';
 
 class LeavePanel extends React.Component {
@@ -49,7 +51,7 @@ class LeavePanel extends React.Component {
         bottomDivider={true}
         containerStyle={[infoListStyles.container, {marginTop:22}]}
         titleStyle={[infoListStyles.title, infoListStyles.removeText]}
-        title='Leave'
+        title={translations("Panel.leave team")}
         onPress={this.onLeavePress.bind(this)}
       />
     )

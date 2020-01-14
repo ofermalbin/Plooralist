@@ -12,9 +12,11 @@
       "cancel": "בטל",
       "ok": "אשר",
       "add": "הוסף",
+      "save": "שמור",
       "create": "צור",
       "update": "עדכן",
       "delete": "מחק",
+      "leave": "עזוב",
     },
     "Status": {
       "yes": "כן",
@@ -23,6 +25,7 @@
       "off": "לא מופעל",
     },
     "Message": {
+      "created by": "נוצר ע״י",
       "created at": "נוצר ב",
     },
     "Alert": {
@@ -39,17 +42,77 @@
     "mute": "השתק",
     "unmute": "מושתק",
     "cancel mute": "בטל השתקה",
+    "delete team": "מחק קבוצה",
+    "leave team": "עזוב קבוצה",
+    "delete from team": "הסר מהקבוצה",
+    "make team manager": "תן הרשאת מנהל קבוצה",
+    "dismiss from team manager": "בטל הרשאת מנהל קבוצה",
   },
-  "Members": {
+  "Member": {
     "members": "חברים",
     "member": "חבר",
     "permission": "הרשאה",
     "owner": "מנהל ראשי",
     "manager": "מנהל",
+    "add members": "הוסף חברים",
   },
   "Task": {
     "task": "משימה",
     "tasks": "משימות",
+    "task info": "מידע משימה",
+    "task name": "שם משימה",
+    "task description": "תאור משימה",
+    "delete task": "מחק משימה",
+  },
+  "TimeNotification": {
+    "time notification": "התראת זמן",
+    "time notifications": "התראות זמן",
+    "delete time notification": "מחיקת התראת זמן",
+    "start": "התחלה",
+    "interval": "מרווח",
+    "Frequency": {
+      "frequency": "תדירות",
+    },
+    "Months": {
+      "months": "חודשים",
+    },
+    "WeekDays": {
+      "week days": "ימי השבוע",
+    },
+    "Recurrence": {
+      "recurrence": "הישנות",
+      "custom edit": "עריכה מותאמת",
+      "one time": "פעם אחת",
+      "every hour": "פעם בשעה",
+      "every 2 hours": "פעם בשעתיים",
+      "every day": "פעם ביום",
+      "every week": "פעם בשבוע",
+      "every 2 weeks": "פעם בשבועיים",
+      "every month": "פעם בחודש",
+      "every year": "פעם בשנה",
+      "custom": "מותאם",
+    }
+  },
+  "PlaceNotification": {
+    "place notification": "התראת מקום",
+    "place notifications": "התראות מקום",
+    "place": "מקום",
+    "radius": "רדיוס",
+    "enter": "כניסה",
+    "exit": "יציאה",
+  },
+  "Subtask": {
+    "subtask": "תת משימה",
+    "subtasks": "תת משימות",
+    "delete subtask": "מחק תת משימה",
+    "edit subtask": "ערוך תת משימה",
+    "subtask name": "שם תת משימה",
+    "subtask description": "תאור תת משימה",
+  },
+  "Message": {
+    "message": "הודעה",
+    "messages": "הודעות",
+    "chat": "צ׳אט",
   },
   "CurrentUser": {
     "me": "אני",

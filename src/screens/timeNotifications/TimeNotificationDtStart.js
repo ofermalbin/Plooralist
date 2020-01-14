@@ -13,6 +13,8 @@ import { Chevron } from '../../components';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
 
+import translations from '../../translations';
+
 class TimeNotificationDtStart extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
@@ -75,7 +77,7 @@ class TimeNotificationDtStart extends React.Component {
           titleStyle={timeNotificationStyles.title}
           subtitleStyle={timeNotificationStyles.subtitle}
           chevron={<Chevron />}
-          title='Start'
+          title={translations("TimeNotification.start")}
           subtitle={moment(dtstart).locale(locale).format('LLLL')}
           onPress={() => this.setState({show: !this.state.show})}
         />

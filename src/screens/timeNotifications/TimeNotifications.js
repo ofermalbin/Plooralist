@@ -21,6 +21,8 @@ import TimeNotification from './TimeNotification';
 
 import { listTimeNotificationsForTaskVariables } from './util';
 
+import translations from '../../translations';
+
 class TimeNotifications extends React.Component {
 
   constructor(props) {
@@ -70,9 +72,9 @@ class TimeNotifications extends React.Component {
             titleStyle={infoListStyles.lightTitle}
             rightTitleStyle={infoListStyles.rightTitle}
             leftIcon={{ name: 'alarm', iconStyle: infoListStyles.leftIcon }}
-            title='Time Notification'
+            title={translations('TimeNotification.time notifications')}
             chevron={isOwner && <Chevron />}
-            rightTitle={(isOwner || null) && 'Add'}
+            rightTitle={(isOwner || null) && translations("Common.Button.add")}
             onPress={(isOwner || null) && this.onTimeNotificationAddPress.bind(this) }
         />
         {timeNotifications.map((timeNotification, i) => ( <TimeNotification {...this.props} key={timeNotification.id} timeNotification={timeNotification} isTaskOwner={this.props.isOwner} /> ))}
