@@ -19,6 +19,8 @@ import { S3Image, AvatarS3Image } from '../../components';
 
 import { launchCamera, launchImageLibrary } from '../photos';
 
+import translations from '../../translations';
+
 import styles from './styles';
 
 class Messages extends React.Component {
@@ -168,7 +170,7 @@ class Messages extends React.Component {
     return (
       <GiftedChat
         locale='en'
-        placeholder='Start typing...'
+        placeholder={translations("Message.placeholder")}
         showAvatarForEveryMessage={false}
         renderAvatarOnTop={true}
         showUserAvatar={true}

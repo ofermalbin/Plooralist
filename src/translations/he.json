@@ -27,6 +27,7 @@
     "Message": {
       "created by": "נוצר ע״י",
       "created at": "נוצר ב",
+      "placeholder": "כתוב משהו...",
     },
     "Alert": {
       "are you sure?": "האם אתה בטוח?",

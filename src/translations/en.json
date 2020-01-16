@@ -112,6 +112,7 @@
     "message": "Message",
     "messages": "Messages",
     "chat": "Chat",
+    "placeholder": "Write something...",
   },
   "CurrentUser": {
     "me": "Me",
