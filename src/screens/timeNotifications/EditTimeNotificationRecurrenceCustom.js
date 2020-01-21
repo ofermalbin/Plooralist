@@ -129,7 +129,7 @@ class EditTimeNotificationRecurrenceCustom extends React.Component {
       const { params = {} } = navigation.state;
       return {
         headerTitle: translations("TimeNotification.time notification"),
-        headerRight: () => <Button type="clear" title={translations("Common.Button.save")} titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
+        headerRight: () => <Button type="clear" title={translations("Common.Button.ok")} titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
         headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
       };
   };

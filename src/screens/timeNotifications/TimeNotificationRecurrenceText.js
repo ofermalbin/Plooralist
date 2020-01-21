@@ -5,38 +5,40 @@ import RRule from 'rrule';
 
 import deepEqual from 'deep-equal';
 
+import translates from '../../translations';
+
 const Freqs = [
   {
     value: {freq: 3, interval: 1, count: 1, byweekday: null, bymonth: null},
-    label: 'One Time'
+    label: translates("TimeNotification.Recurrence.one time")
   },
   {
     value: {freq: 4, interval: 1, count: null, byweekday: null, bymonth: null},
-    label: 'Every Hour'
+    label: translates("TimeNotification.Recurrence.every hour")
   },
   {
     value: {freq: 4, interval: 2, count: null, byweekday: null, bymonth: null},
-    label: 'Every 2 Hours'
+    label: translates("TimeNotification.Recurrence.every 2 hours")
   },
   {
     value: {freq: 3, interval: 1, count: null, byweekday: null, bymonth: null},
-    label: 'Every Day'
+    label: translates("TimeNotification.Recurrence.every day")
   },
   {
     value: {freq: 2, interval: 1, count: null, byweekday: null, bymonth: null},
-    label: 'Every Week'
+    label: translates("TimeNotification.Recurrence.every week")
   },
   {
     value: {freq: 2, interval: 2, count: null, byweekday: null, bymonth: null},
-    label: 'Every 2 Weeks'
+    label: translates("TimeNotification.Recurrence.every 2 weeks")
   },
   {
     value: {freq: 1, interval: 1, count: null, byweekday: null, bymonth: null},
-    label: 'Every Month'
+    label: translates("TimeNotification.Recurrence.every month")
   },
   {
     value: {freq: 0, interval: 1, count: null, byweekday: null, bymonth: null},
-    label: 'Every Year'
+    label: translates("TimeNotification.Recurrence.every year")
   },
 ];
 

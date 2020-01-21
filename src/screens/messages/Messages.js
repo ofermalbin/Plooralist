@@ -170,7 +170,7 @@ class Messages extends React.Component {
     return (
       <GiftedChat
         locale='en'
-        placeholder={translations("Message.placeholder")}
+        placeholder={translations("Common.Message.placeholder")}
         showAvatarForEveryMessage={false}
         renderAvatarOnTop={true}
         showUserAvatar={true}

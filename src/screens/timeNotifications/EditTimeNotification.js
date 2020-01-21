@@ -17,7 +17,7 @@ import { listTimeNotificationsForTask } from '../../graphql/queries';
 
 import TimeNotificationDtStart from './TimeNotificationDtStart';
 import TimeNotificationRecurrence from './TimeNotificationRecurrence';
-import TimeNotificationDtSendText from './TimeNotificationDtSendText';
+import { TimeNotificationDtSendText } from './TimeNotificationDtSentSendText';
 
 import { listTimeNotificationsForTaskVariables } from './util';
 
@@ -126,7 +126,7 @@ class EditTimeNotification extends React.Component {
           title={translations("Common.Button.delete")}
           onPress={this.onDeletePress.bind(this)}
         />
-        {nextSend && <TimeNotificationDtSendText style={timeNotificationStyles.sendText} date={nextSend} />}
+        {nextSend && <View style={timeNotificationStyles.sendTextContainer}><TimeNotificationDtSendText style={timeNotificationStyles.sendText} date={nextSend} /></View>}
       </View>
       </ScrollView>
     )

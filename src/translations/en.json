@@ -90,7 +90,16 @@
       "every month": "Every Month",
       "every year": "Every Year",
       "custom": "Custom",
-    }
+    },
+    "at day": "at",
+    "at hour": "at",
+    "sent": "sent",
+    "send": "send",
+    "yesterday": "yesterday",
+    "today": "today",
+    "tomorrow": "tomorrow",
+    "last": "last",
+    "next": "next",
   },
   "PlaceNotification": {
     "place notification": "Place Notification",

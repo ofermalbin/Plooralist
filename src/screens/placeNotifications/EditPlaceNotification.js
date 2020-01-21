@@ -40,7 +40,6 @@ class EditPlaceNotification extends React.Component {
   }
 
   onSavePress() {
-
     const { placeNotification } = this.props.navigation.state.params;
 
     const input = {
@@ -83,10 +82,9 @@ class EditPlaceNotification extends React.Component {
   }
 
   render() {
-
     const { placeNotification } = this.props.navigation.state.params;
     return (
-      <_EditPlaceNotification place={placeNotification} onPlaceChange={this.onPlaceChange.bind(this)} onDeletePress={this.onDeletePress.bind(this)} />
+      <_EditPlaceNotification place={placeNotification} onPlaceChange={this.onPlaceChange.bind(this)} onDeletePress={this.onDeletePress.bind(this)} navigation={this.props.navigation} />
     )
   }
 }

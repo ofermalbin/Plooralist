@@ -30,10 +30,13 @@ export const timeNotificationStyles = StyleSheet.create({
     color: "#4f4f4f",
     textAlign: 'left'
   },
+  sendTextContainer: {
+    marginTop: normalize(4),
+    marginLeft: normalize(12),
+  },
   sendText: {
     fontSize: normalize(12),
     color: "#b0b5b8",
-    marginTop: normalize(4),
     textAlign: 'left'
   },
   recurrenceText: {

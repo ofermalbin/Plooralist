@@ -11,7 +11,7 @@ import { ListItem, Button, Icon, Divider } from 'react-native-elements';
 
 import TimeNotificationDtStartText from './TimeNotificationDtStartText';
 import TimeNotificationRecurrenceText from './TimeNotificationRecurrenceText';
-import TimeNotificationDtSendText from './TimeNotificationDtSendText';
+import { TimeNotificationDtSentText, TimeNotificationDtSendText } from './TimeNotificationDtSentSendText';
 
 import { timeNotificationStyles } from './config/stylesheets';
 
@@ -52,7 +52,7 @@ class TimeNotification extends React.Component {
         subtitle=
           <View>
             <TimeNotificationRecurrenceText recurrence={pick(timeNotification, ['freq', 'interval', 'count', 'byweekday', 'bymonth'])} dtstart={new Date(timeNotification.dtstart)} style={timeNotificationStyles.notificationText} />
-            {!task.completed && timeNotification.lastSend && <TimeNotificationDtSendText style={timeNotificationStyles.sendText} date={timeNotification.lastSend} />}
+            {!task.completed && timeNotification.lastSend && <TimeNotificationDtSentText style={timeNotificationStyles.sendText} date={timeNotification.lastSend} />}
             {!task.completed && timeNotification.nextSend && <TimeNotificationDtSendText style={timeNotificationStyles.sendText} date={timeNotification.nextSend} />}
           </View>
         onLongPress={isTaskOwner ? this.onTestPress.bind(this) : null}

@@ -13,7 +13,7 @@ import { Chevron } from '../../components';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-import translations from '../../translations';
+import translates, { getI18nConfig } from '../../translations';
 
 class TimeNotificationDtStart extends React.Component {
 
@@ -21,8 +21,8 @@ class TimeNotificationDtStart extends React.Component {
       const { params = {} } = navigation.state;
       return {
         headerTitle: "Time Nonification",
-        headerRight: () => <Button clear title={translations("Common.Button.add")} titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onAddPress()} />,
-        headerLeft: () => <Button clear title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+        headerRight: () => <Button clear title={translates("Common.Button.add")} titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onAddPress()} />,
+        headerLeft: () => <Button clear title={translates("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
       };
   };
 
@@ -66,7 +66,7 @@ class TimeNotificationDtStart extends React.Component {
 
   render() {
 
-    const locale = 'en';
+    const { languageTag, isRTL } = getI18nConfig();
     const { dtstart, mode, show } = this.state;
     return (
       <View>
@@ -77,8 +77,8 @@ class TimeNotificationDtStart extends React.Component {
           titleStyle={timeNotificationStyles.title}
           subtitleStyle={timeNotificationStyles.subtitle}
           chevron={<Chevron />}
-          title={translations("TimeNotification.start")}
-          subtitle={moment(dtstart).locale(locale).format('LLLL')}
+          title={translates("TimeNotification.start")}
+          subtitle={moment(dtstart).locale(languageTag).format('LLLL')}
           onPress={() => this.setState({show: !this.state.show})}
         />
         {show && <DateTimePicker
@@ -86,7 +86,7 @@ class TimeNotificationDtStart extends React.Component {
           mode={mode}
           is24Hour={true}
           display='default'
-          locale={locale}
+          locale={languageTag}
           onChange={this.onDtstartChange.bind(this)}
         />}
       </View>
@@ -95,28 +95,3 @@ class TimeNotificationDtStart extends React.Component {
 }
 
 export default TimeNotificationDtStart;
-
-/*
-<DateTimePicker
-  ref={component => this._DateTimePicker = component}
-  style={{height: 0, width: 0}}
-  date={this.state.dtstart}
-  mode="datetime"
-  hideText={true}
-  locale={locale}
-  confirmBtnText="Done"
-  cancelBtnText="Cancel"
-  customStyles={{
-    btnTextText: {
-      color: 'blue'
-    },
-    btnTextConfirm: {
-      color: 'blue'
-    },
-    btnTextCancel: {
-      color: 'red'
-    },
-  }}
-  onDateChange={this.onDtstartChange.bind(this)}
-/>
-*/

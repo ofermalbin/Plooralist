@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { View, Alert, ScrollView } from 'react-native';
-import { ListItem, Icon, ButtonGroup } from 'react-native-elements';
+import { View, Alert, Image, ScrollView } from 'react-native';
+import { ListItem, Icon, Slider, ButtonGroup } from 'react-native-elements';
 
 import MapView, { PROVIDER_GOOGLE }  from 'react-native-maps';
 
@@ -107,7 +107,7 @@ class _EditPlaceNotification extends React.Component {
     this.openPlaceModal( {latitude: coordinate.latitude, longitude: coordinate.longitude, radius: 0.01} );
   }
 
-  onRadiusChange(e) {
+  onRadiusDrag(e) {
     const place = Object.assign({}, this.state.place, { radius: getDistance({
         latitude: this.state.region.mapRegion.latitude,
         longitude: this.state.region.mapRegion.longitude,
@@ -145,6 +145,15 @@ class _EditPlaceNotification extends React.Component {
         .catch((error) => console.log('lookUpPlaceByID error: ', error.message));
     }
   }
+
+  onRadiusChange(radius) {
+    const place = Object.assign({}, this.state.place, { radius });
+    this.onPlaceChange(place)
+  }
+
+  onEditRadiusPress() {
+    this.props.navigation.navigate('EditPlaceNotificationRadius', {place: this.state.place, onRadiusChange: this.onRadiusChange.bind(this)});
+  };
 
   indexUpdate(selectedIndex) {
     const place = Object.assign({}, this.state.place, { when: selectedIndex });
@@ -184,11 +193,14 @@ class _EditPlaceNotification extends React.Component {
                   }, this.state.place.radius, 90)
                 }
               pinColor='blue'
-              image={require('./blue-circle.png')}
+              //image={require('./blue-circle.png')}
               draggable
               onPress={(e) => {}}
-              onDragEnd={this.onRadiusChange.bind(this)}
-            />}
+              onDrag={this.onRadiusDrag.bind(this)}
+              onDragEnd={this.onRadiusDrag.bind(this)}
+            >
+            <Image source={require('./blue-circle.png')} />
+            </MapView.Marker>}
             {this.state.place.placeID && this.state.region.mapRegion && this.state.region.mapRegion.latitude &&
             <MapView.Circle
               center={{
@@ -229,6 +241,7 @@ class _EditPlaceNotification extends React.Component {
             chevron={<Chevron />}
             title={translations("PlaceNotification.radius")}
             rightTitle={this.state.place.radius.toString()}
+            onPress={this.state.place.radius ? this.onEditRadiusPress.bind(this) : null}
           />
           <ListItem
             buttonGroup={{
