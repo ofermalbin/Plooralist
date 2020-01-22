@@ -1,7 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { StyleSheet, View } from 'react-native';
+
+import { HeaderBackButton } from 'react-navigation-stack';
 
 import { Icon, ListItem, normalize } from "react-native-elements";
 
@@ -9,7 +10,7 @@ import Voice from 'react-native-voice';
 
 import * as Animatable from 'react-native-animatable';
 
-import translates, { getI18nConfig } from '../../translations';
+import translate, { getI18nConfig } from '../../translations';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,6 +20,15 @@ const styles = StyleSheet.create({
 });
 
 class Voice2Text extends React.Component {
+
+  static navigationOptions = ({ navigation }) => {
+      const { params = {} } = navigation.state;
+      return {
+        headerTitle: translate("Common.Voice.voice to text"),
+        headerLeft: () => <HeaderBackButton label={translate("Common.Button.back")} onPress={() => navigation.goBack(null)} />,
+      };
+  };
+
   constructor(props) {
     super(props);
 
@@ -96,7 +106,7 @@ class Voice2Text extends React.Component {
         <View style={{flex:0.8}}>
         <ListItem
           titleStyle={{fontWeight: '300', fontSize: normalize(20), textAlign: "left"}}
-          title={this.state.partialResults.join(' ') || translates("Common.Input.speech")}
+          title={this.state.partialResults.join(' ') || translate("Common.Voice.speech")}
         />
         </View>
         <View style={{flex:0.2}}>

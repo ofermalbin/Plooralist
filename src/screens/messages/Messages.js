@@ -19,7 +19,7 @@ import { S3Image, AvatarS3Image } from '../../components';
 
 import { launchCamera, launchImageLibrary } from '../photos';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 import styles from './styles';
 
@@ -67,9 +67,9 @@ class Messages extends React.Component {
 
   renderActions() {
     const options = {
-      'Take Picture': () => launchCamera({updatePhoto: (photo) => this.props.onSend({uri: photo})}),
-      'Choose Picture': () => launchImageLibrary({updatePhoto: (photo) => this.props.onSend({uri: photo})}),
-      'My Location': () => Geolocation.getCurrentPosition((position) => {
+      [translate("Message.take picture")]: () => launchCamera({updatePhoto: (photo) => this.props.onSend({uri: photo})}),
+      [translate("Message.choose picture")]: () => launchImageLibrary({updatePhoto: (photo) => this.props.onSend({uri: photo})}),
+      [translate("Message.my location")]: () => Geolocation.getCurrentPosition((position) => {
           const place = {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
@@ -77,7 +77,9 @@ class Messages extends React.Component {
           this.props.onSend({place: JSON.stringify(place)})
         }
       ),
-      'Cancel': () => {},
+      //"": () => {},
+      [translate("Common.Button.cancel")]: () => {},
+      //"Cancel": () => {},
     };
     return (
       <Actions {...this.props} icon={this.renderIconActions} options={options} />
@@ -170,7 +172,7 @@ class Messages extends React.Component {
     return (
       <GiftedChat
         locale='en'
-        placeholder={translations("Common.Message.placeholder")}
+        placeholder={translate("Common.Message.placeholder")}
         showAvatarForEveryMessage={false}
         renderAvatarOnTop={true}
         showUserAvatar={true}

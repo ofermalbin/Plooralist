@@ -23,7 +23,7 @@ import { AvatarS3Image } from '../../../components';
 
 import { getCurrentUserName, getUserName } from '../../../util';
 
-import translations from '../../../translations';
+import translate from '../../../translations';
 
 import { rowPanelStyles } from '../config/stylesheets';
 
@@ -79,9 +79,9 @@ class RowMember extends React.Component {
 
     const title = name;
     const options = [
-      translations("Panel.delete from team"),
-      isMemberManager(member) ? translations("Panel.dismiss from team manager") : translations("Panel.make team manager"),
-      translations("Common.Button.cancel")
+      translate("Panel.delete from team"),
+      isMemberManager(member) ? translate("Panel.dismiss from team manager") : translate("Panel.make team manager"),
+      translate("Common.Button.cancel")
     ];
     const destructiveButtonIndex = 0;
     const cancelButtonIndex = 2;
@@ -116,7 +116,7 @@ class RowMember extends React.Component {
         titleStyle={rowPanelStyles.title}
         subtitleStyle={rowPanelStyles.subtitle}
         title={name}
-        subtitle={(isMemberOwner(member) && translations("Member.owner")) || (isMemberManager(member) && translations("Member.manager")) || null}
+        subtitle={(isMemberOwner(member) && translate("Member.owner")) || (isMemberManager(member) && translate("Member.manager")) || null}
         leftAvatar={
           <AvatarS3Image
             imgKey={member.user.imgKey}

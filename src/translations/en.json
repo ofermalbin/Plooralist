@@ -5,9 +5,9 @@
   "Common" : {
     "Input": {
       "placeholder": "Write something...",
-      "speech": "Speech...",
     },
     "Button": {
+      "back": "Back",
       "next": "Next",
       "cancel": "Cancel",
       "ok": "Ok",
@@ -26,10 +26,24 @@
     "Message": {
       "created by": "created by",
       "created at": "created at",
+      "take picture": "Take Picture",
+      "choose picture": "Chose Picture",
+      "my location": "My Location",
     },
     "Alert": {
       "are you sure?": "Are you sure?",
     },
+    "Voice": {
+      "voice to text": "Voice to Text",
+      "speech": "Speech...",
+    },
+    "Photo": {
+      "add photo picker": "Add Photo Picker",
+      "update photo picker": "Update Photo Picker",
+      "take photo": "Take Photo...",
+      "choose photo from library": "Choose from Library...",
+      "remove photo": "Remove Photo...",
+    }
   },
   "Panel": {
     "panel": "Panel",
@@ -108,6 +122,10 @@
     "radius": "Radius",
     "enter": "Enter",
     "exit": "Exit",
+    "When And Radius": {
+      "0": "%{radius} meters before",
+      "1": "%{radius} meters after"
+    }
   },
   "Subtask": {
     "subtask": "Subtask",
@@ -116,6 +134,7 @@
     "edit subtask": "edit subtask",
     "subtask name": "Subtask Name",
     "subtask description": "Subtask Description",
+    "completed summery": "%{subtasksCount} subtasks %{subtasksCompletedCount} completed",
   },
   "Message": {
     "message": "Message",
@@ -125,6 +144,7 @@
   },
   "CurrentUser": {
     "me": "Me",
+    "name": "User Name",
     "email": "Email",
     "locale": "Locale",
     "logout": "Logout",

@@ -45,10 +45,10 @@ class BlockPanel extends React.Component {
     const isBlock = this.state.isBlock;
     Alert.alert(
       isBlock ? 'Unblock' : 'Block',
-      translations("Common.Alert.are you sure?"),
+      translate("Common.Alert.are you sure?"),
       [
-        {text: translations("Common.Button.cancel")},
-        {text: translations("Common.Button.ok"), onPress: () => {
+        {text: translate("Common.Button.cancel")},
+        {text: translate("Common.Button.ok"), onPress: () => {
             const input = {
               id: member.id,
               expectedVersion: member.version,

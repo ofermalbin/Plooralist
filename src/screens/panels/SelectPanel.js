@@ -11,7 +11,7 @@ import { SinglesPanels, CouplesPanels } from '../panels';
 
 import ContactsAreNotUsers from '../contactsAreNotUsers';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 class SelectPanel extends React.Component {
 
@@ -39,7 +39,7 @@ class SelectPanel extends React.Component {
               placeholderStyle={actionListStyles.leftIconAvatarPlaceholder}
             />
           }
-          title={translations("Panel.new team")}
+          title={translate("Panel.new team")}
           onPress={this.onTeamPress.bind(this)}
         />
         <SinglesPanels navigation={this.props.navigation} />

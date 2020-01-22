@@ -21,7 +21,7 @@ import { TimeNotificationDtSendText } from './TimeNotificationDtSentSendText';
 
 import { listTimeNotificationsForTaskVariables } from './util';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 import { timeNotificationStyles } from './config/stylesheets';
 
@@ -86,11 +86,11 @@ class EditTimeNotification extends React.Component {
   onDeletePress() {
 
     Alert.alert(
-      translations("TimeNotification.delete time notification"),
-      translations("Common.Alert.are you sure?"),
+      translate("TimeNotification.delete time notification"),
+      translate("Common.Alert.are you sure?"),
       [
-        {text: translations("Common.Button.cancel")},
-        {text: translations("Common.Button.ok"), onPress: () => {
+        {text: translate("Common.Button.cancel")},
+        {text: translate("Common.Button.ok"), onPress: () => {
           const { timeNotification } = this.props.navigation.state.params;
           const input = {
             id: timeNotification.id,
@@ -123,7 +123,7 @@ class EditTimeNotification extends React.Component {
           bottomDivider={true}
           containerStyle={[timeNotificationStyles.container, { marginTop:22 }]}
           titleStyle={[timeNotificationStyles.title, timeNotificationStyles.removeText]}
-          title={translations("Common.Button.delete")}
+          title={translate("Common.Button.delete")}
           onPress={this.onDeletePress.bind(this)}
         />
         {nextSend && <View style={timeNotificationStyles.sendTextContainer}><TimeNotificationDtSendText style={timeNotificationStyles.sendText} date={nextSend} /></View>}
@@ -142,9 +142,9 @@ const enhance = compose(
 enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerTitle: translations("TimeNotification.time notification"),
-      headerRight: () => <Button type="clear" title={translations("Common.Button.save")} titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
-      headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+      headerTitle: translate("TimeNotification.time notification"),
+      headerRight: () => <Button type="clear" title={translate("Common.Button.save")} titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
+      headerLeft: () => <Button type="clear" title={translate("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
     };
 }
 

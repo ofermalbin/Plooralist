@@ -30,7 +30,7 @@ import { infoAvatarStyles, inputStyles, infoListStyles } from '../config/stylesh
 
 import { storeFileInS3 } from '../../../lib/s3';
 
-import translations from '../../../translations';
+import translate from '../../../translations';
 
 class CreateTeamPanel extends React.Component {
 
@@ -154,7 +154,7 @@ class CreateTeamPanel extends React.Component {
             inputStyle={inputStyles.input}
             value={this.state.name}
             autoFocus={true}
-            placeholder={translations("Panel.team name")}
+            placeholder={translate("Panel.team name")}
             onChangeText={this.onNameChangeText.bind(this)}
           />
         }
@@ -190,9 +190,9 @@ const enhance = compose(
 enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerTitle: translations("Panel.new team"),
-      headerRight: () => <Button type="clear" title={translations("Common.Button.create")} titleStyle={{color: '#5fb8f6'}} disabled={!params.name} onPress={() => params.onCreatePress()} />,
-      headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+      headerTitle: translate("Panel.new team"),
+      headerRight: () => <Button type="clear" title={translate("Common.Button.create")} titleStyle={{color: '#5fb8f6'}} disabled={!params.name} onPress={() => params.onCreatePress()} />,
+      headerLeft: () => <Button type="clear" title={translate("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
     };
 }
 

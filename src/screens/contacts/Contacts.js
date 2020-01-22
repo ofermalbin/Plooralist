@@ -6,9 +6,16 @@ import { actionListStyles } from './config/stylesheets';
 
 import { CouplesPanels } from '../panels';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 class Contacts extends React.Component {
+
+  static navigationOptions = ({ navigation }) => {
+      const { params = {} } = navigation.state;
+      return {
+        headerTitle: translate("Contact.contacts"),
+      };
+  };
 
   constructor(props) {
     super(props);
@@ -34,7 +41,7 @@ class Contacts extends React.Component {
                 placeholderStyle={actionListStyles.leftIconAvatarPlaceholder}
               />
             }
-            title={translations("InviteFriend.invite friends")}
+            title={translate("InviteFriend.invite friends")}
             onPress={this.onInviteFriendsPress.bind(this)}
           />
           <CouplesPanels navigation={this.props.navigation} />

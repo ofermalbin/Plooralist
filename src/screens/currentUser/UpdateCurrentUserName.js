@@ -12,7 +12,7 @@ import { graphqlMutation } from 'aws-appsync-react';
 import { updateUser } from '../../graphql/mutations';
 import { getUser } from '../../graphql/queries';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 import { inputStyles } from './config/stylesheets';
 
@@ -56,7 +56,7 @@ class UpdateCurrentUserName extends React.Component {
             inputStyle={inputStyles.input}
             value={this.state.name}
             autoFocus={true}
-            placeholder="Name"
+            placeholder={translate("CurrentUser.name")}
             onChangeText={this.onNameChange.bind(this)}
           />
         }
@@ -74,9 +74,9 @@ const enhance = compose(
 enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerTitle: "Name",
-      headerRight: () => <Button type="clear" title={translations("Common.Button.update")} titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onSavePress()} />,
-      headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+      headerTitle: translate("CurrentUser.name"),
+      headerRight: () => <Button type="clear" title={translate("Common.Button.update")} titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onSavePress()} />,
+      headerLeft: () => <Button type="clear" title={translate("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
     };
 }
 

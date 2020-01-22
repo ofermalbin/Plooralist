@@ -43,7 +43,7 @@ import { sleep } from '../../../lib/sleep';
 
 import { listMembersForPanelVariables, isMemberOwner, isMemberManager, isOnlyManagersEditInfo, isOnlyManagersEditMembers } from '../util';
 
-import translations from '../../../translations';
+import translate from '../../../translations';
 
 const __capitalize_Words = function(str) {
   return str && str.replace (/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -180,7 +180,7 @@ class InfoTeamPanel extends React.Component {
           topDivider={true}
           bottomDivider={true}
           chevron={<Chevron />}
-          title={translations("Member.permission")}
+          title={translate("Member.permission")}
           leftIcon={{name: 'create', iconStyle: infoListStyles.leftIcon}}
           onPress={this.onPermissionPress.bind(this)}
         />}

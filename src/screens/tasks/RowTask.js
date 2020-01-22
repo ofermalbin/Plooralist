@@ -19,7 +19,7 @@ import colors from '../../config/colors';
 
 import { TextNameUser } from '../users';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 class RowTask extends React.Component {
 

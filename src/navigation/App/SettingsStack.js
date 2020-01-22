@@ -7,13 +7,13 @@ import { UpdateCurrentUserName, UpdateCurrentUserEmail  } from '../../screens/cu
 
 import { createStackNavigator } from "react-navigation-stack";
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 export default createStackNavigator({
   Settings: {
     screen: Settings,
     navigationOptions: ({ navigation }) => ({
-      title: translations("Setting.settings"),
+      title: translate("Setting.settings"),
     }),
   },
   UpdateCurrentUserName: {

@@ -2,9 +2,12 @@ import { Alert } from 'react-native';
 
 import ImagePicker from 'react-native-image-picker';
 
+import translate from '../../translations';
+
 const defaultOptions = {
-  takePhotoButtonTitle: 'Take Photo...',
-  chooseFromLibraryButtonTitle: 'Choose from Library...',
+  takePhotoButtonTitle: translate("Common.Photo.take photo"),
+  chooseFromLibraryButtonTitle: translate("Common.Photo.choose photo from library"),
+  cancelButtonTitle: translate("Common.Button.cancel"),
   quality: 1,
   maxWidth: 300,
   maxHeight: 300,
@@ -18,8 +21,8 @@ const defaultOptions = {
 const PhotoEdit = (props) => {
 
   const photoEditOptions = {
-    title: props.photo ? 'Update Photo Picker' : 'Add Photo Picker',
-    customButtons: props.photo ? [{ title: 'Remove Photo...', name: 'remove' }] : [],
+    title: translate(props.photo ? "Common.Photo.update photo picker" : "Common.Photo.add photo picker"),
+    customButtons: props.photo ? [{ title: translate("Common.Photo.remove photo"), name: 'remove' }] : [],
   }
 
   const options = Object.assign({}, defaultOptions, photoEditOptions, props.options);

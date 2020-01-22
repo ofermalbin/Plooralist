@@ -15,7 +15,7 @@ import { onUpdatePanel, onDeletePanel } from '../../graphql/subscriptions';
 
 import { Loading } from '../../components';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 import { InfoSinglePanel } from './singlePanel';
 import { InfoCouplePanel } from './couplePanel';
@@ -97,8 +97,8 @@ const enhance = compose(
 enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerLeft: () => <HeaderBackButton onPress={() => {navigation.goBack(null);}} />,
-      headerTitle: translations("Panel.info"),
+      headerLeft: () => <HeaderBackButton label={translate("Common.Button.back")} onPress={() => {navigation.goBack(null);}} />,
+      headerTitle: translate("Panel.info"),
     };
 }
 

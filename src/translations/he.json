@@ -5,9 +5,9 @@
   "Common" : {
     "Input": {
       "placeholder": "כתוב משהו...",
-      "speech": "דבר...",
     },
     "Button": {
+      "back": "הקודם",
       "next": "הבא",
       "cancel": "בטל",
       "ok": "אשר",
@@ -32,6 +32,17 @@
     "Alert": {
       "are you sure?": "האם אתה בטוח?",
     },
+    "Voice": {
+      "voice to text": "דיבור למילים",
+      "speech": "דבר...",
+    },
+    "Photo": {
+      "add photo picker": "הוספת תמונה",
+      "update photo picker": "עידכון תמונה",
+      "take photo": "צלם תמונה...",
+      "choose photo from library": "בחר תמונה מספריה...",
+      "remove photo": "מחק תמונה...",
+    }
   },
   "Panel": {
     "panel": "לוח",
@@ -112,6 +123,10 @@
     "radius": "רדיוס",
     "enter": "כניסה",
     "exit": "יציאה",
+    "When And Radius": {
+      "0": "%{radius} מטרים לפני",
+      "1": "%{radius} מטרים אחרי",
+    }
   },
   "Subtask": {
     "subtask": "תת משימה",
@@ -120,13 +135,18 @@
     "edit subtask": "ערוך תת משימה",
     "subtask name": "שם תת משימה",
     "subtask description": "תאור תת משימה",
+    "completed summery": "%{subtasksCount} תת משימות %{subtasksCompletedCount} הושלמו",
   },
   "Message": {
     "message": "הודעה",
     "messages": "הודעות",
     "chat": "צ׳אט",
+    "take picture": "צלם תמונה",
+    "choose picture": "בחר תמונה",
+    "my location": "המקום שלי",
   },
   "CurrentUser": {
+    "name": "שם משתמש",
     "me": "אני",
     "email": "דואר אלקטרוני",
     "locale": "שפה",

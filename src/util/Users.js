@@ -1,14 +1,14 @@
 import { find } from 'lodash';
 import { getContactByUsername, getContactName } from './';
 
-import translations from '../translations';
+import translate from '../translations';
 
 const __capitalize_Words = function(str) {
   return str && str.replace (/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
 export const getCurrentUserName = () => {
-  return translations("CurrentUser.me");
+  return translate("CurrentUser.me");
 }
 
 export const getUserName = (user, contacts) => {

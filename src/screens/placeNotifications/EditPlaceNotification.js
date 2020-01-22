@@ -21,7 +21,7 @@ import _EditPlaceNotification from './_EditPlaceNotification';
 
 import { listPlaceNotificationsForTaskVariables } from './util';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 import { placeNotificationStyles } from './config/stylesheets';
 
@@ -64,10 +64,10 @@ class EditPlaceNotification extends React.Component {
 
     Alert.alert(
       'Delete Place Notification',
-      translations("Common.Alert.are you sure?"),
+      translate("Common.Alert.are you sure?"),
       [
-        {text: translations("Common.Button.cancel")},
-        {text: translations("Common.Button.ok"), onPress: () => {
+        {text: translate("Common.Button.cancel")},
+        {text: translate("Common.Button.ok"), onPress: () => {
           const { placeNotification } = this.props.navigation.state.params;
           const input = {
             id: placeNotification.id,
@@ -98,9 +98,9 @@ const enhance = compose(
 enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerTitle: translations("PlaceNotification.place notification"),
-      headerRight: () => <Button type="clear" title={translations("Common.Button.save")} titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
-      headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+      headerTitle: translate("PlaceNotification.place notification"),
+      headerRight: () => <Button type="clear" title={translate("Common.Button.save")} titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
+      headerLeft: () => <Button type="clear" title={translate("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
     };
 }
 

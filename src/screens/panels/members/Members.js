@@ -3,7 +3,7 @@ import { View } from 'react-native';
 
 import { ListItem } from 'react-native-elements';
 
-import translations from '../../../translations';
+import translate from '../../../translations';
 
 import { infoListStyles } from '../config/stylesheets';
 
@@ -30,9 +30,9 @@ class Members extends React.Component {
           containerStyle={[infoListStyles.container, {marginTop:22}]}
           titleStyle={infoListStyles.title}
           rightTitleStyle={infoListStyles.rightTitle}
-          title={translations("Member.members")}
+          title={translate("Member.members")}
           leftIcon={{ name: 'group', iconStyle: infoListStyles.leftIcon }}
-          rightTitle={canEditMembers ? translations("Common.Button.add") : null}
+          rightTitle={canEditMembers ? translate("Common.Button.add") : null}
           onPress={canEditMembers ? this.onAddMembersPress.bind(this) : null}
         />
         <ListMembers {...this.props} />

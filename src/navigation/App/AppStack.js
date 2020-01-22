@@ -9,27 +9,27 @@ import SettingsStack from './SettingsStack'
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 export default createBottomTabNavigator({
   PanelsStack: {
     screen: PanelsStack,
     navigationOptions: {
-      tabBarLabel: translations("Task.tasks"),
+      tabBarLabel: translate("Task.tasks"),
       tabBarIcon: ({ tintColor }) => <Icon name="list" color={tintColor} />,
     },
   },
   ContactsStack: {
     screen: ContactsStack,
     navigationOptions: {
-      tabBarLabel: translations("Contact.contacts"),
+      tabBarLabel: translate("Contact.contacts"),
       tabBarIcon: ({ tintColor }) => <Icon type="material-community" name="account-group" color={tintColor} />
     },
   },
   SettingsStack: {
     screen: SettingsStack,
     navigationOptions: {
-      tabBarLabel: translations("Setting.settings"),
+      tabBarLabel: translate("Setting.settings"),
       tabBarIcon: ({ tintColor }) => <Icon name="settings" color={tintColor} />,
     },
   }},

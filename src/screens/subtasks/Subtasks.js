@@ -16,6 +16,8 @@ import ListSubtasks from './ListSubtasks';
 
 import { listSubtasksForTaskVariables } from './util';
 
+import translate from '../../translations';
+
 class Subtasks extends React.Component {
 
   constructor(props) {
@@ -86,7 +88,7 @@ enhance.navigationOptions = ({ navigation }) => {
   const { params = {} } = navigation.state;
   return {
     headerTitle: () => <TitleTask {...params} navigation={navigation} />,
-    headerLeft: () => <HeaderBackButton onPress={() => navigation.goBack(null)} />,
+    headerLeft: () => <HeaderBackButton label={translate("Common.Button.back")} onPress={() => navigation.goBack(null)} />,
   };
 }
 

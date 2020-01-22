@@ -22,7 +22,7 @@ import { listMembersForUserVariables } from './util';
 
 import colors from '../../config/colors';
 
-import translations from '../../translations'
+import translate from '../../translations'
 
 class Panels extends React.Component {
 
@@ -116,7 +116,7 @@ const enhance = withCurrentUser(withUsersAreContacts(compose(
 enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerTitle: translations("General.plooralist"),
+      headerTitle: translate("General.plooralist"),
       headerLeft: () => <Button
         type="clear"
         icon={{

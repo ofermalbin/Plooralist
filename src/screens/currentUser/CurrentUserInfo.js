@@ -36,7 +36,7 @@ import { sleep } from '../../lib/sleep';
 
 import uuid from 'react-native-uuid';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 const styles = StyleSheet.create({
   removeText: {
@@ -127,11 +127,11 @@ class CurrentUserInfo extends React.Component {
   onLogoutPress() {
     const { currentUser } = this.props;
     Alert.alert(
-      translations("CurrentUser.logout"),
-      translations("Common.Alert.are you sure?"),
+      translate("CurrentUser.logout"),
+      translate("Common.Alert.are you sure?"),
       [
-        {text: translations("Common.Button.cancel")},
-        {text: translations("Common.Button.ok"), onPress: () => {
+        {text: translate("Common.Button.cancel")},
+        {text: translate("Common.Button.ok"), onPress: () => {
           Auth.signOut()
             .then(() => RNRestart.Restart())
             .catch(err => alert(JSON.stringify(err)));
@@ -143,11 +143,11 @@ class CurrentUserInfo extends React.Component {
   onDeleteAccountPress() {
     const { currentUser } = this.props;
     Alert.alert(
-      translations("CurrentUser.delete account"),
-      translations("Common.Alert.are you sure?"),
+      translate("CurrentUser.delete account"),
+      translate("Common.Alert.are you sure?"),
       [
-        {text: translations("Common.Button.cancel")},
-        {text: translations("Common.Button.ok"), onPress: () => {
+        {text: translate("Common.Button.cancel")},
+        {text: translate("Common.Button.ok"), onPress: () => {
           const input = {
             id: currentUser.id,
             expectedVersion: currentUser.version,
@@ -218,20 +218,20 @@ class CurrentUserInfo extends React.Component {
             titleStyle={currentUserStyles.title}
             rightTitleStyle={currentUserStyles.rightTitle}
             chevron={<Chevron />}
-            title={translations("CurrentUser.email")}
-            rightTitle={currentUser.email ? currentUser.email : translations("Common.Button.add")}
+            title={translate("CurrentUser.email")}
+            rightTitle={currentUser.email ? currentUser.email : translate("Common.Button.add")}
             leftIcon={{name: 'mail', iconStyle: currentUserStyles.leftIcon}}
             onPress={this.onEmailPress.bind(this)}
           />
         </View>
         <View style={{ marginTop: 22 }}>
           <ListItem
-            title={translations("CurrentUser.logout")}
+            title={translate("CurrentUser.logout")}
             titleStyle={[currentUserStyles.title, styles.removeText]}
             onPress={this.onLogoutPress.bind(this)}
           />
           <ListItem
-            title={translations("CurrentUser.delete account")}
+            title={translate("CurrentUser.delete account")}
             titleStyle={[currentUserStyles.title, styles.removeText]}
             onPress={this.onDeleteAccountPress.bind(this)}
           />

@@ -20,6 +20,8 @@ import { isMemberBlock } from '../panels';
 
 import { listTasksForPanelVariables } from './util';
 
+import translate from '../../translations';
+
 class Tasks extends React.Component {
 
   constructor(props) {
@@ -97,7 +99,7 @@ enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
       headerTitle: () => <TitlePanel {...params} navigation={navigation} />,
-      headerLeft: () => <HeaderBackButton onPress={() => navigation.goBack(null)} />,
+      headerLeft: () => <HeaderBackButton label={translate("Common.Button.back")} onPress={() => navigation.goBack(null)} />,
     };
 }
 

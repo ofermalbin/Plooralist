@@ -14,7 +14,7 @@ import { ListItem } from 'react-native-elements';
 
 import { listTasksForPanelVariables } from './util';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 import { infoListStyles } from './config/stylesheets';
 
@@ -26,11 +26,11 @@ class DeleteTask extends React.Component {
 
   onDeletePress() {
     Alert.alert(
-      'Delete Task',
-      translations("Common.Alert.are you sure?"),
+      translate("Task.delete task"),
+      translate("Common.Alert.are you sure?"),
       [
-        {text: translations("Common.Button.cancel")},
-        {text: translations("Common.Button.ok"), onPress: () => {
+        {text: translate("Common.Button.cancel")},
+        {text: translate("Common.Button.ok"), onPress: () => {
           const { task } = this.props;
           const input = {
             id: task.id,
@@ -51,7 +51,7 @@ class DeleteTask extends React.Component {
         bottomDivider={true}
         containerStyle={[infoListStyles.container, {marginTop:22}]}
         titleStyle={[infoListStyles.title, infoListStyles.removeText]}
-        title={translations("Task.delete task")}
+        title={translate("Task.delete task")}
         onPress={this.onDeletePress.bind(this)}
       />
     )

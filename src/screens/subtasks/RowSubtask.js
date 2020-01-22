@@ -17,7 +17,7 @@ import { withCurrentUser } from '../../contexts';
 
 import { listSubtasksForTaskVariables } from './util';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 import { rowSubtaskStyles } from './config/stylesheets';
 import colors from '../../config/colors';
@@ -51,11 +51,11 @@ class RowSubtask extends React.Component {
 
   onDeletePress() {
     Alert.alert(
-      'Delete Subtask',
-      translations("Common.Alert.are you sure?"),
+      translate("Subtask.delete subtask"),
+      translate("Common.Alert.are you sure?"),
       [
-        {text: translations("Common.Button.cancel")},
-        {text: translations("Common.Button.ok"), onPress: () => {
+        {text: translate("Common.Button.cancel")},
+        {text: translate("Common.Button.ok"), onPress: () => {
           const { subtask } = this.props;
           const input = {
             id: subtask.id,
@@ -82,9 +82,9 @@ class RowSubtask extends React.Component {
 
     const title = subtask.name;
     const options = [
-      translations("Subtask.delete subtask"),
-      translations("Subtask.edit subtask"),
-      translations("Common.Button.cancel")
+      translate("Subtask.delete subtask"),
+      translate("Subtask.edit subtask"),
+      translate("Common.Button.cancel")
     ];
     const destructiveButtonIndex = 0;
     const cancelButtonIndex = 2;

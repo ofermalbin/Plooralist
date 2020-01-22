@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 
 import moment from 'moment/min/moment-with-locales.js';
 
-import translates, { getI18nConfig } from '../../translations';
+import translate, { getI18nConfig } from '../../translations';
 
 class TimeNotificationDtStartText extends React.Component {
 

@@ -5,7 +5,7 @@ import { Button } from 'react-native-elements';
 
 import moment from 'moment/min/moment-with-locales.js';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 import { defaultOptions } from '../../lib/tcombForm';
 
@@ -73,7 +73,7 @@ var listTransformer = {
 let options = Object.assign({}, defaultOptions, {
   fields: {
     freq: {
-      label: translations("TimeNotification.Frequency.frequency"),
+      label: translate("TimeNotification.Frequency.frequency"),
       nullOption: false,
       transformer: {
         format: value => (value ? String(value) : '3'),
@@ -81,14 +81,14 @@ let options = Object.assign({}, defaultOptions, {
       },
     },
     interval: {
-      label: translations("TimeNotification.interval"),
+      label: translate("TimeNotification.interval"),
       /*transformer: {
         format: value => (value ? String(value) : '1'),
         parse: value => (value ? Number(value) : 1),
       },*/
     },
     byweekday: {
-      label: translations("TimeNotification.WeekDays.week days"),
+      label: translate("TimeNotification.WeekDays.week days"),
       factory: TcombMultiSelect,
       options: [
         { value: 6, text: 'SU' },
@@ -101,7 +101,7 @@ let options = Object.assign({}, defaultOptions, {
       ],
     },
     bymonth: {
-      label: translations("TimeNotification.Months.months"),
+      label: translate("TimeNotification.Months.months"),
       factory: TcombMultiSelect,
       options: [
         { value: 1, text: 'Jan' },
@@ -128,9 +128,9 @@ class EditTimeNotificationRecurrenceCustom extends React.Component {
   static navigationOptions = ({ navigation }) => {
       const { params = {} } = navigation.state;
       return {
-        headerTitle: translations("TimeNotification.time notification"),
-        headerRight: () => <Button type="clear" title={translations("Common.Button.ok")} titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
-        headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+        headerTitle: translate("TimeNotification.time notification"),
+        headerRight: () => <Button type="clear" title={translate("Common.Button.ok")} titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
+        headerLeft: () => <Button type="clear" title={translate("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
       };
   };
 

@@ -14,7 +14,7 @@ import PhotoMax from '../../screens/photos';
 
 import { createStackNavigator } from "react-navigation-stack";
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 export default createStackNavigator({
   Panels: {
@@ -24,7 +24,7 @@ export default createStackNavigator({
     screen: SelectPanel,
     navigationOptions: ({ navigation, screenProps }) => {
       return {
-        title: translations("Panel.select panel")
+        title: translate("Panel.select panel")
       };
     }
   },
@@ -57,9 +57,6 @@ export default createStackNavigator({
   },
   Tasks: {
     screen: Tasks,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Tasks',
-    })
   },
   InfoTask: {
     screen: InfoTask,
@@ -93,9 +90,6 @@ export default createStackNavigator({
   },
   Subtasks: {
     screen: Subtasks,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Subtasks',
-    })
   },
   EditSubtaskNameDescription: {
     screen: EditSubtaskNameDescription,

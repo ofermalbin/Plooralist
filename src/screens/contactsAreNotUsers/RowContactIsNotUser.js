@@ -13,7 +13,7 @@ import { getContactByUsername, getContactName } from '../../util';
 
 import { rowRowContactIsNotUserStyles } from './config/stylesheets';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 class RowContactIsNotUser extends React.Component {
 
@@ -23,7 +23,7 @@ class RowContactIsNotUser extends React.Component {
 
   onPress() {
     const name = getContactName(this.props);
-    Alert.alert(translations("InviteFriend.invite friend"), name);
+    Alert.alert(translate("InviteFriend.invite friend"), name);
   }
 
   render() {

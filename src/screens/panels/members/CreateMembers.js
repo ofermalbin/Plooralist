@@ -7,7 +7,7 @@ import { withUsersAreContacts } from '../../../contexts';
 
 import _AddMembers from './_AddMembers';
 
-import translations from '../../../translations';
+import translate from '../../../translations';
 
 import { Button } from "react-native-elements";
 
@@ -43,9 +43,9 @@ const enhance = withUsersAreContacts(CreateMembers);
 enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerTitle: translations("Panel.new team"),
-      headerRight: () => <Button type="clear" title={translations("Common.Button.next")} titleStyle={{color: '#5fb8f6'}} disabled={!params.potentialsUsersChecked} onPress={() => params.onNextPress()} />,
-      headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+      headerTitle: translate("Panel.new team"),
+      headerRight: () => <Button type="clear" title={translate("Common.Button.next")} titleStyle={{color: '#5fb8f6'}} disabled={!params.potentialsUsersChecked} onPress={() => params.onNextPress()} />,
+      headerLeft: () => <Button type="clear" title={translate("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
     };
 }
 

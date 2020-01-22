@@ -21,7 +21,7 @@ import PlaceNotification from './PlaceNotification';
 
 import { listPlaceNotificationsForTaskVariables } from './util';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 class PlaceNotifications extends React.Component {
 
@@ -72,9 +72,9 @@ class PlaceNotifications extends React.Component {
             titleStyle={infoListStyles.lightTitle}
             rightTitleStyle={infoListStyles.rightTitle}
             leftIcon={{ name: 'place', iconStyle: infoListStyles.leftIcon }}
-            title={translations('PlaceNotification.place notifications')}
+            title={translate('PlaceNotification.place notifications')}
             chevron={isOwner && <Chevron />}
-            rightTitle={(isOwner || null) && translations("Common.Button.add")}
+            rightTitle={(isOwner || null) && translate("Common.Button.add")}
             onPress={(isOwner || null) && this.onPlaceNotificationAddPress.bind(this) }
         />
         {placeNotifications.map((placeNotification, i) => ( <PlaceNotification {...this.props} key={placeNotification.id} placeNotification={placeNotification} isTaskOwner={this.props.isOwner} /> ))}

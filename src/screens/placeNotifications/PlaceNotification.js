@@ -9,11 +9,9 @@ import Radar from 'react-native-radar';
 
 import { Loading, Chevron } from '../../components';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 import { placeNotificationStyles } from './config/stylesheets';
-
-const when = ['Enter', 'Exit'];
 
 class PlaceNotification extends React.Component {
 
@@ -56,7 +54,7 @@ class PlaceNotification extends React.Component {
         subtitleStyle={placeNotificationStyles.subtitle}
         chevron={isTaskOwner && <Chevron />}
         title={placeNotification.name}
-        subtitle={`${when[placeNotification.when]} ${placeNotification.radius} meters`}
+        subtitle={translate(`PlaceNotification.When And Radius.${placeNotification.when}`, {radius:placeNotification.radius})}
         onLongPress={isTaskOwner ? this.onTestPress.bind(this, placeNotification) : null}
         onPress={isTaskOwner ? this.onPlaceNotificationPress.bind(this, placeNotification) : null}
         disabled={placeNotification.offline}

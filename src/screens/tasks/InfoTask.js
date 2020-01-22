@@ -36,7 +36,7 @@ import DeleteTask from './DeleteTask';
 import { listTasksForPanelVariables } from './util';
 import { listSubtasksForTaskVariables } from '../subtasks/util';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 class InfoTask extends React.Component {
 
@@ -155,7 +155,7 @@ class InfoTask extends React.Component {
           containerStyle={infoTaskStyles.container}
           titleStyle={task.description ? infoTaskStyles.title : infoTaskStyles.lightTitle}
           chevron={isOwner && <Chevron />}
-          title={task.description ? task.description : translations("Task.task description")}
+          title={task.description ? task.description : translate("Task.task description")}
           onPress={isOwner ? this.onUpdateDescriptionPress.bind(this) : null}
           disabled={task.offline}
           disabledStyle={{backgroundColor: '#F0F8FF'}}
@@ -168,9 +168,10 @@ class InfoTask extends React.Component {
           subtitleStyle={infoTaskStyles.subtitle}
           rightTitleStyle={infoTaskStyles.rightTitle}
           chevron={<Chevron />}
-          title={translations("Subtask.subtasks")}
-          subtitle={(subtasksCount || null) && `${subtasksCount}${' subtasks '}${subtasksCompletedCount}${' completed'}`}
-          rightTitle={(!subtasksCount || null) && translations("Common.Button.add")}
+          title={translate("Subtask.subtasks")}
+          subtitle={(subtasksCount || null) && translate("Subtask.completed summery", {subtasksCount, subtasksCompletedCount})}
+          //subtitle={(subtasksCount || null) && `${subtasksCount}${' subtasks '}${subtasksCompletedCount}${' completed'}`}
+          rightTitle={(!subtasksCount || null) && translate("Common.Button.add")}
           leftIcon={{ name: 'playlist-add-check', iconStyle: infoTaskStyles.leftIcon }}
           onPress={this.onSubtasksPress.bind(this)}
         />}
@@ -184,7 +185,7 @@ class InfoTask extends React.Component {
           subtitleStyle={infoTaskStyles.subtitle}
           rightTitleStyle={infoTaskStyles.rightTitle}
           chevron={<Chevron />}
-          title={translations("Message.chat")}
+          title={translate("Message.chat")}
           leftIcon={{ type: 'material', name: 'attach-file', iconStyle: infoTaskStyles.leftIcon }}
           onPress={this.onMessagesPress.bind(this)}
         />
@@ -231,8 +232,8 @@ const enhance = compose(
 enhance.navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerLeft: () => <HeaderBackButton onPress={() => {navigation.goBack(null);}} />,
-      headerTitle: translations("Task.task info"),
+      headerLeft: () => <HeaderBackButton label={translate("Common.Button.back")} onPress={() => {navigation.goBack(null);}} />,
+      headerTitle: translate("Task.task info"),
     };
 }
 

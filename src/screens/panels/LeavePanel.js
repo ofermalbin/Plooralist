@@ -14,7 +14,7 @@ import { ListItem } from 'react-native-elements';
 
 import { listMembersForPanelVariables } from './util';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 import { infoListStyles } from './config/stylesheets';
 
@@ -28,10 +28,10 @@ class LeavePanel extends React.Component {
     const { member } = this.props;
     Alert.alert(
       'Leave',
-      translations("Common.Alert.are you sure?"),
+      translate("Common.Alert.are you sure?"),
       [
-        {text: translations("Common.Button.cancel")},
-        {text: translations("Common.Button.ok"), onPress: () => {
+        {text: translate("Common.Button.cancel")},
+        {text: translate("Common.Button.ok"), onPress: () => {
           const input = {
             id: member.id,
             expectedVersion: member.version,
@@ -51,7 +51,7 @@ class LeavePanel extends React.Component {
         bottomDivider={true}
         containerStyle={[infoListStyles.container, {marginTop:22}]}
         titleStyle={[infoListStyles.title, infoListStyles.removeText]}
-        title={translations("Panel.leave team")}
+        title={translate("Panel.leave team")}
         onPress={this.onLeavePress.bind(this)}
       />
     )

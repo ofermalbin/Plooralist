@@ -3,7 +3,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { ListItem, Button, Input } from 'react-native-elements';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 import { inputStyles } from './config/stylesheets';
 
@@ -12,9 +12,9 @@ class EditPlaceNotificationRadius extends React.Component {
   static navigationOptions = ({ navigation }) => {
       const { params = {} } = navigation.state;
       return {
-        headerTitle: translations("TimeNotification.time notification"),
-        headerRight: () => <Button type="clear" title={translations("Common.Button.ok")} titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
-        headerLeft: () => <Button type="clear" title={translations("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+        headerTitle: translate("TimeNotification.time notification"),
+        headerRight: () => <Button type="clear" title={translate("Common.Button.ok")} titleStyle={{color: '#5fb8f6'}} onPress={() => params.onSavePress()} />,
+        headerLeft: () => <Button type="clear" title={translate("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
       };
   };
 

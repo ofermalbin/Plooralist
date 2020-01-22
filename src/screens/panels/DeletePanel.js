@@ -12,7 +12,7 @@ import { deletePanel } from '../../graphql/mutations';
 
 import { ListItem } from 'react-native-elements';
 
-import translations from '../../translations';
+import translate from '../../translations';
 
 import { infoListStyles } from './config/stylesheets';
 
@@ -25,10 +25,10 @@ class DeletePanel extends React.Component {
   onDeletePress() {
     Alert.alert(
       'Delete',
-      translations("Common.Alert.are you sure?"),
+      translate("Common.Alert.are you sure?"),
       [
-        {text: translations("Common.Button.cancel")},
-        {text: translations("Common.Button.ok"), onPress: () => {
+        {text: translate("Common.Button.cancel")},
+        {text: translate("Common.Button.ok"), onPress: () => {
           const { member } = this.props;
           const input = {
             id: member.panel.id,
@@ -49,7 +49,7 @@ class DeletePanel extends React.Component {
         bottomDivider={true}
         containerStyle={[infoListStyles.container, {marginTop:22}]}
         titleStyle={[infoListStyles.title, infoListStyles.removeText]}
-        title={translations("Panel.delete team")}
+        title={translate("Panel.delete team")}
         onPress={this.onDeletePress.bind(this)}
       />
     )

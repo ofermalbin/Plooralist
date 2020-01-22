@@ -13,7 +13,7 @@ import { Chevron } from '../../components';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-import translates, { getI18nConfig } from '../../translations';
+import translate, { getI18nConfig } from '../../translations';
 
 class TimeNotificationDtStart extends React.Component {
 
@@ -21,8 +21,8 @@ class TimeNotificationDtStart extends React.Component {
       const { params = {} } = navigation.state;
       return {
         headerTitle: "Time Nonification",
-        headerRight: () => <Button clear title={translates("Common.Button.add")} titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onAddPress()} />,
-        headerLeft: () => <Button clear title={translates("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
+        headerRight: () => <Button clear title={translate("Common.Button.add")} titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onAddPress()} />,
+        headerLeft: () => <Button clear title={translate("Common.Button.cancel")} titleStyle={{color: '#fa2662'}} onPress={() => navigation.goBack(null)} />,
       };
   };
 
@@ -77,7 +77,7 @@ class TimeNotificationDtStart extends React.Component {
           titleStyle={timeNotificationStyles.title}
           subtitleStyle={timeNotificationStyles.subtitle}
           chevron={<Chevron />}
-          title={translates("TimeNotification.start")}
+          title={translate("TimeNotification.start")}
           subtitle={moment(dtstart).locale(languageTag).format('LLLL')}
           onPress={() => this.setState({show: !this.state.show})}
         />
