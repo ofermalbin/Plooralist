@@ -6,7 +6,7 @@ import RRule from 'rrule';
 import deepEqual from 'deep-equal';
 
 import translate from '../../translations';
-import rruleI18NtoText from '../../translations/rrule';;
+import { rruleI18NtoText } from '../../translations';;
 
 const Freqs = [
   {

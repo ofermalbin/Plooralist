@@ -4,7 +4,7 @@ const AWS = require("aws-sdk");
 const https = require('https');
 
 const api_secret = "org_test_sk_c7270c934d79c56dde1483219bd40973ec5ee7a5";
-const host = 'www.onradar.com';
+const host = 'api.radar.io';
 
 const createGeofence = (place, tag) => {
     const geofence = {
@@ -23,7 +23,7 @@ const createGeofence = (place, tag) => {
        'Authorization': api_secret
     };
 
-    const path = '/api/v1/geofences/' + tag + '/' + place.placeID;
+    const path = '/v1/geofences/' + tag + '/' + place.placeID;
     const method = 'PUT';
 
     return new Promise((resolve, reject) => {
@@ -52,7 +52,7 @@ const deleteGeofence = (place, tag) => {
        'Authorization': api_secret
     };
 
-    const path = '/api/v1/geofences/' + tag + '/' + place.placeID;
+    const path = '/v1/geofences/' + tag + '/' + place.placeID;
     const method = 'DELETE';
 
     return new Promise((resolve, reject) => {

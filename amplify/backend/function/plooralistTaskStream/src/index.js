@@ -105,8 +105,7 @@ exports.handler = async (event, context) => {
             }
         };
         let users = {};
-        const membersAreMute = (task.membersAreMute && task.membersAreMute.values) ? task.membersAreMute.values : null;
-        _.each(membersGroupByPanelId[task.taskPanelId], member => ((member.memberUserId != task.updatedBy) && !member.block && !member.mute && (!membersAreMute || !membersAreMute.length || (_.indexOf(membersAreMute, member.memberUserId) === -1))) ? users[member.memberUserId]={} : null);
+        _.each(membersGroupByPanelId[task.taskPanelId], member => ((member.memberUserId != task.updatedBy) && !member.block && !member.mute)  ? users[member.memberUserId]={} : null);
         if(_.isEmpty(users)) {
             return null;
         }
@@ -133,8 +132,7 @@ exports.handler = async (event, context) => {
             }
         };
         let users = {};
-        const membersAreMute = (task.membersAreMute && task.membersAreMute.values) ? task.membersAreMute.values : null;
-        _.each(membersGroupByPanelId[task.taskPanelId], member => ((member.memberUserId != task.updatedBy) && !member.block && !member.mute && (!membersAreMute || !membersAreMute.length || (_.indexOf(membersAreMute, member.memberUserId) === -1))) ? users[member.memberUserId]={} : null);
+        _.each(membersGroupByPanelId[task.taskPanelId], member => ((member.memberUserId != task.updatedBy) && !member.block && !member.mute) ? users[member.memberUserId]={} : null);
         if(_.isEmpty(users)) {
             return null;
         }
@@ -163,8 +161,7 @@ exports.handler = async (event, context) => {
             }
         };
         let users = {};
-        const membersAreMute = (task.membersAreMute && task.membersAreMute.values) ? task.membersAreMute.values : null;
-        _.each(membersGroupByPanelId[task.taskPanelId], member => ((member.memberUserId != task.updatedBy) && !member.block && !member.mute && (!membersAreMute || !membersAreMute.length || (_.indexOf(membersAreMute, member.memberUserId) === -1))) ? users[member.memberUserId]={} : null);
+        _.each(membersGroupByPanelId[task.taskPanelId], member => ((member.memberUserId != task.updatedBy) && !member.block && !member.mute) ? users[member.memberUserId]={} : null);
         if(_.isEmpty(users)) {
             return null;
         }

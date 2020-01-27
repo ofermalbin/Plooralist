@@ -2,15 +2,13 @@ import * as RNLocalize from 'react-native-localize';
 
 import RRule from 'rrule';
 
-import translate from '../../translations';
-
 const translationGetters = {
   he: () => require('./he.js'),
 };
 
 let RRULE_language;
 
-const setRRULElanguage = () => {
+export const setRruleI18nConfig = () => {
   const fallback = { languageTag: "en", isRTL: false };
   const { languageTag, isRTL } = RNLocalize.findBestAvailableLanguage(Object.keys(translationGetters)) || fallback;
 
@@ -28,7 +26,6 @@ const rruleI18NtoText = (rrule) => {
     return rrule.toText();
   }
 };
-
-setRRULElanguage();
-
 export default rruleI18NtoText;
+
+setRruleI18nConfig();

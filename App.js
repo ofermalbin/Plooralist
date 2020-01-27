@@ -54,7 +54,7 @@ import SplashScreen from 'react-native-splash-screen';
 import codePush from 'react-native-code-push';
 
 import * as RNLocalize from 'react-native-localize';
-import { setI18nConfig } from './src/translations'
+import { setI18nConfig, setRruleI18nConfig, setAmplifyI18nConfig } from './src/translations';
 
 import { onRegister } from './src/lib/pushNotification';
 
@@ -150,11 +150,18 @@ class AppWithProvider extends React.Component {
  }
 
  handleLocalizationChange() {
-   setI18nConfig()
-   .then(() => this.forceUpdate())
-   .catch(error => {
-   console.error(error)
-   })
+   try {
+     setI18nConfig();
+     setRruleI18nConfig();
+     setAmplifyI18nConfig();
+     this.forceUpdate();
+   }
+   catch(error) {
+     console.error(error)
+   }
+   /*setI18nConfig().then(() => this.forceUpdate()).catch(error => {console.error(error)});
+   setRruleI18nConfig().then(() => this.forceUpdate()).catch(error => {console.error(error)});
+   setAmplifyI18nConfig().then(() => this.forceUpdate()).catch(error => {console.error(error)});*/
  }
 
  render() {

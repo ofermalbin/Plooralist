@@ -16,7 +16,10 @@ const apiPlooralistGraphQLGraphQLAPIEndpointOutput = process.env.API_PLOORALISTG
 const analyticsPlooralistPinpointId = process.env.ANALYTICS_PLOORALISTPINPOINT_ID;
 const analyticsPlooralistPinpointRegion = process.env.ANALYTICS_PLOORALISTPINPOINT_REGION;
 
+const PanelTable = `Panel-${apiPlooralistGraphQLGraphQLAPIIdOutput}-${environment}`;
+const MemberTable = `Member-${apiPlooralistGraphQLGraphQLAPIIdOutput}-${environment}`;
 const TaskTable = `Task-${apiPlooralistGraphQLGraphQLAPIIdOutput}-${environment}`;
+const SubtaskTable = `Subtask-${apiPlooralistGraphQLGraphQLAPIIdOutput}-${environment}`;
 const PlaceNotificationTable = `PlaceNotification-${apiPlooralistGraphQLGraphQLAPIIdOutput}-${environment}`;
 
 const
@@ -33,113 +36,148 @@ const defaultParamsMessage = {
 const whenTypes = ['entered', 'exited'];
 
 exports.handler = async (req, context) => {
+
     console.log('req', JSON.stringify(req));
-    const events = _.filter(req.events, event => event.geofence && event.geofence.tag);
+    const event = req.event;
 
-    const eventsChunks = _.chunk(events, 100);
+    const userId = event.user.userId;
+    const placeNotificationId = event.geofence ? event.geofence.tag : null;
+    const when = event.type.slice(5,-9);
+    const description = event.geofence.description;
 
-    const placeNotificationsPromises = eventsChunks.map(eventsChunk => {
-
-        const Keys = eventsChunk.map(event => {
-            return {
-                id: event.geofence.tag
-            };
-        });
-
-        const requestItems = {
-            RequestItems: {
-                [PlaceNotificationTable]: {
-                    Keys: Keys
-                }
-            }
+    const getPlaceNotification = async (placeNotificationId) => {
+      const params = {
+          TableName : PlaceNotificationTable,
+          Key: {
+            id: placeNotificationId
+          }
         };
 
         try {
-            const data = ddb.batchGet(requestItems).promise();
+            const data = ddb.get(params).promise();
             return data;
         } catch (error) {
             return error;
         }
-    });
+    };
 
-    const placeNotificationsAllData = await Promise.all(placeNotificationsPromises);
-
-    console.log('placeNotificationsAllData', JSON.stringify(placeNotificationsAllData));
-
-    const placeNotificationsUnprocessedKeys = _.flatten(_.filter(placeNotificationsAllData, placeNotificationData => placeNotificationData.UnprocessedKeys));
-
-    const placeNotifications = _.flattenDeep(_.filter(placeNotificationsAllData, data => data.Responses[PlaceNotificationTable].length).map(data => data.Responses[PlaceNotificationTable]));
-
-    console.log('placeNotifications', JSON.stringify(placeNotifications));
-
-    const scanTasksPromises = placeNotifications.map(item => {
-
-        const params = {
+    const getTask = async (taskId) => {
+      const params = {
           TableName : TaskTable,
-          FilterExpression : 'id = :placeNotificationTaskId',
-          ExpressionAttributeValues : {':placeNotificationTaskId' : item.placeNotificationTaskId}
+          Key: {
+            id: taskId
+          }
         };
 
         try {
-            const data = ddb.scan(params).promise();
+            const data = ddb.get(params).promise();
             return data;
         } catch (error) {
             return error;
         }
-    });
+    };
 
-    const tasksPromisesAllData = await Promise.all(scanTasksPromises);
-    const tasks = _.uniqBy(_.flattenDeep(_.filter(tasksPromisesAllData, data => data.Items.length).map(data => data.Items)), 'id');
-
-    const placeNotificationsGroupByID = _.groupBy(placeNotifications, 'id');
-
-    console.log('placeNotificationsGroupByID', JSON.stringify(placeNotificationsGroupByID));
-
-    const placeNotificationsMessages = _.filter(events, event => placeNotificationsGroupByID[event.geofence.tag] && (_.find(placeNotificationsGroupByID[event.geofence.tag], placeNotification => placeNotification.when === _.findIndex(whenTypes, whenType => (whenType === event.type.slice(5,-9))) ))).map(event => {
-
-        const task = _.find(tasks, t => t.id == placeNotificationsGroupByID[event.geofence.tag][0].placeNotificationTaskId);
-
-        if (task.completed) {
-            return null;
-        }
-
-        const membersAreMute = (task.membersAreMute && task.membersAreMute.values) ? task.membersAreMute.values : null;
-        if (membersAreMute && membersAreMute.length && (_.indexOf(membersAreMute, event.user.userId) > -1)) {
-            return null;
-        }
-
-        const message = {
-            ...defaultParamsMessage,
-            Title: task.name,
-            Body: `${'Place Notification'}${'\n'}${event.type.slice(5,-9)}${'\n'}${event.geofence.description}`
-        };
-        return {
-            ApplicationId: analyticsPlooralistPinpointId,
-            SendUsersMessageRequest: {
-                Users: {[event.user.userId]: {}},
-                MessageConfiguration: {
-                    APNSMessage: message,
-                    GCMMessage: message
-                }
+    const getMembers = async (userId, panelId) => {
+        const params = {
+            TableName: MemberTable,
+            IndexName: 'gsi-UserMembers',
+            KeyConditionExpression: 'memberUserId = :userId',
+            FilterExpression: 'memberPanelId = :panelId',
+            ExpressionAttributeValues: {
+              ':userId': userId,
+              ':panelId': panelId,
             }
         };
-    });
 
-    console.log('placeNotificationsMessages', JSON.stringify(placeNotificationsMessages));
-
-    const sendPlaceNotificationsPromises = _.compact(placeNotificationsMessages).map(message => {
         try {
-            const data = pinpoint.sendUsersMessages(message).promise();
+            const data = ddb.query(params).promise();
             return data;
         } catch (error) {
-            return error;
+          return error;
         }
-    });
+    };
 
-    const sendPlaceNotificationsAllData = await Promise.all(sendPlaceNotificationsPromises);
+    const getSubtasks = async (taskId) => {
+        const params = {
+            TableName: SubtaskTable,
+            IndexName: 'gsi-TaskSubtasks',
+            KeyConditionExpression: 'subtaskTaskId = :taskId',
+            ExpressionAttributeValues: {
+              ':taskId': taskId
+            }
+        };
 
-    console.log('sendPlaceNotificationsAllData', JSON.stringify(sendPlaceNotificationsAllData));
+        try {
+            const data = ddb.query(params).promise();
+            return data;
+        } catch (error) {
+          return error;
+        }
+    };
 
+    const sendUserMessage = async (userId, task, subtasks, type, description) => {
 
+      const subtasksMessage = _.join(subtasks.map(subtask => `${subtask.name}${subtask.completed ? ' ✔️' : ''}`), '\n');
+
+      const message = {
+          ...defaultParamsMessage,
+          Title: task.name,
+          Body: `${description}${'\n'}${(subtasksMessage && subtasksMessage.length) ? subtasksMessage : ''}`,
+          Data: {
+              objType: 'task',
+              objId: task.id
+          }
+      };
+
+      const userMessages = {
+          ApplicationId: analyticsPlooralistPinpointId,
+          SendUsersMessageRequest: {
+              Users: {[userId]: {}},
+              MessageConfiguration: {
+                  APNSMessage: message,
+                  GCMMessage: message
+              }
+          }
+      };
+
+      try {
+          const data = pinpoint.sendUsersMessages(userMessages).promise();
+          return data;
+      } catch (error) {
+          return error;
+      }
+    };
+
+    const placeNotificationItem = await getPlaceNotification(placeNotificationId);
+    console.log('placeNotificationItem', JSON.stringify(placeNotificationItem));
+    if (!placeNotificationItem || !placeNotificationItem.Item ) {
+      return null;
+    }
+    const placeNotification = placeNotificationItem.Item;
+
+    if(placeNotification.when !== _.findIndex(whenTypes, whenType => (whenType === when))) {
+      return null;
+    }
+
+    const taskItem = await getTask(placeNotification.placeNotificationTaskId);
+    console.log('taskItem', JSON.stringify(taskItem));
+    if (!taskItem || !taskItem.Item || taskItem.Item.completed) {
+      return null;
+    }
+    const task = taskItem.Item;
+
+    const membersItems = await getMembers(userId, task.taskPanelId);
+    console.log('membersItems', JSON.stringify(membersItems));
+    if (!membersItems || !membersItems.Items || !membersItems.Items.length || membersItems.Items[0].mute) {
+      return null;
+    }
+    const members = membersItems.Items;
+
+    const subtasksItems = await getSubtasks(task.id);
+    console.log('subtasksItems', JSON.stringify(subtasksItems));
+    const subtasks = subtasksItems.Items;
+
+    const userMessage = await sendUserMessage(userId, task, subtasks, when, description);
+    console.log('userMessage', JSON.stringify(userMessage));
     return;
 };
