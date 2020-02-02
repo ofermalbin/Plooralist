@@ -1,20 +1,21 @@
 import React from 'react';
+import { ScrollView, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Auth, I18n, Logger, JS } from 'aws-amplify';
+//import AuthPiece from './AuthPiece';
 import {
-    View
-} from 'react-native';
-import {
-    Auth,
-    I18n,
-    Logger
-} from 'aws-amplify';
-import {
-    FormField,
-    AmplifyButton
+  FormField,
+	//PhoneField,
+	LinkCell,
+	Header,
+	ErrorRow,
+	AmplifyButton,
 } from 'aws-amplify-react-native';
 
-import { ForgotPassword } from "aws-amplify-react-native";
+import PhoneField from './PhoneField';
 
 const logger = new Logger('ForgotPassword');
+
+import { ForgotPassword } from "aws-amplify-react-native";
 
 export default class CustomForgotPassword extends ForgotPassword {
 
@@ -47,6 +48,28 @@ export default class CustomForgotPassword extends ForgotPassword {
             .catch(err => this.error(err));
     }
 
+    forgotBody(theme) {
+      return (
+        <View style={theme.sectionBody}>
+          <PhoneField
+  					theme={theme}
+  					key={'phone_number'}
+  					onChangeText={text => this.setState({ phone_number: text })}
+  					label={I18n.get('Phone Number')}
+  					placeholder={I18n.get('Enter your phone number')}
+  					keyboardType="phone-pad"
+  					required={true}
+  				/>
+          <AmplifyButton
+            text={I18n.get('Send').toUpperCase()}
+            theme={theme}
+            onPress={this.send}
+            disabled={!this.getUsernameFromInput()}
+          />
+        </View>
+      );
+    }
+
     submitBody(theme) {
       return (
         <View style={theme.sectionBody}>
@@ -64,6 +87,26 @@ export default class CustomForgotPassword extends ForgotPassword {
             disabled={!(this.state.code && this.state.password)}
           />
         </View>
+      );
+    }
+
+    showComponent(theme) {
+      return (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+          <View style={theme.section}>
+            <Header theme={theme}>{I18n.get('ReInstallation')}</Header>
+            <View style={theme.sectionBody}>
+              {!this.state.delivery && this.forgotBody(theme)}
+              {this.state.delivery && this.submitBody(theme)}
+            </View>
+            <View style={theme.sectionFooter}>
+              <LinkCell theme={theme} onPress={() => this.changeState('signIn')}>
+                {I18n.get('Back to Welcome page')}
+              </LinkCell>
+            </View>
+            <ErrorRow theme={theme}>{this.state.error}</ErrorRow>
+          </View>
+        </TouchableWithoutFeedback>
       );
     }
 }

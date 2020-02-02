@@ -47,6 +47,8 @@ import { CurrentAuthProvider, CurrentUserProvider, ContactsProvider, UsersAreCon
 
 import AppStack from './src/navigation';
 
+import { NavigationActions } from 'react-navigation';
+
 import { CustomSignIn, CustomSignUp, CustomConfirmSignUp, CustomForgotPassword } from './src/screens/auth';
 
 import SplashScreen from 'react-native-splash-screen';
@@ -101,52 +103,100 @@ const client = new AWSAppSyncClient({
   },
 })
 
-const App = createAppContainer(AppStack);
+const AppContainer = createAppContainer(AppStack);
 
 let codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME, installMode: codePush.InstallMode.IMMEDIATE };
 
-class AppWithProvider extends React.Component {
+class App extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+
+    this.handleNotification = this.handleNotification.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     RNLocalize.addEventListener('change', this.handleLocalizationChange);
     SplashScreen.hide();
+    this.handleNotification();
+  }
 
-    if( receivePushNotificationResult )  {
-      //alert('onNotification: ' + JSON.stringify(receivePushNotificationResult));
+  componentWillUnmount() {
+    RNLocalize.removeEventListener('change', this.handleLocalizationChange)
+  }
+
+  handleNotification() {
+    //pushNotificationOnGoPress = this.pushNotificationOnGoPress.bind(this);
+
+    const pushNotificationOnGoPress = (objType, objId) => {
+     this.navigator && this.navigator.dispatch(NavigationActions.navigate({ routeName: 'InfoTask', params: {taskId: objId, isMemberManager: true} }));
     };
 
-    if( openedPushNotificationResult )  {
-      //alert('onNotificationOpened: ' + JSON.stringify(openedPushNotificationResult));
+    const alertNotification = (title, body, objType, objId) => {
+     Alert.alert(
+       title,
+       body,
+       (objType && objId) ?
+       [
+         {
+           text: 'OK',
+           onPress: () => pushNotificationOnGoPress(objType, objId),
+         },
+         {
+           text: 'Cancel',
+         },
+       ]
+       :
+       [
+         {
+           text: 'OK'
+         },
+       ]
+     )
     };
+
+    const onNotification = notification => {
+      if (Platform.OS === 'ios') {
+       const { objType, objId } = notification._data.data['jsonBody'];
+       alertNotification(notification._alert['title'], notification._alert['body'], objType, objId);
+      }
+      else if (Platform.OS === 'android') {
+       //alert(JSON.stringify(notification))
+       const { objType, objId } = JSON.parse(notification.data['pinpoint.jsonBody']);
+       alertNotification(notification.title, notification.body, objType, objId);
+       //Alert.alert(notification.title, notification.body);
+      }
+    }
+
+    const onNotificationOpened = notification => {
+      if (Platform.OS === 'android') {
+        //alert(JSON.stringify(notification));
+        const { objType, objId } = JSON.parse(notification.data['pinpoint.jsonBody']);
+        alertNotification(notification.title, notification.body, objType, objId);
+      }
+    }
 
     // get the notification data when notification is received
     PushNotification.onNotification((notification) => {
-      // Note that the notification object structure is different from Android and IOS
-      if (Platform.OS === 'ios') {
-        //alert(JSON.stringify(notification._alert))
-        Alert.alert(notification._alert['title'], notification._alert['body']);
-        // required on iOS only (see fetchCompletionHandler docs: https://facebook.github.io/react-native/docs/pushnotificationios.html)
-        //notification.finish(PushNotificationIOS.FetchResult.NoData);
-      }
-      else if (Platform.OS === 'android') {
-        Alert.alert(notification.title, notification.body);
-      }
+      onNotification(notification);
     });
 
     // get the notification data when notification is opened
     PushNotification.onNotificationOpened((notification) => {
-      if (Platform.OS === 'android') {
-        console.log('the notification is opened', notification);
-      }
+      onNotificationOpened(notification);
     });
-  }
 
- componentWillUnmount() {
-   RNLocalize.removeEventListener('change', this.handleLocalizationChange)
+    if (receivePushNotificationResult)  {
+      onNotification(receivePushNotificationResult);
+      receivePushNotificationResult = null;
+     //alert('onNotification: ' + JSON.stringify(receivePushNotificationResult));
+    };
+
+    if (openedPushNotificationResult)  {
+      onNotificationOpened(openedPushNotificationResult);
+      openedPushNotificationResult = null;
+     //alert('onNotificationOpened: ' + JSON.stringify(openedPushNotificationResult));
+    };
  }
 
  handleLocalizationChange() {
@@ -176,7 +226,7 @@ class AppWithProvider extends React.Component {
       <View style={{flex: 1}}>
         <Rehydrated>
           <ActionSheetProvider>
-            <App/>
+            <AppContainer ref={nav => {this.navigator = nav}} />
           </ActionSheetProvider>
         </Rehydrated>
       </View>
@@ -193,7 +243,6 @@ class AppWithProvider extends React.Component {
 const signUpConfig = {
   header: 'Sign Up',
   hiddenDefaults: ['email', 'password'],
-  defaultCountryCode: '972',
   signUpFields: [
     {
       label: 'Name',
@@ -250,7 +299,7 @@ class AppWithAuth extends React.Component {
     }
     else {
       return (
-        <AppWithProvider/>
+        <App/>
       )
     }
   }

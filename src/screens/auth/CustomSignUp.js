@@ -1,13 +1,21 @@
 import React from 'react';
+import { ScrollView, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Auth, I18n, Logger, JS } from 'aws-amplify';
+//import AuthPiece from './AuthPiece';
 import {
-    Auth,
-    I18n,
-    Logger
-} from 'aws-amplify';
+  FormField,
+	//PhoneField,
+	LinkCell,
+	Header,
+	ErrorRow,
+	AmplifyButton,
+} from 'aws-amplify-react-native';
 
-import { SignUp } from "aws-amplify-react-native";
+import PhoneField from './PhoneField';
 
 const logger = new Logger('SignUp');
+
+import { SignUp } from "aws-amplify-react-native";
 
 import { parsePhoneNumberFromString, parsePhoneNumber, ParseError } from 'libphonenumber-js';
 
@@ -73,5 +81,61 @@ export default class CustomSignUp extends SignUp {
         this.changeState('confirmSignUp', {username: data.user.username, password: this.state.password})
       })
       .catch(err => this.error(err));
+  }
+
+  showComponent(theme) {
+    if (this.checkCustomSignUpFields()) {
+      this.signUpFields = this.props.signUpConfig.signUpFields;
+    }
+    this.sortFields();
+    return (
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <ScrollView style={theme.section}>
+          <Header theme={theme}>{I18n.get(this.header)}</Header>
+          <View style={theme.sectionBody}>
+            {this.signUpFields.map(field => {
+              return field.key !== 'phone_number' ? (
+                <FormField
+                  key={field.key}
+                  theme={theme}
+                  type={field.type}
+                  secureTextEntry={field.type === 'password'}
+                  onChangeText={text => {
+                    const stateObj = this.state;
+                    stateObj[field.key] = text;
+                    this.setState(stateObj);
+                  }}
+                  label={I18n.get(field.label)}
+                  placeholder={I18n.get(field.placeholder)}
+                  required={true}
+                />
+              ) : (
+                <PhoneField
+                  theme={theme}
+                  key={'phone_number'}
+                  onChangeText={text => this.setState({ phone_number: text })}
+                  label={I18n.get('Phone Number')}
+                  placeholder={I18n.get('Enter your phone number')}
+                  keyboardType="phone-pad"
+                  required={true}
+                />
+              );
+            })}
+            <AmplifyButton
+              text={I18n.get('Sign Up').toUpperCase()}
+              theme={theme}
+              onPress={this.signUp}
+              disabled={!this.isValid}
+            />
+          </View>
+          <View style={theme.sectionFooter}>
+            <LinkCell theme={theme} onPress={() => this.changeState('signIn')}>
+              {I18n.get('Back to Welcome page')}
+            </LinkCell>
+          </View>
+          <ErrorRow theme={theme}>{this.state.error}</ErrorRow>
+        </ScrollView>
+      </TouchableWithoutFeedback>
+    );
   }
 }

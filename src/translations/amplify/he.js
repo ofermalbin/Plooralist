@@ -42,7 +42,8 @@ const he = {
   	'Confirm Sign In': 'אשר התחברות',
   	'Confirm Sign Up': 'אשר הרשמה',
   	'Back to Sign In': 'חזור להתחברות',
-  	'Send Code': 'שלח קוד',
+    'Send Code': 'שלח קוד',
+    'Send': 'שלח',
   	Confirm: 'אשר',
     'Resend Code': 'שלח קוד חדש',
     'Resend code': 'שלח קוד חדש',
@@ -66,6 +67,13 @@ const he = {
   	'Username cannot be empty': 'שם משתמש לא יכול להיות ריק',
   	'Password attempts exceeded':
   		'חריגה מנסיונות הסיסמה',
+    'Plooralist': 'פלורליסט',
+    'Join now': 'הצטרף עכשיו',
+    'Demo account': 'חשבון הדגמה',
+    'Sign in to demo account': 'התחבר לחשבון הדגמה',
+    'ReInstallation': 'התקנה חוזרת',
+    'Welcome page': 'דף פתיחה',
+    'Back to Welcome page': 'חזור לדף פתיחה',
 };
 
 export { he };

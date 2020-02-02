@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Platform, Alert } from 'react-native';
 
-//import { AsyncStorage } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import { Analytics } from 'aws-amplify';
