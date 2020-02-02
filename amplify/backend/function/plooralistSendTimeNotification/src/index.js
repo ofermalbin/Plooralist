@@ -31,8 +31,7 @@ const
 
 const defaultParamsMessage = {
     Action: 'OPEN_APP',
-    SilentPush: false,
-    Sound: "sncfjingle"
+    SilentPush: false
 };
 
 exports.handler = async (event, context) => {
@@ -172,8 +171,8 @@ exports.handler = async (event, context) => {
             SendUsersMessageRequest: {
                 Users: users,
                 MessageConfiguration: {
-                    APNSMessage: message,
-                    GCMMessage: message
+                    APNSMessage: {...message, Sound: "sncfjingle.wav"},
+                    GCMMessage: {...message, Sound: "sncfjingle"}
                 }
             }
         };

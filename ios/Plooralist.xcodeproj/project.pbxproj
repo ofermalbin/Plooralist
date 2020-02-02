@@ -17,6 +17,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* PlooralistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PlooralistTests.m */; };
 		954C39C52370212B00CA236D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954C39C42370212B00CA236D /* CoreLocation.framework */; };
+		95CE9AB123E7140200E15EA4 /* sncfjingle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95CE9AB023E7140200E15EA4 /* sncfjingle.wav */; };
 		C9A280440F300F1129CBAB37 /* libPods-Plooralist-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D719BDFF02697B618116BC /* libPods-Plooralist-tvOS.a */; };
 		CB44089FC3BC85F648740704 /* libPods-PlooralistTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA658F8E20AD192E10495ABE /* libPods-PlooralistTests.a */; };
 		DA18AF15F13019AFA9E53A9F /* libPods-Plooralist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D766CB5B408407AB0E338A86 /* libPods-Plooralist.a */; };
@@ -62,6 +63,7 @@
 		740001D79F34F18A6B164BC2 /* Pods-Plooralist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plooralist.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plooralist/Pods-Plooralist.release.xcconfig"; sourceTree = "<group>"; };
 		954C39C42370212B00CA236D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		954C39C623706B8A00CA236D /* Plooralist.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Plooralist.entitlements; path = Plooralist/Plooralist.entitlements; sourceTree = "<group>"; };
+		95CE9AB023E7140200E15EA4 /* sncfjingle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sncfjingle.wav; sourceTree = "<group>"; };
 		AA658F8E20AD192E10495ABE /* libPods-PlooralistTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PlooralistTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C44E1D03E3C7BBE8F38BF87A /* Pods-Plooralist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plooralist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plooralist/Pods-Plooralist.debug.xcconfig"; sourceTree = "<group>"; };
 		D766CB5B408407AB0E338A86 /* libPods-Plooralist.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Plooralist.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +167,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				95CE9AB023E7140200E15EA4 /* sncfjingle.wav */,
 				13B07FAE1A68108700A75B9A /* Plooralist */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* PlooralistTests */,
@@ -352,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				95CE9AB123E7140200E15EA4 /* sncfjingle.wav in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -677,7 +681,7 @@
 				DEVELOPMENT_TEAM = LCNLHU9567;
 				INFOPLIST_FILE = Plooralist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.92;
+				MARKETING_VERSION = 1.0.94;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -699,7 +703,7 @@
 				DEVELOPMENT_TEAM = LCNLHU9567;
 				INFOPLIST_FILE = Plooralist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.92;
+				MARKETING_VERSION = 1.0.94;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

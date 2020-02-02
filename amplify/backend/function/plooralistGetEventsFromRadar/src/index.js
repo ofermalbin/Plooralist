@@ -30,7 +30,7 @@ const
 
 const defaultParamsMessage = {
     Action: 'OPEN_APP',
-    SilentPush: false,
+    SilentPush: false
 };
 
 const whenTypes = ['entered', 'exited'];
@@ -134,8 +134,8 @@ exports.handler = async (req, context) => {
           SendUsersMessageRequest: {
               Users: {[userId]: {}},
               MessageConfiguration: {
-                  APNSMessage: message,
-                  GCMMessage: message
+                  APNSMessage: {...message, Sound: "sncfjingle.wav"},
+                  GCMMessage: {...message, Sound: "sncfjingle"}
               }
           }
       };

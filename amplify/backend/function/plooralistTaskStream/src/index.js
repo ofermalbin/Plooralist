@@ -32,8 +32,7 @@ const
 
 const defaultParamsMessage = {
     Action: 'OPEN_APP',
-    SilentPush: false,
-    Sound: "sncfjingle"
+    SilentPush: false
 };
 
 exports.handler = async (event, context) => {
@@ -114,8 +113,8 @@ exports.handler = async (event, context) => {
             SendUsersMessageRequest: {
                 Users: users,
                 MessageConfiguration: {
-                    APNSMessage: createMessage,
-                    GCMMessage: createMessage
+                    APNSMessage: {...createMessage, Sound: "sncfjingle.wav"},
+                    GCMMessage: {...createMessage, Sound: "sncfjingle"}
                 }
             }
         };
@@ -141,8 +140,8 @@ exports.handler = async (event, context) => {
             SendUsersMessageRequest: {
                 Users: users,
                 MessageConfiguration: {
-                    APNSMessage: updateMessage,
-                    GCMMessage: updateMessage
+                    APNSMessage: {...updateMessage, Sound: "sncfjingle.wav"},
+                    GCMMessage: {...updateMessage, Sound: "sncfjingle"}
                 }
             }
         };
@@ -156,8 +155,8 @@ exports.handler = async (event, context) => {
             Title: task.name,
             Body: 'Task deleted',
             Data: {
-                objType: 'task',
-                objId: task.id
+                objType: 'panel',
+                objId: task.taskPanelId
             }
         };
         let users = {};
@@ -170,8 +169,8 @@ exports.handler = async (event, context) => {
             SendUsersMessageRequest: {
                 Users: users,
                 MessageConfiguration: {
-                    APNSMessage: deleteMessage,
-                    GCMMessage: deleteMessage
+                    APNSMessage: {...deleteMessage, Sound: "sncfjingle.wav"},
+                    GCMMessage: {...deleteMessage, Sound: "sncfjingle"}
                 }
             }
         };

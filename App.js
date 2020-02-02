@@ -64,20 +64,14 @@ Amplify.configure(aws_exports);
 Analytics.configure(aws_exports);
 PushNotification.configure(aws_exports);
 
-let receivePushNotificationResult = null;
-let openedPushNotificationResult = null;
+let notificationResult = null;
 
-const onReceive = receiveResult => {
-  receivePushNotificationResult = receiveResult;
-};
-
-const onOpened = openResult => {
-  openedPushNotificationResult = openResult;
+const onNotification = notification => {
+  notificationResult = notification;
 };
 
 PushNotification.onRegister(onRegister);
-PushNotification.onNotification(onReceive);
-PushNotification.onNotificationOpened(onOpened);
+PushNotification.onNotification(onNotification);
 
 const client = new AWSAppSyncClient({
   url: aws_exports.aws_appsync_graphqlEndpoint,
@@ -126,13 +120,8 @@ class App extends React.Component {
   }
 
   handleNotification() {
-    //pushNotificationOnGoPress = this.pushNotificationOnGoPress.bind(this);
 
-    const pushNotificationOnGoPress = (objType, objId) => {
-     this.navigator && this.navigator.dispatch(NavigationActions.navigate({ routeName: 'InfoTask', params: {taskId: objId, isMemberManager: true} }));
-    };
-
-    const alertNotification = (title, body, objType, objId) => {
+    const _alertNotification = (title, body, objType, objId) => {
      Alert.alert(
        title,
        body,
@@ -140,7 +129,18 @@ class App extends React.Component {
        [
          {
            text: 'OK',
-           onPress: () => pushNotificationOnGoPress(objType, objId),
+           onPress: () => {
+             switch(objType) {
+               case "task":
+                 this.navigator && this.navigator.dispatch(NavigationActions.navigate({ routeName: 'InfoTask', params: {taskId: objId, isMemberManager: true} }));
+                 break;
+               case "panel":
+                 //this.navigator && this.navigator.dispatch(NavigationActions.navigate({ routeName: 'InfoPanel', params: {panelId: objId} }));
+                 break;
+               default:
+                 ;
+             }
+           }
          },
          {
            text: 'Cancel',
@@ -155,48 +155,26 @@ class App extends React.Component {
      )
     };
 
-    const onNotification = notification => {
+    const _onNotification = notification => {
       if (Platform.OS === 'ios') {
        const { objType, objId } = notification._data.data['jsonBody'];
-       alertNotification(notification._alert['title'], notification._alert['body'], objType, objId);
+       _alertNotification(notification._alert['title'], notification._alert['body'], objType, objId);
       }
       else if (Platform.OS === 'android') {
-       //alert(JSON.stringify(notification))
        const { objType, objId } = JSON.parse(notification.data['pinpoint.jsonBody']);
-       alertNotification(notification.title, notification.body, objType, objId);
-       //Alert.alert(notification.title, notification.body);
+       _alertNotification(notification.title, notification.body, objType, objId);
       }
     }
 
-    const onNotificationOpened = notification => {
-      if (Platform.OS === 'android') {
-        //alert(JSON.stringify(notification));
-        const { objType, objId } = JSON.parse(notification.data['pinpoint.jsonBody']);
-        alertNotification(notification.title, notification.body, objType, objId);
-      }
-    }
+    if (notificationResult)  {
+      _onNotification(notificationResult);
+      notificationResult = null;
+    };
 
     // get the notification data when notification is received
     PushNotification.onNotification((notification) => {
-      onNotification(notification);
+      _onNotification(notification);
     });
-
-    // get the notification data when notification is opened
-    PushNotification.onNotificationOpened((notification) => {
-      onNotificationOpened(notification);
-    });
-
-    if (receivePushNotificationResult)  {
-      onNotification(receivePushNotificationResult);
-      receivePushNotificationResult = null;
-     //alert('onNotification: ' + JSON.stringify(receivePushNotificationResult));
-    };
-
-    if (openedPushNotificationResult)  {
-      onNotificationOpened(openedPushNotificationResult);
-      openedPushNotificationResult = null;
-     //alert('onNotificationOpened: ' + JSON.stringify(openedPushNotificationResult));
-    };
  }
 
  handleLocalizationChange() {
