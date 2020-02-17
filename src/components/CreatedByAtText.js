@@ -12,7 +12,7 @@ import { createByAtStyles } from '../config/stylesheets';
 export const CreatedByText = (props) => {
   return (
     <View style={[createByAtStyles.container, {flexDirection: 'row'}]}>
-      <Text style={createByAtStyles.text}>{`${translate("Common.Message.created by")} `}</Text>
+      <Text style={createByAtStyles.text}>{`${translate("Common.Info.created by")} `}</Text>
       <TextNameUser style={createByAtStyles.text} user={props.user} />
       <Text style={createByAtStyles.text}>{`${'.'}`}</Text>
     </View>
@@ -23,7 +23,7 @@ export const CreatedAtText = (props) => {
   const { languageTag, isRTL } = getI18nConfig();
   return (
     <View style={createByAtStyles.container}>
-      <Text style={createByAtStyles.text}>{`${translate("Common.Message.created at")} ${moment(props.createdAt).locale(languageTag).format('LL')}.`}</Text>
+      <Text style={createByAtStyles.text}>{`${translate("Common.Info.created at")} ${moment(props.createdAt).locale(languageTag).format('LL')}.`}</Text>
     </View>
   );
 };

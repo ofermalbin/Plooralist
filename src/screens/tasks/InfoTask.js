@@ -11,10 +11,8 @@ import gql from 'graphql-tag';
 import { graphqlMutation } from 'aws-appsync-react';
 import { buildSubscription } from 'aws-appsync';
 
-import { getTask, listTasksForPanel, listSubtasksForTask } from '../../graphql/queries';
+import { getTask, listTasksForPanel } from '../../graphql/queries';
 import { updateTask } from '../../graphql/mutations';
-
-import { onCreateSubtask, onUpdateSubtask, onDeleteSubtask } from '../../graphql/subscriptions';
 
 import moment from 'moment/min/moment-with-locales.js';
 
@@ -22,19 +20,22 @@ import { filter } from 'lodash';
 
 import { ListItem } from 'react-native-elements';
 
-import { withCurrentUser, withContacts } from '../../contexts';
+import { withCurrentUser } from '../../contexts';
 
 import colors from '../../config/colors';
 import { infoTaskStyles, createByAtStyles } from './config/stylesheets';
 
-import { Loading, AvatarS3Image, Chevron, CreatedByText, CreatedAtText } from '../../components';
+import { Loading, S3Image, AvatarS3Image, Chevron, CreatedByText, CreatedAtText } from '../../components';
+
+import InfoTaskSubtasks from './InfoTaskSubtasks';
+import InfoTaskPhotos from './InfoTaskPhotos';
+import InfoTaskMessages from './InfoTaskMessages';
 
 import TimeNotifications from '../timeNotifications';
 import PlaceNotifications from '../placeNotifications';
 import DeleteTask from './DeleteTask';
 
-import { listTasksForPanelVariables } from './util';
-import { listSubtasksForTaskVariables } from '../subtasks/util';
+import { listTasksForPanelVariables, listMessagesForTaskVariables, listSubtasksForTaskVariables } from './util';
 
 import translate from '../../translations';
 
@@ -46,28 +47,6 @@ class InfoTask extends React.Component {
     this.state = {
       completed: props.task ? props.task.completed : null
     }
-  }
-
-  componentDidMount() {
-    const { taskId } = this.props.navigation.state.params;
-    this.props.subtasksData.subscribeToMore(
-      buildSubscription(
-        {query: gql(onCreateSubtask), variables: {subtaskTaskId: taskId}},
-        {query: gql(listSubtasksForTask), variables: listSubtasksForTaskVariables(taskId)}
-      )
-    );
-    this.props.subtasksData.subscribeToMore(
-      buildSubscription(
-        {query: gql(onUpdateSubtask), variables: {subtaskTaskId: taskId}},
-        {query: gql(listSubtasksForTask), variables: listSubtasksForTaskVariables(taskId)}
-      )
-    );
-    this.props.subtasksData.subscribeToMore(
-      buildSubscription(
-        {query: gql(onDeleteSubtask), variables: {subtaskTaskId: taskId}},
-        {query: gql(listSubtasksForTask), variables: listSubtasksForTaskVariables(taskId)}
-      )
-    );
   }
 
   componentWillReceiveProps(nextProps) {
@@ -96,22 +75,9 @@ class InfoTask extends React.Component {
     this.props.updateTask({input, ...offline});
   }
 
-  onMessagesPress() {
-    const { task } = this.props;
-    this.props.navigation.navigate('TaskMessages', {taskId: this.props.task.id});
-  }
-
-  onSubtasksPress() {
-    const { isMemberManager } = this.props.navigation.state.params;
-    const { task, currentUser } = this.props;
-    const isTaskOwner = (task.taskUserId === currentUser.id) || isMemberManager;
-
-    this.props.navigation.navigate('Subtasks', {taskId: this.props.task.id, isTaskOwner: isTaskOwner});
-  }
-
   render() {
     const { isMemberManager } = this.props.navigation.state.params;
-    const { task, currentUser, subtasks } = this.props;
+    const { task, currentUser, subtasks, messages } = this.props;
 
     if (!task || !currentUser) {
       return (
@@ -120,8 +86,6 @@ class InfoTask extends React.Component {
     }
 
     const isOwner = (task.taskUserId === currentUser.id) || isMemberManager;
-    const subtasksCount = subtasks.length;
-    const subtasksCompletedCount = filter(subtasks, subtask => subtask.completed).length;
 
     return (
       <ScrollView>
@@ -160,35 +124,11 @@ class InfoTask extends React.Component {
           disabled={task.offline}
           disabledStyle={{backgroundColor: '#F0F8FF'}}
         />
-        {((subtasksCount || isOwner) || null) && <ListItem
-          topDivider={true}
-          bottomDivider={true}
-          containerStyle={[infoTaskStyles.container, {marginTop:22}]}
-          titleStyle={infoTaskStyles.title}
-          subtitleStyle={infoTaskStyles.subtitle}
-          rightTitleStyle={infoTaskStyles.rightTitle}
-          chevron={<Chevron />}
-          title={translate("Subtask.subtasks")}
-          subtitle={(subtasksCount || null) && translate("Subtask.completed summery", {subtasksCount, subtasksCompletedCount})}
-          //subtitle={(subtasksCount || null) && `${subtasksCount}${' subtasks '}${subtasksCompletedCount}${' completed'}`}
-          rightTitle={(!subtasksCount || null) && translate("Common.Button.add")}
-          leftIcon={{ name: 'playlist-add-check', iconStyle: infoTaskStyles.leftIcon }}
-          onPress={this.onSubtasksPress.bind(this)}
-        />}
+        <InfoTaskSubtasks taskId={task.id} isOwner={isOwner} navigation={this.props.navigation}/>
+        <InfoTaskPhotos taskId={task.id} isOwner={isOwner} navigation={this.props.navigation}/>
+        <InfoTaskMessages taskId={task.id} panelId={this.props.task.taskPanelId} isOwner={isOwner} navigation={this.props.navigation}/>
         <TimeNotifications {...this.props} isOwner={isOwner} />
         <PlaceNotifications {...this.props} isOwner={isOwner} />
-        <ListItem
-          topDivider={true}
-          bottomDivider={true}
-          containerStyle={[infoTaskStyles.container, {marginTop:22}]}
-          titleStyle={infoTaskStyles.title}
-          subtitleStyle={infoTaskStyles.subtitle}
-          rightTitleStyle={infoTaskStyles.rightTitle}
-          chevron={<Chevron />}
-          title={translate("Message.chat")}
-          leftIcon={{ type: 'material', name: 'attach-file', iconStyle: infoTaskStyles.leftIcon }}
-          onPress={this.onMessagesPress.bind(this)}
-        />
         {isOwner && <DeleteTask {...this.props} />}
         <CreatedByText user={task.user} />
         <CreatedAtText createdAt={task.createdAt} />
@@ -212,19 +152,6 @@ const enhance = compose(
     props: props => ({
       task: props.data.getTask ? props.data.getTask : null,
     })
-  }),
-  graphql(gql(listSubtasksForTask), {
-    options: props => {
-      const { taskId } = props.navigation.state.params;
-      return ({
-        fetchPolicy: 'cache-and-network',
-        variables: listSubtasksForTaskVariables(taskId)
-      })
-    },
-    props: props => ({
-      subtasks: props.data.listSubtasksForTask ? props.data.listSubtasksForTask.items : [],
-      subtasksData: props.data
-    }),
   }),
   graphqlMutation(gql(updateTask), variables => ({query: gql(listTasksForPanel), variables: listTasksForPanelVariables(variables.taskPanelId)}), 'Task')
 )(withCurrentUser(InfoTask));

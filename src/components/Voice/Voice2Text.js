@@ -24,7 +24,7 @@ class Voice2Text extends React.Component {
   static navigationOptions = ({ navigation }) => {
       const { params = {} } = navigation.state;
       return {
-        headerTitle: translate("Common.Voice.voice to text"),
+        headerTitle: translate("Voice.voice to text"),
         headerLeft: () => <HeaderBackButton label={translate("Common.Button.back")} onPress={() => navigation.goBack(null)} />,
       };
   };
@@ -106,7 +106,7 @@ class Voice2Text extends React.Component {
         <View style={{flex:0.8}}>
         <ListItem
           titleStyle={{fontWeight: '300', fontSize: normalize(20), textAlign: "left"}}
-          title={this.state.partialResults.join(' ') || translate("Common.Voice.speech")}
+          title={this.state.partialResults.join(' ') || translate("Voice.speech")}
         />
         </View>
         <View style={{flex:0.2}}>

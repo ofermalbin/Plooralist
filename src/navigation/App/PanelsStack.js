@@ -3,11 +3,10 @@ import React from 'react';
 import { Button, Icon } from 'react-native-elements';
 
 import Panels, { InfoPanel, SelectPanel, CreateTeamPanel, EditPanelName, EditPanelPermission, CreateMembers, AddMembers } from '../../screens/panels';
-import Tasks, { InfoTask, UpdateTaskName, UpdateTaskDescription } from '../../screens/tasks';
+import Tasks, { InfoTask, TaskPhotos, TaskMessages, UpdateTaskName, UpdateTaskDescription } from '../../screens/tasks';
 import { CreateTimeNotification, EditTimeNotification, EditTimeNotificationRecurrenceCustom } from '../../screens/timeNotifications';
 import { CreatePlaceNotification, EditPlaceNotification, EditPlaceNotificationRadius } from '../../screens/placeNotifications';
 import Subtasks, { EditSubtaskNameDescription } from '../../screens/subtasks';
-import { TaskMessages } from '../../screens/messages';
 import { Voice2Text } from '../../components/Voice';
 
 import PhotoMax from '../../screens/photos';
@@ -87,6 +86,9 @@ export default createStackNavigator({
   },
   TaskMessages: {
     screen: TaskMessages,
+  },
+  TaskPhotos: {
+    screen: TaskPhotos,
   },
   Subtasks: {
     screen: Subtasks,

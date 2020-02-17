@@ -135,8 +135,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true
-        versionCode 94
-        versionName "1.0.94"
+        versionCode 96
+        versionName "1.0.96"
     }
     splits {
         abi {
@@ -183,8 +183,6 @@ android {
 }
 
 dependencies {
-    implementation project(':@aws-amplify_pushnotification')
-    implementation project(':amazon-cognito-identity-js')
     implementation 'androidx.multidex:multidex:2.0.0'
     implementation 'io.radar:sdk:2.1.+'
     implementation 'com.google.firebase:firebase-messaging:20.1.0'

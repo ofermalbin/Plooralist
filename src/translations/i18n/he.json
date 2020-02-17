@@ -24,25 +24,13 @@
       "on": "מופעל",
       "off": "לא מופעל",
     },
-    "Message": {
+    "Info": {
       "created by": "נוצר ע״י",
       "created at": "נוצר ב",
-      "placeholder": "כתוב משהו...",
     },
     "Alert": {
       "are you sure?": "האם אתה בטוח?",
     },
-    "Voice": {
-      "voice to text": "דיבור למילים",
-      "speech": "דבר...",
-    },
-    "Photo": {
-      "add photo picker": "הוספת תמונה",
-      "update photo picker": "עידכון תמונה",
-      "take photo": "צלם תמונה...",
-      "choose photo from library": "בחר תמונה מספריה...",
-      "remove photo": "מחק תמונה...",
-    }
   },
   "Panel": {
     "panel": "לוח",
@@ -135,15 +123,28 @@
     "edit subtask": "ערוך תת משימה",
     "subtask name": "שם תת משימה",
     "subtask description": "תאור תת משימה",
-    "completed summery": "%{subtasksCount} תת משימות %{subtasksCompletedCount} הושלמו",
+    "completed summery": "תת משימות %{subtasksCompletedCount} הושלמו",
   },
   "Message": {
     "message": "הודעה",
     "messages": "הודעות",
     "chat": "צ׳אט",
-    "take picture": "צלם תמונה",
-    "choose picture": "בחר תמונה",
-    "my location": "המקום שלי",
+    "placeholder": "כתוב משהו...",
+    "location": "מיקום",
+    "my location": "המיקום שלי",
+  },
+  "Photo": {
+    "photo": "תמונה",
+    "photos": "תמונות",
+    "add photo picker": "הוספת תמונה",
+    "update photo picker": "עידכון תמונה",
+    "take photo": "צלם תמונה...",
+    "choose photo from library": "בחר תמונה מספריה...",
+    "remove photo": "מחק תמונה...",
+  },
+  "Voice": {
+    "voice to text": "דיבור למילים",
+    "speech": "דבר...",
   },
   "CurrentUser": {
     "name": "שם משתמש",

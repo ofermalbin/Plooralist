@@ -23,27 +23,13 @@
       "on": "On",
       "off": "Off",
     },
-    "Message": {
+    "Info": {
       "created by": "created by",
       "created at": "created at",
-      "take picture": "Take Picture",
-      "choose picture": "Chose Picture",
-      "my location": "My Location",
     },
     "Alert": {
       "are you sure?": "Are you sure?",
     },
-    "Voice": {
-      "voice to text": "Voice to Text",
-      "speech": "Speech...",
-    },
-    "Photo": {
-      "add photo picker": "Add Photo Picker",
-      "update photo picker": "Update Photo Picker",
-      "take photo": "Take Photo...",
-      "choose photo from library": "Choose from Library...",
-      "remove photo": "Remove Photo...",
-    }
   },
   "Panel": {
     "panel": "Panel",
@@ -134,13 +120,28 @@
     "edit subtask": "edit subtask",
     "subtask name": "Subtask Name",
     "subtask description": "Subtask Description",
-    "completed summery": "%{subtasksCount} subtasks %{subtasksCompletedCount} completed",
+    "completed summery": "%{subtasksCompletedCount} completed",
   },
   "Message": {
     "message": "Message",
     "messages": "Messages",
     "chat": "Chat",
     "placeholder": "Write something...",
+    "location": "Location",
+    "my location": "My location",
+  },
+  "Photo": {
+    "photo": "Photo",
+    "photos": "Photos",
+    "add photo picker": "Add Photo Picker",
+    "update photo picker": "Update Photo Picker",
+    "take photo": "Take Photo...",
+    "choose photo from library": "Choose from Library...",
+    "remove photo": "Remove Photo..."
+  },
+  "Voice": {
+    "voice to text": "Voice to Text",
+    "speech": "Speech...",
   },
   "CurrentUser": {
     "me": "Me",

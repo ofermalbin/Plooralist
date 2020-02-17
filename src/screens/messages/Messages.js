@@ -21,7 +21,7 @@ import { launchCamera, launchImageLibrary } from '../photos';
 
 import translate from '../../translations';
 
-import styles from './styles';
+import styles from './config/styles';
 
 class Messages extends React.Component {
 
@@ -67,8 +67,8 @@ class Messages extends React.Component {
 
   renderActions() {
     const options = {
-      [translate("Message.take picture")]: () => launchCamera({updatePhoto: (photo) => this.props.onSend({uri: photo})}),
-      [translate("Message.choose picture")]: () => launchImageLibrary({updatePhoto: (photo) => this.props.onSend({uri: photo})}),
+      [translate("Photo.take photo")]: () => launchCamera({updatePhoto: (photo) => this.props.onSend({uri: photo})}),
+      [translate("Photo.choose photo from library")]: () => launchImageLibrary({updatePhoto: (photo) => this.props.onSend({uri: photo})}),
       [translate("Message.my location")]: () => Geolocation.getCurrentPosition((position) => {
           const place = {
             latitude: position.coords.latitude,
@@ -169,18 +169,19 @@ class Messages extends React.Component {
   }
 
   render() {
+    //this.props.panel && alert(this.props.panel.type);
     return (
       <GiftedChat
         locale='en'
-        placeholder={translate("Common.Message.placeholder")}
+        placeholder={translate("Message.placeholder")}
         showAvatarForEveryMessage={false}
         renderAvatarOnTop={true}
-        showUserAvatar={true}
+        showUserAvatar={false}
         messages={this.state.messages}
         onSend={this.onSend.bind(this)}
         renderActions={this.renderActions.bind(this)}
         renderBubble={this.renderBubble.bind(this)}
-        renderAvatar={this.renderAvatar.bind(this)}
+        renderAvatar={(this.props.panel && (this.props.panel.type === 3)) ? this.renderAvatar.bind(this) : null}
         renderMessageImage={this.renderMessageImage.bind(this)}
         renderSend={this.renderSend.bind(this)}
         renderCustomView={this.renderCustomView.bind(this)}

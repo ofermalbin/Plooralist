@@ -45,7 +45,7 @@ target 'Plooralist' do
   pod 'react-native-google-maps', :path => rn_maps_path
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
-  
+
   use_native_modules!
 end
 
