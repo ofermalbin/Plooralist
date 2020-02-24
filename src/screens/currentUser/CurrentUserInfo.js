@@ -12,6 +12,7 @@ import { ListItem, Icon } from 'react-native-elements';
 import { AvatarS3Image, Chevron } from '../../components';
 
 import FastImage from 'react-native-fast-image';
+
 import aws_exports from '../../aws-exports';
 
 import { Loading, CreatedAtText } from '../../components';
@@ -100,7 +101,7 @@ class CurrentUserInfo extends React.Component {
           expectedVersion: currentUser.version,
           imgKey: result.key,
         };
-        const offline = Object.assign(currentUser, {offline: true, updatedAt: (new Date()).toISOString()});
+        const offline = Object.assign(currentUser, {offline: true, updatedAt: (new Date()).toISOString(), path});
         this.props.updateUser({...offline, input});
       }
     });

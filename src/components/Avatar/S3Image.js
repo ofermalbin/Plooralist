@@ -93,22 +93,22 @@ export default class S3Image extends React.Component {
 
     return (
       this.state.source && <FastImage
-        source={{
-          uri: this.state.source,
-          //headers: this.state.query,
-        }}
-        //onError={(e) => alert(JSON.stringify(e.nativeEvent))}
-        style={{
-          width: width,
-          height: height,
-          borderRadius: borderRadius,
-          margin: margin,
-          resizeMode: resizeMode,
-        }}
-        onLoadStart={() => { this.setState({ loading: true })} }
-        onLoadEnd={() => { this.setState({ loading: false })} }
-      >
-        {Utils}
+          source={{
+            uri: this.state.source,
+            //headers: this.state.query,
+          }}
+          //onError={(e) => alert(JSON.stringify(e.nativeEvent))}
+          style={{
+            width: width,
+            height: height,
+            borderRadius: borderRadius,
+            margin: margin,
+            resizeMode: resizeMode,
+          }}
+          onLoadStart={() => { this.setState({ loading: true })} }
+          onLoadEnd={() => { this.setState({ loading: false })} }
+        >
+          {Utils}
       </FastImage> || null
     )
   }

@@ -30,6 +30,7 @@ const PhotoEdit = (props) => {
   ImagePicker.showImagePicker(options, (response) => {
 
     if (response.didCancel) {
+      props.didCancel && props.didCancel();
     }
     else if (response.error) {
       Alert.alert('PhotoPicker Error', response.error);

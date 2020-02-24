@@ -44,10 +44,6 @@ class CreateTeamPanel extends React.Component {
     }
   }
 
-  onAvatarPress() {
-    this.state.source ? this.props.navigation.navigate('PhotoMax', {photo: this.state.source}) : this.onEditAvatarPress.bind(this)();
-  };
-
   onEditAvatarPress() {
     PhotoEdit({
       photo: this.state.source,

@@ -49,10 +49,12 @@ class TaskPhotos extends React.Component {
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({ ...this.props });
+
+    this.props.navigation.setParams({ ...this.props, disabled: false });
     this.setState({
       photos: orderBy(filter(this.props.messages, message => message.imgKey), ['updatedAt'], ['desc']),
     });
+
     const { taskId } = this.props.navigation.state.params;
     this.props.messagesData.subscribeToMore(
       buildSubscription(
@@ -110,19 +112,20 @@ class TaskPhotos extends React.Component {
     };
 
     this.props.createMessage({...offline, input: input});
+    this.props.navigation.setParams({ ...this.props, disabled: false });
   }
 
   onAddPress() {
+    this.props.navigation.setParams({ ...this.props, disabled: true });
     PhotoEdit({
       photo: null,
       updatePhoto: (photo) => {
-        this.createMessage(photo);
         this.setState(previousState => ({
           photos: [{source: photo}, ...previousState.photos],
         }))
-        //this.props.navigation.state.params.onAddPhoto(photo);
-        //this.props.navigation.goBack();
-      }
+        this.createMessage(photo);
+      },
+      didCancel: () => this.props.navigation.setParams({ ...this.props, disabled: false })
     });
   };
 
@@ -168,8 +171,8 @@ enhance.navigationOptions = ({ navigation }) => {
   const { params = {} } = navigation.state;
   return {
     headerTitle: () => <TitleTask {...params} navigation={navigation} />,
-    headerRight: () => <Button type="clear" title={translate("Common.Button.add")} titleStyle={{color: '#5fb8f6'}} onPress={() => params.onAddPress()} />,
-    headerLeft: () => <HeaderBackButton label={translate("Common.Button.back")} onPress={() => navigation.goBack(null)} />,
+    headerRight: () => <Button type="clear" title={translate("Common.Button.add")} titleStyle={{color: '#5fb8f6'}} disabled={params.disabled} onPress={() => params.onAddPress()} />,
+    headerLeft: () => <HeaderBackButton label={translate("Common.Button.back")} disabled={params.disabled} onPress={() => navigation.goBack(null)} />,
   };
 }
 

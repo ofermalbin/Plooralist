@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
+import { FlatList, StyleSheet, View } from 'react-native';
 
 import { S3Image } from '../../components';
 
@@ -79,7 +79,7 @@ class PhotosGrid extends Component {
     }
 }
 
-const MARGIN = 3
+const MARGIN = 2
 
 const styles = StyleSheet.create({
     container: {

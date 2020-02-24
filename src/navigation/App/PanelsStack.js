@@ -9,8 +9,6 @@ import { CreatePlaceNotification, EditPlaceNotification, EditPlaceNotificationRa
 import Subtasks, { EditSubtaskNameDescription } from '../../screens/subtasks';
 import { Voice2Text } from '../../components/Voice';
 
-import PhotoMax from '../../screens/photos';
-
 import { createStackNavigator } from "react-navigation-stack";
 
 import translate from '../../translations';
@@ -38,12 +36,6 @@ export default createStackNavigator({
   },
   InfoPanel: {
     screen: InfoPanel,
-  },
-  PhotoMax: {
-    screen: PhotoMax,
-    navigationOptions: {
-      header: null,
-    },
   },
   Voice2Text: {
     screen: Voice2Text,
